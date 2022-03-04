@@ -1,0 +1,333 @@
+---
+title: "APG Pertemuan-3 kelas 3SI1"
+author: "Riofebri Prasetia (221911192)"
+date: "3/3/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Library dan Dataset
+
+### Library
+```{r library}
+library('MVN')
+library('mvoutlier')
+library('evd')
+library('RVAideMemoire')
+```
+
+### Dataset
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/6%20maret%202022/tugas%20ketiga%20APG.csv"
+data1<-read.csv(url)
+data1
+```
+Data ini merepresentasikan berabgai biaya terkait pengangkutan susu dan peternakan ke pabrik susu untuk truk bensin. observasi ke 9 dan 21 telah diidentifikasi sebagai outlier
+
+## Deteksi Outlier dengan Beberapa Metode
+
+### Scatter Plot Bivariate
+```{r}
+pairs(data1)
+```
+
+### Chi-square Plot
+```{r}
+chiplot(data1)
+```
+
+```{r}
+chisq.plot(data1)
+```
+
+### Q-Q Plot Univariate
+```{r}
+qqnorm(data1$Fuel.x1.)
+```
+
+```{r}
+qqnorm(data1$Repair.x2.)
+```
+
+```{r}
+qqnorm(data1$Capital.x3.)
+```
+Interpretasi dari deteksi outlier:
+sejauh ini secara multivariate, terdapat 3 observasi dimana 1 dari ke-3 observasi tersebut merupakan outlier paling jauh jika dilihat dari diagram chi-quadrat plot. secara univariate, pada variabel bahan bakar (fuel) terlihat sebanyak 2 outlier, pada variabel perbaikan (repair) terdapat 1 outlier, sedangkan pada variabel modal (capital) terdapat 3 outlier. Hal ini jika di lakukan drop outlier maka akan ada informasi yang hilang antara variabel bahan bakar (fuel) dan perbaikan (repair). Sehingga dalam melakukan drop outlier perlu mempertimbangkan hal tersebut
+
+## Uji Multivariate Normal dengan beberapa metode
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data1, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data1, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data1, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(data1, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(data1)
+```
+Interpretasi dari uji multivariate normal dengan beberapa metode:
+Berdasarkan uji multivariate normal dengan beberapa metode maka bisa disimpulkan bahwa data pengangkutan susu dari peternakan tidak berdistribusi normal secara multivariate. Hal ini bisa di pengaruhi oleh outlier atau data harus di transformasi ke dalam bentuk lain.
+
+## Lakukan remove jika ada outlier, transformasi dan test multivariate normal
+
+## Melakukan pembuangan atau drop outlier kemudian test multivariate normal:
+```{r}
+Q1 <- quantile(data1$Fuel.x1., .25)
+Q3 <- quantile(data1$Fuel.x1., .75)
+IQR <- (Q3 - Q1)
+
+upper_bound <- Q3 + (IQR * 1.5)
+lower_bound <- Q1 - (IQR * 1.5)
+
+eliminated <- subset(data1, data1$Fuel.x1. > lower_bound & data1$Fuel.x1. < upper_bound)
+
+eliminated
+
+```
+
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(eliminated, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(eliminated, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(eliminated, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(eliminated, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(eliminated)
+```
+Interpretasi dari uji multivariate normal dengan beberapa metode dan outlier di buang:
+Berdasarkan uji multivariate normal dengan beberapa metode sebagian besar metode menyimpulkan bahwa data pengangkutan susu dari peternakan secara multivariate berdistribusi normal. Akan tetapi pada uji shapiro wilk didapat p-value = 0.008 < 0.05 yang artinya data tidak berdistribusi normal secara multivariate.
+
+## melakukan transformasi akar 5 kemudian tes multivariate normal:
+```{r}
+datatransf <- (data1*10)^(1/5)
+```
+
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(datatransf, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(datatransf)
+```
+Interpretasi dari uji multivariate normal dengan beberapa metode dan transformasi akar 5:
+Berdasarkan uji multivariate normal dengan beberapa metode terdapat perbedaan kesimpulan yaitu pada uji Royston dan henze-zikler's menyatakan bahwa data bersifat multivariate normal, sedangkan berdasarkan dari uji mardia's, E-Statistics dan Shapiro-wilk menyatakan data ini bukan multivariate normal
+
+## melakukan transformasi log() kemudian tes multivariate normal:
+```{r}
+datatransf1 <- log(data1)
+```
+
+
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf1, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf1, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf1, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(datatransf1, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(datatransf1)
+```
+Interpretasi dari uji multivariate normal dengan beberapa metode dan transformasi log():
+Berdasarkan uji multivariate normal dengan beberapa metode memiliki kesimpulan yang sama yaitu data berdistribusi tidak normal secara multivariate
+
+## melakukan transformasi pangkat 2 kemudian tes multivariate normal:
+```{r}
+datatransf2 <- data1^2
+```
+
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf2, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf2, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf2, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(datatransf2, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(datatransf2)
+```
+Interpretasi dari uji multivariate normal dengan beberapa metode dan transformasi pangkat 2:
+Berdasarkan uji multivariate normal dengan beberapa metode memiliki kesimpulan yang sama yaitu data berdistribusi tidak normal secara multivariate
+
+## melakukan transformasi akar 2 kemudian tes multivariate normal:
+```{r}
+datatransf3 <- data1^(0.5)
+```
+
+
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf3, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf3, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf3, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(datatransf3, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(datatransf3)
+```
+Interpretasi dari uji multivariate normal dengan beberapa metode dan transformasi akar 2:
+Berdasarkan uji multivariate normal dengan beberapa metode terdapat perbedaan kesimpulan yaitu pada uji Royston, E-Statistic dan henze-zikler's menyatakan bahwa data bersifat multivariate normal, sedangkan berdasarkan dari uji mardia's dan Shapiro-wilk menyatakan data ini bukan multivariate normal.
+
+
+## melakukan transformasi normalisasi kemudian tes multivariate normal:
+```{r}
+datatransf4<-scale(data1)
+```
+
+
+
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf4, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf4, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(datatransf4, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(datatransf4, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(datatransf4)
+```
+Interpretasi dari uji multivariate normal dengan beberapa metode dan transformasi normalisasi:
+Berdasarkan uji multivariate normal dengan beberapa metode memiliki kesimpulan yang sama yaitu data berdistribusi tidak normal secara multivariate
+
+Dari beberapa pengujian yang sudah dilakukan bahwa uji shapiro wilk selalu menghasilkan multivariate tidak normal, kemudian untuk mardia test ketika dilakukan transformasi juga selalu menyatakan data tidak multivariate normal. Hal ini kemungkinan mardia test sangat sensitif terhadap data outlier. Hal ini juga berlaku pada uji shapiro wilk dengan sensitifitas terhadap outlier nya lebih besar dari mardia test 
