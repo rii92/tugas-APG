@@ -95,15 +95,16 @@ Berdasarkan uji multivariate normal dengan beberapa metode maka bisa disimpulkan
 
 ## Melakukan pembuangan atau drop outlier kemudian test multivariate normal:
 ```{r}
-Q1 <- quantile(data1$Fuel.x1., .25)
-Q3 <- quantile(data1$Fuel.x1., .75)
-IQR <- (Q3 - Q1)
+#Q1 <- quantile(data1$Fuel.x1., .25)
+#Q3 <- quantile(data1$Fuel.x1., .75)
+#IQR <- (Q3 - Q1)
 
-upper_bound <- Q3 + (IQR * 1.5)
-lower_bound <- Q1 - (IQR * 1.5)
+#upper_bound <- Q3 + (IQR * 1.5)
+#lower_bound <- Q1 - (IQR * 1.5)
 
-eliminated <- subset(data1, data1$Fuel.x1. > lower_bound & data1$Fuel.x1. < upper_bound)
+#eliminated <- subset(data1, data1$Fuel.x1. > lower_bound & data1$Fuel.x1. < upper_bound)
 
+eliminated <- data1[-c(9,21), ] 
 eliminated
 
 ```
