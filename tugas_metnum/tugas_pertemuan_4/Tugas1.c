@@ -7,6 +7,10 @@ int fraction[max], integer[max];
 
 void dectobin();
 void bintodec();
+void dectohex();
+void hextodec();
+void bintohex();
+void hextobin();
 
 int main()
 {
@@ -18,7 +22,11 @@ int main()
         printf("Berikut menu yang tersedia : \n");
         printf("1. Konversi Bilangan Desimal ke Biner\n");
         printf("2. Konversi Bilangan Biner ke Desimal\n");
-        printf("3. Keluar\n\n");
+        printf("3. Konversi Bilangan Desimal ke Hexadesimal\n");
+        printf("4. Konversi Bilangan Biner ke Desimal\n");
+        printf("5. Konversi Bilangan Biner ke Desimal\n");
+        printf("6. Konversi Bilangan Biner ke Desimal\n");
+        printf("7. Keluar\n\n");
         printf("Pilih menu : ");
         scanf("%d", &ch);
         printf("\n");
@@ -118,4 +126,17 @@ void bintodec()
         }
     }
     printf("Konversi desimalnya = %lf\n", result);
+}
+
+void dectohex()
+{
+}
+void hextodec()
+{
+}
+void bintohex()
+{
+}
+void hextobin()
+{
 }
