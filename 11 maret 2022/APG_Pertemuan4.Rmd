@@ -1,0 +1,215 @@
+---
+title: "Tugas_APG_Pertemuan_4"
+author: "Riofebri Prasetia (221911192)"
+date: "3/14/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Library yang digunakan
+```{r library, message=FALSE}
+library('MVN')
+library('mvoutlier')
+library('rcompanion')
+library('caret')
+library('RVAideMemoire')
+library('ellipse')
+library('qqplotr')
+library('evd')
+```
+
+Fungsi dari Hotelling's T Distrbution
+```{r hotelling_T}
+T.test <- function(X, mu=0){ 
+  X <- as.matrix(X) 
+  n <- nrow(X) 
+  p <- ncol(X) 
+  df2 <- n - p 
+  if(df2 < 1L) stop("Need nrow(X) > ncol(X).") 
+  if(length(mu) != p) 
+    mu <- rep(mu[1], p) 
+  xbar <- colMeans(X) 
+  S <- cov(X) 
+  T2 <- n * t(xbar - mu) %*% solve(S) %*% (xbar - mu) 
+  Fstat <- T2 / (p * (n-1) / df2) 
+  pval <- 1 - pf(Fstat, df1=p, df2=df2) 
+  data.frame(T2=as.numeric(T2), Fstat=as.numeric(Fstat), df1=p, df2=df2,
+             p.value=as.numeric(pval), row.names="")
+}
+```
+
+## Load dataset
+```{r read_data}
+urldata3 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/11%20maret%202022/College_Test.csv"
+data_test <- read.csv(urldata3)
+data_test
+```
+## Uji hipotesis
+### vector rataan
+```{r}
+xbar <- colMeans(data_test)
+xbar
+```
+### Hitung T kuadrat
+```{r}
+miyu0 <- c(500, 50, 30)
+T.test(data_test, myu)
+```
+
+```{r}
+n <- nrow(data_test)
+p <- ncol(data_test)
+alpha <- 0.05
+
+C2 <- (((n - 1)*p)/(n - p)) * qf(p = 1 - alpha, df1 = p, df2 = n - p)
+C2
+```
+
+Interpretasi:
+Karena nilai C^2 kurang dari T^2 dan nilai alpha = 5% lebih dari p-value, maka kesimpulan tolak H0. Ini menyatakan bahwa nilai rataan ke-tiga variabel tidak sama dengan miyu0 
+
+## Confidence Ellipsoid (alpha = 5%) miyu0 = [500,50,30]
+```{r}
+v = diag(sqrt(diag(S)))
+v
+```
+
+```{r}
+R = solve(v)%*%S%*%solve(v) 
+R
+```
+
+```{r}
+plot(ellipse(R[1,2], centre = xbar), type = "l", ylim = c(23, 60), xlim = c(490, 540)) 
+points(500,50, col="red", pch = 16)
+text(xbar[1]+0.5,xbar[2],expression(bar(x)))
+```
+
+
+```{r}
+plot(ellipse(R[1,3], centre = xbar), type = "l", ylim = c(23, 60), xlim = c(490, 540)) 
+points(500,30, col="red", pch = 16)
+text(xbar[1]+0.5,xbar[2],expression(bar(x)))
+```
+
+```{r}
+plot(ellipse(R[2,3], centre = xbar), type = "l", ylim = c(23, 60), xlim = c(30, 530)) 
+points(50,30, col="red", pch = 16)
+text(xbar[1]+0.5,xbar[2],expression(bar(x)))
+```
+## Simultan confidence interval
+```{r}
+bon <- NULL 
+alpha1 <-1-0.05 
+alpha2 <-1-(0.05/2) 
+alpha3 <- 1 - 0.05/(2*3)
+
+for(k in 1:3){
+  bon <- c(bon, xbar[k] - sqrt(S[k,k]/n) * qt(alpha3, df=n-1), xbar[k] + sqrt(S[k,k]/n) * qt(alpha3, df=n-1))
+}
+
+rtab <- rbind(bon)
+round(rtab, 2)
+```
+
+## Visualisasi dengan Q-Q plot dan Chi-square plot
+
+### Menggunakan Q-Q plot
+
+```{r}
+qqnorm(data_test$social_science)
+```
+
+
+```{r}
+qqnorm(data_test$verbal)
+```
+
+
+```{r}
+qqnorm(data_test$science)
+```
+
+### dengan chi-square plot
+```{r}
+xbarM <- colMeans(data_test)
+S <- cov(data_test)
+d <- apply(data_test, 1, function(data_test) t(data_test - xbarM) %*% solve(S) %*% (data_test - xbarM))
+plot(qchisq((1:nrow(data_test) -1/2) / nrow(data_test), df =3), sort(d), xlab = expression(paste(chi[3]^2," Quantile")), ylab ="Ordered distances")
+abline(a =0, b =1)
+```
+Interpretasi:
+melihat dari masing-masing qq plot normal dari masing-masing variabel tidak ada outlier. Untuk chi-square plot bisa dilihat terdapat 1 observasi yang di curigai sebagai outlier. Kemudian terlihat sebaran data hampir linier 45 derajat yang menunjukkan bahwa data kemungkinan berdistribusi normal
+
+## Uji Multivariate Normal dengan beberapa metode tanpa menangani outlier
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data_test, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data_test, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data_test, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(data_test, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(data_test)
+```
+
+## Uji Multivariate Normal dengan beberapa metode dengan menangani outlier
+```{r}
+outliers(data_test)
+```
+### Mardia’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data_test_out, mvnTest = 'mardia', showOutliers = TRUE)
+```
+
+### Henze-Zirkler’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data_test_out, showOutliers = TRUE)
+```
+
+### Royston’s MVN test:
+```{r}
+set.seed(1000)
+mvn(data_test_out, mvnTest = 'royston', showOutliers = TRUE)
+```
+
+### E-Statistics Test:
+```{r}
+set.seed(1000)
+mvn(data_test_out, mvnTest = 'energy')
+```
+
+### Shapiro-Wilk Test:
+```{r}
+set.seed(1000)
+mshapiro.test(data_test_out)
+```
+
+
+
+
+
