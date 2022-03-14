@@ -19,6 +19,7 @@ library('RVAideMemoire')
 library('ellipse')
 library('qqplotr')
 library('evd')
+library('outliers')
 ```
 
 Fungsi dari Hotelling's T Distrbution
@@ -56,7 +57,7 @@ xbar
 ### Hitung T kuadrat
 ```{r}
 miyu0 <- c(500, 50, 30)
-T.test(data_test, myu)
+T.test(data_test, miyu0)
 ```
 
 ```{r}
@@ -73,6 +74,7 @@ Karena nilai C^2 kurang dari T^2 dan nilai alpha = 5% lebih dari p-value, maka k
 
 ## Confidence Ellipsoid (alpha = 5%) miyu0 = [500,50,30]
 ```{r}
+S <- cov(data_test)
 v = diag(sqrt(diag(S)))
 v
 ```
@@ -177,8 +179,15 @@ mshapiro.test(data_test)
 
 ## Uji Multivariate Normal dengan beberapa metode dengan menangani outlier
 ```{r}
-outliers(data_test)
+outlier(data_test)
 ```
+```{r}
+url2 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/11%20maret%202022/College_Test_tanpaoutliers.csv"
+data_test_out <- read.csv(url2)
+data_test_out
+```
+
+
 ### Mardia’s MVN test:
 ```{r}
 set.seed(1000)
@@ -208,7 +217,8 @@ mvn(data_test_out, mvnTest = 'energy')
 set.seed(1000)
 mshapiro.test(data_test_out)
 ```
-
+Interpretasi:
+Dari hasil test multivariate normal ketika dilakukan test tanpa menangani outlier maka hasil semua test mendapatkan hasil multivariate normal. Sedangkan ketika dilakukan test dengan menangani outlier seperti membuangnya terdapat hasil yang beda pada mardia test dan shapiro-wilk test. Keduanya menyatakan data tidak multivariate normal
 
 
 
