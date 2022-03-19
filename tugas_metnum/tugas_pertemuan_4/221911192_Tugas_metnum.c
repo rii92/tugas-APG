@@ -6,8 +6,8 @@
 
 int fraction[max], integer[max];
 
-void dectobin();
-void bintodec();
+void konversidesimalkebinary();
+void konversibinarytodesimal();
 bool isBinary(float);
 
 int main()
@@ -17,27 +17,27 @@ int main()
 
     while (1)
     {
-        printf("Berikut menu yang tersedia : \n");
-        printf("1. Konversi Bilangan Desimal ke Biner\n");
-        printf("2. Konversi Bilangan Biner ke Desimal\n");
+        printf("Pilihan tersedia : \n");
+        printf("1. Bilangan Desimal --> Biner\n");
+        printf("2. Bilangan Biner --> Desimal\n");
         printf("3. Keluar\n\n");
-        printf("Pilih menu : ");
+        printf("Pilih menu(1/2/3) : ");
         scanf("%d", &ch);
         printf("\n");
         switch (ch)
         {
         case 1:
-            dectobin();
+            konversidesimalkebinary();
             break;
         case 2:
-            bintodec();
+            konversibinarytodesimal();
             break;
         case 3:
             exit(1);
         default:
-            printf("Menu pilihan tidak disediakan\n");
+            printf("Pilihan tidak disediakan\n");
         }
-        printf("\nTekan tombol apapun untuk melanjutkan...\n");
+        printf("\nTekan tombol random untuk melanjutkan...\n");
         getch();
     }
 
@@ -45,14 +45,49 @@ int main()
     return 1;
 }
 
-void dectobin()
+bool isBinary(float number)
 {
-    float num, f;
+    float duplikat;
+    int temp = 0;
+    duplikat = number;
+
+    // dibuat integer dulu
+    while (duplikat != ((int)duplikat))
+    {
+        duplikat = duplikat * 10;
+    }
+
+    // cek biner dgn modulo
+    while (duplikat != 0)
+    {
+        temp = (int)duplikat % 10;
+        if ((temp == 0) || (temp == 1))
+        {
+            duplikat = duplikat / 10;
+            if (duplikat == 0)
+            {
+                printf("%f adalah bilangan biner.\n\n", number);
+                return (1);
+                break;
+            }
+        }
+        else
+        {
+            printf("%f bukanlah bilangan biner. Silahkan mencoba kembali.\n\n", number);
+            return (0);
+            break;
+        }
+    }
+}
+
+void konversidesimalkebinary()
+{
+    float number, f;
     int i, cnum, tag;
     printf("Masukkan bilangan desimal : ");
-    scanf("%f", &num);
+    scanf("%f", &number);
     printf("\n");
-    f = num - (int)num;
+    f = number - (int)number;
     for (i = 0; i < max; i++)
     {
         f = f - (int)f;
@@ -60,7 +95,7 @@ void dectobin()
         f *= 2;
     }
 
-    cnum = (int)num;
+    cnum = (int)number;
     for (i = max - 1; i >= 0; i--)
     {
         if (cnum % 2 == 0)
@@ -91,42 +126,7 @@ void dectobin()
     printf("\n");
 }
 
-bool isBinary(float num)
-{
-    float copy;
-    int temp = 0;
-    copy = num;
-
-    // dibuat integer dulu
-    while (copy != ((int)copy))
-    {
-        copy = copy * 10;
-    }
-
-    // cek biner dgn modulo
-    while (copy != 0)
-    {
-        temp = (int)copy % 10;
-        if ((temp == 0) || (temp == 1))
-        {
-            copy = copy / 10;
-            if (copy == 0)
-            {
-                printf("%f adalah bilangan biner.\n\n", num);
-                return (1);
-                break;
-            }
-        }
-        else
-        {
-            printf("%f bukanlah bilangan biner. Silahkan mencoba kembali.\n\n", num);
-            return (0);
-            break;
-        }
-    }
-}
-
-void bintodec()
+void konversibinarytodesimal()
 {
     double num, fnum, result = 0;
     long inum, i = 0, a = 0;
