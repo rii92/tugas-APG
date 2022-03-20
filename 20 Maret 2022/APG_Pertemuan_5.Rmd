@@ -5,26 +5,160 @@ date: "3/19/2022"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r library, message=FALSE}
+library('MVN')
+library('mvoutlier')
+library('rcompanion')
+library('caret')
+library('RVAideMemoire')
+library('ellipse')
+library('qqplotr')
+library('evd')
+library('outliers')
+library('ggplot2')
 ```
 
-## R Markdown
+Soal
+#6.1.
+Construct and sketch a joint 95% confidence region for the mean difference 
+vector B using the effluent data and results in Example 6.1. Note that the point 
+B == 0 falls outside the 95% contour. Is this result consistent with the test of 
+H0: B == 0 considered in Example 6.1? Explain.
+WordDiff(xi) Word Same(x2) ArabicDiff(x3) ArabicSame(x4) 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+url1<-"https://raw.githubusercontent.com/rii92/tugas-APG/main/20%20Maret%202022/APG_dataNo_6.1.csv"
+dataeffluent1 <- read.csv(url1)
+dataeffluent2 <- data.frame(dataeffluent1$x1j1, dataeffluent1$x1j2, dataeffluent1$x2j1, dataeffluent1$x2j2)
+colnames(dataeffluent2)[colnames(dataeffluent2)=="dataeffluent1.x1j1"] <-"x1j1"
+colnames(dataeffluent2)[colnames(dataeffluent2)=="dataeffluent1.x1j2"] <-"x1j2"
+colnames(dataeffluent2)[colnames(dataeffluent2)=="dataeffluent1.x2j1"] <-"x2j1"
+colnames(dataeffluent2)[colnames(dataeffluent2)=="dataeffluent1.x2j2"] <-"x2j2"
+dataeffluent2
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+dj1 <- dataeffluent1$x1j1-dataeffluent1$x2j1
+dj2 <- dataeffluent1$x1j2-dataeffluent1$x2j2
+data_dj <- data.frame(dj1, dj2)
+data_dj
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r}
+mu <- c(0,0)
+X <- data_dj
+n <- nrow(X)
+p <- ncol(X)
+xbar <- colMeans(X)
+S <- cov(X)
+library(car)
+alpha<-0.05
+tconst <- sqrt((p/n)*((n-1)/(n-p)) *
+                 qf(1-alpha,p,n-p))
+id <- c(1,2)
+plot(ellipse(center=xbar[id], shape=S[id,id],
+             radius=tconst, draw=F),type="n", xlab = , ylab = )
+lines(ellipse(center=xbar[id], shape=S[id,id],
+              radius=tconst, lwd=3))
+points(mu[1],mu[2],col="red", pch=16)
+text(mu[1]+0.75,mu[2],expression(mu[0]))
+text(xbar[1]+0.75,xbar[2],expression(bar(x)))
+```
+Interpretasi:
+bisa dilihat bahwa B = (0,0) diluar daerah kepercayaan, dari ini bisa disimpulkan bahwa H0 : d' = 0 ditolak pada daerah kepercayaan 95%. Sehingga bisa kita simpulkan bahwa hasil data Effluent dengan uji H0 : B = 0 adalah konsisten.
+
+
+#6.2.
+Using the information in Example 6.1. construct the 95% Bonferroni simulta neous intervals for the components of the mean difference vector 8. Compare the lengths of these intervals with those of the simultaneous intervals constructed in the example.
+
+##Interval Bonferroni
+```{r}
+bon <- NULL
+alpha2 <- 1 - 0.05/(2*p)
+for(k in 1:p){
+ 
+ bon <- c(bon,
+ xbar[k] - sqrt(S[k,k]/n) * qt(alpha2, df = n-1),
+ xbar[k] + sqrt(S[k,k]/n) * qt(alpha2, df = n-1))
+}
+round(bon, p)
+```
+
+##Interval Simultan T-square test
+```{r}
+library(MVTests)
+mu <- c(0, 0)
+ujiT <- OneSampleHT2(data = X, mu0 = mu, alpha = 0.05)
+summary(ujiT)
+```
+Interpretasi:
+Hasilnya ialah interval T-square test lebih besar di banding interval Bonferroni
+
+#6.3
+The data corresponding to sample 8 in Table 6.1 seem unusually large. Remove 
+sample 8. Construct a joint 95% confidence region for the mean difference vector B and the 95% Bonferroni simultaneous intervals for the components of the 
+mean difference vector. Are the results consistent with a test of H0 : B = 0? 
+Discuss. Does the "outlier" make a difference in the analysis of these data?
+
+##Hapus data ke-8
+```{r}
+datadj_after_drop <- data_dj[-8,]
+datadj_after_drop
+```
+
+```{r}
+mu <- c(0,0)
+X <- datadj_after_drop
+n <- nrow(X)
+p <- ncol(X)
+xbar <- colMeans(X)
+S <- cov(X)
+library(car)
+alpha<-0.05
+tconst <- sqrt((p/n)*((n-1)/(n-p)) *
+                 qf(1-alpha,p,n-p))
+id <- c(1,2)
+plot(ellipse(center=xbar[id], shape=S[id,id],
+             radius=tconst, draw=F),type="n", xlab = , ylab = )
+lines(ellipse(center=xbar[id], shape=S[id,id],
+              radius=tconst, lwd=3))
+points(mu[1],mu[2],col="red", pch=16)
+text(mu[1]+0.75,mu[2],expression(mu[0]))
+text(xbar[1]+0.75,xbar[2],expression(bar(x)))
+```
+##Interval Bonferroni
+```{r}
+bon <- NULL
+alpha2 <- 1 - 0.05/(2*p)
+for(k in 1:p){
+ 
+ bon <- c(bon,
+ xbar[k] - sqrt(S[k,k]/n) * qt(alpha2, df = n-1),
+ xbar[k] + sqrt(S[k,k]/n) * qt(alpha2, df = n-1))
+}
+round(bon, p)
+```
+
+##Interval Simultan T-square test
+```{r}
+library(MVTests)
+mu <- c(0, 0)
+ujiT <- OneSampleHT2(data = X, mu0 = mu, alpha = 0.05)
+summary(ujiT)
+```
+
+Interpretasi:
+Berdasarkan hasil, pencilan tidak mempengaruhi hasil. Artinya data Effluent konsisten dengan uji H0:B' = 0.
+
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/20%20Maret%202022/APG_dataNo_6.17.csv"
+datasoal_5 <- read.csv(url)
+datasoal_5
+```
+
+
+```{r}
+
+```
