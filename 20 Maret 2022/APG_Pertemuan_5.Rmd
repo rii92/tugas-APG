@@ -16,6 +16,7 @@ library('qqplotr')
 library('evd')
 library('outliers')
 library('ggplot2')
+library('SciViews')
 ```
 
 Soal
@@ -24,7 +25,10 @@ Construct and sketch a joint 95% confidence region for the mean difference
 vector B using the effluent data and results in Example 6.1. Note that the point 
 B == 0 falls outside the 95% contour. Is this result consistent with the test of 
 H0: B == 0 considered in Example 6.1? Explain.
-WordDiff(xi) Word Same(x2) ArabicDiff(x3) ArabicSame(x4) 
+BOD_Commercial_lab(xi) 
+SS_Commercial_lab(x2) 
+BOD_Statelabofhygiene(x3) 
+SS_Statelabofhygiene(x4) 
 
 ```{r}
 url1<-"https://raw.githubusercontent.com/rii92/tugas-APG/main/20%20Maret%202022/APG_dataNo_6.1.csv"
@@ -45,7 +49,7 @@ data_dj
 ```
 
 
-
+##Membuat Ellipse
 ```{r}
 mu <- c(0,0)
 X <- data_dj
@@ -59,7 +63,7 @@ tconst <- sqrt((p/n)*((n-1)/(n-p)) *
                  qf(1-alpha,p,n-p))
 id <- c(1,2)
 plot(ellipse(center=xbar[id], shape=S[id,id],
-             radius=tconst, draw=F),type="n", xlab = , ylab = )
+             radius=tconst, draw=F),type="n", xlab = "Commercial Lab", ylab = "State lab of hygiene")
 lines(ellipse(center=xbar[id], shape=S[id,id],
               radius=tconst, lwd=3))
 points(mu[1],mu[2],col="red", pch=16)
@@ -107,7 +111,7 @@ Discuss. Does the "outlier" make a difference in the analysis of these data?
 datadj_after_drop <- data_dj[-8,]
 datadj_after_drop
 ```
-
+##Membuat Ellipse
 ```{r}
 mu <- c(0,0)
 X <- datadj_after_drop
@@ -121,7 +125,7 @@ tconst <- sqrt((p/n)*((n-1)/(n-p)) *
                  qf(1-alpha,p,n-p))
 id <- c(1,2)
 plot(ellipse(center=xbar[id], shape=S[id,id],
-             radius=tconst, draw=F),type="n", xlab = , ylab = )
+             radius=tconst, draw=F),type="n", xlab = "Commercial Lab", ylab = "State lab of hygiene", xlim = c(-25,1))
 lines(ellipse(center=xbar[id], shape=S[id,id],
               radius=tconst, lwd=3))
 points(mu[1],mu[2],col="red", pch=16)
@@ -150,15 +154,216 @@ summary(ujiT)
 ```
 
 Interpretasi:
-Berdasarkan hasil, pencilan tidak mempengaruhi hasil. Artinya data Effluent konsisten dengan uji H0:B' = 0.
+Berdasarkan hasil, pencilan tidak mempengaruhi hasil. Artinya data Effluent konsisten dengan uji H0:B = 0.
+
+#6.4
+Refer to Example 6.1. 
+(a) Redo the analysis in Example 6.1 after transforming the pairs of observations to ln(BOD) and ln(SS). 
+(b) Construct the 95% Bonferroni simultaneous intervals for the components of the mean vector B of transformed variables. 
+(c) Discuss any possible violation of the assumption of a bivariate normal distribution for the difference vectors of transformed observations.
+
+Melakukan transformasi
+```{r}
+x1j1_at <- log(dataeffluent1$x1j1)
+x1j2_at <- log(dataeffluent1$x1j2)
+x2j1_at <- log(dataeffluent1$x2j1)
+x2j2_at <- log(dataeffluent1$x2j2)
+data_effluent2_at <- data.frame(x1j1_at, x1j2_at, x2j1_at, x2j2_at)
+data_effluent2_at
+```
+```{r}
+dj1_at <- data_effluent2_at$x1j1_at-data_effluent2_at$x1j2_at
+dj2_at <- data_effluent2_at$x2j1_at-data_effluent2_at$x2j2_at
+data_dj_at <- data.frame(dj1_at, dj2_at)
+data_dj_at
+```
+##Membuat Ellipse
+```{r}
+mu <- c(0,0)
+X <- data_dj_at
+n <- nrow(X)
+p <- ncol(X)
+xbar <- colMeans(X)
+S <- cov(X)
+library(car)
+alpha<-0.05
+tconst <- sqrt((p/n)*((n-1)/(n-p)) *
+                 qf(1-alpha,p,n-p))
+id <- c(1,2)
+plot(ellipse(center=xbar[id], shape=S[id,id],
+             radius=tconst, draw=F),type="n", xlab = "t(Commercial Lab)", ylab = "t(State lab of hygiene)", xlim = c(-1.4,0.25))
+lines(ellipse(center=xbar[id], shape=S[id,id],
+              radius=tconst, lwd=3))
+points(mu[1],mu[2],col="red", pch=16)
+text(mu[1]+0.05,mu[2],expression(mu[0]))
+text(xbar[1]+0.05,xbar[2],expression(bar(x)))
+```
+Interpretasi:
+Hasilnya menunjukkan bahwa setelah dilakukan transformasi ln atau log(BOD) dan ln(SS), titik B = 0 berada di luar penerimaan H0. Maka data Effluent setelah transformasi ln konsisten dengan uji H0: B = 0. 
+
+##Interval Bonferroni
+```{r}
+bon <- NULL
+alpha2 <- 1 - 0.05/(2*p)
+for(k in 1:p){
+ 
+ bon <- c(bon,
+ xbar[k] - sqrt(S[k,k]/n) * qt(alpha2, df = n-1),
+ xbar[k] + sqrt(S[k,k]/n) * qt(alpha2, df = n-1))
+}
+round(bon, p)
+```
+
+##Interval Simultan T-square test
+```{r}
+library(MVTests)
+mu <- c(0, 0)
+ujiT <- OneSampleHT2(data = X, mu0 = mu, alpha = 0.05)
+summary(ujiT)
+```
+Interpretasi:
+Interval kepercayaan T-square masih lebih luas di banding interval bonferroni.
+
+
+```{r}
+pairs(data_dj_at)
+```
+
+```{r}
+qqnorm(data_dj_at$dj1_at)
+qqline(data_dj_at$dj1_at)
+```
+
+```{r}
+qqnorm(data_dj_at$dj2_at)
+qqline(data_dj_at$dj2_at)
+```
+
+```{r}
+mvn(data_dj_at, multivariatePlot = "qq", showOutliers = TRUE)[4]
+```
+
+```{r}
+mvn(data = data_dj_at[, c(1,2)], multivariatePlot = 'plot', showOutlier 
+= TRUE)
+```
+
+Interpretasi:
+Pada test Multivariate normal Henze-Zirkler menyatakan bahwa data multivariate/bivariate normal. Akan tetapi ketika melihat plot bivariate, sebaran data nya tidak terlihat pola arahnya. Demikian itu bisa disimpulkan belum cukup bukti untuk menyatakan bahwa data effluent setelah transformasi melanggar asumsi distribusi normal
+
+#6.17
+The data in Table 6.8 were collected to test two psychological models of numerical cognition. Does the processing of numbers depend on the way the numbers are presented (words, Arabic digits)? Thirty-two subjects were required to make a series of quick numerical judgments about two numbers presented as either two number words ("two," "four") or two single Arabic digits ("2," "4"). The subjects were asked to respond "same" if the two numbers had the same numerical parity (both even or both odd) and "different" if the two numbers had a different parity (one even, one odd). Half of the subjects were assigned a block of Arabic digit trials, followed by a block of number word trials, and half of the subjects received the blocks of trials in the reverse order. Within each block, the order of "same" and "different" parity trials was randomized for each subject. For each of the four combinations of parity and format, the median reaction times for correct responses were recorded for each 
+subject. Here
+X1 = median reaction time for word format-different parity combination 
+X2 = median reaction time for word format-same parity combination 
+X3 = median reaction time for Arabic format-different parity combination 
+X4 = median reaction time for Arabic format-same parity combination
+
+(a) Test for treatment effects using a repeated measures design. Set a = .05. 
+(b) Construct 95% (simultaneous) confidence intervals for the contrasts representing the number format effect, the parity type effect and the interaction 
+effect. Interpret the resulting intervals. 
+(c) The absence of interaction supports the M model of numerical cognition, 
+while the presence of interaction supports the C and C model of numerical 
+cognition. Which model is supported in this experiment? 
+(d) For each subject, construct three difference scores corresponding to the 
+number format contrast, the parity type contrast, and the interaction
+
+contrast. Is a multivariate normal distribution a reasonable population 
+model for these data? Explain
 
 ```{r}
 url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/20%20Maret%202022/APG_dataNo_6.17.csv"
 datasoal_5 <- read.csv(url)
 datasoal_5
 ```
+```{r}
+Cmat <- matrix(c(
+ -1, 1, -1, 1,
+ -1, -1, 1, 1,
+ -1, 1, 1, -1
+), byrow = TRUE, nrow = 3)
+Cmat
+```
+
+```{r}
+T.test <- function(X, Cmu){
+ X <- as.matrix(X)
+ n <- nrow(X)
+ p <- ncol(X)
+ df2 <- n-p
+ xbar <- colMeans(X)
+ S <- cov(X)
+ alpha <- 0.05
+ if(df2 < 1L) stop("Need nrow(X) > ncol(X).")
+ if(length(Cmu) != p) mu <- rep(Cmu[1], p)
+ 
+ T2 <- n * t((Cmat %*% xbar) - Cmu) %*% 
+ solve(Cmat %*% S %*% t(Cmat)) %*%
+ ((Cmat %*% xbar) - Cmu)
+ 
+ Fstat <- T2 / ((p-1) * (n-1) / df2)
+ Fcalc <- qf(1-alpha, df1 = p-1, df2 = n-p+1) * (n - 1) * (p - 1) / (n-p+1)
+ 
+ pval <- 1 - pf(Fstat, df1 = p-1, df2 = df2)
+ 
+ data.frame(T2 = as.numeric(T2), 
+ Fstat = as.numeric(Fstat),
+ Fcalc = as.numeric(Fcalc),
+ df1 = p-1, 
+ df2 = df2, 
+ p.value = as.numeric(pval), 
+ row.names="") }
+```
+
+```{r}
+Cmu <- c(0, 0, 0) 
+T.test(datasoal_5, Cmu)
+```
+Interpretasi:
+Karena T2 > F hitung dan p-value < alpha=0.05. Maka dari ini bisa disimpulkan bahwa tolak H0 dimana cmu = 0. Dengan tingkat signifikansi 5%, dapat di simpulkan bahwa dari data terdapat minimal 1 perbedaan nilai cmiu pada hasil test 2 model psikologi kemampuan numerik 
 
 
 ```{r}
+C1 <- matrix(Cmat[1,], ncol = 1)
+C2 <- matrix(Cmat[2,], ncol = 1)
+C3 <- matrix(Cmat[3,], ncol = 1)
 
+S.ci <- function(data, c, n, level = 0.95){
+  q <- length(c)
+  xbar <- colMeans(data)
+  S <- cov(data)
+  if(nrow(S) != q) stop("Need length(c) == nrow(S)") 
+  if(ncol(S) != q) stop("Need length(c) == ncol(S).")
+  if(level <=0 | level >= 1) stop("Need 0 < level < 1.")
+ 
+  cval <- qf(level, q-1, n-q+1) * (q-1) * (n-1) / (n-q+1)
+  
+  # hitung z bar
+  zhat <- t(c) %*% xbar
+  
+  # hitung varians z
+  zvar <- (t(c) %*% S %*% c) / n
+  
+  # hitung standard error
+  const <- sqrt(cval * zvar)
+  
+  # Membuat Smultaneous COnfidence Interval 
+  c(lower = zhat - const, upper = zhat + const)
+}
+
+print(paste("CI untuk single contrast yang mewakili efek paritas"))
+
+S.ci(datasoal_5, C1, n)
+
+print(paste("CI untuk single contrast yang mewakili efek format"))
+
+S.ci(datasoal_5, C2, n)
+
+print(paste("CI untuk single contrast yang mewakili efek interaksi"))
+
+S.ci(datasoal_5, C3, n)
 ```
+Interpretasi:
+1. Pada CI untuk single contrast yang mewakili efek paritas 
+
+
