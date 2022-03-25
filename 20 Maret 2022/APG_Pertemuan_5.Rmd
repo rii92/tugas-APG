@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "APG_Pertemuan_5"
 author: "Riofebri Prasetia (221911192)"
 date: "3/19/2022"
 output: html_document
@@ -247,9 +247,12 @@ mvn(data_dj_at, multivariatePlot = "qq", showOutliers = TRUE)[4]
 mvn(data = data_dj_at[, c(1,2)], multivariatePlot = 'plot', showOutlier 
 = TRUE)
 ```
+```{r}
+mshapiro.test(data_dj_at[, c(1,2)])
+```
 
 Interpretasi:
-Pada test Multivariate normal Henze-Zirkler menyatakan bahwa data multivariate/bivariate normal. Akan tetapi ketika melihat plot bivariate, sebaran data nya tidak terlihat pola arahnya. Demikian itu bisa disimpulkan belum cukup bukti untuk menyatakan bahwa data effluent setelah transformasi melanggar asumsi distribusi normal
+Pada test Multivariate normal Henze-Zirkler dan shapiro wilk menyatakan bahwa data multivariate/bivariate normal. Akan tetapi ketika melihat plot bivariate, sebaran data nya tidak terlihat pola arahnya. Demikian itu bisa disimpulkan belum cukup bukti untuk menyatakan bahwa data effluent setelah transformasi melanggar asumsi distribusi normal
 
 #6.17
 The data in Table 6.8 were collected to test two psychological models of numerical cognition. Does the processing of numbers depend on the way the numbers are presented (words, Arabic digits)? Thirty-two subjects were required to make a series of quick numerical judgments about two numbers presented as either two number words ("two," "four") or two single Arabic digits ("2," "4"). The subjects were asked to respond "same" if the two numbers had the same numerical parity (both even or both odd) and "different" if the two numbers had a different parity (one even, one odd). Half of the subjects were assigned a block of Arabic digit trials, followed by a block of number word trials, and half of the subjects received the blocks of trials in the reverse order. Within each block, the order of "same" and "different" parity trials was randomized for each subject. For each of the four combinations of parity and format, the median reaction times for correct responses were recorded for each 
@@ -364,6 +367,44 @@ print(paste("CI untuk single contrast yang mewakili efek interaksi"))
 S.ci(datasoal_5, C3, n)
 ```
 Interpretasi:
-1. Pada CI untuk single contrast yang mewakili efek paritas 
+1. Pada CI untuk single contrast yang mewakili efek paritas, tidak mengandung 0 yang artinya kesamaan paritas membutuhkan sedikit waktu untuk di jawab
+2. Pada CI untuk single contrast yang mewakili efek format, tidak mengandung 0 yang artinya format arab membutuhkan sedikit waktu untuk di jawab
+3. Pada CI untuk single contrast yang mewakili efek interaksi, mengandung 0 yang artinya tidak terdapat efek interaksi
 
+Diketahui:
+1. Model M: Ketiadaan interaksi
+2. Model C: Kehadiran interaksi
+Dapat dilihat pada hasil CI single contrast yang mewakili efek interaksi hasil nya mengansung 0. Artinya tidak terdapat efek interaksi. Oleh karena itu, ketiadaan interaksi itu mendukung model kognisi numerik M.
 
+```{r}
+#ubah data jadi matrix
+matrix_data <- as.matrix(datasoal_5)
+matrix_data
+```
+```{r}
+# Difference score from the parity type contrast
+diff_parity <- matrix_data %*% C1
+
+# Difference score from the number type contrast
+diff_format <- matrix_data %*% C2
+
+# Difference score from the interaction type contrast
+diff_interaction <- matrix_data %*% C3
+
+diff_data <- data.frame(diff_parity, diff_format, diff_interaction)
+diff_data
+```
+Cek Multivariate Normal
+```{r}
+mvn(data = diff_data[, c(1,2,3)], multivariatePlot = 'plot', showOutliers = TRUE)
+```
+
+```{r}
+mshapiro.test(diff_data)
+```
+Cek outlier
+```{r}
+mvn(diff_data, multivariatePlot = "qq", showOutliers = TRUE)
+```
+Interpretasi:
+Berdasarkan hasil dengan metode Henze-Zirkler dan shapiro wilk bahwa data tidak multivariate normal

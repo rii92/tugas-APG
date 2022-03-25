@@ -1,0 +1,80 @@
+---
+title: "APG_Pertemuan_6"
+author: "Riofebri Prasetia (221911192)"
+date: "3/23/2022"
+output: html_document
+---
+
+```{r library, message=FALSE}
+library('MVN')
+library('mvoutlier')
+library('rcompanion')
+library('caret')
+library('RVAideMemoire')
+library('ellipse')
+library('qqplotr')
+library('evd')
+library('outliers')
+library('ggplot2')
+library('SciViews')
+library('MVTests')
+```
+
+6.7
+Using the summary statistics for the electricity-demand data given in Example 6.4, compute T^2 and test the hypothesis H0: miu1 - miu2 = 0, assuming that sigma1(sum1) = sigma2(sum2) Set a = .05. Also, determine the linear combination of mean components most responsible for the rejection of H0
+
+```{r}
+# Inisiasi summary electricity-demand
+alpha <- 0.5
+p <- 2
+n_1 <- 45
+n_2 <- 55
+x_mean_1 <- matrix(c(204.4,556.6), ncol = 1, nrow = 2)
+x_mean_2 <- matrix(c(130.0, 355.0), ncol = 1, nrow = 2)
+S_1 <- matrix(c(13825.3, 23823.4, 23823.4, 73107.4), 2,2)
+S_2 <- matrix(c(8632.0, 19616.7, 19616.7, 55964.5), 2,2)
+```
+
+```{r}
+# Function S_pooled
+S_pooled <- function(n1, n2, S1, S2){
+  S_pooled1 <- ((n1-1)/(n1+n2-2))*S1 + ((n2-1)/(n1+n2-2))*S2
+  S_pooled1
+}
+```
+
+```{r}
+# S_pooled electricity-demand
+S_pooled_ed <- S_pooled(n_1, n_2, S_1, S_2)
+S_pooled_ed <- as.matrix(S_pooled_ed)
+S_pooled_ed
+```
+```{r}
+#hitung T_kuadrat
+T_kuadrat <- t(x_mean_1 - x_mean_2)%*%(solve((1/n_1+1/n_2)*S_pooled_ed))%*%(x_mean_1 - x_mean_2)
+T_kuadrat
+```
+```{r}
+#hitung C_kuadrat
+C_kuadrat <- ((n_1+n_2-2)*p)*qf(df1 = p, df2 = n_1+n_2-p-1, p = alpha)
+C_kuadrat
+```
+```{r}
+perbandingan <- solve(S_pooled_ed)%*%(x_mean_1 - x_mean_2)
+perbandingan
+```
+
+6.8 Observation on two response are collected for three treatments. The observation vectors t([x1, x2]) are
+
+Treatment 1: t([6,7]), t([5,9]), t([8,6]), t([4,9]), t([7,9])
+
+Treatment 2: t([3,3]), t([1,6]), t([2,3])
+
+Treatment 3: t([2,3]), t([5,1]), t([3,1]), t([2,3])
+
+a). Break up the observations into mean, treatment, and residual  components, as in (6-35). Construct the corresponding arrays for each variable. (See Example 6.8.)
+
+b). Using the information in Part a, construct the one-way MANOVA table.
+
+c). Set a = .01. Repeat the test using the chi-square approximation with Bartlett's correction. [See (6-39).] Compare the conclusions.
+
