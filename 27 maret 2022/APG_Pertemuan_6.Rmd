@@ -25,7 +25,7 @@ Using the summary statistics for the electricity-demand data given in Example 6.
 
 ```{r}
 # Inisiasi summary electricity-demand
-alpha <- 0.5
+alpha <- 0.05
 p <- 2
 n_1 <- 45
 n_2 <- 55
@@ -56,13 +56,17 @@ T_kuadrat
 ```
 ```{r}
 #hitung C_kuadrat
-C_kuadrat <- ((n_1+n_2-2)*p)*qf(df1 = p, df2 = n_1+n_2-p-1, p = alpha)
+C_kuadrat <- ((n_1+n_2-2)*p/(n_1 + n_2 - p - 1))*qf(1-alpha, df1 = p, df2 = n_1+n_2-p-1)
 C_kuadrat
 ```
+
 ```{r}
+#perbandingan x mean yang paling berpengaruh 
 perbandingan <- solve(S_pooled_ed)%*%(x_mean_1 - x_mean_2)
 perbandingan
 ```
+Interpretasi:
+Berdasarkan hasil pada ringkasan example 6.4 maka kesimpulan adalah tolak H0 dimana H0: miu1-miu2 = 0. Artinya terdapat perbedaan pada kedua x mean. Kemudian pada hasil perbandingan x_mean yang paling berpengaruh untuk menolak H0 yaitu x mean 1 atau ukuran total konsumsi listrik pada puncaknya.
 
 6.8 Observation on two response are collected for three treatments. The observation vectors t([x1, x2]) are
 
