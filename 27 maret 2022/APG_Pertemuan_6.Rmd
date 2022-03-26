@@ -78,7 +78,194 @@ Treatment 3: t([2,3]), t([5,1]), t([3,1]), t([2,3])
 
 a). Break up the observations into mean, treatment, and residual  components, as in (6-35). Construct the corresponding arrays for each variable. (See Example 6.8.)
 
+
 b). Using the information in Part a, construct the one-way MANOVA table.
+
 
 c). Set a = .01. Repeat the test using the chi-square approximation with Bartlett's correction. [See (6-39).] Compare the conclusions.
 
+```{r}
+x1t1 <- c(6, 5, 8, 4, 7)
+x2t1 <- c(7, 9, 6, 9, 9)
+treatment1 <- rbind(x1t1,x2t1)
+print(paste("Treatment 1 : "))
+treatment1
+print(paste(""))
+
+x1t2 <- c(3, 1, 2)
+x2t2 <- c(3, 6, 3)
+treatment2 <- rbind(x1t2,x2t2)
+print(paste("Treatment 2 : "))
+treatment2
+print(paste(""))
+
+x1t3 <- c(2, 5, 3, 2)
+x2t3 <- c(3, 1, 1, 3)
+treatment3 <- rbind(x1t3,x2t3)
+print(paste("Treatment 3 : "))
+treatment3
+```
+
+untuk x1
+```{r}
+#Observations
+obs_x1 <- c(x1t1, x1t2, x1t3)
+print(paste("Observation vector : "))
+obs_x1
+sumsquare_obsx1 <- sum(obs_x1^2)
+print(paste("Sum-square Observation vector : "))
+sumsquare_obsx1
+print("")
+
+#Means
+meanx1 <- mean(obs_x1)
+print(paste("Mean Vector : "))
+(mean_x1 <- c(rep(meanx1, length(x1t1)), 
+              rep(meanx1, length(x1t2)), 
+              rep(meanx1, length(x1t3))))
+print(paste("Sum-Square Mean Vector : "))
+(sumsquare_meanx1 <- sum(mean_x1^2)) 
+print("")
+
+#Treatment Effect
+x1t1_bar <- mean(x1t1)
+x1t2_bar <- mean(x1t2)
+x1t3_bar <- mean(x1t3)
+treateffect_x1t1 <- x1t1_bar - meanx1
+treateffect_x1t2 <- x1t2_bar - meanx1
+treateffect_x1t3 <- x1t3_bar - meanx1
+print(paste("Treatment Effect Vector : "))
+(treateffect_x1 <- c(rep(treateffect_x1t1, length(x1t1)), 
+                     rep(treateffect_x1t2, length(x1t2)), 
+                     rep(treateffect_x1t3, length(x1t3))))
+print(paste("Sum-square Treatment Effect Vector : "))
+(sumsquare_treateffetcx1 <- sum(treateffect_x1^2)) 
+print("")
+```
+
+```{r}
+#Observations
+obs_x1 <- c(x1t1, x1t2, x1t3)
+print(paste("Observation vector : "))
+obs_x1
+sumsquare_obsx1 <- sum(obs_x1^2)
+print(paste("Sum-square Observation vector : "))
+sumsquare_obsx1
+print("")
+
+#Means
+meanx1 <- mean(obs_x1)
+print(paste("Mean Vector : "))
+(mean_x1 <- c(rep(meanx1, length(x1t1)), 
+              rep(meanx1, length(x1t2)), 
+              rep(meanx1, length(x1t3))))
+print(paste("Sum-Square Mean Vector : "))
+(sumsquare_meanx1 <- sum(mean_x1^2)) 
+print("")
+
+#Treatment Effects
+x1t1_bar <- mean(x1t1)
+x1t2_bar <- mean(x1t2)
+x1t3_bar <- mean(x1t3)
+treateffect_x1t1 <- x1t1_bar - meanx1
+treateffect_x1t2 <- x1t2_bar - meanx1
+treateffect_x1t3 <- x1t3_bar - meanx1
+print(paste("Treatment Effect Vector : "))
+(treateffect_x1 <- c(rep(treateffect_x1t1, length(x1t1)), 
+                     rep(treateffect_x1t2, length(x1t2)), 
+                     rep(treateffect_x1t3, length(x1t3))))
+print(paste("Sum-square Treatment Effect Vector : "))
+(sumsquare_treateffetcx1 <- sum(treateffect_x1^2)) 
+print("")
+
+#Residuals
+(x1bar <- c(rep(x1t1_bar, length(x1t1)), 
+                rep(x1t2_bar, length(x1t2)), 
+                rep(x1t3_bar, length(x1t3))))
+print(paste("Treatment Effect Vector : "))
+(residual_x1 <- obs_x1 - x1bar)
+print(paste("Sum-square Treatment Effect Vector : "))
+(sumsquare_resid <- sum(residual_x1^2))
+```
+
+untuk x2
+```{r}
+#Observations
+obs_x1 <- c(x1t1, x1t2, x1t3)
+print(paste("Observation vector : "))
+obs_x1
+sumsquare_obsx1 <- sum(obs_x1^2)
+print(paste("Sum-square Observation vector : "))
+sumsquare_obsx1
+print("")
+
+#Means
+meanx1 <- mean(obs_x1)
+print(paste("Mean Vector : "))
+(mean_x1 <- c(rep(meanx1, length(x1t1)), 
+              rep(meanx1, length(x1t2)), 
+              rep(meanx1, length(x1t3))))
+print(paste("Sum-Square Mean Vector : "))
+(sumsquare_meanx1 <- sum(mean_x1^2)) 
+print("")
+
+#Treatment Effect
+x1t1_bar <- mean(x1t1)
+x1t2_bar <- mean(x1t2)
+x1t3_bar <- mean(x1t3)
+treateffect_x1t1 <- x1t1_bar - meanx1
+treateffect_x1t2 <- x1t2_bar - meanx1
+treateffect_x1t3 <- x1t3_bar - meanx1
+print(paste("Treatment Effect Vector : "))
+(treateffect_x1 <- c(rep(treateffect_x1t1, length(x1t1)), 
+                     rep(treateffect_x1t2, length(x1t2)), 
+                     rep(treateffect_x1t3, length(x1t3))))
+print(paste("Sum-square Treatment Effect Vector : "))
+(sumsquare_treateffetcx1 <- sum(treateffect_x1^2)) 
+print("")
+```
+
+```{r}
+#Observations
+obs_x1 <- c(x1t1, x1t2, x1t3)
+print(paste("Observation vector : "))
+obs_x1
+sumsquare_obsx1 <- sum(obs_x1^2)
+print(paste("Sum-square Observation vector : "))
+sumsquare_obsx1
+print("")
+
+#Means
+meanx1 <- mean(obs_x1)
+print(paste("Mean Vector : "))
+(mean_x1 <- c(rep(meanx1, length(x1t1)), 
+              rep(meanx1, length(x1t2)), 
+              rep(meanx1, length(x1t3))))
+print(paste("Sum-Square Mean Vector : "))
+(sumsquare_meanx1 <- sum(mean_x1^2)) 
+print("")
+
+#Treatment Effects
+x1t1_bar <- mean(x1t1)
+x1t2_bar <- mean(x1t2)
+x1t3_bar <- mean(x1t3)
+treateffect_x1t1 <- x1t1_bar - meanx1
+treateffect_x1t2 <- x1t2_bar - meanx1
+treateffect_x1t3 <- x1t3_bar - meanx1
+print(paste("Treatment Effect Vector : "))
+(treateffect_x1 <- c(rep(treateffect_x1t1, length(x1t1)), 
+                     rep(treateffect_x1t2, length(x1t2)), 
+                     rep(treateffect_x1t3, length(x1t3))))
+print(paste("Sum-square Treatment Effect Vector : "))
+(sumsquare_treateffetcx1 <- sum(treateffect_x1^2)) 
+print("")
+
+#Residuals
+(x1bar <- c(rep(x1t1_bar, length(x1t1)), 
+                rep(x1t2_bar, length(x1t2)), 
+                rep(x1t3_bar, length(x1t3))))
+print(paste("Treatment Effect Vector : "))
+(residual_x1 <- obs_x1 - x1bar)
+print(paste("Sum-square Treatment Effect Vector : "))
+(sumsquare_resid <- sum(residual_x1^2))
+```
