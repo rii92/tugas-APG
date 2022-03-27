@@ -1,0 +1,2382 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={APG\_Pertemuan\_6},
+  pdfauthor={Riofebri Prasetia (221911192)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{APG\_Pertemuan\_6}
+\author{Riofebri Prasetia (221911192)}
+\date{3/23/2022}
+
+\begin{document}
+\maketitle
+
+6.7 Using the summary statistics for the electricity-demand data given
+in Example 6.4, compute T\^{}2 and test the hypothesis H0: miu1 - miu2 =
+0, assuming that sigma1(sum1) = sigma2(sum2) Set a = .05. Also,
+determine the linear combination of mean components most responsible for
+the rejection of H0
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Inisiasi summary electricity{-}demand}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FloatTok{0.05}
+\NormalTok{p }\OtherTok{\textless{}{-}} \DecValTok{2}
+\NormalTok{n1 }\OtherTok{\textless{}{-}} \DecValTok{45}
+\NormalTok{n2 }\OtherTok{\textless{}{-}} \DecValTok{55}
+\NormalTok{xbar1 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{204.4}\NormalTok{,}\FloatTok{556.6}\NormalTok{), }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\NormalTok{xbar2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{130.0}\NormalTok{, }\FloatTok{355.0}\NormalTok{), }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\NormalTok{S1 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{13825.3}\NormalTok{, }\FloatTok{23823.4}\NormalTok{, }\FloatTok{23823.4}\NormalTok{, }\FloatTok{73107.4}\NormalTok{), }\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{S2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{8632.0}\NormalTok{, }\FloatTok{19616.7}\NormalTok{, }\FloatTok{19616.7}\NormalTok{, }\FloatTok{55964.5}\NormalTok{), }\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Function S\_pooled}
+\NormalTok{Spooled }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n1, n2, S1, S2)\{}
+\NormalTok{  Spooled1 }\OtherTok{\textless{}{-}}\NormalTok{ ((n1}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(n1}\SpecialCharTok{+}\NormalTok{n2}\DecValTok{{-}2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{S1 }\SpecialCharTok{+}\NormalTok{ ((n2}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(n1}\SpecialCharTok{+}\NormalTok{n2}\DecValTok{{-}2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{S2}
+\NormalTok{  Spooled1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# S\_pooled electricity{-}demand}
+\NormalTok{Spooleded }\OtherTok{\textless{}{-}} \FunctionTok{Spooled}\NormalTok{(n1, n2, S1, S2)}
+\NormalTok{Spooleded }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(Spooleded)}
+\NormalTok{Spooleded}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]     [,2]
+## [1,] 10963.69 21505.42
+## [2,] 21505.42 63661.31
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung T\_kuadrat}
+\NormalTok{T2 }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(xbar1 }\SpecialCharTok{{-}}\NormalTok{ xbar2)}\SpecialCharTok{\%*\%}\NormalTok{(}\FunctionTok{solve}\NormalTok{((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n1}\SpecialCharTok{+}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n2)}\SpecialCharTok{*}\NormalTok{Spooleded))}\SpecialCharTok{\%*\%}\NormalTok{(xbar1 }\SpecialCharTok{{-}}\NormalTok{ xbar2)}
+\NormalTok{T2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 16.06622
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung C\_kuadrat}
+\NormalTok{C2 }\OtherTok{\textless{}{-}}\NormalTok{ ((n1}\SpecialCharTok{+}\NormalTok{n2}\DecValTok{{-}2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{p}\SpecialCharTok{/}\NormalTok{(n1 }\SpecialCharTok{+}\NormalTok{ n2 }\SpecialCharTok{{-}}\NormalTok{ p }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{))}\SpecialCharTok{*}\FunctionTok{qf}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alpha, }\AttributeTok{df1 =}\NormalTok{ p, }\AttributeTok{df2 =}\NormalTok{ n1}\SpecialCharTok{+}\NormalTok{n2}\SpecialCharTok{{-}}\NormalTok{p}\DecValTok{{-}1}\NormalTok{)}
+\NormalTok{C2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.244089
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#perbandingan x mean yang paling berpengaruh }
+\NormalTok{perbandingan }\OtherTok{\textless{}{-}} \FunctionTok{solve}\NormalTok{(Spooleded)}\SpecialCharTok{\%*\%}\NormalTok{(xbar1 }\SpecialCharTok{{-}}\NormalTok{ xbar2)}
+\NormalTok{perbandingan}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]
+## [1,] 0.00170252
+## [2,] 0.00259163
+\end{verbatim}
+
+Interpretasi: Berdasarkan hasil pada ringkasan example 6.4 maka
+kesimpulan adalah tolak H0 dimana H0: miu1-miu2 = 0. Artinya terdapat
+perbedaan pada kedua x mean. Kemudian pada hasil perbandingan x\_mean
+yang paling berpengaruh untuk menolak H0 yaitu x mean 1 atau ukuran
+total konsumsi listrik pada puncaknya.
+
+6.8 Observation on two response are collected for three treatments. The
+observation vectors t({[}x1, x2{]}) are
+
+Treatment 1: t({[}6,7{]}), t({[}5,9{]}), t({[}8,6{]}), t({[}4,9{]}),
+t({[}7,9{]})
+
+Treatment 2: t({[}3,3{]}), t({[}1,6{]}), t({[}2,3{]})
+
+Treatment 3: t({[}2,3{]}), t({[}5,1{]}), t({[}3,1{]}), t({[}2,3{]})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x1t1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{)}
+\NormalTok{x2t1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+\NormalTok{treatment1 }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(x1t1,x2t1)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Treatment 1 : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Treatment 1 : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{treatment1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## x1t1    6    5    8    4    7
+## x2t1    7    9    6    9    9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x1t2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{x2t2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{treatment2 }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(x1t2,x2t2)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Treatment 2 : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Treatment 2 : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{treatment2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## x1t2    3    1    2
+## x2t2    3    6    3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x1t3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{x2t3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{treatment3 }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(x1t3,x2t3)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Treatment 3 : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Treatment 3 : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{treatment3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## x1t3    2    5    3    2
+## x2t3    3    1    1    3
+\end{verbatim}
+
+a). Break up the observations into mean, treatment, and residual
+components, as in (6-35). Construct the corresponding arrays for each
+variable. (See Example 6.8.) untuk x1
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Observations}
+\NormalTok{obs\_x1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(x1t1, x1t2, x1t3)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Observation vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Observation vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{obs\_x1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 6 5 8 4 7 3 1 2 2 5 3 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sumsquare\_obsx1 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(obs\_x1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Sum{-}square Observation vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-square Observation vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sumsquare\_obsx1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 246
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Means}
+\NormalTok{meanx1 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(obs\_x1)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Mean Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Mean Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(mean\_x1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(meanx1, }\FunctionTok{length}\NormalTok{(x1t1)), }
+              \FunctionTok{rep}\NormalTok{(meanx1, }\FunctionTok{length}\NormalTok{(x1t2)), }
+              \FunctionTok{rep}\NormalTok{(meanx1, }\FunctionTok{length}\NormalTok{(x1t3))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 4 4 4 4 4 4 4 4 4 4 4 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Sum{-}Square Mean Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-Square Mean Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sumsquare\_meanx1 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(mean\_x1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 192
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Treatment Effects}
+\NormalTok{x1t1\_bar }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(x1t1)}
+\NormalTok{x1t2\_bar }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(x1t2)}
+\NormalTok{x1t3\_bar }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(x1t3)}
+\NormalTok{treateffect\_x1t1 }\OtherTok{\textless{}{-}}\NormalTok{ x1t1\_bar }\SpecialCharTok{{-}}\NormalTok{ meanx1}
+\NormalTok{treateffect\_x1t2 }\OtherTok{\textless{}{-}}\NormalTok{ x1t2\_bar }\SpecialCharTok{{-}}\NormalTok{ meanx1}
+\NormalTok{treateffect\_x1t3 }\OtherTok{\textless{}{-}}\NormalTok{ x1t3\_bar }\SpecialCharTok{{-}}\NormalTok{ meanx1}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Treatment Effect Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Treatment Effect Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(treateffect\_x1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(treateffect\_x1t1, }\FunctionTok{length}\NormalTok{(x1t1)), }
+                     \FunctionTok{rep}\NormalTok{(treateffect\_x1t2, }\FunctionTok{length}\NormalTok{(x1t2)), }
+                     \FunctionTok{rep}\NormalTok{(treateffect\_x1t3, }\FunctionTok{length}\NormalTok{(x1t3))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  2  2  2  2  2 -2 -2 -2 -1 -1 -1 -1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Sum{-}square Treatment Effect Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-square Treatment Effect Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sumsquare\_treateffetcx1 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(treateffect\_x1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 36
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Residuals}
+\NormalTok{(x1bar }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(x1t1\_bar, }\FunctionTok{length}\NormalTok{(x1t1)), }
+                \FunctionTok{rep}\NormalTok{(x1t2\_bar, }\FunctionTok{length}\NormalTok{(x1t2)), }
+                \FunctionTok{rep}\NormalTok{(x1t3\_bar, }\FunctionTok{length}\NormalTok{(x1t3))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 6 6 6 6 6 2 2 2 3 3 3 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Treatment Effect Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Treatment Effect Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(residual\_x1 }\OtherTok{\textless{}{-}}\NormalTok{ obs\_x1 }\SpecialCharTok{{-}}\NormalTok{ x1bar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  0 -1  2 -2  1  1 -1  0 -1  2  0 -1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Sum{-}square Treatment Effect Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-square Treatment Effect Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sumsquare\_residx1 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(residual\_x1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18
+\end{verbatim}
+
+untuk x2
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Observations}
+\NormalTok{obs\_x2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(x2t1, x2t2, x2t3)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Observation vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Observation vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{obs\_x2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 7 9 6 9 9 3 6 3 3 1 1 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sumsquare\_obsx2 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(obs\_x2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Sum{-}square Observation vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-square Observation vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sumsquare\_obsx2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 402
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Means}
+\NormalTok{meanx2 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(obs\_x2)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Mean Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Mean Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(mean\_x2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(meanx2, }\FunctionTok{length}\NormalTok{(x2t1)), }
+              \FunctionTok{rep}\NormalTok{(meanx2, }\FunctionTok{length}\NormalTok{(x2t2)), }
+              \FunctionTok{rep}\NormalTok{(meanx2, }\FunctionTok{length}\NormalTok{(x2t3))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 5 5 5 5 5 5 5 5 5 5 5 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Sum{-}Square Mean Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-Square Mean Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sumsquare\_meanx2 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(mean\_x2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 300
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Treatment Effects}
+\NormalTok{x2t1\_bar }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(x2t1)}
+\NormalTok{x2t2\_bar }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(x2t2)}
+\NormalTok{x2t3\_bar }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(x2t3)}
+\NormalTok{treateffect\_x2t1 }\OtherTok{\textless{}{-}}\NormalTok{ x2t1\_bar }\SpecialCharTok{{-}}\NormalTok{ meanx2}
+\NormalTok{treateffect\_x2t2 }\OtherTok{\textless{}{-}}\NormalTok{ x2t2\_bar }\SpecialCharTok{{-}}\NormalTok{ meanx2}
+\NormalTok{treateffect\_x2t3 }\OtherTok{\textless{}{-}}\NormalTok{ x2t3\_bar }\SpecialCharTok{{-}}\NormalTok{ meanx2}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Treatment Effect Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Treatment Effect Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(treateffect\_x2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(treateffect\_x2t1, }\FunctionTok{length}\NormalTok{(x2t1)), }
+                     \FunctionTok{rep}\NormalTok{(treateffect\_x2t2, }\FunctionTok{length}\NormalTok{(x2t2)), }
+                     \FunctionTok{rep}\NormalTok{(treateffect\_x2t3, }\FunctionTok{length}\NormalTok{(x2t3))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  3  3  3  3  3 -1 -1 -1 -3 -3 -3 -3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Sum{-}square Treatment Effect Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-square Treatment Effect Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sumsquare\_treateffetcx2 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(treateffect\_x2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 84
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ""
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Residuals}
+\NormalTok{(x2bar }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(x2t1\_bar, }\FunctionTok{length}\NormalTok{(x2t1)), }
+                \FunctionTok{rep}\NormalTok{(x2t2\_bar, }\FunctionTok{length}\NormalTok{(x2t2)), }
+                \FunctionTok{rep}\NormalTok{(x2t3\_bar, }\FunctionTok{length}\NormalTok{(x2t3))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 8 8 8 8 8 4 4 4 2 2 2 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Treatment Effect Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Treatment Effect Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(residual\_x2 }\OtherTok{\textless{}{-}}\NormalTok{ obs\_x2 }\SpecialCharTok{{-}}\NormalTok{ x2bar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] -1  1 -2  1  1 -1  2 -1  1 -1 -1  1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Sum{-}square Treatment Effect Vector : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-square Treatment Effect Vector : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(sumsquare\_residx2 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(residual\_x2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18
+\end{verbatim}
+
+Cross products contributions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"Cross Products of Observations Sum{-}squares"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Cross Products of Observations Sum-squares"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(crossprodsumsquare\_obs }\OtherTok{\textless{}{-}} \FunctionTok{crossprod}\NormalTok{(obs\_x1, obs\_x2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]  275
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"Cross Products of Means Sum{-}squares"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Cross Products of Means Sum-squares"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(crossprodsumsquare\_mean }\OtherTok{\textless{}{-}} \FunctionTok{crossprod}\NormalTok{(mean\_x1, mean\_x2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]  240
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"Total Corrected"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Total Corrected"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(crossprodsumsquare\_corr }\OtherTok{\textless{}{-}}\NormalTok{ crossprodsumsquare\_obs }\SpecialCharTok{{-}}\NormalTok{ crossprodsumsquare\_mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]   35
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"Cross Product of Treatment Sum{-}Squares"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Cross Product of Treatment Sum-Squares"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(crossprodsumsquare\_treateffect }\OtherTok{\textless{}{-}} \FunctionTok{crossprod}\NormalTok{(treateffect\_x1, treateffect\_x2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]   48
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\StringTok{"Cross Product Residual Sum{-}Squares"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Cross Product Residual Sum-Squares"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(crossprodsumsquare\_residual }\OtherTok{\textless{}{-}} \FunctionTok{crossprod}\NormalTok{(residual\_x1, residual\_x2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]  -13
+\end{verbatim}
+
+b). Using the information in Part a, construct the one-way MANOVA table.
+
+tabel Manova
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSM\_treatment }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(sumsquare\_treateffetcx1, crossprodsumsquare\_treateffect, crossprodsumsquare\_treateffect, sumsquare\_treateffetcx2), }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{df\_treatment }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(obs\_x1) }\SpecialCharTok{{-}} \DecValTok{3} 
+\FunctionTok{print}\NormalTok{(}\StringTok{"Sum{-}Squares Matrix of Treatment :"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-Squares Matrix of Treatment :"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSM\_treatment}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]   36   48
+## [2,]   48   84
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Degree of Freedom of Treatment :"}\NormalTok{, df\_treatment))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Degree of Freedom of Treatment : 9"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSM\_residual }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(sumsquare\_residx1, crossprodsumsquare\_residual, crossprodsumsquare\_residual, sumsquare\_residx2), }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{df\_residual }\OtherTok{\textless{}{-}} \DecValTok{3} \SpecialCharTok{{-}} \DecValTok{1}
+\FunctionTok{print}\NormalTok{(}\StringTok{"Sum{-}Squares Matrix of Residual :"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-Squares Matrix of Residual :"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSM\_residual}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]   18  -13
+## [2,]  -13   18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Degree of Freedom of Residual :"}\NormalTok{, df\_residual))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Degree of Freedom of Residual : 2"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSM\_TotalCorrected }\OtherTok{\textless{}{-}}\NormalTok{ SSM\_treatment }\SpecialCharTok{+}\NormalTok{ SSM\_residual}
+\FunctionTok{print}\NormalTok{(}\StringTok{"Sum{-}Squares Matrix of Total Correction :"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Sum-Squares Matrix of Total Correction :"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SSM\_TotalCorrected}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]   54   35
+## [2,]   35  102
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_totalcorrected }\OtherTok{\textless{}{-}}\NormalTok{ df\_treatment }\SpecialCharTok{+}\NormalTok{ df\_residual}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Degree of Freedom of Total Correction :"}\NormalTok{, df\_totalcorrected))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Degree of Freedom of Total Correction : 11"
+\end{verbatim}
+
+c). Evaluate Wilks' lambda, A*, and use Table 6.3 to test for treatment
+effects. Set a = .01. Repeat the test using the chi-square approximation
+with Bartlett's correction. {[}See (6-39).{]} Compare the conclusions.
+
+(1)Calculating Wilks' lambda A* with the F-table value
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a\_star }\OtherTok{\textless{}{-}} \FunctionTok{det}\NormalTok{(SSM\_residual) }\SpecialCharTok{/} \FunctionTok{det}\NormalTok{(SSM\_TotalCorrected)}
+\NormalTok{a\_star}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03618959
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g }\OtherTok{\textless{}{-}} \DecValTok{3}
+\NormalTok{p }\OtherTok{\textless{}{-}} \DecValTok{2}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(obs\_x1)}
+\NormalTok{Wilk\_dist }\OtherTok{\textless{}{-}}\NormalTok{ ((}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{sqrt}\NormalTok{(a\_star))}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(a\_star)) }\SpecialCharTok{*}\NormalTok{ ((n }\SpecialCharTok{{-}}\NormalTok{ g }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(g }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{))}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Wilks\textquotesingle{} Lamda A* :"}\NormalTok{, Wilk\_dist))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Wilks' Lamda A* : 17.0265577076291"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha01 }\OtherTok{\textless{}{-}} \FloatTok{0.01}
+\NormalTok{Ftable }\OtherTok{\textless{}{-}} \FunctionTok{qf}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ alpha01, }\AttributeTok{df1 =} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ (g }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{), }\AttributeTok{df2 =} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ (n }\SpecialCharTok{{-}}\NormalTok{ g }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{))}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Ftable Value : "}\NormalTok{, Ftable))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Ftable Value :  4.77257799972321"
+\end{verbatim}
+
+Interpretasi: Karena Wilks' Lamda A* lebih besar dari Nilai Ftabel maka
+dapat disimpulkan bahwa terdapat perbedaan antar perlakuan pada taraf
+signifikansi 0,01.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Calculating Chi-square approximation test using Bartlett' correction
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BartlettCorr }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{ (n }\SpecialCharTok{{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ ((p }\SpecialCharTok{+}\NormalTok{ g) }\SpecialCharTok{/} \DecValTok{2}\NormalTok{)) }\SpecialCharTok{*} \FunctionTok{log}\NormalTok{(a\_star)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Bartlett\textquotesingle{}s Correction :"}\NormalTok{, BartlettCorr))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Bartlett's Correction : 28.211362815917"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Chitable }\OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ alpha01, p }\SpecialCharTok{*}\NormalTok{ (g }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{))}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Chi{-}square Table Value:"}\NormalTok{, Chitable))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Chi-square Table Value: 13.2767041359876"
+\end{verbatim}
+
+Interpretasi: Karena koreksi Bartlett jauh lebih besar dari Nilai Tabel
+Chi-kuadrat, jadi bisa disimpulkan bahwa ada perbedaan antara perlakuan
+pada tingkat signifikansi 0,01.
+
+6.19 In the first phase of a study of the cost of transporting milk from
+farms to dairy plants, a survey was taken of firms engaged in milk
+transportation. Cost data on X1 = fuel, X2 = repair, and X3 = capital,
+all measured on a per-mile basis, are presented in Table 6.10 on page
+340 for n1 = 36 gasoline and n2 = 23 diesel trucks.
+
+diketahui: X1 = fuel X2 = repair X3 = capital
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#load dataset}
+\NormalTok{url }\OtherTok{\textless{}{-}} \StringTok{"https://raw.githubusercontent.com/rii92/tugas{-}APG/main/27\%20maret\%202022/Diesel\_Pop.csv"}
+\NormalTok{url2 }\OtherTok{\textless{}{-}} \StringTok{"https://raw.githubusercontent.com/rii92/tugas{-}APG/main/27\%20maret\%202022/Gasoline\_Pop.csv"}
+\NormalTok{diesel }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(url)}
+\NormalTok{gasoline }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(url2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#lihat tabel diesel}
+\NormalTok{diesel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    fuel_diesel repair_diesel capital_diesel
+## 1         8.50         12.26           9.11
+## 2         7.42          5.13          17.15
+## 3        10.28          3.32          11.23
+## 4        10.16         14.72           5.99
+## 5        12.79          4.17          29.28
+## 6         9.60         12.72          11.00
+## 7         6.47          8.89          19.00
+## 8        11.35          9.95          14.53
+## 9         9.15          2.94          13.68
+## 10        9.70          5.06          20.84
+## 11        9.77         17.86          35.18
+## 12       11.61         11.75          17.00
+## 13        9.09         13.25          20.66
+## 14        8.53         10.14          17.45
+## 15        8.29          6.22          16.38
+## 16       15.90         12.90          19.09
+## 17       11.94          5.69          14.77
+## 18        9.54         16.77          22.66
+## 19       10.43         17.65          10.66
+## 20       10.87         21.52          28.47
+## 21        7.13         13.22          19.44
+## 22       11.88         12.18          21.20
+## 23       12.03          9.22          23.09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#lihat tabel gasoline}
+\NormalTok{gasoline}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    fuel_gas repair_gas capital_gas
+## 1     16.44      12.43       11.23
+## 2      7.19       2.70        3.92
+## 3      9.92       1.35        9.75
+## 4      4.24       5.78        7.78
+## 5     11.20       5.05       10.67
+## 6     14.25       5.78        9.88
+## 7     13.50      10.98       10.60
+## 8     13.32      14.27        9.45
+## 9     29.11      15.09        3.28
+## 10    12.68       7.61       10.23
+## 11     7.51       5.80        8.13
+## 12     9.90       3.63        9.13
+## 13    10.25       5.07       10.17
+## 14    11.11       6.15        7.61
+## 15    12.17      14.26       14.39
+## 16    10.24       2.59        6.09
+## 17    10.18       6.05       12.14
+## 18     8.88       2.70       12.23
+## 19    12.34       7.73       11.68
+## 20     8.51      14.02       12.01
+## 21    26.16      17.44       16.89
+## 22    12.95       8.24        7.18
+## 23    16.93      13.37       17.59
+## 24    14.70      10.78       14.58
+## 25    10.32       5.16       17.00
+## 26     8.98       4.49        4.26
+## 27     9.70      11.59        6.83
+## 28    12.72       8.63        5.59
+## 29     9.49       2.16        6.23
+## 30     8.22       7.95        6.72
+## 31    13.70      11.22        4.91
+## 32     8.21       9.85        8.17
+## 33    15.86      11.42       13.06
+## 34     9.18       9.18        9.49
+## 35    12.49       4.67       11.94
+## 36    17.32       6.86        4.44
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#cari jumlah observasi}
+\NormalTok{nDiesel }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(diesel)}
+\NormalTok{nGasoline }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(gasoline)}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"jumlah gasoline: "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "jumlah gasoline: "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nGasoline}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 36
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"jumlah diesel: "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "jumlah diesel: "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nDiesel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#find colmeans diesel and gasoline}
+\NormalTok{meansGasoline }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(gasoline)}
+\NormalTok{meansDiesel }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(diesel)}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"matrix mean: "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix mean: "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rbind}\NormalTok{(meansGasoline, meansDiesel)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               fuel_gas repair_gas capital_gas
+## meansGasoline 12.21861    8.11250    9.590278
+## meansDiesel   10.10565   10.76217   18.167826
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#fin covarian matrix diesel and gasoline}
+\NormalTok{covDiesel }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(diesel)}
+\NormalTok{covGasoline }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(gasoline)}
+
+\CommentTok{\#matrix cov diesel}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"matrix covariant diesel: "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix covariant diesel: "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{covDiesel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                fuel_diesel repair_diesel capital_diesel
+## fuel_diesel      4.3623166     0.7598872       2.362099
+## repair_diesel    0.7598872    25.8512360       7.685732
+## capital_diesel   2.3620992     7.6857322      46.654400
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "------------------"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#matrix cov gasoline}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"matrix covariant gasoline: "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix covariant gasoline: "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{covGasoline}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              fuel_gas repair_gas capital_gas
+## fuel_gas    23.013361  12.366395    2.906609
+## repair_gas  12.366395  17.544111    4.773082
+## capital_gas  2.906609   4.773082   13.963334
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#cari Spooledgd}
+\NormalTok{Spooledgd }\OtherTok{\textless{}{-}}\NormalTok{ ((nGasoline}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{covGasoline }\SpecialCharTok{+}\NormalTok{ (nDiesel}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{covDiesel)}\SpecialCharTok{/}\NormalTok{(nDiesel}\SpecialCharTok{+}\NormalTok{nGasoline}\DecValTok{{-}2}\NormalTok{)}
+\NormalTok{Spooledgd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              fuel_gas repair_gas capital_gas
+## fuel_gas    15.814712   7.886690    2.696447
+## repair_gas   7.886690  20.750370    5.897263
+## capital_gas  2.696447   5.897263   26.580938
+\end{verbatim}
+
+Test for differences in the mean cost vectors. Set alpha = .01.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung T2}
+\CommentTok{\#alpha = 0.01}
+\CommentTok{\#karena menguji perbedaan dianggap H0:miu1 {-} miu2=0}
+
+\NormalTok{alpha}\OtherTok{\textless{}{-}}\FloatTok{0.01}
+
+\NormalTok{T2gd }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{t}\NormalTok{(meansDiesel }\SpecialCharTok{{-}}\NormalTok{ meansGasoline))}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nGasoline)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nDiesel))}\SpecialCharTok{*}\NormalTok{Spooledgd)}\SpecialCharTok{\%*\%}\NormalTok{(meansDiesel }\SpecialCharTok{{-}}\NormalTok{ meansGasoline)}
+\NormalTok{T2gd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 50.91279
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#jumlah kolom diesel dan gasoline}
+\NormalTok{pDiesel }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(diesel)}
+\NormalTok{pGasoline }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(gasoline)}
+
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"jumlah variabel :"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "jumlah variabel :"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pDiesel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pGasoline}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p}\OtherTok{\textless{}{-}}\NormalTok{pDiesel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung C2}
+\NormalTok{C2gd }\OtherTok{\textless{}{-}}\NormalTok{ (nDiesel}\SpecialCharTok{+}\NormalTok{nGasoline}\DecValTok{{-}2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{p}\SpecialCharTok{*}\FunctionTok{qf}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alpha,p,nDiesel}\SpecialCharTok{+}\NormalTok{nGasoline}\SpecialCharTok{{-}}\NormalTok{p}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(nDiesel}\SpecialCharTok{+}\NormalTok{nGasoline}\SpecialCharTok{{-}}\NormalTok{p}\DecValTok{{-}1}\NormalTok{)}
+\NormalTok{C2gd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.93096
+\end{verbatim}
+
+a). Interpretasi: karena T kuadrat lebih besar dari C kuadrat maka
+terdapat perbedaan pengeluaran gasoline dengan diesel.
+
+If the hypothesis of equal cost vectors is rejected in Part a, find the
+linear combination of mean components most responsible for the
+rejection.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#cari mean x yang paling bertanggung jawab terhadap penolakan H0}
+\FunctionTok{solve}\NormalTok{(Spooledgd)}\SpecialCharTok{\%*\%}\NormalTok{(meansDiesel }\SpecialCharTok{{-}}\NormalTok{ meansGasoline)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   [,1]
+## fuel_gas    -0.2547452
+## repair_gas   0.1339036
+## capital_gas  0.3188296
+\end{verbatim}
+
+b). Interpretasi: dalam hal ini dapat dilihat bahwa variabel terbesar
+dalam kombinasi linier komponen rata-rata ialah variabel capital.
+Artinya, capital lebih bertanggung jawab terhadap penolakan H0 atau
+terjadinya perbedaan biaya pengeluaran
+
+Construct 99\% simultaneous confidence intervals for the pairs of mean
+components. Which costs, if any, appear to be quite different?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{temp }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\NormalTok{Fuel }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(temp,(meansGasoline[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{meansDiesel[}\DecValTok{1}\NormalTok{])}\SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(C2gd)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nDiesel)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nGasoline))}\SpecialCharTok{*}\NormalTok{Spooledgd[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]),}
+\NormalTok{          (meansGasoline[}\DecValTok{1}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{meansDiesel[}\DecValTok{1}\NormalTok{])}\SpecialCharTok{+}\FunctionTok{sqrt}\NormalTok{(C2gd)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nDiesel)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nGasoline))}\SpecialCharTok{*}\NormalTok{Spooledgd[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]))}
+\NormalTok{Repair }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(temp,(meansGasoline[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{meansDiesel[}\DecValTok{2}\NormalTok{])}\SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(C2gd)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nDiesel)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nGasoline))}\SpecialCharTok{*}\NormalTok{Spooledgd[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]),}
+\NormalTok{          (meansGasoline[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{meansDiesel[}\DecValTok{2}\NormalTok{])}\SpecialCharTok{+}\FunctionTok{sqrt}\NormalTok{(C2gd)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nDiesel)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nGasoline))}\SpecialCharTok{*}\NormalTok{Spooledgd[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]))}
+\NormalTok{Capital }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(temp,(meansGasoline[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{meansDiesel[}\DecValTok{3}\NormalTok{])}\SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(C2gd)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nDiesel)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nGasoline))}\SpecialCharTok{*}\NormalTok{Spooledgd[}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{]),}
+\NormalTok{          (meansGasoline[}\DecValTok{3}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{meansDiesel[}\DecValTok{3}\NormalTok{])}\SpecialCharTok{+}\FunctionTok{sqrt}\NormalTok{(C2gd)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nDiesel)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nGasoline))}\SpecialCharTok{*}\NormalTok{Spooledgd[}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{]))}
+\FunctionTok{rbind}\NormalTok{(Fuel,Repair,Capital)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           fuel_gas  fuel_gas
+## Fuel     -1.704346  5.930264
+## Repair   -7.022268  1.722920
+## Capital -13.526479 -3.628618
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Interpretasi: Dalam hal ini yang berbeda ialah capital karena tidak
+  melewati 0. sedangkan variabel yang lain di nyatakin tidak terdapat
+  perbedaan
+\end{enumerate}
+
+Comment on the validity of the assumptions used in your analysis. Note
+in particular that observations 9 and 21 for gasoline trucks have been
+identified as multivariate outliers. (See Exercise 5.22 and {[}2{]} .)
+Repeat Part a with these observations deleted. Comment on the results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#drop baris 9 dan 21 di gasoline }
+\NormalTok{gasolineAdr }\OtherTok{\textless{}{-}}\NormalTok{ gasoline[}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{,}\DecValTok{21}\NormalTok{),]}
+\NormalTok{gasolineAdr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    fuel_gas repair_gas capital_gas
+## 1     16.44      12.43       11.23
+## 2      7.19       2.70        3.92
+## 3      9.92       1.35        9.75
+## 4      4.24       5.78        7.78
+## 5     11.20       5.05       10.67
+## 6     14.25       5.78        9.88
+## 7     13.50      10.98       10.60
+## 8     13.32      14.27        9.45
+## 10    12.68       7.61       10.23
+## 11     7.51       5.80        8.13
+## 12     9.90       3.63        9.13
+## 13    10.25       5.07       10.17
+## 14    11.11       6.15        7.61
+## 15    12.17      14.26       14.39
+## 16    10.24       2.59        6.09
+## 17    10.18       6.05       12.14
+## 18     8.88       2.70       12.23
+## 19    12.34       7.73       11.68
+## 20     8.51      14.02       12.01
+## 22    12.95       8.24        7.18
+## 23    16.93      13.37       17.59
+## 24    14.70      10.78       14.58
+## 25    10.32       5.16       17.00
+## 26     8.98       4.49        4.26
+## 27     9.70      11.59        6.83
+## 28    12.72       8.63        5.59
+## 29     9.49       2.16        6.23
+## 30     8.22       7.95        6.72
+## 31    13.70      11.22        4.91
+## 32     8.21       9.85        8.17
+## 33    15.86      11.42       13.06
+## 34     9.18       9.18        9.49
+## 35    12.49       4.67       11.94
+## 36    17.32       6.86        4.44
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#cari mean}
+\NormalTok{meansGasolineAdr }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(gasolineAdr)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"means Gasoline setelah drop observasi:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "means Gasoline setelah drop observasi:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{meansGasolineAdr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    fuel_gas  repair_gas capital_gas 
+##   11.311765    7.632941    9.561176
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#cari matrix covariants}
+\NormalTok{covGasolineAdr }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(gasolineAdr)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"kovarian matrix Gasoline setelah drop observasi:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "kovarian matrix Gasoline setelah drop observasi:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{covGasolineAdr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             fuel_gas repair_gas capital_gas
+## fuel_gas    9.025021   5.155749    3.201671
+## repair_gas  5.155749  14.258694    4.318945
+## capital_gas 3.201671   4.318945   11.987344
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#jumlah observasi}
+\NormalTok{nGasolineAdr }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(gasolineAdr)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"jumlah observasi Gasoline setelah drop observasi:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "jumlah observasi Gasoline setelah drop observasi:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nGasolineAdr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 34
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#cai Spooled setelah drop observasi gasoline}
+\NormalTok{SpooledAdr }\OtherTok{\textless{}{-}}\NormalTok{ ((nDiesel }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{covDiesel }\SpecialCharTok{+}\NormalTok{ (nGasolineAdr)}\SpecialCharTok{*}\NormalTok{covGasolineAdr)}\SpecialCharTok{/}\NormalTok{(nDiesel }\SpecialCharTok{+}\NormalTok{ nGasolineAdr }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"S pooled setelah drop observasi:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "S pooled setelah drop observasi:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpooledAdr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                fuel_diesel repair_diesel capital_diesel
+## fuel_diesel       7.324031      3.491145       2.924054
+## repair_diesel     3.491145     19.154960       5.744186
+## capital_diesel    2.924054      5.744186      26.072118
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# hitung T2}
+\NormalTok{T2gdAdr }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{t}\NormalTok{(meansDiesel }\SpecialCharTok{{-}}\NormalTok{ meansGasolineAdr))}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nGasolineAdr)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{nDiesel))}\SpecialCharTok{*}\NormalTok{Spooledgd)}\SpecialCharTok{\%*\%}\NormalTok{(meansDiesel }\SpecialCharTok{{-}}\NormalTok{ meansGasolineAdr)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"T kuadrat yang di dapat:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "T kuadrat yang di dapat:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{T2gdAdr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 46.17305
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# hitung C2}
+\NormalTok{C2gdAdr }\OtherTok{\textless{}{-}}\NormalTok{ (nDiesel}\SpecialCharTok{+}\NormalTok{nGasolineAdr}\DecValTok{{-}2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{p}\SpecialCharTok{*}\FunctionTok{qf}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alpha,p,nDiesel}\SpecialCharTok{+}\NormalTok{nGasolineAdr}\SpecialCharTok{{-}}\NormalTok{p}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(nDiesel}\SpecialCharTok{+}\NormalTok{nGasolineAdr}\SpecialCharTok{{-}}\NormalTok{p}\DecValTok{{-}1}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"C kuadrat yang didapat"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "C kuadrat yang didapat"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C2gdAdr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.99521
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Interpretasi: karena T kuadrat lebih besar dari C kuadrat maka tolak
+  H0. Artinya, Terdapat perbedaan dengan biaya yang dikeluarkan
+\end{enumerate}
+
+6.21 Using Moody's bond ratings, samples of 20 Aa (middle-high quality)
+corporate bonds and 20 Baa (top-medium quality) corporate bonds were
+selected. For each of the corresponding companies, the ratios X1 =
+current ratio (a measure of short-term liquidity) X2 = long-term
+interest rate (a measure of interest coverage) X3 = debt-to-equity ratio
+(a measure of financial risk or leverage) X4 = rate of return on equity
+(a measure of profitability)
+
+were recorded. The summary statistics are as folows: Aa bond companies :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Aa bond companies:}
+\NormalTok{n1 }\OtherTok{\textless{}{-}} \DecValTok{20}
+\NormalTok{xbar1 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{2.287}\NormalTok{, }\FloatTok{12.600}\NormalTok{, }\FloatTok{0.347}\NormalTok{, }\FloatTok{14.830}\NormalTok{),}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\NormalTok{S1 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.459}\NormalTok{, }\FloatTok{0.254}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.026}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.244}\NormalTok{, }\FloatTok{0.254}\NormalTok{, }\FloatTok{27.465}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.589}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.267}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.026}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.589}\NormalTok{, }\FloatTok{0.030}\NormalTok{, }\FloatTok{0.102}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.244}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.267}\NormalTok{, }\FloatTok{0.102}\NormalTok{, }\FloatTok{6.854}\NormalTok{),}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"n1, xbar1 dan S1:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "n1, xbar1 dan S1:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1] [,2]  [,3]  [,4]
+## [1,] 2.287 12.6 0.347 14.83
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{S1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        [,1]   [,2]   [,3]   [,4]
+## [1,]  0.459  0.254 -0.026 -0.244
+## [2,]  0.254 27.465 -0.589 -0.267
+## [3,] -0.026 -0.589  0.030  0.102
+## [4,] -0.244 -0.267  0.102  6.854
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Baa bond companies}
+\NormalTok{n2 }\OtherTok{\textless{}{-}} \DecValTok{20}
+\NormalTok{xbar2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{2.404}\NormalTok{, }\FloatTok{7.155}\NormalTok{, }\FloatTok{0.524}\NormalTok{, }\FloatTok{12.840}\NormalTok{),}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\NormalTok{S2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.944}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.089}\NormalTok{, }\FloatTok{0.002}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.719}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.089}\NormalTok{, }\FloatTok{16.432}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.400}\NormalTok{, }\FloatTok{19.044}\NormalTok{, }\FloatTok{0.002}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.400}\NormalTok{, }\FloatTok{0.024}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.094}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.719}\NormalTok{, }\FloatTok{19.044}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.094}\NormalTok{, }\FloatTok{61.854}\NormalTok{),}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"n2, xbar2 dan S2:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "n2, xbar2 dan S2:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]  [,2]  [,3]  [,4]
+## [1,] 2.404 7.155 0.524 12.84
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{S2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        [,1]   [,2]   [,3]   [,4]
+## [1,]  0.944 -0.089  0.002 -0.719
+## [2,] -0.089 16.432 -0.400 19.044
+## [3,]  0.002 -0.400  0.024 -0.094
+## [4,] -0.719 19.044 -0.094 61.854
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Spooled}
+\NormalTok{Spooled }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.701}\NormalTok{, }\FloatTok{0.083}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.012}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.481}\NormalTok{, }\FloatTok{0.083}\NormalTok{, }\FloatTok{21.949}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.494}\NormalTok{, }\FloatTok{9.388}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.012}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.494}\NormalTok{, }\FloatTok{0.027}\NormalTok{, }\FloatTok{0.004}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.481}\NormalTok{, }\FloatTok{9.388}\NormalTok{, }\FloatTok{0.004}\NormalTok{, }\FloatTok{34.354}\NormalTok{), }\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"S pooled:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "S pooled:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Spooled}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        [,1]   [,2]   [,3]   [,4]
+## [1,]  0.701  0.083 -0.012 -0.481
+## [2,]  0.083 21.949 -0.494  9.388
+## [3,] -0.012 -0.494  0.027  0.004
+## [4,] -0.481  9.388  0.004 34.354
+\end{verbatim}
+
+Does pooling appear reasonable here? Comment on the pooling procedure in
+this case. jawab: a. Bisa kita lihat dari keterangan yang di dapat bahwa
+antara Aa bond companies dengan Baa bond companies memiliki jumlah
+n1=n2=n3. Tapi untuk kovarians masing-masing perusahaan tidak sama.
+Dalam hal ini penyatuan kovarians dianggap wajar karena sama-sama
+memiliki jumlah observasi yang sama dengan syarat penyatuan harus
+menggunakan prosedur aproksimasi untuk sampel besar dalam penyatuan
+kovarians
+
+Are the financial characteristics of firms with Aa bonds different from
+those with Baa bonds? Using the pooled covariance matrix, test for the
+equality of mean vectors. Set alpha = .05.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung T kuadrat dan C kuadrat dengan alpha = 0.05}
+\CommentTok{\#karena mencari perbedaan dianggap H0:miu1{-}miu2 = 0}
+\NormalTok{alpha}\OtherTok{\textless{}{-}}\FloatTok{0.05}
+
+\CommentTok{\#hitung T kuadrat}
+\NormalTok{T2 }\OtherTok{\textless{}{-}}\NormalTok{ (xbar1 }\SpecialCharTok{{-}}\NormalTok{ xbar2)}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n1) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n2))}\SpecialCharTok{*}\NormalTok{Spooled)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(xbar1 }\SpecialCharTok{{-}}\NormalTok{ xbar2)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"T kuadrat : "}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "T kuadrat : "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{T2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 15.83653
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}} \DecValTok{4}
+
+\CommentTok{\#hitung C kuadrat}
+\NormalTok{C2 }\OtherTok{\textless{}{-}}\NormalTok{ (n1 }\SpecialCharTok{+}\NormalTok{ n2 }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{p}\SpecialCharTok{*}\FunctionTok{qf}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alpha, p, n1}\SpecialCharTok{+}\NormalTok{n2}\SpecialCharTok{{-}}\NormalTok{p}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(n1}\SpecialCharTok{+}\NormalTok{n2}\SpecialCharTok{{-}}\NormalTok{p}\DecValTok{{-}1}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"C kuadrat:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "C kuadrat:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11.47151
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Interpretasi: karena T kuadrat lebih dari C kuadrat maka tolak H0.
+  Artinya ada perbedaan karakteristik finansial antara perusahaan Aa
+  bonds dengan Baa bonds.
+\end{enumerate}
+
+Calculate the linear combinations of mean components most responsible
+for rejecting H0 : mu1 - mu2 = 0 in Part b.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{solve}\NormalTok{(Spooled)}\SpecialCharTok{\%*\%}\NormalTok{(}\FunctionTok{t}\NormalTok{(xbar1)}\SpecialCharTok{{-}}\FunctionTok{t}\NormalTok{(xbar2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]
+## [1,] -0.24210856
+## [2,]  0.16013330
+## [3,] -3.73497395
+## [4,]  0.01121134
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Interpretasi: X1 = current ratio (a measure of short-term liquidity)
+  X2 = long-term interest rate (a measure of interest coverage) X3 =
+  debt-to-equity ratio (a measure of financial risk or leverage) X4 =
+  rate of return on equity (a measure of profitability)
+\end{enumerate}
+
+berdasarkan dari garis kombinasi komponen rata-rata besaran variabel nya
+maka didapat bahwa variabel X2 atau long-term interest rate lebih
+bertanggung jawab terhadap perbedaan karakteristik finansial antara
+perusahaan atau penolakan H0
+
+Bond rating companies are interested in a company's ability to satisfy
+its outstanding debt obligations as they mature. Does it appear as if
+one or more of the foregoing financial ratios might be useful in helping
+to classify a bond as ``high'' or ``medium'' quality? Explain
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Rasio finansial di atas mungkin berguna menurut kombinasi linier di
+  atas yang ditunjukkan oleh variabel yang mana variabel terbesar
+  memiliki tanggung jawab yang lebih dalam perbedaan finansial, yaitu X2
+  sebagai suku bunga jangka panjang (long-term interest rate). Jadi kita
+  dapat menyimpulkan bahwa suku bunga jangka panjang mungkin berguna
+  untuk mengklasifikasikan obligasi sebagai kualitas ``tinggi'' atau
+  ``sedang''.
+\end{enumerate}
+
+6.23 Construct a one-way MANOVA using the width measurements from the
+iris data in Table 11.5. Construct 95\% simultaneous confidence
+intervals for differences in mean components for the two responses for
+each pair of populations. Comment on the validity of the assumption that
+Covariance Matrix 1 = Covariance Matrix 2 = Covariance Matrix 3.
+
+p = 95\%, sum1 = sum2 = sum3
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: lattice
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(datasets)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"iris"}\NormalTok{)}
+\NormalTok{iris}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#cari tabel manova dengan regresi dan fungsi manova}
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(iris[,}\FunctionTok{c}\NormalTok{(}\StringTok{"Sepal.Width"}\NormalTok{,}\StringTok{"Petal.Width"}\NormalTok{)])}
+\NormalTok{spec }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(iris}\SpecialCharTok{$}\NormalTok{Species)}
+\NormalTok{mod }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(X }\SpecialCharTok{\textasciitilde{}}\NormalTok{ spec)}
+\NormalTok{manovaWidth }\OtherTok{\textless{}{-}} \FunctionTok{manova}\NormalTok{(mod)}
+\NormalTok{manovaWidth}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+##    manova(mod)
+## 
+## Terms:
+##                     spec Residuals
+## Sepal.Width     11.34493  16.96200
+## Petal.Width     80.41333   6.15660
+## Deg. of Freedom        2       147
+## 
+## Residual standard errors: 0.3396877 0.20465
+## Estimated effects may be unbalanced
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#}
+\NormalTok{sumWidth }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(manovaWidth, }\AttributeTok{test=}\StringTok{"Wilks"}\NormalTok{)}
+\NormalTok{sumWidth}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Df    Wilks approx F num Df den Df    Pr(>F)    
+## spec        2 0.038316   299.94      4    292 < 2.2e-16 ***
+## Residuals 147                                              
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "--------------"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sumWidth}\SpecialCharTok{$}\NormalTok{SS}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $spec
+##             Sepal.Width Petal.Width
+## Sepal.Width    11.34493   -22.93267
+## Petal.Width   -22.93267    80.41333
+## 
+## $Residuals
+##             Sepal.Width Petal.Width
+## Sepal.Width     16.9620      4.8084
+## Petal.Width      4.8084      6.1566
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#pengelompokkan berdasar spesies}
+\NormalTok{setosa }\OtherTok{\textless{}{-}}\NormalTok{ iris[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{50}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\StringTok{"Sepal.Width"}\NormalTok{, }\StringTok{"Petal.Width"}\NormalTok{)]}
+\NormalTok{versicolor }\OtherTok{\textless{}{-}}\NormalTok{ iris[}\FunctionTok{c}\NormalTok{(}\DecValTok{51}\SpecialCharTok{:}\DecValTok{100}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\StringTok{"Sepal.Width"}\NormalTok{, }\StringTok{"Petal.Width"}\NormalTok{)]}
+\NormalTok{virginica }\OtherTok{\textless{}{-}}\NormalTok{ iris[}\FunctionTok{c}\NormalTok{(}\DecValTok{101}\SpecialCharTok{:}\DecValTok{150}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\StringTok{"Sepal.Width"}\NormalTok{, }\StringTok{"Petal.Width"}\NormalTok{)]}
+
+\CommentTok{\#mencari masing{-}masing mean}
+\NormalTok{setosabar }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(setosa)}
+\NormalTok{versicolorbar }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(versicolor)}
+\NormalTok{virginicabar }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(virginica)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"mean setosa, versicolor dan virginica:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mean setosa, versicolor dan virginica:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{setosabar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Sepal.Width Petal.Width 
+##       3.428       0.246
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{versicolorbar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Sepal.Width Petal.Width 
+##       2.770       1.326
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{virginicabar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Sepal.Width Petal.Width 
+##       2.974       2.026
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung matrix kovarians}
+\NormalTok{setosavar }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(setosa)}
+\NormalTok{versicolorvar }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(versicolor)}
+\NormalTok{virginicavar }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(virginica)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"kovarians setosa, versicolor dan virginica:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "kovarians setosa, versicolor dan virginica:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{setosavar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Sepal.Width Petal.Width
+## Sepal.Width 0.143689796 0.009297959
+## Petal.Width 0.009297959 0.011106122
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{versicolorvar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Sepal.Width Petal.Width
+## Sepal.Width  0.09846939  0.04120408
+## Petal.Width  0.04120408  0.03910612
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{virginicavar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Sepal.Width Petal.Width
+## Sepal.Width  0.10400408  0.04762857
+## Petal.Width  0.04762857  0.07543265
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung Spooled. n = 50}
+\CommentTok{\#spooled antara setosa dan versicolor}
+\NormalTok{Spooled1 }\OtherTok{\textless{}{-}}\NormalTok{ ((}\DecValTok{50{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{setosavar }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{50{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{versicolorvar)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{50}\SpecialCharTok{+}\DecValTok{50{-}2}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Spooled dari setosa dan versicolor:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Spooled dari setosa dan versicolor:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Spooled1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Sepal.Width Petal.Width
+## Sepal.Width  0.12107959  0.02525102
+## Petal.Width  0.02525102  0.02510612
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#spooled antara setosa dan virginica}
+\NormalTok{Spooled2 }\OtherTok{\textless{}{-}}\NormalTok{ ((}\DecValTok{50{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{setosavar }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{50{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{virginicavar)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{50}\SpecialCharTok{+}\DecValTok{50{-}2}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Spooled dari setosa dan virginica:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Spooled dari setosa dan virginica:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Spooled2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Sepal.Width Petal.Width
+## Sepal.Width  0.12384694  0.02846327
+## Petal.Width  0.02846327  0.04326939
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#spooled antara versicolor dan virginica}
+\NormalTok{Spooled3 }\OtherTok{\textless{}{-}}\NormalTok{ ((}\DecValTok{50{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{versicolorvar }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{50{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{virginicavar)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{50}\SpecialCharTok{+}\DecValTok{50{-}2}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Spooled dari versicolor dan virginica:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Spooled dari versicolor dan virginica:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Spooled3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Sepal.Width Petal.Width
+## Sepal.Width  0.10123673  0.04441633
+## Petal.Width  0.04441633  0.05726939
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung C kuadrat}
+\CommentTok{\#berdasarkan perhitungan, masing{-}masing variabel memiliki C2 yang sama karena memiliki jumlah observasi sama}
+
+\NormalTok{C2svv }\OtherTok{\textless{}{-}}\NormalTok{ (((}\DecValTok{50}\SpecialCharTok{+}\DecValTok{50{-}2}\NormalTok{)}\SpecialCharTok{*}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{50}\SpecialCharTok{+}\DecValTok{50{-}2{-}1}\NormalTok{))}\SpecialCharTok{*}\FunctionTok{qf}\NormalTok{((}\DecValTok{1}\FloatTok{{-}0.05}\NormalTok{), }\DecValTok{2}\NormalTok{, (}\DecValTok{50}\SpecialCharTok{+}\DecValTok{50{-}2{-}1}\NormalTok{))}
+
+\NormalTok{C2svv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.244089
+\end{verbatim}
+
+Mencari masing-masing confidence interval
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung confidence interval antara setosa dengan versicolor}
+\NormalTok{temp }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\ControlFlowTok{for}\NormalTok{(k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{)\{}
+\NormalTok{    temp }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(temp,(setosabar[k]}\SpecialCharTok{{-}}\NormalTok{versicolorbar[k])}\SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(C2svv)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{))}\SpecialCharTok{*}\NormalTok{Spooled1[k,k]),}
+\NormalTok{          (setosabar[k]}\SpecialCharTok{{-}}\NormalTok{versicolorbar[k])}\SpecialCharTok{+}\FunctionTok{sqrt}\NormalTok{(C2svv)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{))}\SpecialCharTok{*}\NormalTok{Spooled1[k,k]))}
+\NormalTok{\}}
+
+\FunctionTok{rbind}\NormalTok{(temp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Sepal.Width Sepal.Width Petal.Width Petal.Width
+## temp   0.4840998   0.8319002   -1.159187   -1.000813
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung confidence interval antara setosa dengan virginica}
+\NormalTok{temp }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\ControlFlowTok{for}\NormalTok{(k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{)\{}
+\NormalTok{    temp }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(temp,(setosabar[k]}\SpecialCharTok{{-}}\NormalTok{virginicabar[k])}\SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(C2svv)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{))}\SpecialCharTok{*}\NormalTok{Spooled2[k,k]),}
+\NormalTok{          (setosabar[k]}\SpecialCharTok{{-}}\NormalTok{virginicabar[k])}\SpecialCharTok{+}\FunctionTok{sqrt}\NormalTok{(C2svv)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{))}\SpecialCharTok{*}\NormalTok{Spooled2[k,k]))}
+\NormalTok{\}}
+
+\FunctionTok{rbind}\NormalTok{(temp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Sepal.Width Sepal.Width Petal.Width Petal.Width
+## temp   0.2781238   0.6298762   -1.883957   -1.676043
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hitung confidence interval antara versicolor dengan virginica}
+\NormalTok{temp }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\ControlFlowTok{for}\NormalTok{(k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{)\{}
+\NormalTok{    temp }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(temp,(versicolorbar[k]}\SpecialCharTok{{-}}\NormalTok{virginicabar[k])}\SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(C2svv)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{))}\SpecialCharTok{*}\NormalTok{Spooled3[k,k]),}
+\NormalTok{          (versicolorbar[k]}\SpecialCharTok{{-}}\NormalTok{virginicabar[k])}\SpecialCharTok{+}\FunctionTok{sqrt}\NormalTok{(C2svv)}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(((}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{)}\SpecialCharTok{+}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{50}\NormalTok{))}\SpecialCharTok{*}\NormalTok{Spooled3[k,k]))}
+\NormalTok{\}}
+
+\FunctionTok{rbind}\NormalTok{(temp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Sepal.Width Sepal.Width Petal.Width Petal.Width
+## temp  -0.3630133 -0.04498665  -0.8195985  -0.5804015
+\end{verbatim}
+
+\end{document}

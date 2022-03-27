@@ -2,22 +2,12 @@
 title: "APG_Pertemuan_6"
 author: "Riofebri Prasetia (221911192)"
 date: "3/23/2022"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r library, message=FALSE}
-library('MVN')
-library('mvoutlier')
-library('rcompanion')
-library('caret')
-library('RVAideMemoire')
-library('ellipse')
-library('qqplotr')
-library('evd')
-library('outliers')
-library('ggplot2')
-library('SciViews')
-library('MVTests')
 ```
 
 6.7
@@ -27,42 +17,42 @@ Using the summary statistics for the electricity-demand data given in Example 6.
 # Inisiasi summary electricity-demand
 alpha <- 0.05
 p <- 2
-n_1 <- 45
-n_2 <- 55
-x_mean_1 <- matrix(c(204.4,556.6), ncol = 1, nrow = 2)
-x_mean_2 <- matrix(c(130.0, 355.0), ncol = 1, nrow = 2)
-S_1 <- matrix(c(13825.3, 23823.4, 23823.4, 73107.4), 2,2)
-S_2 <- matrix(c(8632.0, 19616.7, 19616.7, 55964.5), 2,2)
+n1 <- 45
+n2 <- 55
+xbar1 <- matrix(c(204.4,556.6), ncol = 1, nrow = 2)
+xbar2 <- matrix(c(130.0, 355.0), ncol = 1, nrow = 2)
+S1 <- matrix(c(13825.3, 23823.4, 23823.4, 73107.4), 2,2)
+S2 <- matrix(c(8632.0, 19616.7, 19616.7, 55964.5), 2,2)
 ```
 
 ```{r}
 # Function S_pooled
-S_pooled <- function(n1, n2, S1, S2){
-  S_pooled1 <- ((n1-1)/(n1+n2-2))*S1 + ((n2-1)/(n1+n2-2))*S2
-  S_pooled1
+Spooled <- function(n1, n2, S1, S2){
+  Spooled1 <- ((n1-1)/(n1+n2-2))*S1 + ((n2-1)/(n1+n2-2))*S2
+  Spooled1
 }
 ```
 
 ```{r}
 # S_pooled electricity-demand
-S_pooled_ed <- S_pooled(n_1, n_2, S_1, S_2)
-S_pooled_ed <- as.matrix(S_pooled_ed)
-S_pooled_ed
+Spooleded <- Spooled(n1, n2, S1, S2)
+Spooleded <- as.matrix(Spooleded)
+Spooleded
 ```
 ```{r}
 #hitung T_kuadrat
-T_kuadrat <- t(x_mean_1 - x_mean_2)%*%(solve((1/n_1+1/n_2)*S_pooled_ed))%*%(x_mean_1 - x_mean_2)
-T_kuadrat
+T2 <- t(xbar1 - xbar2)%*%(solve((1/n1+1/n2)*Spooleded))%*%(xbar1 - xbar2)
+T2
 ```
 ```{r}
 #hitung C_kuadrat
-C_kuadrat <- ((n_1+n_2-2)*p/(n_1 + n_2 - p - 1))*qf(1-alpha, df1 = p, df2 = n_1+n_2-p-1)
-C_kuadrat
+C2 <- ((n1+n2-2)*p/(n1 + n2 - p - 1))*qf(1-alpha, df1 = p, df2 = n1+n2-p-1)
+C2
 ```
 
 ```{r}
 #perbandingan x mean yang paling berpengaruh 
-perbandingan <- solve(S_pooled_ed)%*%(x_mean_1 - x_mean_2)
+perbandingan <- solve(Spooleded)%*%(xbar1 - xbar2)
 perbandingan
 ```
 Interpretasi:
@@ -75,14 +65,6 @@ Treatment 1: t([6,7]), t([5,9]), t([8,6]), t([4,9]), t([7,9])
 Treatment 2: t([3,3]), t([1,6]), t([2,3])
 
 Treatment 3: t([2,3]), t([5,1]), t([3,1]), t([2,3])
-
-a). Break up the observations into mean, treatment, and residual  components, as in (6-35). Construct the corresponding arrays for each variable. (See Example 6.8.)
-
-
-b). Using the information in Part a, construct the one-way MANOVA table.
-
-
-c). Set a = .01. Repeat the test using the chi-square approximation with Bartlett's correction. [See (6-39).] Compare the conclusions.
 
 ```{r}
 x1t1 <- c(6, 5, 8, 4, 7)
@@ -105,7 +87,7 @@ treatment3 <- rbind(x1t3,x2t3)
 print(paste("Treatment 3 : "))
 treatment3
 ```
-
+a). Break up the observations into mean, treatment, and residual  components, as in (6-35). Construct the corresponding arrays for each variable. (See Example 6.8.)
 untuk x1
 ```{r}
 #Observations
@@ -127,42 +109,6 @@ print(paste("Sum-Square Mean Vector : "))
 (sumsquare_meanx1 <- sum(mean_x1^2)) 
 print("")
 
-#Treatment Effect
-x1t1_bar <- mean(x1t1)
-x1t2_bar <- mean(x1t2)
-x1t3_bar <- mean(x1t3)
-treateffect_x1t1 <- x1t1_bar - meanx1
-treateffect_x1t2 <- x1t2_bar - meanx1
-treateffect_x1t3 <- x1t3_bar - meanx1
-print(paste("Treatment Effect Vector : "))
-(treateffect_x1 <- c(rep(treateffect_x1t1, length(x1t1)), 
-                     rep(treateffect_x1t2, length(x1t2)), 
-                     rep(treateffect_x1t3, length(x1t3))))
-print(paste("Sum-square Treatment Effect Vector : "))
-(sumsquare_treateffetcx1 <- sum(treateffect_x1^2)) 
-print("")
-```
-
-```{r}
-#Observations
-obs_x1 <- c(x1t1, x1t2, x1t3)
-print(paste("Observation vector : "))
-obs_x1
-sumsquare_obsx1 <- sum(obs_x1^2)
-print(paste("Sum-square Observation vector : "))
-sumsquare_obsx1
-print("")
-
-#Means
-meanx1 <- mean(obs_x1)
-print(paste("Mean Vector : "))
-(mean_x1 <- c(rep(meanx1, length(x1t1)), 
-              rep(meanx1, length(x1t2)), 
-              rep(meanx1, length(x1t3))))
-print(paste("Sum-Square Mean Vector : "))
-(sumsquare_meanx1 <- sum(mean_x1^2)) 
-print("")
-
 #Treatment Effects
 x1t1_bar <- mean(x1t1)
 x1t2_bar <- mean(x1t2)
@@ -185,87 +131,476 @@ print("")
 print(paste("Treatment Effect Vector : "))
 (residual_x1 <- obs_x1 - x1bar)
 print(paste("Sum-square Treatment Effect Vector : "))
-(sumsquare_resid <- sum(residual_x1^2))
+(sumsquare_residx1 <- sum(residual_x1^2))
 ```
-
 untuk x2
 ```{r}
 #Observations
-obs_x1 <- c(x1t1, x1t2, x1t3)
+obs_x2 <- c(x2t1, x2t2, x2t3)
 print(paste("Observation vector : "))
-obs_x1
-sumsquare_obsx1 <- sum(obs_x1^2)
+obs_x2
+sumsquare_obsx2 <- sum(obs_x2^2)
 print(paste("Sum-square Observation vector : "))
-sumsquare_obsx1
+sumsquare_obsx2
 print("")
 
 #Means
-meanx1 <- mean(obs_x1)
+meanx2 <- mean(obs_x2)
 print(paste("Mean Vector : "))
-(mean_x1 <- c(rep(meanx1, length(x1t1)), 
-              rep(meanx1, length(x1t2)), 
-              rep(meanx1, length(x1t3))))
+(mean_x2 <- c(rep(meanx2, length(x2t1)), 
+              rep(meanx2, length(x2t2)), 
+              rep(meanx2, length(x2t3))))
 print(paste("Sum-Square Mean Vector : "))
-(sumsquare_meanx1 <- sum(mean_x1^2)) 
-print("")
-
-#Treatment Effect
-x1t1_bar <- mean(x1t1)
-x1t2_bar <- mean(x1t2)
-x1t3_bar <- mean(x1t3)
-treateffect_x1t1 <- x1t1_bar - meanx1
-treateffect_x1t2 <- x1t2_bar - meanx1
-treateffect_x1t3 <- x1t3_bar - meanx1
-print(paste("Treatment Effect Vector : "))
-(treateffect_x1 <- c(rep(treateffect_x1t1, length(x1t1)), 
-                     rep(treateffect_x1t2, length(x1t2)), 
-                     rep(treateffect_x1t3, length(x1t3))))
-print(paste("Sum-square Treatment Effect Vector : "))
-(sumsquare_treateffetcx1 <- sum(treateffect_x1^2)) 
-print("")
-```
-
-```{r}
-#Observations
-obs_x1 <- c(x1t1, x1t2, x1t3)
-print(paste("Observation vector : "))
-obs_x1
-sumsquare_obsx1 <- sum(obs_x1^2)
-print(paste("Sum-square Observation vector : "))
-sumsquare_obsx1
-print("")
-
-#Means
-meanx1 <- mean(obs_x1)
-print(paste("Mean Vector : "))
-(mean_x1 <- c(rep(meanx1, length(x1t1)), 
-              rep(meanx1, length(x1t2)), 
-              rep(meanx1, length(x1t3))))
-print(paste("Sum-Square Mean Vector : "))
-(sumsquare_meanx1 <- sum(mean_x1^2)) 
+(sumsquare_meanx2 <- sum(mean_x2^2)) 
 print("")
 
 #Treatment Effects
-x1t1_bar <- mean(x1t1)
-x1t2_bar <- mean(x1t2)
-x1t3_bar <- mean(x1t3)
-treateffect_x1t1 <- x1t1_bar - meanx1
-treateffect_x1t2 <- x1t2_bar - meanx1
-treateffect_x1t3 <- x1t3_bar - meanx1
+x2t1_bar <- mean(x2t1)
+x2t2_bar <- mean(x2t2)
+x2t3_bar <- mean(x2t3)
+treateffect_x2t1 <- x2t1_bar - meanx2
+treateffect_x2t2 <- x2t2_bar - meanx2
+treateffect_x2t3 <- x2t3_bar - meanx2
 print(paste("Treatment Effect Vector : "))
-(treateffect_x1 <- c(rep(treateffect_x1t1, length(x1t1)), 
-                     rep(treateffect_x1t2, length(x1t2)), 
-                     rep(treateffect_x1t3, length(x1t3))))
+(treateffect_x2 <- c(rep(treateffect_x2t1, length(x2t1)), 
+                     rep(treateffect_x2t2, length(x2t2)), 
+                     rep(treateffect_x2t3, length(x2t3))))
 print(paste("Sum-square Treatment Effect Vector : "))
-(sumsquare_treateffetcx1 <- sum(treateffect_x1^2)) 
+(sumsquare_treateffetcx2 <- sum(treateffect_x2^2)) 
 print("")
 
 #Residuals
-(x1bar <- c(rep(x1t1_bar, length(x1t1)), 
-                rep(x1t2_bar, length(x1t2)), 
-                rep(x1t3_bar, length(x1t3))))
+(x2bar <- c(rep(x2t1_bar, length(x2t1)), 
+                rep(x2t2_bar, length(x2t2)), 
+                rep(x2t3_bar, length(x2t3))))
 print(paste("Treatment Effect Vector : "))
-(residual_x1 <- obs_x1 - x1bar)
+(residual_x2 <- obs_x2 - x2bar)
 print(paste("Sum-square Treatment Effect Vector : "))
-(sumsquare_resid <- sum(residual_x1^2))
+(sumsquare_residx2 <- sum(residual_x2^2))
 ```
+Cross products contributions
+```{r}
+print("Cross Products of Observations Sum-squares")
+(crossprodsumsquare_obs <- crossprod(obs_x1, obs_x2))
+print("Cross Products of Means Sum-squares")
+(crossprodsumsquare_mean <- crossprod(mean_x1, mean_x2))
+print("Total Corrected")
+(crossprodsumsquare_corr <- crossprodsumsquare_obs - crossprodsumsquare_mean)
+
+print("Cross Product of Treatment Sum-Squares")
+(crossprodsumsquare_treateffect <- crossprod(treateffect_x1, treateffect_x2))
+
+print("Cross Product Residual Sum-Squares")
+(crossprodsumsquare_residual <- crossprod(residual_x1, residual_x2))
+```
+b). Using the information in Part a, construct the one-way MANOVA table.
+
+tabel Manova
+```{r}
+SSM_treatment <- matrix(c(sumsquare_treateffetcx1, crossprodsumsquare_treateffect, crossprodsumsquare_treateffect, sumsquare_treateffetcx2), byrow = TRUE, ncol = 2)
+df_treatment <- length(obs_x1) - 3 
+print("Sum-Squares Matrix of Treatment :")
+SSM_treatment
+
+print(paste("Degree of Freedom of Treatment :", df_treatment))
+
+SSM_residual <- matrix(c(sumsquare_residx1, crossprodsumsquare_residual, crossprodsumsquare_residual, sumsquare_residx2), byrow = TRUE, ncol = 2)
+df_residual <- 3 - 1
+print("Sum-Squares Matrix of Residual :")
+SSM_residual
+
+print(paste("Degree of Freedom of Residual :", df_residual))
+
+SSM_TotalCorrected <- SSM_treatment + SSM_residual
+print("Sum-Squares Matrix of Total Correction :")
+SSM_TotalCorrected
+
+df_totalcorrected <- df_treatment + df_residual
+print(paste("Degree of Freedom of Total Correction :", df_totalcorrected))
+```  
+c). Evaluate Wilks’ lambda, A*, and use Table 6.3 to test for treatment effects. Set a = .01. Repeat the test using the chi-square approximation with Bartlett’s correction. [See (6-39).] Compare the conclusions.
+
+(1)Calculating Wilks’ lambda A* with the F-table value
+```{r}
+a_star <- det(SSM_residual) / det(SSM_TotalCorrected)
+a_star
+
+g <- 3
+p <- 2
+n <- length(obs_x1)
+Wilk_dist <- ((1 - sqrt(a_star))/sqrt(a_star)) * ((n - g - 1)/(g - 1))
+print(paste("Wilks' Lamda A* :", Wilk_dist))
+
+alpha01 <- 0.01
+Ftable <- qf(1 - alpha01, df1 = 2 * (g - 1), df2 = 2 * (n - g - 1))
+print(paste("Ftable Value : ", Ftable))
+```
+Interpretasi:
+Karena Wilks’ Lamda A* lebih besar dari Nilai Ftabel maka dapat disimpulkan bahwa terdapat perbedaan antar perlakuan pada taraf signifikansi 0,01. 
+
+(2) Calculating Chi-square approximation test using Bartlett’ correction
+```{r}
+BartlettCorr <- - (n - 1 - ((p + g) / 2)) * log(a_star)
+print(paste("Bartlett's Correction :", BartlettCorr))
+
+Chitable <- qchisq(1 - alpha01, p * (g - 1))
+print(paste("Chi-square Table Value:", Chitable))
+```
+Interpretasi:
+Karena koreksi  Bartlett jauh lebih besar dari Nilai Tabel Chi-kuadrat, jadi bisa disimpulkan bahwa ada perbedaan antara perlakuan pada tingkat signifikansi 0,01.
+
+6.19 
+In the first phase of a study of the cost of transporting milk from farms to dairy plants, a survey was taken of firms engaged in milk transportation. Cost data on X1 = fuel, X2 = repair, and X3 = capital, all measured on a per-mile basis, are presented in Table 6.10 on page 340 for n1 = 36 gasoline and n2 = 23 diesel trucks.
+
+diketahui:
+X1 = fuel
+X2 = repair
+X3 = capital
+```{r}
+#load dataset
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/27%20maret%202022/Diesel_Pop.csv"
+url2 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/27%20maret%202022/Gasoline_Pop.csv"
+diesel <- read.csv(url)
+gasoline <- read.csv(url2)
+```
+
+```{r}
+#lihat tabel diesel
+diesel
+```
+
+```{r}
+#lihat tabel gasoline
+gasoline
+```
+
+
+```{r}
+#cari jumlah observasi
+nDiesel <- nrow(diesel)
+nGasoline <- nrow(gasoline)
+
+print(paste("jumlah gasoline: "))
+nGasoline
+
+print(paste("jumlah diesel: "))
+nDiesel
+```
+
+
+```{r}
+#find colmeans diesel and gasoline
+meansGasoline <- colMeans(gasoline)
+meansDiesel <- colMeans(diesel)
+
+print(paste("matrix mean: "))
+ 
+rbind(meansGasoline, meansDiesel)
+```
+
+```{r}
+#fin covarian matrix diesel and gasoline
+covDiesel <- cov(diesel)
+covGasoline <- cov(gasoline)
+
+#matrix cov diesel
+print(paste("matrix covariant diesel: "))
+covDiesel
+
+print(paste("------------------"))
+
+#matrix cov gasoline
+print(paste("matrix covariant gasoline: "))
+covGasoline
+```
+
+```{r}
+#cari Spooledgd
+Spooledgd <- ((nGasoline-1)*covGasoline + (nDiesel-1)*covDiesel)/(nDiesel+nGasoline-2)
+Spooledgd
+```
+
+Test for differences in the mean cost vectors. Set alpha = .01.
+```{r}
+#hitung T2
+#alpha = 0.01
+#karena menguji perbedaan dianggap H0:miu1 - miu2=0
+
+alpha<-0.01
+
+T2gd <- (t(meansDiesel - meansGasoline))%*%solve(((1/nGasoline)+(1/nDiesel))*Spooledgd)%*%(meansDiesel - meansGasoline)
+T2gd
+```
+
+```{r}
+#jumlah kolom diesel dan gasoline
+pDiesel <- ncol(diesel)
+pGasoline <- ncol(gasoline)
+
+print(paste("jumlah variabel :"))
+pDiesel
+pGasoline
+
+p<-pDiesel
+```
+
+```{r}
+#hitung C2
+C2gd <- (nDiesel+nGasoline-2)*p*qf(1-alpha,p,nDiesel+nGasoline-p-1)/(nDiesel+nGasoline-p-1)
+C2gd
+```
+a). Interpretasi:
+karena T kuadrat lebih besar dari C kuadrat maka terdapat perbedaan pengeluaran gasoline dengan diesel.
+
+If the hypothesis of equal cost vectors is rejected in Part a, find the linear combination of mean components most responsible for the rejection.
+```{r}
+#cari mean x yang paling bertanggung jawab terhadap penolakan H0
+solve(Spooledgd)%*%(meansDiesel - meansGasoline)
+```
+b). Interpretasi:
+dalam hal ini dapat dilihat bahwa variabel terbesar dalam kombinasi linier komponen rata-rata ialah variabel capital. Artinya, capital lebih bertanggung jawab terhadap penolakan H0 atau terjadinya perbedaan biaya pengeluaran
+
+Construct 99% simultaneous confidence intervals for the pairs of mean components. Which costs, if any, appear to be quite different?
+```{r}
+temp <- NULL
+Fuel <- c(temp,(meansGasoline[1]-meansDiesel[1])-sqrt(C2gd)*sqrt(((1/nDiesel)+(1/nGasoline))*Spooledgd[1,1]),
+          (meansGasoline[1]-meansDiesel[1])+sqrt(C2gd)*sqrt(((1/nDiesel)+(1/nGasoline))*Spooledgd[1,1]))
+Repair <- c(temp,(meansGasoline[2]-meansDiesel[2])-sqrt(C2gd)*sqrt(((1/nDiesel)+(1/nGasoline))*Spooledgd[2,2]),
+          (meansGasoline[2]-meansDiesel[2])+sqrt(C2gd)*sqrt(((1/nDiesel)+(1/nGasoline))*Spooledgd[2,2]))
+Capital <- c(temp,(meansGasoline[3]-meansDiesel[3])-sqrt(C2gd)*sqrt(((1/nDiesel)+(1/nGasoline))*Spooledgd[3,3]),
+          (meansGasoline[3]-meansDiesel[3])+sqrt(C2gd)*sqrt(((1/nDiesel)+(1/nGasoline))*Spooledgd[3,3]))
+rbind(Fuel,Repair,Capital)
+```
+c. Interpretasi:
+Dalam hal ini yang berbeda ialah capital karena tidak melewati 0. sedangkan variabel yang lain di nyatakin tidak terdapat perbedaan
+
+Comment on the validity of the assumptions used in your analysis. Note in particular that observations 9 and 21 for gasoline trucks have been identified as multivariate outliers. (See Exercise 5.22 and [2] .) Repeat Part a with these observations deleted. Comment on the results.
+```{r}
+#drop baris 9 dan 21 di gasoline 
+gasolineAdr <- gasoline[-c(9,21),]
+gasolineAdr
+```
+
+```{r}
+#cari mean
+meansGasolineAdr <- colMeans(gasolineAdr)
+print(paste("means Gasoline setelah drop observasi:"))
+meansGasolineAdr
+
+#cari matrix covariants
+covGasolineAdr <- cov(gasolineAdr)
+print(paste("kovarian matrix Gasoline setelah drop observasi:"))
+covGasolineAdr
+
+#jumlah observasi
+nGasolineAdr <- nrow(gasolineAdr)
+print(paste("jumlah observasi Gasoline setelah drop observasi:"))
+nGasolineAdr
+
+#cai Spooled setelah drop observasi gasoline
+SpooledAdr <- ((nDiesel - 1)*covDiesel + (nGasolineAdr)*covGasolineAdr)/(nDiesel + nGasolineAdr -2)
+print(paste("S pooled setelah drop observasi:"))
+SpooledAdr
+```
+
+```{r}
+# hitung T2
+T2gdAdr <- (t(meansDiesel - meansGasolineAdr))%*%solve(((1/nGasolineAdr)+(1/nDiesel))*Spooledgd)%*%(meansDiesel - meansGasolineAdr)
+print(paste("T kuadrat yang di dapat:"))
+T2gdAdr
+
+# hitung C2
+C2gdAdr <- (nDiesel+nGasolineAdr-2)*p*qf(1-alpha,p,nDiesel+nGasolineAdr-p-1)/(nDiesel+nGasolineAdr-p-1)
+print(paste("C kuadrat yang didapat"))
+C2gdAdr
+```
+d. Interpretasi:
+karena T kuadrat lebih besar dari C kuadrat maka tolak H0. Artinya, Terdapat perbedaan dengan biaya yang dikeluarkan
+
+6.21
+Using Moody’s bond ratings, samples of 20 Aa (middle-high quality) corporate bonds and 20 Baa (top-medium quality) corporate bonds were selected. For each of the corresponding companies, the ratios 
+X1 = current ratio (a measure of short-term liquidity) 
+X2 = long-term interest rate (a measure of interest coverage) 
+X3 = debt-to-equity ratio (a measure of financial risk or leverage) 
+X4 = rate of return on equity (a measure of profitability) 
+
+were recorded. The summary statistics are as folows: Aa bond companies :
+
+```{r}
+#Aa bond companies:
+n1 <- 20
+xbar1 <- matrix(c(2.287, 12.600, 0.347, 14.830),1,4)
+S1 <- matrix(c(0.459, 0.254, -0.026, -0.244, 0.254, 27.465, -0.589, -0.267, -0.026, -0.589, 0.030, 0.102, -0.244, -0.267, 0.102, 6.854),4,4)
+print(paste("n1, xbar1 dan S1:"))
+n1
+xbar1
+S1
+
+#Baa bond companies
+n2 <- 20
+xbar2 <- matrix(c(2.404, 7.155, 0.524, 12.840),1,4)
+S2 <- matrix(c(0.944, -0.089, 0.002, -0.719, -0.089, 16.432, -0.400, 19.044, 0.002, -0.400, 0.024, -0.094, -0.719, 19.044, -0.094, 61.854),4,4)
+print(paste("n2, xbar2 dan S2:"))
+n2
+xbar2
+S2
+
+#Spooled
+Spooled <- matrix(c(0.701, 0.083, -0.012, -0.481, 0.083, 21.949, -0.494, 9.388, -0.012, -0.494, 0.027, 0.004, -0.481, 9.388, 0.004, 34.354), 4,4)
+print(paste("S pooled:"))
+Spooled
+```
+Does pooling appear reasonable here? Comment on the pooling procedure in this case.
+jawab:
+a. Bisa kita lihat dari keterangan yang di dapat bahwa antara Aa bond companies dengan Baa bond companies memiliki jumlah n1=n2=n3. Tapi untuk kovarians masing-masing perusahaan tidak sama. Dalam hal ini penyatuan kovarians dianggap wajar karena sama-sama memiliki jumlah observasi yang sama dengan syarat penyatuan harus menggunakan prosedur aproksimasi untuk sampel besar dalam penyatuan kovarians
+
+Are the financial characteristics of firms with Aa bonds different from those with Baa bonds? Using the pooled covariance matrix, test for the equality of mean vectors. Set alpha = .05.
+```{r}
+#hitung T kuadrat dan C kuadrat dengan alpha = 0.05
+#karena mencari perbedaan dianggap H0:miu1-miu2 = 0
+alpha<-0.05
+
+#hitung T kuadrat
+T2 <- (xbar1 - xbar2)%*%solve(((1/n1) + (1/n2))*Spooled)%*%t(xbar1 - xbar2)
+print(paste("T kuadrat : "))
+T2
+
+p <- 4
+
+#hitung C kuadrat
+C2 <- (n1 + n2 - 2)*p*qf(1-alpha, p, n1+n2-p-1)/(n1+n2-p-1)
+print(paste("C kuadrat:"))
+C2
+```
+b. Interpretasi:
+karena T kuadrat lebih dari C kuadrat maka tolak H0. Artinya ada perbedaan karakteristik finansial antara perusahaan Aa bonds dengan Baa bonds.
+
+Calculate the linear combinations of mean components most responsible for rejecting H0 : mu1 - mu2 = 0 in Part b.
+```{r}
+solve(Spooled)%*%(t(xbar1)-t(xbar2))
+```
+c. Interpretasi:
+X1 = current ratio (a measure of short-term liquidity) 
+X2 = long-term interest rate (a measure of interest coverage) 
+X3 = debt-to-equity ratio (a measure of financial risk or leverage) 
+X4 = rate of return on equity (a measure of profitability)
+
+berdasarkan dari garis kombinasi komponen rata-rata besaran variabel nya maka didapat bahwa variabel X2 atau long-term interest rate lebih bertanggung jawab terhadap perbedaan karakteristik finansial antara perusahaan atau penolakan H0
+
+Bond rating companies are interested in a company’s ability to satisfy its outstanding debt obligations as they mature. Does it appear as if one or more of the foregoing financial ratios might be useful in helping to classify a bond as “high” or “medium” quality? Explain
+
+d. Rasio finansial di atas mungkin berguna menurut kombinasi linier di atas yang ditunjukkan oleh variabel yang mana variabel terbesar memiliki tanggung jawab yang lebih dalam perbedaan finansial, yaitu X2 sebagai suku bunga jangka panjang (long-term interest rate). Jadi kita dapat menyimpulkan bahwa suku bunga jangka panjang mungkin berguna untuk mengklasifikasikan obligasi sebagai kualitas "tinggi" atau "sedang".
+
+6.23
+Construct a one-way MANOVA using the width measurements from the iris data in Table 11.5. Construct 95% simultaneous confidence intervals for differences in mean components for the two responses for each pair of populations. Comment on the validity of the assumption that Covariance Matrix 1 = Covariance Matrix 2 = Covariance Matrix 3.
+
+p = 95%, sum1 = sum2 = sum3
+```{r}
+library(caret)
+library(datasets)
+data("iris")
+iris
+```
+```{r}
+#cari tabel manova dengan regresi dan fungsi manova
+X <- as.matrix(iris[,c("Sepal.Width","Petal.Width")])
+spec <- factor(iris$Species)
+mod <- lm(X ~ spec)
+manovaWidth <- manova(mod)
+manovaWidth
+```
+```{r}
+#
+sumWidth <- summary(manovaWidth, test="Wilks")
+sumWidth
+print(paste("--------------"))
+sumWidth$SS
+```
+```{r}
+#pengelompokkan berdasar spesies
+setosa <- iris[c(1:50), c("Sepal.Width", "Petal.Width")]
+versicolor <- iris[c(51:100), c("Sepal.Width", "Petal.Width")]
+virginica <- iris[c(101:150), c("Sepal.Width", "Petal.Width")]
+
+#mencari masing-masing mean
+setosabar <- colMeans(setosa)
+versicolorbar <- colMeans(versicolor)
+virginicabar <- colMeans(virginica)
+print(paste("mean setosa, versicolor dan virginica:"))
+setosabar
+versicolorbar
+virginicabar
+
+#hitung matrix kovarians
+setosavar <- cov(setosa)
+versicolorvar <- cov(versicolor)
+virginicavar <- cov(virginica)
+print(paste("kovarians setosa, versicolor dan virginica:"))
+setosavar
+versicolorvar
+virginicavar
+
+#hitung Spooled. n = 50
+#spooled antara setosa dan versicolor
+Spooled1 <- ((50-1)*setosavar + (50-1)*versicolorvar)/(50+50-2)
+print(paste("Spooled dari setosa dan versicolor:"))
+Spooled1
+
+#spooled antara setosa dan virginica
+Spooled2 <- ((50-1)*setosavar + (50-1)*virginicavar)/(50+50-2)
+print(paste("Spooled dari setosa dan virginica:"))
+Spooled2
+
+#spooled antara versicolor dan virginica
+Spooled3 <- ((50-1)*versicolorvar + (50-1)*virginicavar)/(50+50-2)
+print(paste("Spooled dari versicolor dan virginica:"))
+Spooled3
+
+```
+
+```{r}
+#hitung C kuadrat
+#berdasarkan perhitungan, masing-masing variabel memiliki C2 yang sama karena memiliki jumlah observasi sama
+
+C2svv <- (((50+50-2)*2)/(50+50-2-1))*qf((1-0.05), 2, (50+50-2-1))
+
+C2svv
+
+```
+Mencari masing-masing confidence interval
+```{r}
+#hitung confidence interval antara setosa dengan versicolor
+temp <- NULL
+for(k in 1:2){
+    temp <- c(temp,(setosabar[k]-versicolorbar[k])-sqrt(C2svv)*sqrt(((1/50)+(1/50))*Spooled1[k,k]),
+          (setosabar[k]-versicolorbar[k])+sqrt(C2svv)*sqrt(((1/50)+(1/50))*Spooled1[k,k]))
+}
+
+rbind(temp)
+
+```
+
+```{r}
+#hitung confidence interval antara setosa dengan virginica
+temp <- NULL
+for(k in 1:2){
+    temp <- c(temp,(setosabar[k]-virginicabar[k])-sqrt(C2svv)*sqrt(((1/50)+(1/50))*Spooled2[k,k]),
+          (setosabar[k]-virginicabar[k])+sqrt(C2svv)*sqrt(((1/50)+(1/50))*Spooled2[k,k]))
+}
+
+rbind(temp)
+
+```
+
+```{r}
+#hitung confidence interval antara versicolor dengan virginica
+temp <- NULL
+for(k in 1:2){
+    temp <- c(temp,(versicolorbar[k]-virginicabar[k])-sqrt(C2svv)*sqrt(((1/50)+(1/50))*Spooled3[k,k]),
+          (versicolorbar[k]-virginicabar[k])+sqrt(C2svv)*sqrt(((1/50)+(1/50))*Spooled3[k,k]))
+}
+
+rbind(temp)
+```
+Interpretasi:
+Karena nilai p kurang dari tingkat signifikansi 0,05, artinya tolak H0. Kemudian bisa disimpulkan bahwa ada perbedaan antara lebar sepal dan lebar kelopak pada masing-masing spesies. Hal ini juga konsisten dengan hasil confidence interval yang di dapat

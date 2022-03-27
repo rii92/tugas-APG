@@ -408,3 +408,4 @@ mvn(diff_data, multivariatePlot = "qq", showOutliers = TRUE)
 ```
 Interpretasi:
 Berdasarkan hasil dengan metode Henze-Zirkler dan shapiro wilk bahwa data tidak multivariate normal
+
