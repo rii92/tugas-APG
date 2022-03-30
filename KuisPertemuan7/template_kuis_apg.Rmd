@@ -59,10 +59,35 @@ crit_val_essay <- (((n_essay - 1) * p_essay)/((n_essay - p_essay) * n_essay)) * 
 crit_val_essay
 ```
 
+#dari rio
+##Membuat Ellipse
+```{r}
+mu <- c(0,0)
+X <- d_essay
+n <- nrow(X)
+p <- ncol(X)
+xbar <- colMeans(X)
+S <- cov(X)
+library(car)
+alpha<-0.05
+tconst <- sqrt((p/n)*((n-1)/(n-p)) *
+                 qf(1-alpha,p,n-p))
+id <- c(1,2)
+plot(ellipse(center=xbar[id], shape=S[id,id],
+             radius=tconst, draw=F),type="n", xlab = "d1", ylab = "d2", xlim = c(-56.4,0.25))
+lines(ellipse(center=xbar[id], shape=S[id,id],
+              radius=tconst, lwd=3))
+points(mu[1],mu[2],col="red", pch=16)
+text(mu[1]+1.5,mu[2],expression(d[0]))
+text(xbar[1]+1.5,xbar[2],expression(bar(d)))
+```
+
+
 -> Tolak H0
 b. 
 
 ```{r}
+#fatal
 n <- nrow(d_essay)
 p <- ncol(d_essay)
 dbar <- colMeans(d_essay)
