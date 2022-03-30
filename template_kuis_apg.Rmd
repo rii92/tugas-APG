@@ -1,6 +1,6 @@
 ---
 title: "Template APG"
-author: "Bill Van Ricardo Zalukhu"
+author: "Riofebri Prasetia"
 date: '2022-03-28'
 output: html_document
 ---
@@ -11,6 +11,10 @@ output: html_document
 library(openxlsx)
 library(car)
 library(MVN)
+```
+```{r}
+essay <- read.xlsx("Kuis2_data.xlsx")
+essay
 ```
 
 a.
