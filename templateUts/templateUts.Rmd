@@ -1,0 +1,417 @@
+---
+title: "templateUts"
+author: "Riofebri Prasetia (221911192)"
+date: "4/9/2022"
+output: html_document
+---
+
+# pertemuan pertama
+1. Load Data 
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/28%20februari%202022/tugas%20kedua%20APG.csv"
+data <- read.csv(url)
+data
+```
+
+2. tipe
+```{r}
+library(aplpack)
+#bivariate scatterplot
+pairs(data)
+
+#chernoff face
+faces(data)
+```
+
+
+# pertemuan kedua
+1. Load Data 
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/28%20februari%202022/tugas%20kedua%20APG.csv"
+data <- read.csv(url)
+data
+```
+2. isi pertemuan 2
+```{r}
+# cari mean masing-masing variabel
+xMeans <- colMeans(data)
+print(paste("rata-rata:"))
+xMeans
+
+# jumlah observasi
+n <- nrow(data)
+print(paste("jumlah observasi:"))
+n
+
+# dekomposisi
+d1 <- matrix(c(data$x1 - xMeans[1]),5,1)
+d2 <- matrix(c(data$x2 - xMeans[2]),5,1)
+d3 <- matrix(c(data$x3 - xMeans[3]),5,1)
+print(paste("dekomposisi yang didapat:"))
+matrix(c(d1,d2,d3),5,3)
+
+
+# mencari kovarians
+s11<-t(d1)%*%d1/(n-1)
+s12<-t(d1)%*%d2/(n-1)
+s13<-t(d1)%*%d3/(n-1)
+s21<-t(d2)%*%d1/(n-1)
+s22<-t(d2)%*%d2/(n-1)
+s23<-t(d2)%*%d3/(n-1)
+s31<-t(d3)%*%d1/(n-1)
+s32<-t(d3)%*%d2/(n-1)
+s33<-t(d3)%*%d3/(n-1)
+S<-matrix(c(s11,s12,s13,s21,s22,s23,s31,s32,s33), 3, 3)
+print(paste("kovarians:"))
+S
+pairs(data)
+
+# mencari korelasi
+print(paste("korelasi:"))
+D <- diag(diag(S))
+R <- solve(D^0.5)%*%S%*%solve(D^0.5)
+R
+
+#kovarians dari korelasi
+print(paste("kovarians dari korelasi"))
+S <- D^0.5%*%R%*%D^0.5
+S
+```
+
+# Pertemuan 3
+1. Load Data 
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/6%20maret%202022/tugas%20ketiga%20APG.csv"
+data<-read.csv(url)
+data
+```
+
+2. Isi pertemuan 3
+```{r}
+set.seed(1)
+# Bivariate Scatterplot
+pairs(data)
+
+
+# Deteksi outlier dengan qq-normal secara univariate
+qqnorm(data$Fuel.x1., ylab = "Fuel")
+qqline(data$Fuel.x1., col=2)
+qqnorm(data$Repair.x2., ylab = "Repair")
+qqline(data$Repair.x2., col=2)
+qqnorm(data$Capital.x3., ylab = "Capital")
+qqline(data$Capital.x3., col=2)
+
+
+# Deteksi outlier dengan MVN secara multivariate
+library(MVN)
+mvn(data, showOutliers=TRUE)
+
+
+# Test Multivariate normal dengan beberapa metode
+## Mardia
+mvn(data, mvnTest = "mardia", showOutliers=TRUE)
+
+## Henze Zikler
+mvn(data, showOutliers=TRUE)
+
+## Royston
+mvn(data, mvnTest = "royston", showOutliers=TRUE)
+
+## energy
+mvn(data, mvnTest = "energy", showOutliers=TRUE)
+
+## Shapiro-wilk
+library('RVAideMemoire')
+mshapiro.test(data)
+
+```
+3. menghilangkan outlier dan transformasi
+```{r}
+# menghilangkan outlier
+#data <- data[-c(9,21), ]
+
+# contoh hasil qqnorm transformasi pangkat 0.5 
+qqnorm(data$Fuel.x1.^0.5)
+
+# melakukan transformasi sebagian variabel
+data<-data.frame(data$Fuel.x1.^0.5, data$Repair.x2.)
+data
+```
+
+# Pertemuan 4
+1. Load data
+Inferensia
+```{r read_data}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/11%20maret%202022/College_Test.csv"
+data <- read.csv(url)
+data
+```
+
+2. Fungsi T.test
+```{r}
+T.test <- function(X, mu=0, alpha){ 
+  X <- as.matrix(X) 
+  n <- nrow(X) 
+  p <- ncol(X) 
+  df2 <- n - p 
+  if(df2 < 1L) stop("Need nrow(X) > ncol(X).") 
+  if(length(mu) != p) 
+    mu <- rep(mu[1], p) 
+  xbar <- colMeans(X) 
+  S <- cov(X) 
+  T2 <- n * t(xbar - mu) %*% solve(S) %*% (xbar - mu) 
+  Fstat <- T2 / (p * (n-1) / df2) 
+  pval <- 1 - pf(Fstat, df1=p, df2=df2)
+  C2 <- (((n - 1)*p)/(n - p)) * qf(p = 1 - alpha, df1 = p, df2 = n - p)
+  data.frame(T2=as.numeric(T2), 
+             C2=as.numeric(C2), 
+             Fstat=as.numeric(Fstat), 
+             df1=p, 
+             df2=df2,
+             p.value=as.numeric(pval), 
+             row.names="")
+}
+
+# Contoh penggunaan
+mu <- c(500, 50, 30) 
+T.test(data, mu, 0.05)
+```
+3. Membuat ellipse antara verbal dan science
+```{r}
+mu <- c(50,30)
+X <- data.frame(data$verbal, data$science)
+n <- nrow(X)
+p <- ncol(X)
+xbar <- colMeans(X)
+S <- cov(X)
+library(car)
+alpha<-0.05
+tconst <- sqrt((p/n)*((n-1)/(n-p)) *
+                 qf(1-alpha,p,n-p))
+id <- c(1,2)
+plot(ellipse(center=xbar[id], 
+             shape=S[id,id],
+             radius=tconst, 
+             draw=F),
+     type="n", 
+     xlab = "Verbal", 
+     ylab = "Science",
+     xlim = c(49,59),
+     ylim = c(23, 31))
+lines(ellipse(center=xbar[id], shape=S[id,id],
+              radius=tconst, lwd=3))
+points(mu[1],mu[2],col="red", pch=16)
+text(mu[1]+0.75,mu[2],expression(mu[0]))
+text(xbar[1]+0.75,xbar[2],expression(bar(x)))
+```
+4. Simultan Confidence interval
+```{r}
+# tentukan cov, xbar
+S <- cov(data)
+xbar <- colMeans(data)
+
+bon <- NULL 
+alpha1 <-1-0.05 
+alpha2 <-1-(0.05/2) 
+alpha3 <- 1 - 0.05/(2*3)
+
+for(k in 1:3){
+  bon <- c(bon, xbar[k] - sqrt(S[k,k]/n) * qt(alpha3, df=n-1), xbar[k] + sqrt(S[k,k]/n) * qt(alpha3, df=n-1))
+}
+
+rtab <- rbind(bon)
+round(rtab, 2)
+```
+```{r}
+# Bonferroni CI
+
+bon <- NULL
+alpha <- 1 - 0.05/(2*p)
+for(k in 1:p){
+ 
+ bon <- c(bon,
+ xbar[k] - sqrt(S[k,k]/n) * qt(alpha, df = n-1),
+ xbar[k] + sqrt(S[k,k]/n) * qt(alpha, df = n-1))
+}
+round(bon, p)
+```
+
+
+```{r}
+#chi square plot
+xbarM <- colMeans(data)
+S <- cov(data)
+d <- apply(data, 
+           1, 
+           function(data) t(data - xbarM) %*% solve(S) %*% (data - xbarM))
+plot(qchisq((1:nrow(data) -1/2) / nrow(data), 
+            df =3), 
+     sort(d), 
+     xlab = expression(paste(chi[3]^2," Quantile")), 
+     ylab ="Ordered distances")
+abline(a =0, b =1)
+```
+
+# manova
+```{r}
+g <- 3
+n1 <- 3
+n2 <- 5
+n3 <- 4
+n <- n1 + n2 + n3
+
+alfa <- 0.05
+```
+
+```{r}
+x11 <- c(90, 89, 91)
+x12 <- c(95, 93, 94)
+x21 <- c(91, 90, 92, 92, 91)
+x22 <- c(94, 93, 95, 94, 93)
+x31 <- c(89, 87, 88, 89)
+x32 <- c(94, 93, 95, 96)
+X1 <- cbind(x11, x12)
+X2 <- cbind(x21, x22)
+X3 <- cbind(x31, x32)
+
+X <- rbind(X1, X2, X3)
+```
+
+```{r}
+p <- ncol(X)
+satu <- rep(1, n)
+satu1 <- rep(1, n1)
+satu2 <- rep(1, n2)
+satu3 <- rep(1, n3)
+```
+
+```{r}
+Xbar <- 1 / n * satu %*% t(satu) %*% X
+Xbar1 <- 1 / n1 * satu1 %*% t(satu1) %*% X1
+Xbar2 <- 1 / n2 * satu2 %*% t(satu2) %*% X2
+Xbar3 <- 1 / n3 * satu3 %*% t(satu3) %*% X3
+Xbar_l <- rbind(Xbar1, Xbar2, Xbar3)
+```
+
+```{r}
+Tau <- Xbar_l - Xbar
+E <- X - Xbar_l
+```
+
+```{r}
+# stat hitung
+SStr <- t(Tau) %*% Tau
+B <- SStr
+
+SSres <- t(E) %*% E
+W <- SSres
+
+lamda <- det(W) / det(B + W)
+
+# F <- (n - g - 1) / (g - 1) * ((1 - sqrt(lamda)) / sqrt(lamda))
+
+# Untuk mencari F atau Stat Hitung dengan beberapa kasus p dan g
+
+# Jika p = 1 dan g >= 2
+if (p == 1 && g >= 2) {
+    # stat uji
+    Ftabel <- qf(1 - alfa, (g - 1), (n - g))
+    F <- (n - g) / (g - 1) * ((1 - lamda) / lamda)
+
+    # Jika p = 2 dan g >= 2
+} else if (p == 2 && g >= 2) {
+    Ftabel <- qf(1 - alfa, 2 * (g - 1), 2 * (n - g - 1))
+    F <- (n - g - 1) / (g - 1) * ((1 - sqrt(lamda)) / sqrt(lamda))
+
+    # Jika p >= 1 dan g = 2
+} else if (p >= 1 && g == 2) {
+    Ftabel <- qf(1 - alfa, p, (n - p - 1))
+    F <- (n - p - 1) / p * (1 - lamda) / lamda
+
+    # Jika p >= 1 dan g = 3
+} else if (p >= 1 && g == 3) {
+    Ftabel <- qf(1 - alfa, 2 * p, 2 * (n - p - 2))
+    F <- (n - p - 2) / p * ((1 - sqrt(lamda)) / sqrt(lamda))
+}
+F
+Ftabel
+```
+
+```{r}
+if (F > Ftabel) {
+    print("Reject H0")
+} else {
+    print("Accept H0")
+}
+```
+
+```{r}
+# SCI
+
+# EFIKASI
+c <- sqrt(Ftabel)
+SCI.LCI.P1.AB <- colMeans(Xbar1)[1] - colMeans(Xbar2)[1] - (c * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+SCI.UCI.P1.AB <- colMeans(Xbar1)[1] - colMeans(Xbar2)[1] + (c * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+SCI.P1.AB <- c(SCI.LCI.P1.AB, SCI.UCI.P1.AB)
+SCI.P1.AB
+
+SCI.LCI.P1.AC <- colMeans(Xbar1)[1] - colMeans(Xbar3)[1] - (c * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+SCI.UCI.P1.AC <- colMeans(Xbar1)[1] - colMeans(Xbar3)[1] + (c * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+SCI.P1.AC <- c(SCI.LCI.P1.AC, SCI.UCI.P1.AC)
+SCI.P1.AC
+
+SCI.LCI.P1.BC <- colMeans(Xbar2)[1] - colMeans(Xbar3)[1] - (c * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+SCI.UCI.P1.BC <- colMeans(Xbar2)[1] - colMeans(Xbar3)[1] + (c * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+SCI.P1.BC <- c(SCI.LCI.P1.BC, SCI.UCI.P1.BC)
+SCI.P1.BC
+
+
+# EFEKTIVITAS
+SCI.LCI.P2.AB <- colMeans(Xbar1)[2] - colMeans(Xbar2)[2] - (c * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+SCI.UCI.P2.AB <- colMeans(Xbar1)[2] - colMeans(Xbar2)[2] + (c * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+SCI.P2.AB <- c(SCI.LCI.P2.AB, SCI.UCI.P2.AB)
+SCI.P2.AB
+
+SCI.LCI.P2.AC <- colMeans(Xbar1)[2] - colMeans(Xbar3)[2] - (c * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+SCI.UCI.P2.AC <- colMeans(Xbar1)[2] - colMeans(Xbar3)[2] + (c * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+SCI.P2.AC <- c(SCI.LCI.P2.AC, SCI.UCI.P2.AC)
+SCI.P2.AC
+
+SCI.LCI.P2.BC <- colMeans(Xbar2)[2] - colMeans(Xbar3)[2] - (c * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+SCI.UCI.P2.BC <- colMeans(Xbar2)[2] - colMeans(Xbar3)[2] + (c * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+SCI.P2.BC <- c(SCI.LCI.P2.BC, SCI.UCI.P2.BC)
+SCI.P2.BC
+```
+
+```{r}
+# BCI
+
+# EFIKASI
+t.tabel <- qt(1 - alfa / (p * g * (g - 1)), n - g)
+BF.LCI.P1.AB <- colMeans(Xbar1)[1] - colMeans(Xbar2)[1] - (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+BF.UCI.P1.AB <- colMeans(Xbar1)[1] - colMeans(Xbar2)[1] + (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+BCI.P1.AB <- c(BF.LCI.P1.AB, BF.UCI.P1.AB)
+
+BF.LCI.P1.AC <- colMeans(Xbar1)[1] - colMeans(Xbar3)[1] - (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+BF.UCI.P1.AC <- colMeans(Xbar1)[1] - colMeans(Xbar3)[1] + (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+BCI.P1.AC <- c(BF.LCI.P1.AC, BF.UCI.P1.AC)
+
+BF.LCI.P1.BC <- colMeans(Xbar2)[1] - colMeans(Xbar3)[1] - (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+BF.UCI.P1.BC <- colMeans(Xbar2)[1] - colMeans(Xbar3)[1] + (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[1, 1] / (n - g)))
+BCI.P1.BC <- c(BF.LCI.P1.BC, BF.UCI.P1.BC)
+
+
+
+# EFEKTIVITAS
+BF.LCI.P2.AB <- colMeans(Xbar1)[2] - colMeans(Xbar2)[2] - (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+BF.UCI.P2.AB <- colMeans(Xbar1)[2] - colMeans(Xbar2)[2] + (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+BCI.P2.AB <- c(BF.LCI.P2.AB, BF.UCI.P2.AB)
+
+BF.LCI.P2.AC <- colMeans(Xbar1)[2] - colMeans(Xbar3)[2] - (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+BF.UCI.P2.AC <- colMeans(Xbar1)[2] - colMeans(Xbar3)[2] + (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+BCI.P2.AC <- c(BF.LCI.P2.AC, BF.UCI.P2.AC)
+
+BF.LCI.P2.BC <- colMeans(Xbar2)[2] - colMeans(Xbar3)[2] - (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+BF.UCI.P2.BC <- colMeans(Xbar2)[2] - colMeans(Xbar3)[2] + (t.tabel * sqrt(((1 / n1) + (1 / n2)) * W[2, 2] / (n - g)))
+BCI.P2.BC <- c(BF.LCI.P2.BC, BF.UCI.P2.BC)
+```

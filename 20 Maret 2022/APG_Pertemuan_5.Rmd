@@ -67,8 +67,8 @@ plot(ellipse(center=xbar[id], shape=S[id,id],
 lines(ellipse(center=xbar[id], shape=S[id,id],
               radius=tconst, lwd=3))
 points(mu[1],mu[2],col="red", pch=16)
-text(mu[1]+0.75,mu[2],expression(mu[0]))
-text(xbar[1]+0.75,xbar[2],expression(bar(x)))
+text(mu[1]+0.75,mu[2],expression(d[0]))
+text(xbar[1]+0.75,xbar[2],expression(bar(d)))
 ```
 Interpretasi:
 bisa dilihat bahwa B = (0,0) diluar daerah kepercayaan, dari ini bisa disimpulkan bahwa H0 : d' = 0 ditolak pada daerah kepercayaan 95%. Sehingga bisa kita simpulkan bahwa hasil data Effluent dengan uji H0 : B = 0 adalah konsisten.
@@ -129,8 +129,8 @@ plot(ellipse(center=xbar[id], shape=S[id,id],
 lines(ellipse(center=xbar[id], shape=S[id,id],
               radius=tconst, lwd=3))
 points(mu[1],mu[2],col="red", pch=16)
-text(mu[1]+0.75,mu[2],expression(mu[0]))
-text(xbar[1]+0.75,xbar[2],expression(bar(x)))
+text(mu[1]+0.75,mu[2],expression(d[0]))
+text(xbar[1]+0.75,xbar[2],expression(bar(d)))
 ```
 ##Interval Bonferroni
 ```{r}
@@ -195,8 +195,8 @@ plot(ellipse(center=xbar[id], shape=S[id,id],
 lines(ellipse(center=xbar[id], shape=S[id,id],
               radius=tconst, lwd=3))
 points(mu[1],mu[2],col="red", pch=16)
-text(mu[1]+0.05,mu[2],expression(mu[0]))
-text(xbar[1]+0.05,xbar[2],expression(bar(x)))
+text(mu[1]+0.05,mu[2],expression(d[0]))
+text(xbar[1]+0.05,xbar[2],expression(bar(d)))
 ```
 Interpretasi:
 Hasilnya menunjukkan bahwa setelah dilakukan transformasi ln atau log(BOD) dan ln(SS), titik B = 0 berada di luar penerimaan H0. Maka data Effluent setelah transformasi ln konsisten dengan uji H0: B = 0. 
@@ -259,8 +259,7 @@ The data in Table 6.8 were collected to test two psychological models of numeri
 subject. Here
 X1 = median reaction time for word format-different parity combination 
 X2 = median reaction time for word format-same parity combination 
-X3 = median reaction time for Arabic format-different parity combination 
-X4 = median reaction time for Arabic format-same parity combination
+X3 = median reaction time for Arabic format-different parity combination X4 = median reaction time for Arabic format-same parity combination
 
 (a) Test for treatment effects using a repeated measures design. Set a = .05. 
 (b) Construct 95% (simultaneous) confidence intervals for the contrasts representing the number format effect, the parity type effect and the interaction 
@@ -305,13 +304,13 @@ T.test <- function(X, Cmu){
  ((Cmat %*% xbar) - Cmu)
  
  Fstat <- T2 / ((p-1) * (n-1) / df2)
- Fcalc <- qf(1-alpha, df1 = p-1, df2 = n-p+1) * (n - 1) * (p - 1) / (n-p+1)
+ C2 <- qf(1-alpha, df1 = p-1, df2 = n-p+1) * (n - 1) * (p - 1) / (n-p+1)
  
  pval <- 1 - pf(Fstat, df1 = p-1, df2 = df2)
  
  data.frame(T2 = as.numeric(T2), 
  Fstat = as.numeric(Fstat),
- Fcalc = as.numeric(Fcalc),
+ C2 = as.numeric(C2),
  df1 = p-1, 
  df2 = df2, 
  p.value = as.numeric(pval), 
