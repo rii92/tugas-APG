@@ -211,7 +211,6 @@ S <- cov(data)
 xbar <- colMeans(data)
 
 bon <- NULL 
-alpha1 <-1-0.05 
 alpha2 <-1-(0.05/2) 
 alpha3 <- 1 - 0.05/(2*3)
 

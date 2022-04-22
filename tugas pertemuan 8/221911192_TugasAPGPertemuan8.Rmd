@@ -1,0 +1,30 @@
+Nama    : Riofebri Prasetia
+<br>NIM     : 221911192
+<br>Kelas   : 3SI1
+
+## Bartlett Sphericity Test
+Analisis faktor eksplorasi hanya berguna jika matriks korelasi populasi secara statistik berbeda dari matriks identitas. Jika ini sama, variabel-variabelnya sedikit saling terkait, yaitu faktor-faktor spesifik menjelaskan proporsi varians yang lebih besar dan faktor-faktor umum tidak penting. Oleh karena itu, itu harus didefinisikan ketika korelasi antara variabel asli cukup tinggi. Dengan demikian, analisis faktor berguna dalam mengestimasi faktor persekutuan. Dengan pemikiran ini, uji Bartlett Sphericity dapat digunakan. Hipotesisnya adalah:
+
+H0: matriks korelasi populasi sama dengan matriks identitas
+
+H1: matriks korelasi populasi berbeda dengan matriks identitas.
+
+## KMO Test
+KMO adalah ukuran kecukupan pengambilan sampel "Kaiser-Meyer-Olkin" dan memeriksa apakah mungkin untuk memfaktorkan variabel utama secara efisien. Matriks korelasi selalu menjadi titik awal. Variabel kurang lebih berkorelasi, tetapi yang lain bisa mempengaruhi korelasi antara dua variabel.Oleh karena itu, dengan KMO, korelasi parsial digunakan untuk mengukur hubungan antara dua variabel dengan menghilangkan pengaruh dari variabel yang tersisa. (sumber: https://github.com/Sarmentor/KMO-Bartlett-Tests-Python)
+
+## tugas pertama: 8.11
+Perhatikan data sensus yang tercantum pada Tabel 8.5. Misalkan pengamatan pada X5 = nilai median rumah dicatat dalam ribuan, bukan sepuluh ribu dolar; yaitu, kalikan semua angka yang tercantum di kolom keenam meja dengan 10.<br>
+<br>a. Bangun matriks kovarians sampel S untuk data saluran sensus ketika:
+X5 = nilai median rumah dicatat dalam ribuan dolar. (Perhatikan bahwa
+matriks kovarians ini dapat diperoleh dari matriks kovarians yang diberikan dalam
+Contoh 8.3 dengan mengalikan elemen-elemen di luar diagonal pada kolom kelima dan
+baris dengan 10 dan elemen diagonal s55 dengan 100. Mengapa?)
+<br>b. Dapatkan pasangan nilai eigen-vektor eigen dan dua prinsipal sampel pertama
+komponen untuk matriks kovarians di Bagian a.
+<br>c. Hitung proporsi varians total yang dijelaskan oleh dua komponen utama pertama yang diperoleh pada Bagian b. Hitung koefisien korelasi,
+ryi,xk, dan menafsirkan komponen ini jika memungkinkan. Bandingkan hasil Anda dengan hasil pada Contoh 8.3. Apa yang bisa Anda katakan tentang efek ini? perubahan skala pada komponen utama?
+
+```{r}
+
+```
+
