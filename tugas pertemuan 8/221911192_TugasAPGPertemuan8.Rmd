@@ -12,19 +12,51 @@ H1: matriks korelasi populasi berbeda dengan matriks identitas.
 ## KMO Test
 KMO adalah ukuran kecukupan pengambilan sampel "Kaiser-Meyer-Olkin" dan memeriksa apakah mungkin untuk memfaktorkan variabel utama secara efisien. Matriks korelasi selalu menjadi titik awal. Variabel kurang lebih berkorelasi, tetapi yang lain bisa mempengaruhi korelasi antara dua variabel.Oleh karena itu, dengan KMO, korelasi parsial digunakan untuk mengukur hubungan antara dua variabel dengan menghilangkan pengaruh dari variabel yang tersisa. (sumber: https://github.com/Sarmentor/KMO-Bartlett-Tests-Python)
 
-## tugas pertama: 8.11
+## Soal 1: 8.11
 Perhatikan data sensus yang tercantum pada Tabel 8.5. Misalkan pengamatan pada X5 = nilai median rumah dicatat dalam ribuan, bukan sepuluh ribu dolar; yaitu, kalikan semua angka yang tercantum di kolom keenam meja dengan 10.<br>
 <br>a. Bangun matriks kovarians sampel S untuk data saluran sensus ketika:
-X5 = nilai median rumah dicatat dalam ribuan dolar. (Perhatikan bahwa
+$X_{5}$ = nilai median rumah dicatat dalam ribuan dolar. (Perhatikan bahwa
 matriks kovarians ini dapat diperoleh dari matriks kovarians yang diberikan dalam
 Contoh 8.3 dengan mengalikan elemen-elemen di luar diagonal pada kolom kelima dan
-baris dengan 10 dan elemen diagonal s55 dengan 100. Mengapa?)
-<br>b. Dapatkan pasangan nilai eigen-vektor eigen dan dua prinsipal sampel pertama
-komponen untuk matriks kovarians di Bagian a.
+baris dengan 10 dan elemen diagonal $s_{55}$ dengan 100. Mengapa?)
+<br>b. Dapatkan pasangan nilai eigen-vektor eigen-value dan dua prinsipal sampel pertama komponen untuk matriks kovarians di Bagian a.
 <br>c. Hitung proporsi varians total yang dijelaskan oleh dua komponen utama pertama yang diperoleh pada Bagian b. Hitung koefisien korelasi,
-ryi,xk, dan menafsirkan komponen ini jika memungkinkan. Bandingkan hasil Anda dengan hasil pada Contoh 8.3. Apa yang bisa Anda katakan tentang efek ini? perubahan skala pada komponen utama?
+$r_{yi, xk}$ dan menafsirkan komponen ini jika memungkinkan. Bandingkan hasil Anda dengan hasil pada Contoh 8.3. Apa yang bisa Anda katakan tentang efek ini? perubahan skala pada komponen utama?
 
 ```{r}
+# Load Data
+url1 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/tabel_8.5.csv"
+data1 <- read.csv(url1)
+data1 <- subset(data1, select = -c(Tract))
+#data1 <- as.matrix(data1)
+data1
+```
+**jawaban a:**
+```{r}
+eigen(cov(data1))
+colMeans(data1)
+cov(data1)
+```
 
+**jawaban b**
+```{r}
+eigen(cov(data1))
+```
+
+**jawaban c**
+```{r}
+
+```
+
+
+## Soal 2: 8.12
+Perhatikan data polusi udara yang tercantum pada Tabel 1.5. Tugas Anda adalah meringkas data ini dalam kurang dari $p$ = 7 dimensi jika memungkinkan. Lakukan analisis komponen utama data menggunakan matriks kovarians **S** dan matriks korelasi **R**. Apa yang telah Anda pelajari? Apakah ada bedanya matriks mana yang dipilih untuk analisis? Dapatkah data diringkas dalam tiga atau lebih sedikit dimensi? Dapatkah Anda menginterpretasikan komponen utama?
+
+## Soal 3: 8.14
+Lakukan analisis komponen utama menggunakan matriks kovarians sampel dari data keringat yang diberikan dalam Contoh 5.2. Buatlah plot $Q-Q$ untuk setiap komponen utama yang penting. Apakah ada pengamatan yang mencurigakan? Menjelaskan.
+```{r}
+url2 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/table%205.1.csv"
+data2 <- read.csv(url2)
+data2
 ```
 

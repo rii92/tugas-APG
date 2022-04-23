@@ -182,9 +182,99 @@ pre code {
 <h2>KMO Test</h2>
 <p>KMO adalah ukuran kecukupan pengambilan sampel “Kaiser-Meyer-Olkin” dan memeriksa apakah mungkin untuk memfaktorkan variabel utama secara efisien. Matriks korelasi selalu menjadi titik awal. Variabel kurang lebih berkorelasi, tetapi yang lain bisa mempengaruhi korelasi antara dua variabel.Oleh karena itu, dengan KMO, korelasi parsial digunakan untuk mengukur hubungan antara dua variabel dengan menghilangkan pengaruh dari variabel yang tersisa. (sumber: <a href="https://github.com/Sarmentor/KMO-Bartlett-Tests-Python" class="uri">https://github.com/Sarmentor/KMO-Bartlett-Tests-Python</a>)</p>
 </div>
-<div id="tugas-pertama-8.11" class="section level2">
-<h2>tugas pertama: 8.11</h2>
-<p>Perhatikan data sensus yang tercantum pada Tabel 8.5. Misalkan pengamatan pada X5 = nilai median rumah dicatat dalam ribuan, bukan sepuluh ribu dolar; yaitu, kalikan semua angka yang tercantum di kolom keenam meja dengan 10.<br> <br>a. Bangun matriks kovarians sampel S untuk data saluran sensus ketika: X5 = nilai median rumah dicatat dalam ribuan dolar. (Perhatikan bahwa matriks kovarians ini dapat diperoleh dari matriks kovarians yang diberikan dalam Contoh 8.3 dengan mengalikan elemen-elemen di luar diagonal pada kolom kelima dan baris dengan 10 dan elemen diagonal s55 dengan 100. Mengapa?) <br>b. Dapatkan pasangan nilai eigen-vektor eigen dan dua prinsipal sampel pertama komponen untuk matriks kovarians di Bagian a. <br>c. Hitung proporsi varians total yang dijelaskan oleh dua komponen utama pertama yang diperoleh pada Bagian b. Hitung koefisien korelasi, ryi,xk, dan menafsirkan komponen ini jika memungkinkan. Bandingkan hasil Anda dengan hasil pada Contoh 8.3. Apa yang bisa Anda katakan tentang efek ini? perubahan skala pada komponen utama?</p>
+<div id="soal-1-8.11" class="section level2">
+<h2>Soal 1: 8.11</h2>
+<p>Perhatikan data sensus yang tercantum pada Tabel 8.5. Misalkan pengamatan pada X5 = nilai median rumah dicatat dalam ribuan, bukan sepuluh ribu dolar; yaitu, kalikan semua angka yang tercantum di kolom keenam meja dengan 10.<br> <br>a. Bangun matriks kovarians sampel S untuk data saluran sensus ketika: <span class="math inline">\(X_{5}\)</span> = nilai median rumah dicatat dalam ribuan dolar. (Perhatikan bahwa matriks kovarians ini dapat diperoleh dari matriks kovarians yang diberikan dalam Contoh 8.3 dengan mengalikan elemen-elemen di luar diagonal pada kolom kelima dan baris dengan 10 dan elemen diagonal <span class="math inline">\(s_{55}\)</span> dengan 100. Mengapa?) <br>b. Dapatkan pasangan nilai eigen-vektor eigen-value dan dua prinsipal sampel pertama komponen untuk matriks kovarians di Bagian a. <br>c. Hitung proporsi varians total yang dijelaskan oleh dua komponen utama pertama yang diperoleh pada Bagian b. Hitung koefisien korelasi, <span class="math inline">\(r_{yi, xk}\)</span> dan menafsirkan komponen ini jika memungkinkan. Bandingkan hasil Anda dengan hasil pada Contoh 8.3. Apa yang bisa Anda katakan tentang efek ini? perubahan skala pada komponen utama?</p>
+<pre class="r"><code># Load Data
+url1 &lt;- &quot;https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/tabel_8.5.csv&quot;
+data1 &lt;- read.csv(url1)
+data1 &lt;- subset(data1, select = -c(Tract))
+#data1 &lt;- as.matrix(data1)
+data1</code></pre>
+<pre><code>##    totPop medSchoolYears totEmp healServEmp medValHome
+## 1   5.935           14.2  2.265        2.27       2.91
+## 2   1.523           13.1  0.597        0.75       2.62
+## 3   2.599           12.7  1.237        1.11       1.72
+## 4   4.009           15.2  1.649        0.81       3.02
+## 5   4.687           14.7  2.312        2.50       2.22
+## 6   8.044           15.6  3.641        4.51       2.36
+## 7   2.766           13.3  1.244        1.03       1.97
+## 8   6.538           17.0  2.618        2.39       1.85
+## 9   6.451           12.9  3.147        5.52       2.01
+## 10  3.314           12.2  1.606        2.18       1.82
+## 11  3.777           13.0  2.119        2.83       1.80
+## 12  1.530           13.8  0.798        0.84       4.25
+## 13  2.768           13.6  1.336        1.75       2.64
+## 14  6.585           14.9  2.763        1.91       3.17</code></pre>
+<p><strong>jawaban a:</strong></p>
+<pre class="r"><code>eigen(cov(data1))</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 6.93107360 1.78514434 0.38964992 0.22952892 0.01415498
+## 
+## $vectors
+##             [,1]        [,2]         [,3]        [,4]         [,5]
+## [1,]  0.78120807 -0.07087183  0.003656607  0.54171007  0.302039670
+## [2,]  0.30564856 -0.76387277 -0.161817438 -0.54479937  0.009279632
+## [3,]  0.33444840  0.08290788  0.014841008  0.05101636 -0.937255367
+## [4,]  0.42600795  0.57945799  0.220453468 -0.63601254  0.172145212
+## [5,] -0.05435431 -0.26235528  0.961759720  0.05127599 -0.024583093</code></pre>
+<pre class="r"><code>colMeans(data1)</code></pre>
+<pre><code>##         totPop medSchoolYears         totEmp    healServEmp     medValHome 
+##       4.323286      14.014286       1.952286       2.171429       2.454286</code></pre>
+<pre class="r"><code>cov(data1)</code></pre>
+<pre><code>##                    totPop medSchoolYears     totEmp healServEmp medValHome
+## totPop          4.3075558      1.6836802  1.8027760   2.1553257 -0.2534744
+## medSchoolYears  1.6836802      1.7674725  0.5880264   0.1779780  0.1755495
+## totEmp          1.8027760      0.5880264  0.8006685   1.0648280 -0.1583390
+## healServEmp     2.1553257      0.1779780  1.0648280   1.9694747 -0.3568066
+## medValHome     -0.2534744      0.1755495 -0.1583390  -0.3568066  0.5043802</code></pre>
+<p><strong>jawaban b</strong></p>
+<pre class="r"><code>eigen(cov(data1))</code></pre>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 6.93107360 1.78514434 0.38964992 0.22952892 0.01415498
+## 
+## $vectors
+##             [,1]        [,2]         [,3]        [,4]         [,5]
+## [1,]  0.78120807 -0.07087183  0.003656607  0.54171007  0.302039670
+## [2,]  0.30564856 -0.76387277 -0.161817438 -0.54479937  0.009279632
+## [3,]  0.33444840  0.08290788  0.014841008  0.05101636 -0.937255367
+## [4,]  0.42600795  0.57945799  0.220453468 -0.63601254  0.172145212
+## [5,] -0.05435431 -0.26235528  0.961759720  0.05127599 -0.024583093</code></pre>
+<p><strong>jawaban c</strong></p>
+</div>
+<div id="soal-2-8.12" class="section level2">
+<h2>Soal 2: 8.12</h2>
+<p>Perhatikan data polusi udara yang tercantum pada Tabel 1.5. Tugas Anda adalah meringkas data ini dalam kurang dari <span class="math inline">\(p\)</span> = 7 dimensi jika memungkinkan. Lakukan analisis komponen utama data menggunakan matriks kovarians <strong>S</strong> dan matriks korelasi <strong>R</strong>. Apa yang telah Anda pelajari? Apakah ada bedanya matriks mana yang dipilih untuk analisis? Dapatkah data diringkas dalam tiga atau lebih sedikit dimensi? Dapatkah Anda menginterpretasikan komponen utama?</p>
+</div>
+<div id="soal-3-8.14" class="section level2">
+<h2>Soal 3: 8.14</h2>
+<p>Lakukan analisis komponen utama menggunakan matriks kovarians sampel dari data keringat yang diberikan dalam Contoh 5.2. Buatlah plot <span class="math inline">\(Q-Q\)</span> untuk setiap komponen utama yang penting. Apakah ada pengamatan yang mencurigakan? Menjelaskan.</p>
+<pre class="r"><code>url2 &lt;- &quot;https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/table%205.1.csv&quot;
+data2 &lt;- read.csv(url2)
+data2</code></pre>
+<pre><code>##    Individual SweatRate Sodium Potassium
+## 1           1       3.7   48.5       9.3
+## 2           2       5.7   65.1       8.0
+## 3           3       3.8   47.2      10.9
+## 4           4       3.2   53.2      12.0
+## 5           5       3.1   55.5       9.7
+## 6           6       4.6   36.1       7.9
+## 7           7       2.4   24.8      14.0
+## 8           8       7.2   33.1       7.6
+## 9           9       6.7   47.4       8.5
+## 10         10       5.4   54.1      11.3
+## 11         11       3.9   36.9      12.7
+## 12         12       4.5   58.8      12.3
+## 13         13       3.5   27.8       9.8
+## 14         14       4.5   40.2       8.4
+## 15         15       1.5   13.5      10.1
+## 16         16       8.5   56.4       7.1
+## 17         17       4.5   71.6       8.2
+## 18         18       6.5   52.8      10.9
+## 19         19       4.1   44.1      11.2
+## 20         20       5.5   40.9       9.4</code></pre>
 </div>
 
 
