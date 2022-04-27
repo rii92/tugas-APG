@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Nama    : Riofebri Prasetia
 <br>NIM     : 221911192
 <br>Kelas   : 3SI1
@@ -26,37 +31,327 @@ $r_{yi, xk}$ dan menafsirkan komponen ini jika memungkinkan. Bandingkan hasil An
 ```{r}
 # Load Data
 url1 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/tabel_8.5.csv"
-data1 <- read.csv(url1)
-data1 <- subset(data1, select = -c(Tract))
+census <- read.csv(url1)
+census <- subset(census, select = -c(Tract))
 #data1 <- as.matrix(data1)
-data1
+census
 ```
+```{r}
+R_census <- cor(census)
+R_census
+```
+terdapat beberapa korelasi lebih dari 0.5. Hal ini menunjukkan ada kemungkinan terdapat multikolinieritas
+
+```{r}
+uji_bart <- function(x)
+{
+ method <- "Bartlett's test of sphericity"
+ data.name <- deparse(substitute(x))
+ x <- subset(x, complete.cases(x)) 
+ n <- nrow(x)
+ p <- ncol(x)
+ chisq <- (1-n+(2*p+5)/6)*log(det(cor(x)))
+ df <- p*(p-1)/2
+ p.value <- pchisq(chisq, df, lower.tail=FALSE)
+ names(chisq) <- "Khi-squared"
+ names(df) <- "df"
+ return(structure(list(statistic=chisq, parameter=df, p.value=p.value, method=method, data.name=data.name), class="htest"))
+}
+uji_bart(census)
+```
+dengan tingkat signifikasn 5% maka terdapat multikolinieritas karena p-value kurang dari 0.05
+
 **jawaban a:**
 ```{r}
-eigen(cov(data1))
-colMeans(data1)
-cov(data1)
+census_a <- census
+census_a$medValHome <- census_a$medValHome*10
+census_a
 ```
+
+```{r}
+S_census_a <- cov(census_a)
+S_census_a
+```
+```{r}
+XbarCensus <- colMeans(census)
+XbarCensus
+
+SCensusEx8.3 <- matrix(c(4.308, 1.683, 1.803, 2.155, -0.253, 
+                         1.683, 1.768, 0.588, 0.177, 0.176, 
+                         1.803, 0.588, 0.801, 1.065, -0.158, 
+                         2.155, 0.177, 1.065, 1.970, -0.357, 
+                         -0.253, 0.176, -0.158, -0.357, 0.504), nrow = 5, byrow = T)
+SCensusEx8.3[1:4,5] <- SCensusEx8.3[1:4,5]*10
+SCensusEx8.3[5,1:4] <- SCensusEx8.3[5,1:4]*10
+SCensusEx8.3[5,5] <- SCensusEx8.3[5,5]*100
+SCensusEx8.3
+S_census_a
+```
+matriks kovarians hasil transformasi variabel medValHome di kali 10 dengan perkalian secara manual kovarians dari contoh soal memiliki hasil yang sama
 
 **jawaban b**
 ```{r}
-eigen(cov(data1))
+eigenCensusAfterTransf <- eigen(S_census_a)
+eigenValueCensusA <- eigenCensusAfterTransf$values
+eigenValueCensusA
+eigenVectorCensusA <- eigenCensusAfterTransf$vectors
+eigenVectorCensusA
 ```
+2 komponen pertama yaitu:<br>
+$y_{1} = 0.058x_{1} - 0.033x_{2} + 0.035x_{3} + 0.076x_{4} -0.994x_{5}$<br>
+$y_{2} = 0.782x_{1} + 0.350x_{2} + 0.327x_{3} + 0.391x_{4} + 0.075x_{5}$
 
 **jawaban c**
 ```{r}
+#mencari nilai proporsi varians kumulatif
 
+
+#sebelum transformasi
+library(factoextra)
+summary(princomp(census, cor = FALSE), loadings = TRUE)
+
+
+#setelah transformasi
+library(factoextra)
+summary(princomp(census_a, cor = FALSE), loadings = TRUE)
 ```
+```{r}
+#nilai PCA sebelum transformasi
+prcomp(census, scale = FALSE)$rotation
+#nilai PCA setelah transformasi
+prcomp(census_a, scale = FALSE)$rotation
+```
+```{r}
+#rhoYX sebelum transformasi
+eigenCensus <- eigen(cov(census))
+eigenVectorCensus <- eigenCensus$vectors
+eigenValueCensus <- eigenCensus$values
+S_census <- cov(census)
+
+rhoyx <- matrix(0, ncol = ncol(census), nrow = ncol(census))
+for(i in 1:ncol(census))
+{
+  for(j in 1:ncol(census)){
+   rhoyx[i,j] <- eigenVectorCensus[i,j]*sqrt(eigenValueCensus[i])/sqrt(S_census[j,j])
+  }
+}
+rhoyx
+```
+
+```{r}
+#rhoYX setelah transformasi
+rhoyx <- matrix(0, ncol = ncol(census_a), nrow = ncol(census_a))
+for(i in 1:ncol(census_a))
+{
+  for(j in 1:ncol(census_a)){
+   rhoyx[i,j] <- eigenVectorCensusA[i,j]*sqrt(eigenValueCensusA[i])/sqrt(S_census_a[j,j])
+  }
+}
+rhoyx
+```
+untuk setelah transformasi:
+
+1. Komponen pertama menjelaskan proporsi dari total varians kumulatif ialah sebesar 85,98%.
+2. Komponen kedua menjelaskan proporsi dari total varians kumulatif ialah sebesar 97.19%
+3. Dari ini peringkasan variabel dari 5 komponen utama menjadi 2 komponen pertama utama bisa dilakukan atau wajar
+4. korelasi variabel $X_{3}$ dalam $Y_{1}$ hampir sama besar dengan variabel $X_{4}$ dalam $Y_{1}$. Hal ini menunjukkan kedua variabel sangat penting untuk komponen utama
+5. Pada korelasi variabel $Y_{1}$ sebelum transformasi terdapat variabel X yang korelasi nya lebih tinggi dibanding variabel X yang lainnya dalam Y1. Perbedaan ini mungkin karena efek dari transformasi
 
 
 ## Soal 2: 8.12
 Perhatikan data polusi udara yang tercantum pada Tabel 1.5. Tugas Anda adalah meringkas data ini dalam kurang dari $p$ = 7 dimensi jika memungkinkan. Lakukan analisis komponen utama data menggunakan matriks kovarians **S** dan matriks korelasi **R**. Apa yang telah Anda pelajari? Apakah ada bedanya matriks mana yang dipilih untuk analisis? Dapatkah data diringkas dalam tiga atau lebih sedikit dimensi? Dapatkah Anda menginterpretasikan komponen utama?
+```{r}
+url2 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/table%201.5.csv"
+airPollution <- read.csv(url2)
+airPollution
+```
+
+```{r}
+R_airPol <- cor(airPollution)
+R_airPol
+```
+Karena terdapat korelasi antar variabel lebih dari 5 atau kurang dari -5, maka terdapat multikolinieritas.
+
+```{r}
+uji_bart <- function(x)
+{
+ method <- "Bartlett's test of sphericity"
+ data.name <- deparse(substitute(x))
+ x <- subset(x, complete.cases(x)) 
+ n <- nrow(x)
+ p <- ncol(x)
+ chisq <- (1-n+(2*p+5)/6)*log(det(cor(x)))
+ df <- p*(p-1)/2
+ p.value <- pchisq(chisq, df, lower.tail=FALSE)
+ names(chisq) <- "Khi-squared"
+ names(df) <- "df"
+ return(structure(list(statistic=chisq, parameter=df, p.value=p.value, method=method, data.name=data.name), class="htest"))
+}
+
+uji_bart(airPollution)
+```
+Dalam signifikan 5%. p-value kurang dari 5% maka bisa kita simpulkan terdapat multikolinieritas antar variabel. Selanjutnya akan di lakukan analisis PCA
+
+```{r}
+#data summary air pollution
+library(pastecs)
+stat.desc(airPollution)
+```
+```{r}
+#untuk matrix kovarians
+S_airPol <- cov(airPollution)
+S_airPol
+
+eigenAirPol <- eigen(S_airPol)
+eigenValueAirPol <- eigenAirPol$values
+eigenVectorsAirPol <- eigenAirPol$vectors
+
+eigenValueAirPol
+eigenVectorsAirPol
+```
+
+```{r}
+#The proportion of total variance accounted
+library(roperators)
+propTotVar <- matrix(0, ncol = ncol(airPollution), nrow = 1)
+temp = 0
+for(i in 1:ncol(airPollution))
+{
+  temp %+=% eigenValueAirPol[i]
+  prop = (temp/sum(eigenValueAirPol)) * 100
+  propTotVar[1,i] = prop
+}
+propTotVar
+```
+The proportion of total variance accounted
+for by the first principal component is 87.29%
+
+```{r}
+rhoyx <- matrix(0, ncol = ncol(airPollution), nrow = ncol(airPollution))
+for(i in 1:ncol(airPollution))
+{
+  for(j in 1:ncol(airPollution)){
+   coryx <- eigenVectorsAirPol[i,j]*sqrt(eigenValueAirPol[i])/sqrt(S_airPol[j,j])  
+   rhoyx[i,j] <-coryx
+  }
+}
+rhoyx
+```
+dalam Y1 dan X7 terdapat korelasi paling kecil yang berarti ada kemungkinan variabel X7 dalam Y1 ini tidak di anggap terlalu penting
+
+```{r}
+#untuk matrix korelasi
+eigenAirPolCor <- eigen(cor(airPollution))
+eigenValueAirPolCor <- eigenAirPolCor$values
+eigenVectorsAirPolCor <- eigenAirPolCor$vectors
+eigenVectorsAirPolCor
+eigenValueAirPolCor
+```
+
+```{r}
+#The proportion of total variance accounted for matrx corellation
+library(roperators)
+propTotVarCor <- matrix(0, ncol = ncol(airPollution), nrow = 1)
+temp = 0
+for(i in 1:ncol(airPollution))
+{
+  temp %+=% eigenValueAirPolCor[i]
+  prop = (temp/sum(eigenValueAirPolCor)) * 100
+  propTotVarCor[1,i] = prop
+}
+propTotVarCor
+```
+The proportion of total variance accounted
+for by the fourth principal component is 80.77%
+
+```{r}
+rhoyxCor <- matrix(0, ncol = ncol(airPollution), nrow = ncol(airPollution))
+for(i in 1:ncol(airPollution))
+{
+  for(j in 1:ncol(airPollution)){
+   coryx <- eigenVectorsAirPolCor[i,j]*sqrt(eigenValueAirPolCor[i])/sqrt(S_airPol[j,j])  
+   rhoyxCor[i,j] <-coryx
+  }
+}
+rhoyxCor
+```
+pada variabel X dalam Y1 sebagian besar nilai korelasi nya hampir sama yang menandakan hampir semua variabel X dalam Y1 sama pentingnya
+
+Kesimpulan:
+dengan matrix kovarians hanya memerlukan komponen utama pertama saja sudah menghasilkan total proporsi sebesar 87.29% dibanding menggunakan matrix korelasi yang membutuhkan 4 komponen pertama dengan total proporsi sebesar 80.77%. Karena 80% total proporsi dijelaskan oleh komponen utama pertama maka yang di rekomendasikan ialah penggunaan matrix korelasi yaitu dengan lebih 2 atau lebih komponen sedikit untuk menjelaskan total proporsi 80.77%
 
 ## Soal 3: 8.14
 Lakukan analisis komponen utama menggunakan matriks kovarians sampel dari data keringat yang diberikan dalam Contoh 5.2. Buatlah plot $Q-Q$ untuk setiap komponen utama yang penting. Apakah ada pengamatan yang mencurigakan? Menjelaskan.
 ```{r}
-url2 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/table%205.1.csv"
-data2 <- read.csv(url2)
-data2
+url3 <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/table%205.1.csv"
+sweat <- read.csv(url3)
+sweat <- subset(sweat, select = -c(Individual))
+sweat
+```
+```{r}
+miu0Sweat <- c(4, 50, 10)
+alphaSweat <- 0.1
+n_sweat <- nrow(sweat)
+p_sweat <- ncol(sweat)
 ```
 
+```{r}
+XbarSweat <- colMeans(sweat)
+XbarSweat
+
+S_sweat <- cov(sweat)
+S_sweat
+
+SInverseSweat <- solve(S_sweat)
+SInverseSweat
+
+R <- cor(sweat)
+R
+```
+pada matrix korelasi terdapat korelasi kurang dari -5, hal ini kemungkinan terdapat multikolinieritas
+```{r}
+T2_sweat <- n_sweat*(XbarSweat-miu0Sweat)%*%SInverseSweat%*%(XbarSweat-miu0Sweat)
+T2_sweat
+```
+```{r}
+C2_sweat <- (n_sweat-1)*p_sweat*qf(p = 1-alphaSweat, df1 = p_sweat, df2 = n_sweat-p_sweat)/(n_sweat-p_sweat)
+C2_sweat
+```
+
+Karena $T^{2}$ > $C^{2}$ maka secara multivariate data ialah normal
+
+```{r}
+eigenSweat <- eigen(cov(sweat))
+eigenValueSweat <- eigenSweat$values
+eigenVectorsSweat <- eigenSweat$vectors
+eigenValueSweat
+eigenVectorsSweat
+```
+
+```{r}
+#Analisis PCA
+summary(princomp(sweat, cor = FALSE), loadings = TRUE)
+```
+komponen utama pertama memiliki proporsi total varians kumulatif sebesar 97.17%
+```{r}
+dataPcaSweat <- matrix(0, nrow = n_sweat, ncol = p_sweat)
+for(i in 1:p_sweat){
+  for(j in 1:n_sweat){
+    dataPcaSweat[j,i] = eigenVectorsSweat[,i]%*%t(sweat[j,])
+  }
+}
+
+dataPcaSweat
+```
+```{r}
+#QQ-Plot
+library(car)
+for(i in 1:p_sweat){
+print(paste("QQ-Plot untuk Y",i))
+#qqnorm(dataPca[,i])
+#qqline(dataPca[,i])
+qqPlot(dataPcaSweat[,i], main = "QQ-Plot of The First Principal Component", xlab 
+= "Quantile Standard Normal", ylab = "yicap(j)")
+}
+```
+Dari hasil bisa kita lihat QQ plot untuk data PCA yang di dapat yaitu tanpa outlier, artinya tidak ada pengamatan yang mencurigakan

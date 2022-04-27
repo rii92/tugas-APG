@@ -1,0 +1,1224 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+Nama : Riofebri Prasetia NIM : 221911192 Kelas : 3SI1
+
+\hypertarget{bartlett-sphericity-test}{%
+\subsection{Bartlett Sphericity Test}\label{bartlett-sphericity-test}}
+
+Analisis faktor eksplorasi hanya berguna jika matriks korelasi populasi
+secara statistik berbeda dari matriks identitas. Jika ini sama,
+variabel-variabelnya sedikit saling terkait, yaitu faktor-faktor
+spesifik menjelaskan proporsi varians yang lebih besar dan faktor-faktor
+umum tidak penting. Oleh karena itu, itu harus didefinisikan ketika
+korelasi antara variabel asli cukup tinggi. Dengan demikian, analisis
+faktor berguna dalam mengestimasi faktor persekutuan. Dengan pemikiran
+ini, uji Bartlett Sphericity dapat digunakan. Hipotesisnya adalah:
+
+H0: matriks korelasi populasi sama dengan matriks identitas
+
+H1: matriks korelasi populasi berbeda dengan matriks identitas.
+
+\hypertarget{kmo-test}{%
+\subsection{KMO Test}\label{kmo-test}}
+
+KMO adalah ukuran kecukupan pengambilan sampel ``Kaiser-Meyer-Olkin''
+dan memeriksa apakah mungkin untuk memfaktorkan variabel utama secara
+efisien. Matriks korelasi selalu menjadi titik awal. Variabel kurang
+lebih berkorelasi, tetapi yang lain bisa mempengaruhi korelasi antara
+dua variabel.Oleh karena itu, dengan KMO, korelasi parsial digunakan
+untuk mengukur hubungan antara dua variabel dengan menghilangkan
+pengaruh dari variabel yang tersisa. (sumber:
+\url{https://github.com/Sarmentor/KMO-Bartlett-Tests-Python})
+
+\hypertarget{soal-1-8.11}{%
+\subsection{Soal 1: 8.11}\label{soal-1-8.11}}
+
+Perhatikan data sensus yang tercantum pada Tabel 8.5. Misalkan
+pengamatan pada X5 = nilai median rumah dicatat dalam ribuan, bukan
+sepuluh ribu dolar; yaitu, kalikan semua angka yang tercantum di kolom
+keenam meja dengan 10. a. Bangun matriks kovarians sampel S untuk data
+saluran sensus ketika: \(X_{5}\) = nilai median rumah dicatat dalam
+ribuan dolar. (Perhatikan bahwa matriks kovarians ini dapat diperoleh
+dari matriks kovarians yang diberikan dalam Contoh 8.3 dengan mengalikan
+elemen-elemen di luar diagonal pada kolom kelima dan baris dengan 10 dan
+elemen diagonal \(s_{55}\) dengan 100. Mengapa?) b. Dapatkan pasangan
+nilai eigen-vektor eigen-value dan dua prinsipal sampel pertama komponen
+untuk matriks kovarians di Bagian a. c.~Hitung proporsi varians total
+yang dijelaskan oleh dua komponen utama pertama yang diperoleh pada
+Bagian b. Hitung koefisien korelasi, \(r_{yi, xk}\) dan menafsirkan
+komponen ini jika memungkinkan. Bandingkan hasil Anda dengan hasil pada
+Contoh 8.3. Apa yang bisa Anda katakan tentang efek ini? perubahan skala
+pada komponen utama?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load Data}
+\NormalTok{url1 }\OtherTok{\textless{}{-}} \StringTok{"https://raw.githubusercontent.com/rii92/tugas{-}APG/main/tugas\%20pertemuan\%208/tabel\_8.5.csv"}
+\NormalTok{census }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(url1)}
+\NormalTok{census }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(census, }\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Tract))}
+\CommentTok{\#data1 \textless{}{-} as.matrix(data1)}
+\NormalTok{census}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    totPop medSchoolYears totEmp healServEmp medValHome
+## 1   5.935           14.2  2.265        2.27       2.91
+## 2   1.523           13.1  0.597        0.75       2.62
+## 3   2.599           12.7  1.237        1.11       1.72
+## 4   4.009           15.2  1.649        0.81       3.02
+## 5   4.687           14.7  2.312        2.50       2.22
+## 6   8.044           15.6  3.641        4.51       2.36
+## 7   2.766           13.3  1.244        1.03       1.97
+## 8   6.538           17.0  2.618        2.39       1.85
+## 9   6.451           12.9  3.147        5.52       2.01
+## 10  3.314           12.2  1.606        2.18       1.82
+## 11  3.777           13.0  2.119        2.83       1.80
+## 12  1.530           13.8  0.798        0.84       4.25
+## 13  2.768           13.6  1.336        1.75       2.64
+## 14  6.585           14.9  2.763        1.91       3.17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R\_census }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(census)}
+\NormalTok{R\_census}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    totPop medSchoolYears     totEmp healServEmp medValHome
+## totPop          1.0000000     0.61019384  0.9707333  0.73998387 -0.1719648
+## medSchoolYears  0.6101938     1.00000000  0.4943040  0.09539263  0.1859277
+## totEmp          0.9707333     0.49430396  1.0000000  0.84796492 -0.2491624
+## healServEmp     0.7399839     0.09539263  0.8479649  1.00000000 -0.3579964
+## medValHome     -0.1719648     0.18592771 -0.2491624 -0.35799639  1.0000000
+\end{verbatim}
+
+terdapat beberapa korelasi lebih dari 0.5. Hal ini menunjukkan ada
+kemungkinan terdapat multikolinieritas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uji\_bart }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x)}
+\NormalTok{\{}
+\NormalTok{ method }\OtherTok{\textless{}{-}} \StringTok{"Bartlett\textquotesingle{}s test of sphericity"}
+\NormalTok{ data.name }\OtherTok{\textless{}{-}} \FunctionTok{deparse}\NormalTok{(}\FunctionTok{substitute}\NormalTok{(x))}
+\NormalTok{ x }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(x, }\FunctionTok{complete.cases}\NormalTok{(x)) }
+\NormalTok{ n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(x)}
+\NormalTok{ p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(x)}
+\NormalTok{ chisq }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{n}\SpecialCharTok{+}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{p}\SpecialCharTok{+}\DecValTok{5}\NormalTok{)}\SpecialCharTok{/}\DecValTok{6}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{log}\NormalTok{(}\FunctionTok{det}\NormalTok{(}\FunctionTok{cor}\NormalTok{(x)))}
+\NormalTok{ df }\OtherTok{\textless{}{-}}\NormalTok{ p}\SpecialCharTok{*}\NormalTok{(p}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}
+\NormalTok{ p.value }\OtherTok{\textless{}{-}} \FunctionTok{pchisq}\NormalTok{(chisq, df, }\AttributeTok{lower.tail=}\ConstantTok{FALSE}\NormalTok{)}
+ \FunctionTok{names}\NormalTok{(chisq) }\OtherTok{\textless{}{-}} \StringTok{"Khi{-}squared"}
+ \FunctionTok{names}\NormalTok{(df) }\OtherTok{\textless{}{-}} \StringTok{"df"}
+ \FunctionTok{return}\NormalTok{(}\FunctionTok{structure}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{statistic=}\NormalTok{chisq, }\AttributeTok{parameter=}\NormalTok{df, }\AttributeTok{p.value=}\NormalTok{p.value, }\AttributeTok{method=}\NormalTok{method, }\AttributeTok{data.name=}\NormalTok{data.name), }\AttributeTok{class=}\StringTok{"htest"}\NormalTok{))}
+\NormalTok{\}}
+\FunctionTok{uji\_bart}\NormalTok{(census)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Bartlett's test of sphericity
+## 
+## data:  census
+## Khi-squared = 62.552, df = 10, p-value = 1.188e-09
+\end{verbatim}
+
+dengan tingkat signifikasn 5\% maka terdapat multikolinieritas karena
+p-value kurang dari 0.05
+
+\textbf{jawaban a:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{census\_a }\OtherTok{\textless{}{-}}\NormalTok{ census}
+\NormalTok{census\_a}\SpecialCharTok{$}\NormalTok{medValHome }\OtherTok{\textless{}{-}}\NormalTok{ census\_a}\SpecialCharTok{$}\NormalTok{medValHome}\SpecialCharTok{*}\DecValTok{10}
+\NormalTok{census\_a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    totPop medSchoolYears totEmp healServEmp medValHome
+## 1   5.935           14.2  2.265        2.27       29.1
+## 2   1.523           13.1  0.597        0.75       26.2
+## 3   2.599           12.7  1.237        1.11       17.2
+## 4   4.009           15.2  1.649        0.81       30.2
+## 5   4.687           14.7  2.312        2.50       22.2
+## 6   8.044           15.6  3.641        4.51       23.6
+## 7   2.766           13.3  1.244        1.03       19.7
+## 8   6.538           17.0  2.618        2.39       18.5
+## 9   6.451           12.9  3.147        5.52       20.1
+## 10  3.314           12.2  1.606        2.18       18.2
+## 11  3.777           13.0  2.119        2.83       18.0
+## 12  1.530           13.8  0.798        0.84       42.5
+## 13  2.768           13.6  1.336        1.75       26.4
+## 14  6.585           14.9  2.763        1.91       31.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{S\_census\_a }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(census\_a)}
+\NormalTok{S\_census\_a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   totPop medSchoolYears     totEmp healServEmp medValHome
+## totPop          4.307556      1.6836802  1.8027760    2.155326  -2.534744
+## medSchoolYears  1.683680      1.7674725  0.5880264    0.177978   1.755495
+## totEmp          1.802776      0.5880264  0.8006685    1.064828  -1.583390
+## healServEmp     2.155326      0.1779780  1.0648280    1.969475  -3.568066
+## medValHome     -2.534744      1.7554945 -1.5833901   -3.568066  50.438022
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{XbarCensus }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(census)}
+\NormalTok{XbarCensus}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         totPop medSchoolYears         totEmp    healServEmp     medValHome 
+##       4.323286      14.014286       1.952286       2.171429       2.454286
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SCensusEx8}\FloatTok{.3} \OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{4.308}\NormalTok{, }\FloatTok{1.683}\NormalTok{, }\FloatTok{1.803}\NormalTok{, }\FloatTok{2.155}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.253}\NormalTok{, }
+                         \FloatTok{1.683}\NormalTok{, }\FloatTok{1.768}\NormalTok{, }\FloatTok{0.588}\NormalTok{, }\FloatTok{0.177}\NormalTok{, }\FloatTok{0.176}\NormalTok{, }
+                         \FloatTok{1.803}\NormalTok{, }\FloatTok{0.588}\NormalTok{, }\FloatTok{0.801}\NormalTok{, }\FloatTok{1.065}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.158}\NormalTok{, }
+                         \FloatTok{2.155}\NormalTok{, }\FloatTok{0.177}\NormalTok{, }\FloatTok{1.065}\NormalTok{, }\FloatTok{1.970}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.357}\NormalTok{, }
+                         \SpecialCharTok{{-}}\FloatTok{0.253}\NormalTok{, }\FloatTok{0.176}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.158}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.357}\NormalTok{, }\FloatTok{0.504}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{5}\NormalTok{, }\AttributeTok{byrow =}\NormalTok{ T)}
+\NormalTok{SCensusEx8}\FloatTok{.3}\NormalTok{[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ SCensusEx8}\FloatTok{.3}\NormalTok{[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{]}\SpecialCharTok{*}\DecValTok{10}
+\NormalTok{SCensusEx8}\FloatTok{.3}\NormalTok{[}\DecValTok{5}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ SCensusEx8}\FloatTok{.3}\NormalTok{[}\DecValTok{5}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}\SpecialCharTok{*}\DecValTok{10}
+\NormalTok{SCensusEx8}\FloatTok{.3}\NormalTok{[}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ SCensusEx8}\FloatTok{.3}\NormalTok{[}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{]}\SpecialCharTok{*}\DecValTok{100}
+\NormalTok{SCensusEx8}\FloatTok{.3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        [,1]  [,2]   [,3]   [,4]  [,5]
+## [1,]  4.308 1.683  1.803  2.155 -2.53
+## [2,]  1.683 1.768  0.588  0.177  1.76
+## [3,]  1.803 0.588  0.801  1.065 -1.58
+## [4,]  2.155 0.177  1.065  1.970 -3.57
+## [5,] -2.530 1.760 -1.580 -3.570 50.40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{S\_census\_a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   totPop medSchoolYears     totEmp healServEmp medValHome
+## totPop          4.307556      1.6836802  1.8027760    2.155326  -2.534744
+## medSchoolYears  1.683680      1.7674725  0.5880264    0.177978   1.755495
+## totEmp          1.802776      0.5880264  0.8006685    1.064828  -1.583390
+## healServEmp     2.155326      0.1779780  1.0648280    1.969475  -3.568066
+## medValHome     -2.534744      1.7554945 -1.5833901   -3.568066  50.438022
+\end{verbatim}
+
+matriks kovarians hasil transformasi variabel medValHome di kali 10
+dengan perkalian secara manual kovarians dari contoh soal memiliki hasil
+yang sama
+
+\textbf{jawaban b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigenCensusAfterTransf }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(S\_census\_a)}
+\NormalTok{eigenValueCensusA }\OtherTok{\textless{}{-}}\NormalTok{ eigenCensusAfterTransf}\SpecialCharTok{$}\NormalTok{values}
+\NormalTok{eigenValueCensusA}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 50.96935726  6.64988991  1.41999710  0.22978608  0.01416317
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigenVectorCensusA }\OtherTok{\textless{}{-}}\NormalTok{ eigenCensusAfterTransf}\SpecialCharTok{$}\NormalTok{vectors}
+\NormalTok{eigenVectorCensusA}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]       [,2]        [,3]         [,4]         [,5]
+## [1,]  0.05765977 0.78220765  0.02307185  0.541282426 -0.302171422
+## [2,] -0.03281610 0.35032828  0.76422159 -0.540439691 -0.009137870
+## [3,]  0.03467366 0.32717525 -0.10109097  0.051177198  0.937504990
+## [4,]  0.07557524 0.39085238 -0.63207658 -0.642117054 -0.172301138
+## [5,] -0.99432619 0.07491367 -0.07545108  0.002204195  0.002375237
+\end{verbatim}
+
+2 komponen pertama yaitu:
+\(y_{1} = 0.058x_{1} - 0.033x_{2} + 0.035x_{3} + 0.076x_{4} -0.994x_{5}\)
+\(y_{2} = 0.782x_{1} + 0.350x_{2} + 0.327x_{3} + 0.391x_{4} + 0.075x_{5}\)
+
+\textbf{jawaban c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#mencari nilai proporsi varians kumulatif}
+
+
+\CommentTok{\#sebelum transformasi}
+\FunctionTok{library}\NormalTok{(factoextra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{princomp}\NormalTok{(census, }\AttributeTok{cor =} \ConstantTok{FALSE}\NormalTok{), }\AttributeTok{loadings =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importance of components:
+##                           Comp.1    Comp.2     Comp.3     Comp.4      Comp.5
+## Standard deviation     2.5369267 1.2874914 0.60151291 0.46166437 0.114646905
+## Proportion of Variance 0.7413268 0.1909337 0.04167579 0.02454972 0.001513975
+## Cumulative Proportion  0.7413268 0.9322605 0.97393630 0.99848603 1.000000000
+## 
+## Loadings:
+##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5
+## totPop          0.781                0.542  0.302
+## medSchoolYears  0.306  0.764 -0.162 -0.545       
+## totEmp          0.334                      -0.937
+## healServEmp     0.426 -0.579  0.220 -0.636  0.172
+## medValHome             0.262  0.962
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#setelah transformasi}
+\FunctionTok{library}\NormalTok{(factoextra)}
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{princomp}\NormalTok{(census\_a, }\AttributeTok{cor =} \ConstantTok{FALSE}\NormalTok{), }\AttributeTok{loadings =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importance of components:
+##                           Comp.1    Comp.2     Comp.3      Comp.4      Comp.5
+## Standard deviation     6.8795849 2.4849342 1.14828948 0.461922929 0.114680047
+## Proportion of Variance 0.8597607 0.1121716 0.02395278 0.003876075 0.000238907
+## Cumulative Proportion  0.8597607 0.9719322 0.99588502 0.999761093 1.000000000
+## 
+## Loadings:
+##                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5
+## totPop                 0.782         0.541  0.302
+## medSchoolYears         0.350  0.764 -0.540       
+## totEmp                 0.327 -0.101        -0.938
+## healServEmp            0.391 -0.632 -0.642  0.172
+## medValHome     -0.994
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#nilai PCA sebelum transformasi}
+\FunctionTok{prcomp}\NormalTok{(census, }\AttributeTok{scale =} \ConstantTok{FALSE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{rotation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                        PC1         PC2          PC3         PC4          PC5
+## totPop         -0.78120807  0.07087183 -0.003656607  0.54171007  0.302039670
+## medSchoolYears -0.30564856  0.76387277  0.161817438 -0.54479937  0.009279632
+## totEmp         -0.33444840 -0.08290788 -0.014841008  0.05101636 -0.937255367
+## healServEmp    -0.42600795 -0.57945799 -0.220453468 -0.63601254  0.172145212
+## medValHome      0.05435431  0.26235528 -0.961759720  0.05127599 -0.024583093
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#nilai PCA setelah transformasi}
+\FunctionTok{prcomp}\NormalTok{(census\_a, }\AttributeTok{scale =} \ConstantTok{FALSE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{rotation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                        PC1         PC2         PC3          PC4          PC5
+## totPop          0.05765977 -0.78220765 -0.02307185  0.541282426 -0.302171422
+## medSchoolYears -0.03281610 -0.35032828 -0.76422159 -0.540439691 -0.009137870
+## totEmp          0.03467366 -0.32717525  0.10109097  0.051177198  0.937504990
+## healServEmp     0.07557524 -0.39085238  0.63207658 -0.642117054 -0.172301138
+## medValHome     -0.99432619 -0.07491367  0.07545108  0.002204195  0.002375237
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#rhoYX sebelum transformasi}
+\NormalTok{eigenCensus }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(}\FunctionTok{cov}\NormalTok{(census))}
+\NormalTok{eigenVectorCensus }\OtherTok{\textless{}{-}}\NormalTok{ eigenCensus}\SpecialCharTok{$}\NormalTok{vectors}
+\NormalTok{eigenValueCensus }\OtherTok{\textless{}{-}}\NormalTok{ eigenCensus}\SpecialCharTok{$}\NormalTok{values}
+\NormalTok{S\_census }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(census)}
+
+\NormalTok{rhoyx }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(census), }\AttributeTok{nrow =} \FunctionTok{ncol}\NormalTok{(census))}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(census))}
+\NormalTok{\{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(census))\{}
+\NormalTok{   rhoyx[i,j] }\OtherTok{\textless{}{-}}\NormalTok{ eigenVectorCensus[i,j]}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(eigenValueCensus[i])}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(S\_census[j,j])}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{rhoyx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]        [,2]        [,3]         [,4]         [,5]
+## [1,]  0.990949503 -0.14034520  0.01075851  1.016229870  1.119657565
+## [2,]  0.196763062 -0.76768201 -0.24162152 -0.518678274  0.017457755
+## [3,]  0.100589111  0.03892753  0.01035319  0.022691936 -0.823789419
+## [4,]  0.098337906  0.20881626  0.11803458 -0.217124674  0.116127380
+## [5,] -0.003115826 -0.02347838  0.12787772  0.004347039 -0.004118245
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#rhoYX setelah transformasi}
+\NormalTok{rhoyx }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(census\_a), }\AttributeTok{nrow =} \FunctionTok{ncol}\NormalTok{(census\_a))}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(census\_a))}
+\NormalTok{\{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(census\_a))\{}
+\NormalTok{   rhoyx[i,j] }\OtherTok{\textless{}{-}}\NormalTok{ eigenVectorCensusA[i,j]}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(eigenValueCensusA[i])}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(S\_census\_a[j,j])}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{rhoyx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]        [,2]        [,3]          [,4]          [,5]
+## [1,]  0.19834077 4.200493349  0.18408174  2.7536155141 -3.037589e-01
+## [2,] -0.04077357 0.679526022  2.20242005 -0.9930686193 -3.317975e-03
+## [3,]  0.01990801 0.293256623 -0.13462624  0.0434555273  1.573035e-01
+## [4,]  0.01745524 0.140928326 -0.33861421 -0.2193314255 -1.162977e-02
+## [5,] -0.05701559 0.006706022 -0.01003504  0.0001869197  3.980229e-05
+\end{verbatim}
+
+untuk setelah transformasi:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Komponen pertama menjelaskan proporsi dari total varians kumulatif
+  ialah sebesar 85,98\%.
+\item
+  Komponen kedua menjelaskan proporsi dari total varians kumulatif ialah
+  sebesar 97.19\%
+\item
+  Dari ini peringkasan variabel dari 5 komponen utama menjadi 2 komponen
+  pertama utama bisa dilakukan atau wajar
+\item
+  korelasi variabel \(X_{3}\) dalam \(Y_{1}\) hampir sama besar dengan
+  variabel \(X_{4}\) dalam \(Y_{1}\). Hal ini menunjukkan kedua variabel
+  sangat penting untuk komponen utama
+\item
+  Pada korelasi variabel \(Y_{1}\) sebelum transformasi terdapat
+  variabel X yang korelasi nya lebih tinggi dibanding variabel X yang
+  lainnya dalam Y1. Perbedaan ini mungkin karena efek dari transformasi
+\end{enumerate}
+
+\hypertarget{soal-2-8.12}{%
+\subsection{Soal 2: 8.12}\label{soal-2-8.12}}
+
+Perhatikan data polusi udara yang tercantum pada Tabel 1.5. Tugas Anda
+adalah meringkas data ini dalam kurang dari \(p\) = 7 dimensi jika
+memungkinkan. Lakukan analisis komponen utama data menggunakan matriks
+kovarians \textbf{S} dan matriks korelasi \textbf{R}. Apa yang telah
+Anda pelajari? Apakah ada bedanya matriks mana yang dipilih untuk
+analisis? Dapatkah data diringkas dalam tiga atau lebih sedikit dimensi?
+Dapatkah Anda menginterpretasikan komponen utama?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{url2 }\OtherTok{\textless{}{-}} \StringTok{"https://raw.githubusercontent.com/rii92/tugas{-}APG/main/tugas\%20pertemuan\%208/table\%201.5.csv"}
+\NormalTok{airPollution }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(url2)}
+\NormalTok{airPollution}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    wind solarRadiation co NO NO2 O3 HC
+## 1     8             98  7  2  12  8  2
+## 2     7            107  4  3   9  5  3
+## 3     7            103  4  3   5  6  3
+## 4    10             88  5  2   8 15  4
+## 5     6             91  4  2   8 10  3
+## 6     8             90  5  2  12 12  4
+## 7     9             84  7  4  12 15  5
+## 8     5             72  6  4  21 14  4
+## 9     7             82  5  1  11 11  3
+## 10    8             64  5  2  13  9  4
+## 11    6             71  5  4  10  3  3
+## 12    6             91  4  2  12  7  3
+## 13    7             72  7  4  18 10  3
+## 14   10             70  4  2  11  7  3
+## 15   10             72  4  1   8 10  3
+## 16    9             77  4  1   9 10  3
+## 17    8             76  4  1   7  7  3
+## 18    8             71  5  3  16  4  4
+## 19    9             67  4  2  13  2  3
+## 20    9             69  3  3   9  5  3
+## 21   10             62  5  3  14  4  4
+## 22    9             88  4  2   7  6  3
+## 23    8             80  4  2  13 11  4
+## 24    5             30  3  3   5  2  3
+## 25    6             83  5  1  10 23  4
+## 26    8             84  3  2   7  6  3
+## 27    6             78  4  2  11 11  3
+## 28    8             79  2  1   7 10  3
+## 29    6             62  4  3   9  8  3
+## 30   10             37  3  1   7  2  3
+## 31    8             71  4  1  10  7  3
+## 32    7             52  4  1  12  8  4
+## 33    5             48  6  5   8  4  3
+## 34    6             75  4  1  10 24  3
+## 35   10             35  4  1   6  9  2
+## 36    8             85  4  1   9 10  2
+## 37    5             86  3  1   6 12  2
+## 38    5             86  7  2  13 18  2
+## 39    7             79  7  4   9 25  3
+## 40    7             79  5  2   8  6  2
+## 41    6             68  6  2  11 14  3
+## 42    8             40  4  3   6  5  2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R\_airPol }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(airPollution)}
+\NormalTok{R\_airPol}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      wind solarRadiation         co          NO        NO2
+## wind            1.0000000    -0.10144191 -0.1938032 -0.26954261 -0.1098249
+## solarRadiation -0.1014419     1.00000000  0.1827934 -0.07356907  0.1157320
+## co             -0.1938032     0.18279338  1.0000000  0.50215246  0.5565838
+## NO             -0.2695426    -0.07356907  0.5021525  1.00000000  0.2968981
+## NO2            -0.1098249     0.11573199  0.5565838  0.29689814  1.0000000
+## O3             -0.2535928     0.31912373  0.4109288 -0.13395214  0.1666422
+## HC              0.1560979     0.05201044  0.1660323  0.23470432  0.4477678
+##                        O3         HC
+## wind           -0.2535928 0.15609793
+## solarRadiation  0.3191237 0.05201044
+## co              0.4109288 0.16603235
+## NO             -0.1339521 0.23470432
+## NO2             0.1666422 0.44776780
+## O3              1.0000000 0.15445056
+## HC              0.1544506 1.00000000
+\end{verbatim}
+
+Karena terdapat korelasi antar variabel lebih dari 5 atau kurang dari
+-5, maka terdapat multikolinieritas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uji\_bart }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x)}
+\NormalTok{\{}
+\NormalTok{ method }\OtherTok{\textless{}{-}} \StringTok{"Bartlett\textquotesingle{}s test of sphericity"}
+\NormalTok{ data.name }\OtherTok{\textless{}{-}} \FunctionTok{deparse}\NormalTok{(}\FunctionTok{substitute}\NormalTok{(x))}
+\NormalTok{ x }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(x, }\FunctionTok{complete.cases}\NormalTok{(x)) }
+\NormalTok{ n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(x)}
+\NormalTok{ p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(x)}
+\NormalTok{ chisq }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{n}\SpecialCharTok{+}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{p}\SpecialCharTok{+}\DecValTok{5}\NormalTok{)}\SpecialCharTok{/}\DecValTok{6}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{log}\NormalTok{(}\FunctionTok{det}\NormalTok{(}\FunctionTok{cor}\NormalTok{(x)))}
+\NormalTok{ df }\OtherTok{\textless{}{-}}\NormalTok{ p}\SpecialCharTok{*}\NormalTok{(p}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}
+\NormalTok{ p.value }\OtherTok{\textless{}{-}} \FunctionTok{pchisq}\NormalTok{(chisq, df, }\AttributeTok{lower.tail=}\ConstantTok{FALSE}\NormalTok{)}
+ \FunctionTok{names}\NormalTok{(chisq) }\OtherTok{\textless{}{-}} \StringTok{"Khi{-}squared"}
+ \FunctionTok{names}\NormalTok{(df) }\OtherTok{\textless{}{-}} \StringTok{"df"}
+ \FunctionTok{return}\NormalTok{(}\FunctionTok{structure}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{statistic=}\NormalTok{chisq, }\AttributeTok{parameter=}\NormalTok{df, }\AttributeTok{p.value=}\NormalTok{p.value, }\AttributeTok{method=}\NormalTok{method, }\AttributeTok{data.name=}\NormalTok{data.name), }\AttributeTok{class=}\StringTok{"htest"}\NormalTok{))}
+\NormalTok{\}}
+
+\FunctionTok{uji\_bart}\NormalTok{(airPollution)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Bartlett's test of sphericity
+## 
+## data:  airPollution
+## Khi-squared = 70.527, df = 21, p-value = 2.892e-07
+\end{verbatim}
+
+Dalam signifikan 5\%. p-value kurang dari 5\% maka bisa kita simpulkan
+terdapat multikolinieritas antar variabel. Selanjutnya akan di lakukan
+analisis PCA
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#data summary air pollution}
+\FunctionTok{library}\NormalTok{(pastecs)}
+\FunctionTok{stat.desc}\NormalTok{(airPollution)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     wind solarRadiation          co         NO         NO2
+## nbr.val       42.0000000     42.0000000  42.0000000 42.0000000  42.0000000
+## nbr.null       0.0000000      0.0000000   0.0000000  0.0000000   0.0000000
+## nbr.na         0.0000000      0.0000000   0.0000000  0.0000000   0.0000000
+## min            5.0000000     30.0000000   2.0000000  1.0000000   5.0000000
+## max           10.0000000    107.0000000   7.0000000  5.0000000  21.0000000
+## range          5.0000000     77.0000000   5.0000000  4.0000000  16.0000000
+## sum          315.0000000   3102.0000000 191.0000000 92.0000000 422.0000000
+## median         8.0000000     76.5000000   4.0000000  2.0000000   9.5000000
+## mean           7.5000000     73.8571429   4.5476190  2.1904762  10.0476190
+## SE.mean        0.2439750      2.6749085   0.1903673  0.1677829   0.5201541
+## CI.mean.0.95   0.4927175      5.4020872   0.3844545  0.3388444   1.0504725
+## var            2.5000000    300.5156794   1.5220674  1.1823461  11.3635308
+## std.dev        1.5811388     17.3353881   1.2337209  1.0873574   3.3709837
+## coef.var       0.2108185      0.2347151   0.2712894  0.4964023   0.3355007
+##                       O3          HC
+## nbr.val       42.0000000  42.0000000
+## nbr.null       0.0000000   0.0000000
+## nbr.na         0.0000000   0.0000000
+## min            2.0000000   2.0000000
+## max           25.0000000   5.0000000
+## range         23.0000000   3.0000000
+## sum          395.0000000 130.0000000
+## median         8.5000000   3.0000000
+## mean           9.4047619   3.0952381
+## SE.mean        0.8588269   0.1067388
+## CI.mean.0.95   1.7344361   0.2155634
+## var           30.9785134   0.4785134
+## std.dev        5.5658345   0.6917466
+## coef.var       0.5918102   0.2234874
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#untuk matrix kovarians}
+\NormalTok{S\_airPol }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(airPollution)}
+\NormalTok{S\_airPol}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      wind solarRadiation         co         NO        NO2
+## wind            2.5000000     -2.7804878 -0.3780488 -0.4634146 -0.5853659
+## solarRadiation -2.7804878    300.5156794  3.9094077 -1.3867596  6.7630662
+## co             -0.3780488      3.9094077  1.5220674  0.6736353  2.3147503
+## NO             -0.4634146     -1.3867596  0.6736353  1.1823461  1.0882695
+## NO2            -0.5853659      6.7630662  2.3147503  1.0882695 11.3635308
+## O3             -2.2317073     30.7909408  2.8217189 -0.8106852  3.1265970
+## HC              0.1707317      0.6236934  0.1416957  0.1765389  1.0441347
+##                        O3        HC
+## wind           -2.2317073 0.1707317
+## solarRadiation 30.7909408 0.6236934
+## co              2.8217189 0.1416957
+## NO             -0.8106852 0.1765389
+## NO2             3.1265970 1.0441347
+## O3             30.9785134 0.5946574
+## HC              0.5946574 0.4785134
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigenAirPol }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(S\_airPol)}
+\NormalTok{eigenValueAirPol }\OtherTok{\textless{}{-}}\NormalTok{ eigenAirPol}\SpecialCharTok{$}\NormalTok{values}
+\NormalTok{eigenVectorsAirPol }\OtherTok{\textless{}{-}}\NormalTok{ eigenAirPol}\SpecialCharTok{$}\NormalTok{vectors}
+
+\NormalTok{eigenValueAirPol}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 304.2578640  28.2761046  11.4644830   2.5243296   1.2795247   0.5287288
+## [7]   0.2096157
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigenVectorsAirPol}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]        [,2]        [,3]          [,4]          [,5]
+## [1,]  0.010039244  0.07622439  0.03087761  0.9203045748  0.3423859285
+## [2,] -0.993199405  0.11615518  0.00659069 -0.0002118679  0.0022391022
+## [3,] -0.014062314 -0.09956775 -0.18282641 -0.1382922410  0.6500776063
+## [4,]  0.004710175  0.01320423 -0.13021553 -0.3277842624  0.6431560485
+## [5,] -0.024255644 -0.15038113 -0.95526318  0.1023719020 -0.2065840405
+## [6,] -0.112429558 -0.97335904  0.16981025  0.0632480276 -0.0002935726
+## [7,] -0.002340785 -0.02382046 -0.08519558  0.1095073458  0.0619613872
+##              [,6]         [,7]
+## [1,]  0.011779079 -0.169729925
+## [2,]  0.003353218 -0.001781987
+## [3,] -0.563893916  0.443577538
+## [4,]  0.497513370 -0.462855916
+## [5,] -0.009009299 -0.105029951
+## [6,]  0.051067254 -0.066992404
+## [7,]  0.657012233  0.738019426
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#The proportion of total variance accounted}
+\FunctionTok{library}\NormalTok{(roperators)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'roperators'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     %+%
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{propTotVar }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(airPollution), }\AttributeTok{nrow =} \DecValTok{1}\NormalTok{)}
+\NormalTok{temp }\OtherTok{=} \DecValTok{0}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(airPollution))}
+\NormalTok{\{}
+\NormalTok{  temp }\SpecialCharTok{\%+=\%}\NormalTok{ eigenValueAirPol[i]}
+\NormalTok{  prop }\OtherTok{=}\NormalTok{ (temp}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(eigenValueAirPol)) }\SpecialCharTok{*} \DecValTok{100}
+\NormalTok{  propTotVar[}\DecValTok{1}\NormalTok{,i] }\OtherTok{=}\NormalTok{ prop}
+\NormalTok{\}}
+\NormalTok{propTotVar}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         [,1]     [,2]    [,3]     [,4]     [,5]     [,6] [,7]
+## [1,] 87.2948 95.40751 98.6968 99.42105 99.78816 99.93986  100
+\end{verbatim}
+
+The proportion of total variance accounted for by the first principal
+component is 87.29\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rhoyx }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(airPollution), }\AttributeTok{nrow =} \FunctionTok{ncol}\NormalTok{(airPollution))}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(airPollution))}
+\NormalTok{\{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(airPollution))\{}
+\NormalTok{   coryx }\OtherTok{\textless{}{-}}\NormalTok{ eigenVectorsAirPol[i,j]}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(eigenValueAirPol[i])}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(S\_airPol[j,j])  }
+\NormalTok{   rhoyx[i,j] }\OtherTok{\textless{}{-}}\NormalTok{coryx}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{rhoyx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               [,1]          [,2]        [,3]         [,4]          [,5]
+## [1,]  0.1107520899  0.0766975185  0.43656377 14.763188796  1.771659e+00
+## [2,] -3.3402289547  0.0356299176  0.02840689 -0.001036102  3.532052e-03
+## [3,] -0.0301136932 -0.0194474372 -0.50176368 -0.430628470  6.529588e-01
+## [4,]  0.0047330386  0.0012101872 -0.16769452 -0.478948494  3.031327e-01
+## [5,] -0.0173527033 -0.0098126000 -0.87585141  0.106495876 -6.932094e-02
+## [6,] -0.0517043382 -0.0408278006  0.10008372  0.042295207 -6.332501e-05
+## [7,] -0.0006778029 -0.0006291128 -0.03161637  0.046108697  8.415432e-03
+##              [,6]        [,7]
+## [1,]  0.036914922 -4.27988690
+## [2,]  0.003203622 -0.01369832
+## [3,] -0.343039681  2.17119960
+## [4,]  0.142019342 -1.06309436
+## [5,] -0.001830986 -0.17174751
+## [6,]  0.006671580 -0.07041984
+## [7,]  0.054044946  0.48846413
+\end{verbatim}
+
+dalam Y1 dan X7 terdapat korelasi paling kecil yang berarti ada
+kemungkinan variabel X7 dalam Y1 ini tidak di anggap terlalu penting
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#untuk matrix korelasi}
+\NormalTok{eigenAirPolCor }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(}\FunctionTok{cor}\NormalTok{(airPollution))}
+\NormalTok{eigenValueAirPolCor }\OtherTok{\textless{}{-}}\NormalTok{ eigenAirPolCor}\SpecialCharTok{$}\NormalTok{values}
+\NormalTok{eigenVectorsAirPolCor }\OtherTok{\textless{}{-}}\NormalTok{ eigenAirPolCor}\SpecialCharTok{$}\NormalTok{vectors}
+\NormalTok{eigenVectorsAirPolCor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]         [,2]       [,3]         [,4]        [,5]         [,6]
+## [1,]  0.2368211  0.278445138  0.6434744  0.172719491  0.56053441 -0.223579220
+## [2,] -0.2055665 -0.526613869  0.2244690  0.778136601 -0.15613432 -0.005700851
+## [3,] -0.5510839 -0.006819502 -0.1136089  0.005301798  0.57342221 -0.109538907
+## [4,] -0.3776151  0.434674253 -0.4070978  0.290503052 -0.05669070 -0.450234781
+## [5,] -0.4980161  0.199767367  0.1965567 -0.042428178  0.05021430  0.744968707
+## [6,] -0.3245506 -0.566973655  0.1598465 -0.507915905  0.08024349 -0.330583071
+## [7,] -0.3194032  0.307882771  0.5410484 -0.143082348 -0.56607057 -0.266469812
+##             [,7]
+## [1,] -0.24146701
+## [2,] -0.01126548
+## [3,]  0.58524622
+## [4,] -0.46088973
+## [5,] -0.33784371
+## [6,] -0.41707805
+## [7,]  0.31391372
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigenValueAirPolCor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.3367826 1.3860007 1.2040659 0.7270865 0.6534765 0.5366888 0.1558989
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#The proportion of total variance accounted for matrx corellation}
+\FunctionTok{library}\NormalTok{(roperators)}
+\NormalTok{propTotVarCor }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(airPollution), }\AttributeTok{nrow =} \DecValTok{1}\NormalTok{)}
+\NormalTok{temp }\OtherTok{=} \DecValTok{0}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(airPollution))}
+\NormalTok{\{}
+\NormalTok{  temp }\SpecialCharTok{\%+=\%}\NormalTok{ eigenValueAirPolCor[i]}
+\NormalTok{  prop }\OtherTok{=}\NormalTok{ (temp}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(eigenValueAirPolCor)) }\SpecialCharTok{*} \DecValTok{100}
+\NormalTok{  propTotVarCor[}\DecValTok{1}\NormalTok{,i] }\OtherTok{=}\NormalTok{ prop}
+\NormalTok{\}}
+\NormalTok{propTotVarCor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]     [,2]     [,3]     [,4]     [,5]     [,6] [,7]
+## [1,] 33.38261 53.18262 70.38356 80.77051 90.10589 97.77287  100
+\end{verbatim}
+
+The proportion of total variance accounted for by the fourth principal
+component is 80.77\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rhoyxCor }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(airPollution), }\AttributeTok{nrow =} \FunctionTok{ncol}\NormalTok{(airPollution))}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(airPollution))}
+\NormalTok{\{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(airPollution))\{}
+\NormalTok{   coryx }\OtherTok{\textless{}{-}}\NormalTok{ eigenVectorsAirPolCor[i,j]}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(eigenValueAirPolCor[i])}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(S\_airPol[j,j])  }
+\NormalTok{   rhoyxCor[i,j] }\OtherTok{\textless{}{-}}\NormalTok{coryx}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{rhoyxCor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]          [,2]        [,3]         [,4]        [,5]
+## [1,]  0.22895996  0.0245536030  0.79730312  0.242816501  0.25418785
+## [2,] -0.15306086 -0.0357635354  0.21420081  0.842490961 -0.05452849
+## [3,] -0.38244840 -0.0004316624 -0.10104635  0.005350273  0.18665645
+## [4,] -0.20364435  0.0213807721 -0.28136808  0.227809286 -0.01433997
+## [5,] -0.25461760  0.0093154959  0.12879114 -0.031542569  0.01204164
+## [6,] -0.15037434 -0.0239602075  0.09491777 -0.342200596  0.01743871
+## [7,] -0.07976104  0.0070125086  0.17315729 -0.051955955 -0.06630336
+##              [,6]        [,7]
+## [1,] -0.061405929 -0.53360504
+## [2,] -0.001205844 -0.01917274
+## [3,] -0.021595499  0.92836064
+## [4,] -0.068976601 -0.56812386
+## [5,]  0.108198875 -0.39480606
+## [6,] -0.043512255 -0.44170423
+## [7,] -0.018903374  0.17917807
+\end{verbatim}
+
+pada variabel X dalam Y1 sebagian besar nilai korelasi nya hampir sama
+yang menandakan hampir semua variabel X dalam Y1 sama pentingnya
+
+Kesimpulan: dengan matrix kovarians hanya memerlukan komponen utama
+pertama saja sudah menghasilkan total proporsi sebesar 87.29\% dibanding
+menggunakan matrix korelasi yang membutuhkan 4 komponen pertama dengan
+total proporsi sebesar 80.77\%. Karena 80\% total proporsi dijelaskan
+oleh komponen utama pertama maka yang di rekomendasikan ialah penggunaan
+matrix korelasi yaitu dengan lebih 2 atau lebih komponen sedikit untuk
+menjelaskan total proporsi 80.77\%
+
+\hypertarget{soal-3-8.14}{%
+\subsection{Soal 3: 8.14}\label{soal-3-8.14}}
+
+Lakukan analisis komponen utama menggunakan matriks kovarians sampel
+dari data keringat yang diberikan dalam Contoh 5.2. Buatlah plot \(Q-Q\)
+untuk setiap komponen utama yang penting. Apakah ada pengamatan yang
+mencurigakan? Menjelaskan.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{url3 }\OtherTok{\textless{}{-}} \StringTok{"https://raw.githubusercontent.com/rii92/tugas{-}APG/main/tugas\%20pertemuan\%208/table\%205.1.csv"}
+\NormalTok{sweat }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(url3)}
+\NormalTok{sweat }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(sweat, }\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Individual))}
+\NormalTok{sweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    SweatRate Sodium Potassium
+## 1        3.7   48.5       9.3
+## 2        5.7   65.1       8.0
+## 3        3.8   47.2      10.9
+## 4        3.2   53.2      12.0
+## 5        3.1   55.5       9.7
+## 6        4.6   36.1       7.9
+## 7        2.4   24.8      14.0
+## 8        7.2   33.1       7.6
+## 9        6.7   47.4       8.5
+## 10       5.4   54.1      11.3
+## 11       3.9   36.9      12.7
+## 12       4.5   58.8      12.3
+## 13       3.5   27.8       9.8
+## 14       4.5   40.2       8.4
+## 15       1.5   13.5      10.1
+## 16       8.5   56.4       7.1
+## 17       4.5   71.6       8.2
+## 18       6.5   52.8      10.9
+## 19       4.1   44.1      11.2
+## 20       5.5   40.9       9.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{miu0Sweat }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{alphaSweat }\OtherTok{\textless{}{-}} \FloatTok{0.1}
+\NormalTok{n\_sweat }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(sweat)}
+\NormalTok{p\_sweat }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(sweat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{XbarSweat }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(sweat)}
+\NormalTok{XbarSweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## SweatRate    Sodium Potassium 
+##     4.640    45.400     9.965
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{S\_sweat }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(sweat)}
+\NormalTok{S\_sweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           SweatRate   Sodium Potassium
+## SweatRate  2.879368  10.0100 -1.809053
+## Sodium    10.010000 199.7884 -5.640000
+## Potassium -1.809053  -5.6400  3.627658
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SInverseSweat }\OtherTok{\textless{}{-}} \FunctionTok{solve}\NormalTok{(S\_sweat)}
+\NormalTok{SInverseSweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             SweatRate       Sodium    Potassium
+## SweatRate  0.58615531 -0.022085719  0.257968742
+## Sodium    -0.02208572  0.006067227 -0.001580929
+## Potassium  0.25796874 -0.001580929  0.401846765
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(sweat)}
+\NormalTok{R}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            SweatRate     Sodium  Potassium
+## SweatRate  1.0000000  0.4173499 -0.5597440
+## Sodium     0.4173499  1.0000000 -0.2094984
+## Potassium -0.5597440 -0.2094984  1.0000000
+\end{verbatim}
+
+pada matrix korelasi terdapat korelasi kurang dari -5, hal ini
+kemungkinan terdapat multikolinieritas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{T2\_sweat }\OtherTok{\textless{}{-}}\NormalTok{ n\_sweat}\SpecialCharTok{*}\NormalTok{(XbarSweat}\SpecialCharTok{{-}}\NormalTok{miu0Sweat)}\SpecialCharTok{\%*\%}\NormalTok{SInverseSweat}\SpecialCharTok{\%*\%}\NormalTok{(XbarSweat}\SpecialCharTok{{-}}\NormalTok{miu0Sweat)}
+\NormalTok{T2\_sweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 9.738773
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C2\_sweat }\OtherTok{\textless{}{-}}\NormalTok{ (n\_sweat}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{p\_sweat}\SpecialCharTok{*}\FunctionTok{qf}\NormalTok{(}\AttributeTok{p =} \DecValTok{1}\SpecialCharTok{{-}}\NormalTok{alphaSweat, }\AttributeTok{df1 =}\NormalTok{ p\_sweat, }\AttributeTok{df2 =}\NormalTok{ n\_sweat}\SpecialCharTok{{-}}\NormalTok{p\_sweat)}\SpecialCharTok{/}\NormalTok{(n\_sweat}\SpecialCharTok{{-}}\NormalTok{p\_sweat)}
+\NormalTok{C2\_sweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8.172573
+\end{verbatim}
+
+Karena \(T^{2}\) \textgreater{} \(C^{2}\) maka secara multivariate data
+ialah normal
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigenSweat }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(}\FunctionTok{cov}\NormalTok{(sweat))}
+\NormalTok{eigenValueSweat }\OtherTok{\textless{}{-}}\NormalTok{ eigenSweat}\SpecialCharTok{$}\NormalTok{values}
+\NormalTok{eigenVectorsSweat }\OtherTok{\textless{}{-}}\NormalTok{ eigenSweat}\SpecialCharTok{$}\NormalTok{vectors}
+\NormalTok{eigenValueSweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 200.462464   4.531591   1.301392
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigenVectorsSweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]        [,2]        [,3]
+## [1,] -0.05084144 -0.57370364  0.81748351
+## [2,] -0.99828352  0.05302042 -0.02487655
+## [3,]  0.02907156  0.81734508  0.57541452
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Analisis PCA}
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{princomp}\NormalTok{(sweat, }\AttributeTok{cor =} \ConstantTok{FALSE}\NormalTok{), }\AttributeTok{loadings =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importance of components:
+##                            Comp.1     Comp.2      Comp.3
+## Standard deviation     13.7999761 2.07485204 1.111900514
+## Proportion of Variance  0.9717251 0.02196651 0.006308391
+## Cumulative Proportion   0.9717251 0.99369161 1.000000000
+## 
+## Loadings:
+##           Comp.1 Comp.2 Comp.3
+## SweatRate         0.574  0.817
+## Sodium     0.998              
+## Potassium        -0.817  0.575
+\end{verbatim}
+
+komponen utama pertama memiliki proporsi total varians kumulatif sebesar
+97.17\%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataPcaSweat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ n\_sweat, }\AttributeTok{ncol =}\NormalTok{ p\_sweat)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p\_sweat)\{}
+  \ControlFlowTok{for}\NormalTok{(j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n\_sweat)\{}
+\NormalTok{    dataPcaSweat[j,i] }\OtherTok{=}\NormalTok{ eigenVectorsSweat[,i]}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(sweat[j,])}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\NormalTok{dataPcaSweat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]      [,2]      [,3]
+##  [1,] -48.33450  8.050096  7.169531
+##  [2,] -65.04548  6.720279  7.643509
+##  [3,] -46.99530  9.231551  8.204283
+##  [4,] -52.92252 10.792976  8.197489
+##  [5,] -55.28035  9.092399  6.735071
+##  [6,] -36.04224  5.732027  7.408155
+##  [7,] -24.47245 11.380849  9.400825
+##  [8,] -33.18830  3.836132  9.435618
+##  [9,] -47.41217  5.616787  9.189015
+## [10,] -53.95317  9.006405  9.570774
+## [11,] -36.66573 10.099292  9.578006
+## [12,] -58.57028 10.589279  9.293533
+## [13,] -27.64533  7.475987  7.808687
+## [14,] -40.11558  6.415453  7.512121
+## [15,] -13.25947  8.110406  6.702079
+## [16,] -56.52893  3.917021  9.631016
+## [17,] -71.46750  7.916826  6.615914
+## [18,] -52.72296  7.979466 10.272179
+## [19,] -43.90715  9.140281  8.699269
+## [20,] -40.83615  6.696209  8.887605
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#QQ{-}Plot}
+\FunctionTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: carData
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p\_sweat)\{}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"QQ{-}Plot untuk Y"}\NormalTok{,i))}
+\CommentTok{\#qqnorm(dataPca[,i])}
+\CommentTok{\#qqline(dataPca[,i])}
+\FunctionTok{qqPlot}\NormalTok{(dataPcaSweat[,i], }\AttributeTok{main =} \StringTok{"QQ{-}Plot of The First Principal Component"}\NormalTok{, xlab }
+\OtherTok{=} \StringTok{"Quantile Standard Normal"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"yicap(j)"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "QQ-Plot untuk Y 1"
+\end{verbatim}
+
+\includegraphics{221911192_TugasAPGPertemuan8_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+\begin{verbatim}
+## [1] "QQ-Plot untuk Y 2"
+\end{verbatim}
+
+\includegraphics{221911192_TugasAPGPertemuan8_files/figure-latex/unnamed-chunk-30-2.pdf}
+
+\begin{verbatim}
+## [1] "QQ-Plot untuk Y 3"
+\end{verbatim}
+
+\includegraphics{221911192_TugasAPGPertemuan8_files/figure-latex/unnamed-chunk-30-3.pdf}
+Dari hasil bisa kita lihat QQ plot untuk data PCA yang di dapat yaitu
+tanpa outlier, artinya tidak ada pengamatan yang mencurigakan
+
+\end{document}
