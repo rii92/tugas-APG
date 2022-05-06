@@ -1,0 +1,195 @@
+**Nama: Riofebri Prasetia** <br>
+**NIM: 221911192** <br>
+**Kelas: 3SI1** <br>
+**Tugas pertemuan 9** <br>
+## 9.10
+```{r}
+#The correlation matrix for chicken-bone measurements:
+chickenBon <- matrix(c(1, 0.505, 0.569, 0.602, 0.621, 0.603,
+                 0.505, 1, 0.422, 0.467, 0.482, 0.45,
+                 0.569, 0.422, 1, 0.926, 0.877, 0.878,
+                 0.602, 0.467, 0.926, 1, 0.874, 0.894,
+                 0.621, 0.482, 0.877, 0.874, 1, 0.937,
+                 0.603, 0.45, 0.878, 0.894, 0.937, 1),ncol = 6, nrow = 6)
+chickenBon
+```
+```{r}
+#The following estimated factor loadings were extracted by the maximum likelihood procedure:
+variabel <- c("1. Skull length",
+                       "2. Skull breadth",
+                       "3. Femur length",
+                       "4. Tibia length",
+                       "5. Humerus length",
+                       "6. Ulna length")
+F1 <- c(0.602,
+        0.467,
+        0.926,
+        1,
+        0.874,
+        0.894)
+F2 <- c(0.2, 0.154, 0.143, 0, 0.476, 0.327)
+F_1 <- c(0.484, 0.375, 0.603, 0.519, 0.861, 0.744)
+F_2 <- c(0.411, 0.319, 0.717, 0.855, 0.499, 0.594)
+table <- data.frame(variabel, F1, F2, F_1, F_2)
+table
+```
+Using the unrotated estimated factor loadings, obtain the maximum likelihood estimates of the following.
+(a) The specific variances.
+```{r}
+# Specific Variance F estimated
+
+matrixSpi <- matrix(c(0), nrow = nrow(chickenBon), ncol = ncol(chickenBon))
+SpiChickenBon <- 1 - (table$F1^2 + table$F2^2)
+for(i in 1:ncol(chickenBon))
+{
+        matrixSpi[i,i] <- SpiChickenBon[i]
+}
+matrixSpi
+
+# Specific variance F* varimax rotated estimated
+matrixSpiF <- matrix(c(0), nrow = nrow(chickenBon), ncol = ncol(chickenBon))
+SpiChickenBonF <- 1 - (table$F_1^2 + table$F_2^2)
+for(i in 1:ncol(chickenBon))
+{
+        matrixSpiF[i,i] <- SpiChickenBonF[i]
+}
+matrixSpiF
+```
+
+(b) The communalities. 
+```{r}
+# The Communalities F estimated
+hChickenBon <- table$F1^2 + table$F2^2
+hChickenBon
+
+# The Communalities F* varimax rotated estimated
+hChickenBonF <- table$F_1^2 + table$F_2^2
+hChickenBonF
+
+```
+
+(c) The proportion of variance explained by each factor.
+```{r}
+# The proportion of variance explained by each factor F estimated
+LChickenBon <- data.frame(c(table[2], table[3]))
+LChickenBon
+proChickenBon <- (table$F1^2 + table$F2^2)/nrow(LChickenBon)
+proChickenBon
+
+# The proportion of variance explained by each factor F* varimax rotated estimated
+LChickenBonF <- data.frame(c(table[4], table[5]))
+LChickenBonF
+proChickenBonF <- (table$F_1^2 + table$F_2^2)/nrow(LChickenBon)
+proChickenBonF
+
+```
+
+(d) The residual matrix $R - \hat{L_{z}}\hat{L^{'}_{z}} - \hat{\Psi_{z}}$
+```{r}
+LChickenBon <- as.matrix(LChickenBon)
+LChickenBonF <- as.matrix(LChickenBonF)
+
+# The Residual Matrix F estimated
+matrixChickenBon <- chickenBon - LChickenBon%*%t(LChickenBon) - matrixSpi
+matrixChickenBon
+
+# The Residual Matrix F* varimax rotated estimated
+matrixChickenBonF <- chickenBon - LChickenBonF%*%t(LChickenBonF) - matrixSpiF
+matrixChickenBonF
+
+```
+
+
+
+## 9.19
+
+A firm is attempting to evaluate the quality of its sales staff and is trying to find an examination or series of tests that may reveal the potential for good performance in sales. The firm has selected a random sample of 50 sales people and has evaluated each on 3 measures of performance: growth of sales, profitability of sales, and new-account sales.These measures have been converted to a scale, on which 100 indicates "average" performance. Each of the 50 individuals took each of 4 tests, which purported to measure creativity, mechanical reasoning, abstract reasoning, and mathematical ability, respectively. The n = 50 observations on p = 7 variables are listed in Table 9.12.
+
+(a) Assume an orthogonal factor model for the standardized variables $Z_{i} = (X_{i} - \mu_{i})/ \sigma_{ii}^{1/2}$, i = 1, 2, ... , 7. Obtain either the principal component solution or the maximum likelihood solution for m = 2 and m = 3 common factors. 
+
+(b) Given your solution in (a), obtain the rotated loadings form = 2 and m = 3. Compare the two sets of rotated loadings. Interpret the m = 2 and m = 3 
+factor solutions. 
+
+(c) List the estimated communalities, specific variances, and $\hat{L}\hat{L^{'}} + \hat{\Psi}$ for the m = 2 and m = 3 solutions. Compare the results. Which choice of m do you prefer at this point? Why? 
+
+(d) Conduct a test of H0: $LL^{'} + \Psi$ + '\}I versus H1: $\Sigma \ne LL^{'} + \Psi$ for both m = 2 and m = 3 at the a = .01 level. With these results and those in Parts b and c, which choice of $m$ appears to be the best? 
+
+(e) Suppose a new salesperson, selected at random, obtains the test scores 
+$x^{'} = [x_{1}, x_{2},... , x_{7}]$ = [ 110, 98, 105, 15, 18, 12, 35] . Calculate the salesperson's factor score using the weighted least squares method and the regression method.
+
+*Note*: The components of x must be standardized using the sample means and variances calculated from the original data.
+
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%209/dataSoal9.19.csv"
+salesPeople <- read.csv(url)
+salesPeople <- subset(salesPeople, select = -c(Salesperson))
+salesPeople
+```
+(a)
+```{r}
+library(factoextra)
+factorPCA <- summary(princomp(salesPeople, cor = FALSE), loadings = TRUE)
+factorPCA
+```
+```{r}
+factor2 <- factanal(x = salesPeople, factors = 2)
+factor3 <- factanal(x = salesPeople, factors = 3)
+factor2
+factor3
+```
+(b)
+
+(c)
+```{r}
+SSalesPeople <- cov(salesPeople)
+eigenSalespeople <- eigen(cov(salesPeople))
+eigenSalespeopleValue <- eigenSalespeople$values
+eigenSalespeopleVector <- eigenSalespeople$vectors
+LPC <- matrix(c(0), ncol = ncol(salesPeople), nrow = ncol(salesPeople))
+for(i in 1:ncol(salesPeople))
+{
+        LPC[,i] <- sqrt(eigenSalespeopleValue[i])*eigenSalespeopleVector[,i]
+}
+
+specificVariance <- cov(salesPeople)-LsalesPeople
+for(i in 1:ncol(salesPeople))
+{
+        for(j in 1:ncol(salesPeople))
+        {
+                if(i == j)
+                {
+                        specificVariance[i,j] <- specificVariance[i,j]
+                } else{
+                        specificVariance[i,j] <- 0
+                }
+        }
+}
+Communalities <- matrix(c(0), nrow = 1, ncol = ncol(salesPeople))
+for(i in 1:ncol(salesPeople))
+{
+        for(j in 1:ncol(salesPeople))
+        {
+                Communalities[,i] <- Communalities[,i] + (LsalesPeople[i,j])^2
+        }
+}
+
+Communalities
+specificVariance
+LPC%*%t(LPC)+specificVariance
+```
+
+## 9.20
+Using the air-pollution variables X1, X2, X5, and X6 given in Table 1.5, generate the sample covariance matrix. 
+
+(a) Obtain the principal component solution to a factor model with m = 1 andm = 2. 
+
+(b) Find the maximum likelihood estimates of **L** and $\Psi$ for m = 1 and m = 2. 
+
+(c) Compare the factorization obtained by the principal component and maximum likelihood methods.
+
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/table%201.5.csv"
+airPollution <- read.csv(url)
+airPollution
+```
+
