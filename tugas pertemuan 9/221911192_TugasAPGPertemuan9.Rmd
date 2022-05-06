@@ -107,8 +107,7 @@ A firm is attempting to evaluate the quality of its sales staff and is trying to
 
 (a) Assume an orthogonal factor model for the standardized variables $Z_{i} = (X_{i} - \mu_{i})/ \sigma_{ii}^{1/2}$, i = 1, 2, ... , 7. Obtain either the principal component solution or the maximum likelihood solution for m = 2 and m = 3 common factors. 
 
-(b) Given your solution in (a), obtain the rotated loadings form = 2 and m = 3. Compare the two sets of rotated loadings. Interpret the m = 2 and m = 3 
-factor solutions. 
+(b) Given your solution in (a), obtain the rotated loadings form = 2 and m = 3. Compare the two sets of rotated loadings. Interpret the m = 2 and m = 3 factor solutions. 
 
 (c) List the estimated communalities, specific variances, and $\hat{L}\hat{L^{'}} + \hat{\Psi}$ for the m = 2 and m = 3 solutions. Compare the results. Which choice of m do you prefer at this point? Why? 
 
@@ -127,11 +126,6 @@ salesPeople
 ```
 (a)
 ```{r}
-library(factoextra)
-factorPCA <- summary(princomp(salesPeople, cor = FALSE), loadings = TRUE)
-factorPCA
-```
-```{r}
 factor2 <- factanal(x = salesPeople, factors = 2)
 factor3 <- factanal(x = salesPeople, factors = 3)
 factor2
@@ -141,47 +135,55 @@ factor3
 
 (c)
 ```{r}
-SSalesPeople <- cov(salesPeople)
-eigenSalespeople <- eigen(cov(salesPeople))
-eigenSalespeopleValue <- eigenSalespeople$values
-eigenSalespeopleVector <- eigenSalespeople$vectors
-LPC <- matrix(c(0), ncol = ncol(salesPeople), nrow = ncol(salesPeople))
-for(i in 1:ncol(salesPeople))
+#untuk m = 2
+communalities2 <- matrix(c(0), nrow = nrow(factor2$loadings), ncol = 1)
+SpecificVariance2 <- matrix(c(0), nrow = nrow(factor2$loadings), ncol = nrow(factor2$loadings))
+for(i in 1:nrow(factor2$loadings))
 {
-        LPC[,i] <- sqrt(eigenSalespeopleValue[i])*eigenSalespeopleVector[,i]
+        communalities2[i] <- (factor2$loadings[i,1])^2 + (factor2$loadings[i,2])^2
 }
 
-specificVariance <- cov(salesPeople)-LsalesPeople
-for(i in 1:ncol(salesPeople))
+for(i in 1:nrow(factor2$loadings))
 {
-        for(j in 1:ncol(salesPeople))
-        {
-                if(i == j)
-                {
-                        specificVariance[i,j] <- specificVariance[i,j]
-                } else{
-                        specificVariance[i,j] <- 0
-                }
-        }
-}
-Communalities <- matrix(c(0), nrow = 1, ncol = ncol(salesPeople))
-for(i in 1:ncol(salesPeople))
-{
-        for(j in 1:ncol(salesPeople))
-        {
-                Communalities[,i] <- Communalities[,i] + (LsalesPeople[i,j])^2
-        }
+        SpecificVariance2[i,i] <- 1 - communalities2[1]
 }
 
-Communalities
-specificVariance
-LPC%*%t(LPC)+specificVariance
+
+communalities2
+SpecificVariance2
+factor2$loadings%*%t(factor2$loadings) + SpecificVariance2
+```
+```{r}
+#untuk m = 3
+communalities3 <- matrix(c(0), nrow = nrow(factor3$loadings), ncol = 1)
+SpecificVariance3 <- matrix(c(0), nrow = nrow(factor3$loadings), ncol = nrow(factor3$loadings))
+for(i in 1:nrow(factor3$loadings))
+{
+        communalities3[i] <- (factor3$loadings[i,1])^3 + (factor3$loadings[i,3])^3
+}
+
+for(i in 1:nrow(factor3$loadings))
+{
+        SpecificVariance3[i,i] <- 1 - communalities3[1]
+}
+
+
+communalities3
+SpecificVariance3
+factor3$loadings%*%t(factor3$loadings) + SpecificVariance3
+
+```
+(d)
+```{r}
+#test dengan alpha = .01
+factor2$PVAL
+factor3$PVAL
 ```
 
 ## 9.20
 Using the air-pollution variables X1, X2, X5, and X6 given in Table 1.5, generate the sample covariance matrix. 
 
-(a) Obtain the principal component solution to a factor model with m = 1 andm = 2. 
+(a) Obtain the principal component solution to a factor model with m = 1 and m = 2. 
 
 (b) Find the maximum likelihood estimates of **L** and $\Psi$ for m = 1 and m = 2. 
 
@@ -191,5 +193,44 @@ Using the air-pollution variables X1, X2, X5, and X6 given in Table 1.5, generat
 url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/table%201.5.csv"
 airPollution <- read.csv(url)
 airPollution
+```
+(a)
+```{r}
+eigenAirPollution <- eigen(cov(airPollution))
+eigenAirPollution$values
+
+F1AirPollution <- sqrt(eigenAirPollution$values[1])*eigenAirPollution$vectors[,1]
+F1AirPollution
+```
+
+(b)
+```{r}
+factor1AirPollution <- factanal(x = airPollution, factors = 1)
+factor2AirPollution <- factanal(x = airPollution, factors = 2)
+
+# m = 1
+print(paste("untuk m = 1"))
+factor1AirPollution$loadings
+SpecificVariance1AirPollution <- matrix(c(0), ncol = nrow(factor1AirPollution$loadings), nrow = nrow(factor1AirPollution$loadings))
+
+for(i in 1:nrow(factor1AirPollution$loadings))
+{
+        SpecificVariance1AirPollution[i,i] <- 1 - (factor1AirPollution$loadings[i,1])^2
+}
+
+SpecificVariance1AirPollution
+```
+```{r}
+# m = 2
+print(paste("untuk m = 2"))
+factor2AirPollution$loadings
+SpecificVariance2AirPollution <- matrix(c(0), ncol = nrow(factor2AirPollution$loadings), nrow = nrow(factor2AirPollution$loadings))
+
+for(i in 2:nrow(factor2AirPollution$loadings))
+{
+        SpecificVariance2AirPollution[i,i] <- 1 - ((factor2AirPollution$loadings[i,2])^2 + (factor2AirPollution$loadings[i,1])^2)
+}
+
+SpecificVariance2AirPollution
 ```
 
