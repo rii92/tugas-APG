@@ -1,0 +1,1206 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\textbf{Nama: Riofebri Prasetia} \textbf{NIM: 221911192} \textbf{Kelas:
+3SI1} \textbf{Tugas pertemuan 9}
+
+\hypertarget{section}{%
+\subsection{9.10}\label{section}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#The correlation matrix for chicken{-}bone measurements:}
+\NormalTok{chickenBon }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{0.505}\NormalTok{, }\FloatTok{0.569}\NormalTok{, }\FloatTok{0.602}\NormalTok{, }\FloatTok{0.621}\NormalTok{, }\FloatTok{0.603}\NormalTok{,}
+                 \FloatTok{0.505}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.422}\NormalTok{, }\FloatTok{0.467}\NormalTok{, }\FloatTok{0.482}\NormalTok{, }\FloatTok{0.45}\NormalTok{,}
+                 \FloatTok{0.569}\NormalTok{, }\FloatTok{0.422}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.926}\NormalTok{, }\FloatTok{0.877}\NormalTok{, }\FloatTok{0.878}\NormalTok{,}
+                 \FloatTok{0.602}\NormalTok{, }\FloatTok{0.467}\NormalTok{, }\FloatTok{0.926}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.874}\NormalTok{, }\FloatTok{0.894}\NormalTok{,}
+                 \FloatTok{0.621}\NormalTok{, }\FloatTok{0.482}\NormalTok{, }\FloatTok{0.877}\NormalTok{, }\FloatTok{0.874}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.937}\NormalTok{,}
+                 \FloatTok{0.603}\NormalTok{, }\FloatTok{0.45}\NormalTok{, }\FloatTok{0.878}\NormalTok{, }\FloatTok{0.894}\NormalTok{, }\FloatTok{0.937}\NormalTok{, }\DecValTok{1}\NormalTok{),}\AttributeTok{ncol =} \DecValTok{6}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{6}\NormalTok{)}
+\NormalTok{chickenBon}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]
+## [1,] 1.000 0.505 0.569 0.602 0.621 0.603
+## [2,] 0.505 1.000 0.422 0.467 0.482 0.450
+## [3,] 0.569 0.422 1.000 0.926 0.877 0.878
+## [4,] 0.602 0.467 0.926 1.000 0.874 0.894
+## [5,] 0.621 0.482 0.877 0.874 1.000 0.937
+## [6,] 0.603 0.450 0.878 0.894 0.937 1.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#The following estimated factor loadings were extracted by the maximum likelihood procedure:}
+\NormalTok{variabel }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"1. Skull length"}\NormalTok{,}
+                       \StringTok{"2. Skull breadth"}\NormalTok{,}
+                       \StringTok{"3. Femur length"}\NormalTok{,}
+                       \StringTok{"4. Tibia length"}\NormalTok{,}
+                       \StringTok{"5. Humerus length"}\NormalTok{,}
+                       \StringTok{"6. Ulna length"}\NormalTok{)}
+\NormalTok{F1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.602}\NormalTok{,}
+        \FloatTok{0.467}\NormalTok{,}
+        \FloatTok{0.926}\NormalTok{,}
+        \DecValTok{1}\NormalTok{,}
+        \FloatTok{0.874}\NormalTok{,}
+        \FloatTok{0.894}\NormalTok{)}
+\NormalTok{F2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\FloatTok{0.154}\NormalTok{, }\FloatTok{0.143}\NormalTok{, }\DecValTok{0}\NormalTok{, }\FloatTok{0.476}\NormalTok{, }\FloatTok{0.327}\NormalTok{)}
+\NormalTok{F\_1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.484}\NormalTok{, }\FloatTok{0.375}\NormalTok{, }\FloatTok{0.603}\NormalTok{, }\FloatTok{0.519}\NormalTok{, }\FloatTok{0.861}\NormalTok{, }\FloatTok{0.744}\NormalTok{)}
+\NormalTok{F\_2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.411}\NormalTok{, }\FloatTok{0.319}\NormalTok{, }\FloatTok{0.717}\NormalTok{, }\FloatTok{0.855}\NormalTok{, }\FloatTok{0.499}\NormalTok{, }\FloatTok{0.594}\NormalTok{)}
+\NormalTok{table }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(variabel, F1, F2, F\_1, F\_2)}
+\NormalTok{table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            variabel    F1    F2   F_1   F_2
+## 1   1. Skull length 0.602 0.200 0.484 0.411
+## 2  2. Skull breadth 0.467 0.154 0.375 0.319
+## 3   3. Femur length 0.926 0.143 0.603 0.717
+## 4   4. Tibia length 1.000 0.000 0.519 0.855
+## 5 5. Humerus length 0.874 0.476 0.861 0.499
+## 6    6. Ulna length 0.894 0.327 0.744 0.594
+\end{verbatim}
+
+Using the unrotated estimated factor loadings, obtain the maximum
+likelihood estimates of the following. (a) The specific variances.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Specific Variance F estimated}
+
+\NormalTok{matrixSpi }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(chickenBon), }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(chickenBon))}
+\NormalTok{SpiChickenBon }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ (table}\SpecialCharTok{$}\NormalTok{F1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ table}\SpecialCharTok{$}\NormalTok{F2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(chickenBon))}
+\NormalTok{\{}
+\NormalTok{        matrixSpi[i,i] }\OtherTok{\textless{}{-}}\NormalTok{ SpiChickenBon[i]}
+\NormalTok{\}}
+\NormalTok{matrixSpi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]     [,2]     [,3] [,4]     [,5]     [,6]
+## [1,] 0.597596 0.000000 0.000000    0 0.000000 0.000000
+## [2,] 0.000000 0.758195 0.000000    0 0.000000 0.000000
+## [3,] 0.000000 0.000000 0.122075    0 0.000000 0.000000
+## [4,] 0.000000 0.000000 0.000000    0 0.000000 0.000000
+## [5,] 0.000000 0.000000 0.000000    0 0.009548 0.000000
+## [6,] 0.000000 0.000000 0.000000    0 0.000000 0.093835
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Specific variance F* varimax rotated estimated}
+\NormalTok{matrixSpiF }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(chickenBon), }\AttributeTok{ncol =} \FunctionTok{ncol}\NormalTok{(chickenBon))}
+\NormalTok{SpiChickenBonF }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ (table}\SpecialCharTok{$}\NormalTok{F\_1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ table}\SpecialCharTok{$}\NormalTok{F\_2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(chickenBon))}
+\NormalTok{\{}
+\NormalTok{        matrixSpiF[i,i] }\OtherTok{\textless{}{-}}\NormalTok{ SpiChickenBonF[i]}
+\NormalTok{\}}
+\NormalTok{matrixSpiF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]     [,2]     [,3]      [,4]     [,5]     [,6]
+## [1,] 0.596823 0.000000 0.000000  0.000000 0.000000 0.000000
+## [2,] 0.000000 0.757614 0.000000  0.000000 0.000000 0.000000
+## [3,] 0.000000 0.000000 0.122302  0.000000 0.000000 0.000000
+## [4,] 0.000000 0.000000 0.000000 -0.000386 0.000000 0.000000
+## [5,] 0.000000 0.000000 0.000000  0.000000 0.009678 0.000000
+## [6,] 0.000000 0.000000 0.000000  0.000000 0.000000 0.093628
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The communalities.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The Communalities F estimated}
+\NormalTok{hChickenBon }\OtherTok{\textless{}{-}}\NormalTok{ table}\SpecialCharTok{$}\NormalTok{F1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ table}\SpecialCharTok{$}\NormalTok{F2}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{hChickenBon}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.402404 0.241805 0.877925 1.000000 0.990452 0.906165
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The Communalities F* varimax rotated estimated}
+\NormalTok{hChickenBonF }\OtherTok{\textless{}{-}}\NormalTok{ table}\SpecialCharTok{$}\NormalTok{F\_1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ table}\SpecialCharTok{$}\NormalTok{F\_2}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{hChickenBonF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.403177 0.242386 0.877698 1.000386 0.990322 0.906372
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The proportion of variance explained by each factor.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The proportion of variance explained by each factor F estimated}
+\NormalTok{LChickenBon }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{c}\NormalTok{(table[}\DecValTok{2}\NormalTok{], table[}\DecValTok{3}\NormalTok{]))}
+\NormalTok{LChickenBon}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      F1    F2
+## 1 0.602 0.200
+## 2 0.467 0.154
+## 3 0.926 0.143
+## 4 1.000 0.000
+## 5 0.874 0.476
+## 6 0.894 0.327
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{proChickenBon }\OtherTok{\textless{}{-}}\NormalTok{ (table}\SpecialCharTok{$}\NormalTok{F1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ table}\SpecialCharTok{$}\NormalTok{F2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(LChickenBon)}
+\NormalTok{proChickenBon}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.06706733 0.04030083 0.14632083 0.16666667 0.16507533 0.15102750
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The proportion of variance explained by each factor F* varimax rotated estimated}
+\NormalTok{LChickenBonF }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{c}\NormalTok{(table[}\DecValTok{4}\NormalTok{], table[}\DecValTok{5}\NormalTok{]))}
+\NormalTok{LChickenBonF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     F_1   F_2
+## 1 0.484 0.411
+## 2 0.375 0.319
+## 3 0.603 0.717
+## 4 0.519 0.855
+## 5 0.861 0.499
+## 6 0.744 0.594
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{proChickenBonF }\OtherTok{\textless{}{-}}\NormalTok{ (table}\SpecialCharTok{$}\NormalTok{F\_1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ table}\SpecialCharTok{$}\NormalTok{F\_2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(LChickenBon)}
+\NormalTok{proChickenBonF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.06719617 0.04039767 0.14628300 0.16673100 0.16505367 0.15106200
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  The residual matrix
+  \(R - \hat{L_{z}}\hat{L^{'}_{z}} - \hat{\Psi_{z}}\)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LChickenBon }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(LChickenBon)}
+\NormalTok{LChickenBonF }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(LChickenBonF)}
+
+\CommentTok{\# The Residual Matrix F estimated}
+\NormalTok{matrixChickenBon }\OtherTok{\textless{}{-}}\NormalTok{ chickenBon }\SpecialCharTok{{-}}\NormalTok{ LChickenBon}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(LChickenBon) }\SpecialCharTok{{-}}\NormalTok{ matrixSpi}
+\NormalTok{matrixChickenBon}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]      [,2]      [,3] [,4]      [,5]      [,6]
+## [1,]  0.000000  0.193066 -0.017052    0 -0.000348 -0.000588
+## [2,]  0.193066  0.000000 -0.032464    0  0.000538 -0.017856
+## [3,] -0.017052 -0.032464  0.000000    0 -0.000392  0.003395
+## [4,]  0.000000  0.000000  0.000000    0  0.000000  0.000000
+## [5,] -0.000348  0.000538 -0.000392    0  0.000000 -0.000008
+## [6,] -0.000588 -0.017856  0.003395    0 -0.000008  0.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The Residual Matrix F* varimax rotated estimated}
+\NormalTok{matrixChickenBonF }\OtherTok{\textless{}{-}}\NormalTok{ chickenBon }\SpecialCharTok{{-}}\NormalTok{ LChickenBonF}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(LChickenBonF) }\SpecialCharTok{{-}}\NormalTok{ matrixSpiF}
+\NormalTok{matrixChickenBonF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]
+## [1,]  0.000000  0.192391 -0.017539 -0.000601 -0.000813 -0.001230
+## [2,]  0.192391  0.000000 -0.032848 -0.000370 -0.000056 -0.018486
+## [3,] -0.017539 -0.032848  0.000000  0.000008  0.000034  0.003470
+## [4,] -0.000601 -0.000370  0.000008  0.000000  0.000496 -0.000006
+## [5,] -0.000813 -0.000056  0.000034  0.000496  0.000000  0.000010
+## [6,] -0.001230 -0.018486  0.003470 -0.000006  0.000010  0.000000
+\end{verbatim}
+
+\hypertarget{section-1}{%
+\subsection{9.19}\label{section-1}}
+
+A firm is attempting to evaluate the quality of its sales staff and is
+trying to find an examination or series of tests that may reveal the
+potential for good performance in sales. The firm has selected a random
+sample of 50 sales people and has evaluated each on 3 measures of
+performance: growth of sales, profitability of sales, and new-account
+sales.These measures have been converted to a scale, on which 100
+indicates ``average'' performance. Each of the 50 individuals took each
+of 4 tests, which purported to measure creativity, mechanical reasoning,
+abstract reasoning, and mathematical ability, respectively. The n = 50
+observations on p = 7 variables are listed in Table 9.12.
+
+\emph{Note}: The components of x must be standardized using the sample
+means and variances calculated from the original data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{url }\OtherTok{\textless{}{-}} \StringTok{"https://raw.githubusercontent.com/rii92/tugas{-}APG/main/tugas\%20pertemuan\%209/dataSoal9.19.csv"}
+\NormalTok{salesPeople }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(url)}
+\NormalTok{salesPeople }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(salesPeople, }\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(Salesperson))}
+\NormalTok{salesPeople}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       x1    x2    x3 x4 x5 x6 x7
+## 1   93.0  96.0  97.8  9 12  9 20
+## 2   88.8  91.8  96.8  7 10 10 15
+## 3   95.0 100.3  99.0  8 12  9 26
+## 4  101.3 103.8 106.8 13 14 12 29
+## 5  102.0 107.8 103.0 10 15 12 32
+## 6   95.8  97.5  99.3 10 14 11 21
+## 7   95.5  99.5  99.0  9 12  9 25
+## 8  110.8 122.0 115.3 18 20 15 51
+## 9  102.8 108.3 103.8 10 17 13 31
+## 10 106.8 120.5 102.0 14 18 11 39
+## 11 103.3 109.8 104.0 12 17 12 32
+## 12  99.5 111.8 100.3 10 18  8 31
+## 13 103.5 112.5 107.0 16 17 11 34
+## 14  99.5 105.5 102.3  8 10 11 34
+## 15 100.0 107.0 102.8 13 10  8 34
+## 16  81.5  93.5  95.0  7  9  5 16
+## 17 101.3 105.3 102.8 11 12 11 32
+## 18 103.3 110.8 103.5 11 14 11 35
+## 19  95.3 104.3 103.0  5 14 13 30
+## 20  99.5 105.3 106.3 17 17 11 27
+## 21  88.5  95.3  95.8 10 12  7 15
+## 22  99.3 115.0 104.3  5 11 11 42
+## 23  87.5  92.5  95.8  9  9  7 16
+## 24 105.3 114.0 105.3 12 15 12 37
+## 25 107.0 121.0 109.0 16 19 12 39
+## 26  93.3 102.0  97.8 10 15  7 23
+## 27 106.8 118.0 107.3 14 16 12 39
+## 28 106.8 120.0 104.8 10 16 11 49
+## 29  92.3  90.8  99.8  8 10 13 17
+## 30 106.3 121.0 104.5  9 17 11 44
+## 31 106.0 119.5 110.5 18 15 10 43
+## 32  88.3  92.8  96.8 13 11  8 10
+## 33  96.0 103.3 100.5  7 15 11 27
+## 34  94.3  94.5  99.0 10 12 11 19
+## 35 106.5 121.5 110.5 18 17 10 42
+## 36 106.5 115.5 107.0  8 13 14 47
+## 37  92.0  99.5 103.5 18 16  8 18
+## 38 102.0  99.8 103.3 13 12 14 28
+## 39 108.3 122.3 108.5 15 19 12 41
+## 40 106.8 119.0 106.8 14 20 12 37
+## 41 102.5 109.3 103.8  9 17 13 32
+## 42  92.5 102.5  99.3 13 15  6 23
+## 43 102.8 113.8 106.8 17 20 10 32
+## 44  83.3  87.3  96.3  1  5  9 15
+## 45  94.8 101.8  99.8  7 16 11 24
+## 46 103.5 112.0 110.8 18 13 12 37
+## 47  89.5  96.0  97.3  7 15 11 14
+## 48  84.3  89.8  94.3  8  8  8  9
+## 49 104.3 109.5 106.5 14 12 12 36
+## 50 106.0 118.5 105.0 12 16 11 39
+\end{verbatim}
+
+\textbf{x1: Sales growth} \textbf{x2: Sales Profit ability} \textbf{x3:
+New account sales} \textbf{x4: Creativity test} \textbf{x5: Mechanical
+reasoning test} \textbf{x6: Abstract reasoning test} \textbf{x7:
+Mathematics test}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Assume an orthogonal factor model for the standardized variables
+  \(Z_{i} = (X_{i} - \mu_{i})/ \sigma_{ii}^{1/2}\), i = 1, 2, \ldots{} ,
+  7. Obtain either the principal component solution or the maximum
+  likelihood solution for m = 2 and m = 3 common factors.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor2 }\OtherTok{\textless{}{-}} \FunctionTok{factanal}\NormalTok{(}\AttributeTok{x =}\NormalTok{ salesPeople, }\AttributeTok{factors =} \DecValTok{2}\NormalTok{)}
+\NormalTok{factor3 }\OtherTok{\textless{}{-}} \FunctionTok{factanal}\NormalTok{(}\AttributeTok{x =}\NormalTok{ salesPeople, }\AttributeTok{factors =} \DecValTok{3}\NormalTok{)}
+\NormalTok{factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## factanal(x = salesPeople, factors = 2)
+## 
+## Uniquenesses:
+##    x1    x2    x3    x4    x5    x6    x7 
+## 0.069 0.070 0.123 0.005 0.474 0.614 0.029 
+## 
+## Loadings:
+##    Factor1 Factor2
+## x1 0.852   0.452  
+## x2 0.868   0.419  
+## x3 0.717   0.602  
+## x4 0.148   0.987  
+## x5 0.501   0.525  
+## x6 0.619          
+## x7 0.946   0.277  
+## 
+##                Factor1 Factor2
+## SS loadings      3.545   2.071
+## Proportion Var   0.506   0.296
+## Cumulative Var   0.506   0.802
+## 
+## Test of the hypothesis that 2 factors are sufficient.
+## The chi square statistic is 117.2 on 8 degrees of freedom.
+## The p-value is 1.25e-21
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## factanal(x = salesPeople, factors = 3)
+## 
+## Uniquenesses:
+##    x1    x2    x3    x4    x5    x6    x7 
+## 0.039 0.034 0.088 0.005 0.447 0.005 0.038 
+## 
+## Loadings:
+##    Factor1 Factor2 Factor3
+## x1 0.793   0.374   0.438  
+## x2 0.911   0.317   0.185  
+## x3 0.651   0.544   0.438  
+## x4 0.255   0.964          
+## x5 0.542   0.465   0.207  
+## x6 0.299           0.950  
+## x7 0.917   0.180   0.298  
+## 
+##                Factor1 Factor2 Factor3
+## SS loadings      3.175   1.718   1.453
+## Proportion Var   0.454   0.245   0.208
+## Cumulative Var   0.454   0.699   0.906
+## 
+## Test of the hypothesis that 3 factors are sufficient.
+## The chi square statistic is 62.18 on 3 degrees of freedom.
+## The p-value is 2.01e-13
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  Given your solution in (a), obtain the rotated loadings form = 2 and m
+  = 3. Compare the two sets of rotated loadings. Interpret the m = 2 and
+  m = 3 factor solutions. Jawab: metode yang digunakan adalah maximum
+  likelihood solution, pada faktor m = 2 untuk faktor pertama memiliki
+  faktor untuk semua variabel diatas 0.5 kecuali untuk variabel
+  creativity test, untuk faktor kedua hampir setengah dari variabel yang
+  memiliki nilai faktor estimasi sebesar di bawah 0.5. Pada faktor m = 3
+  untuk faktor pertama terdapat variabel Creativity test dan abstract
+  reasoning test dengan faktor di bawah 0.5, faktor kedua terdapat
+  variabel New account sales dan Creativity test dengan faktor estimasi
+  di atas 0.5, untuk faktor ketiga terdapat variabel Abstract reasoning
+  test dengan faktor estimasi di atas 0.5. dalam hal ini berdasarkan
+  faktor estimasi maka untuk faktor m = 2 sudah bisa mewakili karena
+  sebagian besar variabel faktor yang memiliki nilai di atas 0.5 atau
+  bernilai besar dengan proporsi yang seimbang
+\item
+  List the estimated communalities, specific variances, and
+  \(\hat{L}\hat{L^{'}} + \hat{\Psi}\) for the m = 2 and m = 3 solutions.
+  Compare the results. Which choice of m do you prefer at this point?
+  Why?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#untuk m = 2}
+\NormalTok{communalities2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(factor2}\SpecialCharTok{$}\NormalTok{loadings), }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
+\NormalTok{SpecificVariance2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(factor2}\SpecialCharTok{$}\NormalTok{loadings), }\AttributeTok{ncol =} \FunctionTok{nrow}\NormalTok{(factor2}\SpecialCharTok{$}\NormalTok{loadings))}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(factor2}\SpecialCharTok{$}\NormalTok{loadings))}
+\NormalTok{\{}
+\NormalTok{        communalities2[i] }\OtherTok{\textless{}{-}}\NormalTok{ (factor2}\SpecialCharTok{$}\NormalTok{loadings[i,}\DecValTok{1}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (factor2}\SpecialCharTok{$}\NormalTok{loadings[i,}\DecValTok{2}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(factor2}\SpecialCharTok{$}\NormalTok{loadings))}
+\NormalTok{\{}
+\NormalTok{        SpecificVariance2[i,i] }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ communalities2[i]}
+\NormalTok{\}}
+
+
+\NormalTok{communalities2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]
+## [1,] 0.9308083
+## [2,] 0.9296182
+## [3,] 0.8766896
+## [4,] 0.9950121
+## [5,] 0.5264121
+## [6,] 0.3863622
+## [7,] 0.9711829
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpecificVariance2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]       [,2]      [,3]        [,4]      [,5]      [,6]       [,7]
+## [1,] 0.06919166 0.00000000 0.0000000 0.000000000 0.0000000 0.0000000 0.00000000
+## [2,] 0.00000000 0.07038182 0.0000000 0.000000000 0.0000000 0.0000000 0.00000000
+## [3,] 0.00000000 0.00000000 0.1233104 0.000000000 0.0000000 0.0000000 0.00000000
+## [4,] 0.00000000 0.00000000 0.0000000 0.004987889 0.0000000 0.0000000 0.00000000
+## [5,] 0.00000000 0.00000000 0.0000000 0.000000000 0.4735879 0.0000000 0.00000000
+## [6,] 0.00000000 0.00000000 0.0000000 0.000000000 0.0000000 0.6136378 0.00000000
+## [7,] 0.00000000 0.00000000 0.0000000 0.000000000 0.0000000 0.0000000 0.02881714
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor2}\SpecialCharTok{$}\NormalTok{loadings}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(factor2}\SpecialCharTok{$}\NormalTok{loadings) }\SpecialCharTok{+}\NormalTok{ SpecificVariance2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           x1        x2        x3        x4        x5        x6        x7
+## x1 1.0000000 0.9295188 0.8834712 0.5720627 0.6642317 0.5543372 0.9311883
+## x2 0.9295188 1.0000000 0.8749729 0.5413952 0.6547850 0.5624008 0.9373111
+## x3 0.8834712 0.8749729 1.0000000 0.6996404 0.6751663 0.4798309 0.8449575
+## x4 0.5720627 0.5413952 0.6996404 1.0000000 0.5918666 0.1504777 0.4126431
+## x5 0.6642317 0.6547850 0.6751663 0.5918666 1.0000000 0.3412919 0.6189370
+## x6 0.5543372 0.5624008 0.4798309 0.1504777 0.3412919 1.0000000 0.6017601
+## x7 0.9311883 0.9373111 0.8449575 0.4126431 0.6189370 0.6017601 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(salesPeople)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           x1        x2        x3        x4        x5        x6        x7
+## x1 1.0000000 0.9260758 0.8840023 0.5720363 0.7080738 0.6744073 0.9273116
+## x2 0.9260758 1.0000000 0.8425232 0.5415080 0.7459097 0.4653880 0.9442960
+## x3 0.8840023 0.8425232 1.0000000 0.7003630 0.6374712 0.6410886 0.8525682
+## x4 0.5720363 0.5415080 0.7003630 1.0000000 0.5907360 0.1469074 0.4126395
+## x5 0.7080738 0.7459097 0.6374712 0.5907360 1.0000000 0.3859502 0.5745533
+## x6 0.6744073 0.4653880 0.6410886 0.1469074 0.3859502 1.0000000 0.5663721
+## x7 0.9273116 0.9442960 0.8525682 0.4126395 0.5745533 0.5663721 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#untuk m = 3}
+\NormalTok{communalities3 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(factor3}\SpecialCharTok{$}\NormalTok{loadings), }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
+\NormalTok{SpecificVariance3 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(factor3}\SpecialCharTok{$}\NormalTok{loadings), }\AttributeTok{ncol =} \FunctionTok{nrow}\NormalTok{(factor3}\SpecialCharTok{$}\NormalTok{loadings))}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(factor3}\SpecialCharTok{$}\NormalTok{loadings))}
+\NormalTok{\{}
+\NormalTok{        communalities3[i] }\OtherTok{\textless{}{-}}\NormalTok{ (factor3}\SpecialCharTok{$}\NormalTok{loadings[i,}\DecValTok{1}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{3} \SpecialCharTok{+}\NormalTok{ (factor3}\SpecialCharTok{$}\NormalTok{loadings[i,}\DecValTok{3}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{3}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(factor3}\SpecialCharTok{$}\NormalTok{loadings))}
+\NormalTok{\{}
+\NormalTok{        SpecificVariance3[i,i] }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ communalities3[i]}
+\NormalTok{\}}
+
+
+\NormalTok{communalities3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]
+## [1,] 0.58372853
+## [2,] 0.76358875
+## [3,] 0.36029754
+## [4,] 0.01659774
+## [5,] 0.16815444
+## [6,] 0.88433091
+## [7,] 0.79848827
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpecificVariance3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
+## [1,] 0.4162715 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+## [2,] 0.0000000 0.2364113 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
+## [3,] 0.0000000 0.0000000 0.6397025 0.0000000 0.0000000 0.0000000 0.0000000
+## [4,] 0.0000000 0.0000000 0.0000000 0.9834023 0.0000000 0.0000000 0.0000000
+## [5,] 0.0000000 0.0000000 0.0000000 0.0000000 0.8318456 0.0000000 0.0000000
+## [6,] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.1156691 0.0000000
+## [7,] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.2015117
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor3}\SpecialCharTok{$}\NormalTok{loadings}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(factor3}\SpecialCharTok{$}\NormalTok{loadings) }\SpecialCharTok{+}\NormalTok{ SpecificVariance3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           x1        x2        x3        x4        x5        x6        x7
+## x1 1.3776999 0.9228135 0.9120898 0.5714373 0.6949357 0.6738835 0.9255320
+## x2 0.9228135 1.2019305 0.8471023 0.5417813 0.6799465 0.4654561 0.9481930
+## x3 0.9120898 0.8471023 1.5515781 0.6991264 0.6969691 0.6402871 0.8255826
+## x4 0.5714373 0.5417813 0.6991264 1.9784456 0.5910466 0.1469508 0.4130097
+## x5 0.6949357 0.6799465 0.6969691 0.5910466 1.3852276 0.3841948 0.6425648
+## x6 0.6738835 0.4654561 0.6402871 0.1469508 0.3841948 1.1107008 0.5669006
+## x7 0.9255320 0.9481930 0.8255826 0.4130097 0.6425648 0.5669006 1.1640018
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(salesPeople)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           x1        x2        x3        x4        x5        x6        x7
+## x1 1.0000000 0.9260758 0.8840023 0.5720363 0.7080738 0.6744073 0.9273116
+## x2 0.9260758 1.0000000 0.8425232 0.5415080 0.7459097 0.4653880 0.9442960
+## x3 0.8840023 0.8425232 1.0000000 0.7003630 0.6374712 0.6410886 0.8525682
+## x4 0.5720363 0.5415080 0.7003630 1.0000000 0.5907360 0.1469074 0.4126395
+## x5 0.7080738 0.7459097 0.6374712 0.5907360 1.0000000 0.3859502 0.5745533
+## x6 0.6744073 0.4653880 0.6410886 0.1469074 0.3859502 1.0000000 0.5663721
+## x7 0.9273116 0.9442960 0.8525682 0.4126395 0.5745533 0.5663721 1.0000000
+\end{verbatim}
+
+Interpretasi: pada communalities terlihat bahwa untuk faktor m = 2
+menunjukkan bahwa kedua faktor tersebut merupakan persentase yang besar
+dari varians sampel setiap variabel dibanding faktor m = 3. Kemudian
+pada hasil \(LL^{'} + \Psi\) pada faktor m = 2 hampir mendekati dengan
+matriks korelasi R dibanding dengan faktor m = 3. Dalam hal ini, faktor
+m = 2 masih unggul di banding faktor m = 3.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Conduct a test of H0: \(LL^{'} + \Psi\) + '\}I versus H1:
+  \(\Sigma \ne LL^{'} + \Psi\) for both m = 2 and m = 3 at the a = .01
+  level. With these results and those in Parts b and c, which choice of
+  \(m\) appears to be the best?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#test dengan alpha = .01}
+\NormalTok{factor2}\SpecialCharTok{$}\NormalTok{PVAL}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    objective 
+## 1.253644e-21
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor3}\SpecialCharTok{$}\NormalTok{PVAL}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    objective 
+## 2.010435e-13
+\end{verbatim}
+
+Interpretasi: kedua kondisi (m = 2 dan m = 3) memiliki p-value kurang
+dari 0.01. Artinya kedua kondisi masih memiliki hasil \(LL^{'} + \Psi\)
+yang sama dengan covariance matrix \(\Sigma\). Dibanding kedua kondisi
+maka akan diambil p-value yang paling kecil untuk kondisi faktor yang
+terbaik yaitu faktor m = 2
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Suppose a new salesperson, selected at random, obtains the test scores
+  \(x^{'} = [x_{1}, x_{2},... , x_{7}]\) = {[} 110, 98, 105, 15, 18, 12,
+  35{]} . Calculate the salesperson's factor score using the weighted
+  least squares method and the regression method.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z\_test }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{110}\NormalTok{, }\DecValTok{98}\NormalTok{, }\DecValTok{105}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{35}\NormalTok{)}
+
+\CommentTok{\#untuk m=2}
+\CommentTok{\# Weighted least squares}
+\NormalTok{L2 }\OtherTok{\textless{}{-}}\NormalTok{ factor2}\SpecialCharTok{$}\NormalTok{loadings}\SpecialCharTok{\%*\%}\NormalTok{factor2}\SpecialCharTok{$}\NormalTok{rotmat}
+\NormalTok{f2 }\OtherTok{\textless{}{-}} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(L2)}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(SpecificVariance2)}\SpecialCharTok{\%*\%}\NormalTok{L2)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(L2)}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(SpecificVariance2)}\SpecialCharTok{\%*\%}\NormalTok{z\_test}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Weighted least squares (m=2):"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Weighted least squares (m=2):"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 66.44905
+## [2,] 28.47994
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Regression}
+\NormalTok{f2reg }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(L2)}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(}\FunctionTok{cor}\NormalTok{(salesPeople))}\SpecialCharTok{\%*\%}\NormalTok{z\_test}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Regression (m=2):"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Regression (m=2):"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f2reg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 64.98630
+## [2,] 28.35724
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#untuk m=3}
+\CommentTok{\# Weighted least squares}
+\NormalTok{L3 }\OtherTok{\textless{}{-}}\NormalTok{ factor3}\SpecialCharTok{$}\NormalTok{loadings}\SpecialCharTok{\%*\%}\NormalTok{factor3}\SpecialCharTok{$}\NormalTok{rotmat}
+\NormalTok{f3 }\OtherTok{\textless{}{-}} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(L3)}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(SpecificVariance3)}\SpecialCharTok{\%*\%}\NormalTok{L3)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(L3)}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(SpecificVariance3)}\SpecialCharTok{\%*\%}\NormalTok{z\_test}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Weighted least squares (m=3):"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Weighted least squares (m=3):"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 13.13858
+## [2,] 76.79898
+## [3,] 30.10261
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Regression}
+\NormalTok{f3reg }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(L3)}\SpecialCharTok{\%*\%}\FunctionTok{solve}\NormalTok{(}\FunctionTok{cor}\NormalTok{(salesPeople))}\SpecialCharTok{\%*\%}\NormalTok{z\_test}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Regression (m=3):"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Regression (m=3):"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f3reg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 70.08034
+## [2,] 59.88704
+## [3,] 36.97196
+\end{verbatim}
+
+\hypertarget{section-2}{%
+\subsection{9.20}\label{section-2}}
+
+Using the air-pollution variables X1, X2, X5, and X6 given in Table 1.5,
+generate the sample covariance matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{url }\OtherTok{\textless{}{-}} \StringTok{"https://raw.githubusercontent.com/rii92/tugas{-}APG/main/tugas\%20pertemuan\%208/table\%201.5.csv"}
+\NormalTok{airPollution }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(url)}
+\NormalTok{airPollution }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(airPollution, }\AttributeTok{select =} \SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(co, NO, HC))}
+\NormalTok{airPollution}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    wind solarRadiation NO2 O3
+## 1     8             98  12  8
+## 2     7            107   9  5
+## 3     7            103   5  6
+## 4    10             88   8 15
+## 5     6             91   8 10
+## 6     8             90  12 12
+## 7     9             84  12 15
+## 8     5             72  21 14
+## 9     7             82  11 11
+## 10    8             64  13  9
+## 11    6             71  10  3
+## 12    6             91  12  7
+## 13    7             72  18 10
+## 14   10             70  11  7
+## 15   10             72   8 10
+## 16    9             77   9 10
+## 17    8             76   7  7
+## 18    8             71  16  4
+## 19    9             67  13  2
+## 20    9             69   9  5
+## 21   10             62  14  4
+## 22    9             88   7  6
+## 23    8             80  13 11
+## 24    5             30   5  2
+## 25    6             83  10 23
+## 26    8             84   7  6
+## 27    6             78  11 11
+## 28    8             79   7 10
+## 29    6             62   9  8
+## 30   10             37   7  2
+## 31    8             71  10  7
+## 32    7             52  12  8
+## 33    5             48   8  4
+## 34    6             75  10 24
+## 35   10             35   6  9
+## 36    8             85   9 10
+## 37    5             86   6 12
+## 38    5             86  13 18
+## 39    7             79   9 25
+## 40    7             79   8  6
+## 41    6             68  11 14
+## 42    8             40   6  5
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Obtain the principal component solution to a factor model with m = 1
+  and m = 2.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigenAirPollution }\OtherTok{\textless{}{-}} \FunctionTok{eigen}\NormalTok{(}\FunctionTok{cov}\NormalTok{(airPollution))}
+
+\NormalTok{F1AirPollution }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(eigenAirPollution}\SpecialCharTok{$}\NormalTok{values[}\DecValTok{1}\NormalTok{])}\SpecialCharTok{*}\NormalTok{eigenAirPollution}\SpecialCharTok{$}\NormalTok{vectors[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{F2AirPollution }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(eigenAirPollution}\SpecialCharTok{$}\NormalTok{values[}\DecValTok{2}\NormalTok{])}\SpecialCharTok{*}\NormalTok{eigenAirPollution}\SpecialCharTok{$}\NormalTok{vectors[,}\DecValTok{2}\NormalTok{]}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"factor:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "factor:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F1AirPollution}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   0.1749782 -17.3246829  -0.4213923  -1.9587473
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#untuk m = 1}
+\NormalTok{LAirPollution1 }\OtherTok{\textless{}{-}}\NormalTok{ F1AirPollution}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(F1AirPollution)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"L*t(L)"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "L*t(L)"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LAirPollution1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]       [,2]        [,3]       [,4]
+## [1,]  0.03061737  -3.031442 -0.07373447 -0.3427381
+## [2,] -3.03144184 300.144639  7.30048803 33.9346754
+## [3,] -0.07373447   7.300488  0.17757147  0.8254010
+## [4,] -0.34273807  33.934675  0.82540102  3.8366909
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpecificVariance1AirPollutionPC }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(airPollution) }\SpecialCharTok{{-}}\NormalTok{ LAirPollution1}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Specific variance"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Specific variance"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpecificVariance1AirPollutionPC}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      wind solarRadiation        NO2        O3
+## wind            2.4693826      0.2509540 -0.5116314 -1.888969
+## solarRadiation  0.2509540      0.3710405 -0.5374218 -3.143735
+## NO2            -0.5116314     -0.5374218 11.1859593  2.301196
+## O3             -1.8889692     -3.1437346  2.3011960 27.141822
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#untuk m = 2}
+\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(F1AirPollution, F2AirPollution)}
+\NormalTok{FAirPollution }\OtherTok{\textless{}{-}} \FunctionTok{data.matrix}\NormalTok{(df2)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Factor:"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Factor:"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAirPollution}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      F1AirPollution F2AirPollution
+## [1,]      0.1749782      0.4048141
+## [2,]    -17.3246829      0.6085601
+## [3,]     -0.4213923     -0.7421918
+## [4,]     -1.9587473     -5.1867451
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LAirPollution2 }\OtherTok{\textless{}{-}}\NormalTok{ FAirPollution}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(FAirPollution)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"L*t(L)"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "L*t(L)"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LAirPollution2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]       [,2]       [,3]      [,4]
+## [1,]  0.1944918  -2.785088 -0.3741842 -2.442406
+## [2,] -2.7850881 300.514984  6.8488198 30.778229
+## [3,] -0.3741842   6.848820  0.7284201  4.674961
+## [4,] -2.4424058  30.778229  4.6749605 30.739016
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpecificVariance2AirPollutionPC }\OtherTok{\textless{}{-}} \FunctionTok{cov}\NormalTok{(airPollution) }\SpecialCharTok{{-}}\NormalTok{ LAirPollution2}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Specific Variance"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Specific Variance"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpecificVariance2AirPollutionPC}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                        wind solarRadiation         NO2          O3
+## wind            2.305508154   0.0046003149 -0.21118168  0.21069845
+## solarRadiation  0.004600315   0.0006951005 -0.08575355  0.01271141
+## NO2            -0.211181680  -0.0857535537 10.63511070 -1.54836354
+## O3              0.210698445   0.0127114138 -1.54836354  0.23949741
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Find the maximum likelihood estimates of \textbf{L} and \(\Psi\) for m
+  = 1 and m = 2.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor1AirPollution }\OtherTok{\textless{}{-}} \FunctionTok{factanal}\NormalTok{(}\AttributeTok{x =}\NormalTok{ airPollution, }\AttributeTok{factors =} \DecValTok{1}\NormalTok{)}
+\CommentTok{\#factor2AirPollution \textless{}{-} factanal(x = airPollution, factors = 2)}
+
+\CommentTok{\# m = 1}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"untuk m = 1"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "untuk m = 1"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{factor1AirPollution}\SpecialCharTok{$}\NormalTok{loadings}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Loadings:
+##                Factor1
+## wind           -0.324 
+## solarRadiation  0.410 
+## NO2             0.232 
+## O3              0.771 
+## 
+##                Factor1
+## SS loadings      0.921
+## Proportion Var   0.230
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpecificVariance1AirPollution }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{ncol =} \FunctionTok{nrow}\NormalTok{(factor1AirPollution}\SpecialCharTok{$}\NormalTok{loadings), }\AttributeTok{nrow =} \FunctionTok{nrow}\NormalTok{(factor1AirPollution}\SpecialCharTok{$}\NormalTok{loadings))}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(factor1AirPollution}\SpecialCharTok{$}\NormalTok{loadings))}
+\NormalTok{\{}
+\NormalTok{        SpecificVariance1AirPollution[i,i] }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ (factor1AirPollution}\SpecialCharTok{$}\NormalTok{loadings[i,}\DecValTok{1}\NormalTok{])}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{\}}
+
+\NormalTok{SpecificVariance1AirPollution}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]      [,2]      [,3]      [,4]
+## [1,] 0.8949133 0.0000000 0.0000000 0.0000000
+## [2,] 0.0000000 0.8322114 0.0000000 0.0000000
+## [3,] 0.0000000 0.0000000 0.9463173 0.0000000
+## [4,] 0.0000000 0.0000000 0.0000000 0.4054956
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# m = 2}
+\CommentTok{\#print(paste("untuk m = 2"))}
+\CommentTok{\#factor2AirPollution$loadings}
+\CommentTok{\#SpecificVariance2AirPollution \textless{}{-} matrix(c(0), ncol = nrow(factor2AirPollution$loadings), nrow = nrow(factor2AirPollution$loadings))}
+
+\CommentTok{\#for(i in 2:nrow(factor2AirPollution$loadings))}
+\CommentTok{\#\{}
+\CommentTok{\#        SpecificVariance2AirPollution[i,i] \textless{}{-} 1 {-} ((factor2AirPollution$loadings[i,2])\^{}2 + (factor2AirPollution$loadings[i,1])\^{}2)}
+\CommentTok{\#\}}
+
+\CommentTok{\#SpecificVariance2AirPollution}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Compare the factorization obtained by the principal component and
+  maximum likelihood methods. Interpretasi: pada faktor untuk metode
+  principal component solution pada m = 1 dan m = 2 terdapat pembeda
+  antara faktor positif dan negatif (masih belum diketahui pembedanya
+  apa), untuk specific variance secara garis besar tidak mendekati nilai
+  specific variance karena selain matriks diagonal, nilainya tidak semua
+  0. Pada faktor untuk metode maximum likelihood pada m = 1 (untuk m = 2
+  tidak bisa dilakukan karena terlalu banyak untuk variabel sama dengan
+  4) juga terdapat pembeda faktor positif dan negatif, untuk specific
+  variance hampir mendekati karena nilai selain matrix diagonal adalah
+  0. Dalam hal ini pada kasus ini sebaiknya menggunakan metode maximum
+  likelihood untuk analisis faktor
+\end{enumerate}
+
+\end{document}

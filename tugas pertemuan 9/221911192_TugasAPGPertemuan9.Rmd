@@ -1,8 +1,15 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 **Nama: Riofebri Prasetia** <br>
 **NIM: 221911192** <br>
 **Kelas: 3SI1** <br>
 **Tugas pertemuan 9** <br>
+
 ## 9.10
+
 ```{r}
 #The correlation matrix for chicken-bone measurements:
 chickenBon <- matrix(c(1, 0.505, 0.569, 0.602, 0.621, 0.603,
@@ -105,17 +112,6 @@ matrixChickenBonF
 
 A firm is attempting to evaluate the quality of its sales staff and is trying to find an examination or series of tests that may reveal the potential for good performance in sales. The firm has selected a random sample of 50 sales people and has evaluated each on 3 measures of performance: growth of sales, profitability of sales, and new-account sales.These measures have been converted to a scale, on which 100 indicates "average" performance. Each of the 50 individuals took each of 4 tests, which purported to measure creativity, mechanical reasoning, abstract reasoning, and mathematical ability, respectively. The n = 50 observations on p = 7 variables are listed in Table 9.12.
 
-(a) Assume an orthogonal factor model for the standardized variables $Z_{i} = (X_{i} - \mu_{i})/ \sigma_{ii}^{1/2}$, i = 1, 2, ... , 7. Obtain either the principal component solution or the maximum likelihood solution for m = 2 and m = 3 common factors. 
-
-(b) Given your solution in (a), obtain the rotated loadings form = 2 and m = 3. Compare the two sets of rotated loadings. Interpret the m = 2 and m = 3 factor solutions. 
-
-(c) List the estimated communalities, specific variances, and $\hat{L}\hat{L^{'}} + \hat{\Psi}$ for the m = 2 and m = 3 solutions. Compare the results. Which choice of m do you prefer at this point? Why? 
-
-(d) Conduct a test of H0: $LL^{'} + \Psi$ + '\}I versus H1: $\Sigma \ne LL^{'} + \Psi$ for both m = 2 and m = 3 at the a = .01 level. With these results and those in Parts b and c, which choice of $m$ appears to be the best? 
-
-(e) Suppose a new salesperson, selected at random, obtains the test scores 
-$x^{'} = [x_{1}, x_{2},... , x_{7}]$ = [ 110, 98, 105, 15, 18, 12, 35] . Calculate the salesperson's factor score using the weighted least squares method and the regression method.
-
 *Note*: The components of x must be standardized using the sample means and variances calculated from the original data.
 
 ```{r}
@@ -124,16 +120,26 @@ salesPeople <- read.csv(url)
 salesPeople <- subset(salesPeople, select = -c(Salesperson))
 salesPeople
 ```
-(a)
+**x1: Sales growth**<br> 
+**x2: Sales Profit ability**<br> 
+**x3: New account sales**<br> 
+**x4: Creativity test**<br> 
+**x5: Mechanical reasoning test**<br> 
+**x6: Abstract reasoning test**<br> 
+**x7: Mathematics test**<br> 
+
+(a) Assume an orthogonal factor model for the standardized variables $Z_{i} = (X_{i} - \mu_{i})/ \sigma_{ii}^{1/2}$, i = 1, 2, ... , 7. Obtain either the principal component solution or the maximum likelihood solution for m = 2 and m = 3 common factors. 
 ```{r}
 factor2 <- factanal(x = salesPeople, factors = 2)
 factor3 <- factanal(x = salesPeople, factors = 3)
 factor2
 factor3
 ```
-(b)
+(b) Given your solution in (a), obtain the rotated loadings form = 2 and m = 3. Compare the two sets of rotated loadings. Interpret the m = 2 and m = 3 factor solutions. 
+Jawab:
+metode yang digunakan adalah maximum likelihood solution, pada faktor m = 2 untuk faktor pertama memiliki faktor untuk semua variabel diatas 0.5 kecuali untuk variabel creativity test, untuk faktor kedua hampir setengah dari variabel yang memiliki nilai faktor estimasi sebesar di bawah 0.5. Pada faktor m = 3 untuk faktor pertama terdapat variabel Creativity test dan abstract reasoning test dengan faktor di bawah 0.5, faktor kedua terdapat variabel New account sales dan Creativity test dengan faktor estimasi di atas 0.5, untuk faktor ketiga terdapat variabel Abstract reasoning test dengan faktor estimasi di atas 0.5. dalam hal ini berdasarkan faktor estimasi maka untuk faktor m = 2 sudah bisa mewakili karena sebagian besar variabel faktor yang memiliki nilai di atas 0.5 atau bernilai besar dengan proporsi yang seimbang
 
-(c)
+(c) List the estimated communalities, specific variances, and $\hat{L}\hat{L^{'}} + \hat{\Psi}$ for the m = 2 and m = 3 solutions. Compare the results. Which choice of m do you prefer at this point? Why? 
 ```{r}
 #untuk m = 2
 communalities2 <- matrix(c(0), nrow = nrow(factor2$loadings), ncol = 1)
@@ -145,13 +151,14 @@ for(i in 1:nrow(factor2$loadings))
 
 for(i in 1:nrow(factor2$loadings))
 {
-        SpecificVariance2[i,i] <- 1 - communalities2[1]
+        SpecificVariance2[i,i] <- 1 - communalities2[i]
 }
 
 
 communalities2
 SpecificVariance2
 factor2$loadings%*%t(factor2$loadings) + SpecificVariance2
+cor(salesPeople)
 ```
 ```{r}
 #untuk m = 3
@@ -164,49 +171,100 @@ for(i in 1:nrow(factor3$loadings))
 
 for(i in 1:nrow(factor3$loadings))
 {
-        SpecificVariance3[i,i] <- 1 - communalities3[1]
+        SpecificVariance3[i,i] <- 1 - communalities3[i]
 }
 
 
 communalities3
 SpecificVariance3
 factor3$loadings%*%t(factor3$loadings) + SpecificVariance3
-
+cor(salesPeople)
 ```
-(d)
+Interpretasi:
+pada communalities terlihat bahwa untuk faktor m = 2 menunjukkan bahwa kedua faktor tersebut merupakan persentase yang besar dari varians sampel setiap variabel dibanding faktor m = 3. Kemudian pada hasil $LL^{'} + \Psi$ pada faktor m = 2 hampir mendekati dengan matriks korelasi R dibanding dengan faktor m = 3. Dalam hal ini, faktor m = 2 masih unggul di banding faktor m = 3.
+
+(d) Conduct a test of H0: $LL^{'} + \Psi$ + '\}I versus H1: $\Sigma \ne LL^{'} + \Psi$ for both m = 2 and m = 3 at the a = .01 level. With these results and those in Parts b and c, which choice of $m$ appears to be the best? 
 ```{r}
 #test dengan alpha = .01
 factor2$PVAL
 factor3$PVAL
 ```
+Interpretasi:
+kedua kondisi (m = 2 dan m = 3) memiliki p-value kurang dari 0.01. Artinya kedua kondisi masih memiliki hasil $LL^{'} + \Psi$ yang sama dengan covariance matrix $\Sigma$. Dibanding kedua kondisi maka akan diambil p-value yang paling kecil untuk kondisi faktor yang terbaik yaitu faktor m = 2
+
+(e) Suppose a new salesperson, selected at random, obtains the test scores 
+$x^{'} = [x_{1}, x_{2},... , x_{7}]$ = [ 110, 98, 105, 15, 18, 12, 35] . Calculate the salesperson's factor score using the weighted least squares method and the regression method.
+```{r}
+z_test <- c(110, 98, 105, 15, 18, 12, 35)
+
+#untuk m=2
+# Weighted least squares
+L2 <- factor2$loadings%*%factor2$rotmat
+f2 <- solve(t(L2)%*%solve(SpecificVariance2)%*%L2)%*%t(L2)%*%solve(SpecificVariance2)%*%z_test
+print(paste("Weighted least squares (m=2):"))
+f2
+
+#Regression
+f2reg <- t(L2)%*%solve(cor(salesPeople))%*%z_test
+print(paste("Regression (m=2):"))
+f2reg
+
+#untuk m=3
+# Weighted least squares
+L3 <- factor3$loadings%*%factor3$rotmat
+f3 <- solve(t(L3)%*%solve(SpecificVariance3)%*%L3)%*%t(L3)%*%solve(SpecificVariance3)%*%z_test
+print(paste("Weighted least squares (m=3):"))
+f3
+
+#Regression
+f3reg <- t(L3)%*%solve(cor(salesPeople))%*%z_test
+print(paste("Regression (m=3):"))
+f3reg
+```
 
 ## 9.20
 Using the air-pollution variables X1, X2, X5, and X6 given in Table 1.5, generate the sample covariance matrix. 
 
-(a) Obtain the principal component solution to a factor model with m = 1 and m = 2. 
-
-(b) Find the maximum likelihood estimates of **L** and $\Psi$ for m = 1 and m = 2. 
-
-(c) Compare the factorization obtained by the principal component and maximum likelihood methods.
-
 ```{r}
 url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%208/table%201.5.csv"
 airPollution <- read.csv(url)
+airPollution <- subset(airPollution, select = -c(co, NO, HC))
 airPollution
 ```
-(a)
+(a) Obtain the principal component solution to a factor model with m = 1 and m = 2. 
 ```{r}
 eigenAirPollution <- eigen(cov(airPollution))
-eigenAirPollution$values
 
 F1AirPollution <- sqrt(eigenAirPollution$values[1])*eigenAirPollution$vectors[,1]
+F2AirPollution <- sqrt(eigenAirPollution$values[2])*eigenAirPollution$vectors[,2]
+print(paste("factor:"))
 F1AirPollution
+#untuk m = 1
+LAirPollution1 <- F1AirPollution%*%t(F1AirPollution)
+print(paste("L*t(L)"))
+LAirPollution1
+SpecificVariance1AirPollutionPC <- cov(airPollution) - LAirPollution1
+print(paste("Specific variance"))
+SpecificVariance1AirPollutionPC
+```
+```{r}
+#untuk m = 2
+df2 <- data.frame(F1AirPollution, F2AirPollution)
+FAirPollution <- data.matrix(df2)
+print(paste("Factor:"))
+FAirPollution
+LAirPollution2 <- FAirPollution%*%t(FAirPollution)
+print(paste("L*t(L)"))
+LAirPollution2
+SpecificVariance2AirPollutionPC <- cov(airPollution) - LAirPollution2
+print(paste("Specific Variance"))
+SpecificVariance2AirPollutionPC
 ```
 
-(b)
+(b) Find the maximum likelihood estimates of **L** and $\Psi$ for m = 1 and m = 2. 
 ```{r}
 factor1AirPollution <- factanal(x = airPollution, factors = 1)
-factor2AirPollution <- factanal(x = airPollution, factors = 2)
+#factor2AirPollution <- factanal(x = airPollution, factors = 2)
 
 # m = 1
 print(paste("untuk m = 1"))
@@ -222,15 +280,17 @@ SpecificVariance1AirPollution
 ```
 ```{r}
 # m = 2
-print(paste("untuk m = 2"))
-factor2AirPollution$loadings
-SpecificVariance2AirPollution <- matrix(c(0), ncol = nrow(factor2AirPollution$loadings), nrow = nrow(factor2AirPollution$loadings))
+#print(paste("untuk m = 2"))
+#factor2AirPollution$loadings
+#SpecificVariance2AirPollution <- matrix(c(0), ncol = nrow(factor2AirPollution$loadings), nrow = nrow(factor2AirPollution$loadings))
 
-for(i in 2:nrow(factor2AirPollution$loadings))
-{
-        SpecificVariance2AirPollution[i,i] <- 1 - ((factor2AirPollution$loadings[i,2])^2 + (factor2AirPollution$loadings[i,1])^2)
-}
+#for(i in 2:nrow(factor2AirPollution$loadings))
+#{
+#        SpecificVariance2AirPollution[i,i] <- 1 - ((factor2AirPollution$loadings[i,2])^2 + (factor2AirPollution$loadings[i,1])^2)
+#}
 
-SpecificVariance2AirPollution
+#SpecificVariance2AirPollution
 ```
-
+(c) Compare the factorization obtained by the principal component and maximum likelihood methods.
+<br>Interpretasi:
+pada faktor untuk metode principal component solution pada m = 1 dan m = 2 terdapat pembeda antara faktor positif dan negatif (masih belum diketahui pembedanya apa), untuk specific variance secara garis besar tidak mendekati nilai specific variance karena selain matriks diagonal, nilainya tidak semua 0. Pada faktor untuk metode maximum likelihood pada m = 1 (untuk m = 2 tidak bisa dilakukan karena terlalu banyak untuk variabel sama dengan 4) juga terdapat pembeda faktor positif dan negatif, untuk specific variance hampir mendekati karena nilai selain matrix diagonal adalah 0. Dalam hal ini pada kasus ini sebaiknya menggunakan metode maximum likelihood untuk analisis faktor
