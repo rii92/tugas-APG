@@ -1,0 +1,180 @@
+---
+title: "Tugas pertemuan-10"
+author: "Riofebri Prasetia (221911192)"
+date: "5/11/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 12.8
+Using the distances in Example 12.4, cluster the items using the average linkage hierarchical procedure. Draw the dendrogram. Compare the results with 
+those in Examples 12.4 and 12.6.
+```{r}
+# dd <- dist(scale(USArrests), method = "euclidean")
+dd <- matrix(c(0,9,3,6,11,
+               9,0,7,5,10,
+               3,7,0,9,2,
+               6,5,9,0,8,
+               11,10,2,8,0),5,5)
+dd <- as.dist(dd, diag = TRUE)
+#dd <- dist(dd, method = "euclidean")
+dd
+```
+```{r}
+#single linkage
+hc <- hclust(dd, method = "single")
+plot(hc)
+```
+```{r}
+#complete linkage
+hc2 <- hclust(dd, method = "complete")
+plot(hc2)
+```
+## 12.10
+```{r}
+# load data
+x <- c(2,1,5,8)
+x_measurements <- data.frame(x)
+x_measurements
+```
+a)
+```{r}
+dd_measurement <- dist(x_measurements, method = "euclidean", diag = TRUE)
+dd_measurement
+
+```
+```{r}
+# use ward's method
+hcMeasurement <- hclust(dd_measurement, method = "ward.D")
+plot(hcMeasurement)
+```
+b)
+```{r}
+#function join cluster
+joint_cluster <- function(join){
+    joinc <- as.matrix(join)
+    meanc <- mean(joinc)
+    sum <- 0
+    for (i in 1:nrow(joinc)) {
+      sum <- sum + (joinc[i]-meanc)^2 
+    }
+    return(sum)
+}
+```
+
+```{r}
+#data frame ESS
+j_12 <- joint_cluster(c(2,1))
+j_13 <- joint_cluster(c(2,5))
+j_14 <- joint_cluster(c(2,8))
+j_23 <- joint_cluster(c(1,5))
+j_24 <- joint_cluster(c(1,8))
+j_34 <- joint_cluster(c(5,8))
+
+clusterEss <- matrix(c(j_12,j_13,j_14,0,0,0,
+                       0,0,0,j_23,j_24,0,
+                       0,0,0,0,0,j_34),6,3)
+
+clusterEss <- as.data.frame(clusterEss)
+clusterEss
+```
+C)
+```{r}
+dd_measurement <- dist(clusterEss, method = "euclidean", diag = TRUE)
+dd_measurement
+hcMeasurement <- hclust(dd_measurement, method = "ward.D")
+plot(hcMeasurement)
+```
+
+## 12.12 
+Repeat Example 12.12, starting with the initial groups (AC) and (BD) . Compare your solution with the solution in the example. Are they the same? Graph the items in terms of their ( x1 , x2) coordinates, and comment on the solutions.
+```{r}
+#data
+Item_12 <- c("A", "B", "C", "D")
+x1_12 <- c(5,-1,1,-3)
+x2_12 <- c(3,1,-2,-2)
+tabel_12 <- data.frame(Item_12, x1_12, x2_12)
+matrix_12 <- as.matrix(tabel_12[,2:3])
+matrix_12
+```
+```{r}
+# distance k_mean k=2
+# function join cluster k-means
+joint_kMeans <- function(join){
+    n <- nrow(join)
+    p <- ncol(join)
+    sum <- matrix(c(0), ncol = p, nrow = 1)
+    for (j in 1:p){
+      sum[1,j] <- sum(join[,j])  
+    }
+    
+    sum2 <- sum/n
+    return(sum2)
+}
+
+#function square distances
+squareDistance <- function(table){
+  sum <- 0
+  for (i in 1:2){
+    sum <- sum + (table[1,i]-table[2,i])^2
+  }
+  return(sum)
+}
+
+#function square distances matrix
+squareDistanceMatrix <- function(ca,cb){
+  n <- nrow(ca)
+  hasil <- matrix(c(0), ncol = n, nrow = 1)
+  for (i in 1:n) {
+    hasil[,i] <- squareDistance(rbind(ca[i,],cb))
+  }
+  return(hasil)
+}
+```
+
+```{r}
+#matrix coordinate of centroid AC dan BD
+rbind(joint_kMeans(matrix_12[c(1,3),]),
+      joint_kMeans(matrix_12[c(2,4),]))
+
+#matrix coordinate of centroid [A,(AC)], [A,(BD)]
+print(paste("matrix coordinate of centroid [A,(AC)], [A,(BD)]"))
+squareDistance(rbind(matrix_12[1,],
+                     joint_kMeans(matrix_12[c(1,3),])))
+
+squareDistance(rbind(matrix_12[1,],
+                     joint_kMeans(matrix_12[c(2,4),])))
+
+#matrix coordinate of centroid [B,(AC)], [B,(BD)]
+print(paste("matrix coordinate of centroid [B,(AC)], [B,(BD)]"))
+squareDistance(rbind(matrix_12[2,],
+                     joint_kMeans(matrix_12[c(1,3),])))
+
+squareDistance(rbind(matrix_12[2,],
+                     joint_kMeans(matrix_12[c(2,4),])))
+
+#matrix coordinate of centroid [C,(AC)], [C,(BD)]
+print(paste("matrix coordinate of centroid [C,(AC)], [C,(BD)]"))
+squareDistance(rbind(matrix_12[3,],
+                     joint_kMeans(matrix_12[c(1,3),])))
+
+squareDistance(rbind(matrix_12[3,],
+                     joint_kMeans(matrix_12[c(2,4),])))
+
+#matrix coordinate of centroid [D,(AC)], [D,(BD)]
+print(paste("matrix coordinate of centroid [D,(AC)], [D,(BD)]"))
+squareDistance(rbind(matrix_12[2,],
+                     joint_kMeans(matrix_12[c(1,3),])))
+
+squareDistance(rbind(matrix_12[2,],
+                     joint_kMeans(matrix_12[c(2,4),])))
+
+
+#square distance to group centroids A dan (BCD)
+rbind(squareDistanceMatrix(matrix_12, matrix_12[1,]), squareDistanceMatrix(matrix_12, j_bcd))
+```
+dari hasil di atas tidak ada cluster yang dipindahkan sehingga coordinat centroid tidak diperbarui
+## 12.16
