@@ -1,0 +1,1357 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Tugas pertemuan-10},
+  pdfauthor={Riofebri Prasetia (221911192)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Tugas pertemuan-10}
+\author{Riofebri Prasetia (221911192)}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{section}{%
+\subsection{12.8}\label{section}}
+
+Using the distances in Example 12.4, cluster the items using the average
+linkage hierarchical procedure. Draw the dendrogram. Compare the results
+with those in Examples 12.4 and 12.6.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# dd \textless{}{-} dist(scale(USArrests), method = "euclidean")}
+\NormalTok{dd }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{11}\NormalTok{,}
+               \DecValTok{9}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}
+               \DecValTok{3}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{,}
+               \DecValTok{6}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{8}\NormalTok{,}
+               \DecValTok{11}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{0}\NormalTok{),}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{dd }\OtherTok{\textless{}{-}} \FunctionTok{as.dist}\NormalTok{(dd, }\AttributeTok{diag =} \ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\#dd \textless{}{-} dist(dd, method = "euclidean")}
+\NormalTok{dd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    1  2  3  4  5
+## 1  0            
+## 2  9  0         
+## 3  3  7  0      
+## 4  6  5  9  0   
+## 5 11 10  2  8  0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#single linkage}
+\NormalTok{hc }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(dd, }\AttributeTok{method =} \StringTok{"single"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{221911192_TugasAPGPertemuan10_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#complete linkage}
+\NormalTok{hc2 }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(dd, }\AttributeTok{method =} \StringTok{"complete"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(hc2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{221911192_TugasAPGPertemuan10_files/figure-latex/unnamed-chunk-3-1.pdf}
+\#\# 12.10 Use Ward's method to cluster the 4 items whose measurements
+on a single variable X are given in the following table.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load data}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\NormalTok{x\_measurements }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(x)}
+\NormalTok{x\_measurements}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   x
+## 1 2
+## 2 1
+## 3 5
+## 4 8
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dd\_measurement }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(x\_measurements, }\AttributeTok{method =} \StringTok{"euclidean"}\NormalTok{, }\AttributeTok{diag =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{dd\_measurement}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   1 2 3 4
+## 1 0      
+## 2 1 0    
+## 3 3 4 0  
+## 4 6 7 3 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# use ward\textquotesingle{}s method}
+\NormalTok{hcMeasurement }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(dd\_measurement, }\AttributeTok{method =} \StringTok{"ward.D"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(hcMeasurement)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{221911192_TugasAPGPertemuan10_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#function join cluster}
+\NormalTok{joint\_cluster }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(join)\{}
+\NormalTok{    joinc }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(join)}
+\NormalTok{    meanc }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(joinc)}
+\NormalTok{    sum }\OtherTok{\textless{}{-}} \DecValTok{0}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(joinc)) \{}
+\NormalTok{      sum }\OtherTok{\textless{}{-}}\NormalTok{ sum }\SpecialCharTok{+}\NormalTok{ (joinc[i]}\SpecialCharTok{{-}}\NormalTok{meanc)}\SpecialCharTok{\^{}}\DecValTok{2} 
+\NormalTok{    \}}
+    \FunctionTok{return}\NormalTok{(sum)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(}\DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(}\DecValTok{8}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+Bisa dilihat jika hanya terdapat 1 titik maka tidak terdapat ESS atau
+jarak
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#data frame ESS}
+\NormalTok{j\_12 }\OtherTok{\textless{}{-}} \FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{j\_13 }\OtherTok{\textless{}{-}} \FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{j\_14 }\OtherTok{\textless{}{-}} \FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{8}\NormalTok{))}
+\NormalTok{j\_23 }\OtherTok{\textless{}{-}} \FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{j\_24 }\OtherTok{\textless{}{-}} \FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{8}\NormalTok{))}
+\NormalTok{j\_34 }\OtherTok{\textless{}{-}} \FunctionTok{joint\_cluster}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{8}\NormalTok{))}
+
+\NormalTok{clusterEss }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(j\_12,j\_13,j\_14,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+                       \DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,j\_23,j\_24,}\DecValTok{0}\NormalTok{,}
+                       \DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,j\_34),}\DecValTok{6}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+
+\NormalTok{clusterEss }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(clusterEss)}
+\NormalTok{clusterEss}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     V1   V2  V3
+## 1  0.5  0.0 0.0
+## 2  4.5  0.0 0.0
+## 3 18.0  0.0 0.0
+## 4  0.0  8.0 0.0
+## 5  0.0 24.5 0.0
+## 6  0.0  0.0 4.5
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dd\_measurement }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(clusterEss, }\AttributeTok{method =} \StringTok{"euclidean"}\NormalTok{, }\AttributeTok{diag =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{dd\_measurement}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           1         2         3         4         5         6
+## 1  0.000000                                                  
+## 2  4.000000  0.000000                                        
+## 3 17.500000 13.500000  0.000000                              
+## 4  8.015610  9.178780 19.697716  0.000000                    
+## 5 24.505102 24.909837 30.401480 16.500000  0.000000          
+## 6  4.527693  6.363961 18.553975  9.178780 24.909837  0.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hcMeasurement }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(dd\_measurement, }\AttributeTok{method =} \StringTok{"ward.D"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(hcMeasurement)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{221911192_TugasAPGPertemuan10_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\hypertarget{section-1}{%
+\subsection{12.12}\label{section-1}}
+
+Repeat Example 12.12, starting with the initial groups (AC) and (BD) .
+Compare your solution with the solution in the example. Are they the
+same? Graph the items in terms of their ( x1 , x2) coordinates, and
+comment on the solutions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#data}
+\NormalTok{Item\_12 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{)}
+\NormalTok{x1\_12 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{)}
+\NormalTok{x2\_12 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{)}
+\NormalTok{tabel\_12 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(Item\_12, x1\_12, x2\_12)}
+\NormalTok{matrix\_12 }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(tabel\_12[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+\NormalTok{matrix\_12}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x1_12 x2_12
+## [1,]     5     3
+## [2,]    -1     1
+## [3,]     1    -2
+## [4,]    -3    -2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# distance k\_mean k=2}
+\CommentTok{\# function join cluster k{-}means}
+\NormalTok{joint\_kMeans }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(join)\{}
+\NormalTok{    n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(join)}
+\NormalTok{    p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(join)}
+\NormalTok{    sum }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{ncol =}\NormalTok{ p, }\AttributeTok{nrow =} \DecValTok{1}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{p)\{}
+\NormalTok{      sum[}\DecValTok{1}\NormalTok{,j] }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(join[,j])  }
+\NormalTok{    \}}
+    
+\NormalTok{    sum2 }\OtherTok{\textless{}{-}}\NormalTok{ sum}\SpecialCharTok{/}\NormalTok{n}
+    \FunctionTok{return}\NormalTok{(sum2)}
+\NormalTok{\}}
+
+\CommentTok{\#function square distances}
+\NormalTok{squareDistance }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(table)\{}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(table)}
+\NormalTok{  sum }\OtherTok{\textless{}{-}} \DecValTok{0}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n)\{}
+\NormalTok{    sum }\OtherTok{\textless{}{-}}\NormalTok{ sum }\SpecialCharTok{+}\NormalTok{ (table[}\DecValTok{1}\NormalTok{,i]}\SpecialCharTok{{-}}\NormalTok{table[}\DecValTok{2}\NormalTok{,i])}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(sum))}
+\NormalTok{\}}
+
+\CommentTok{\#function square distances matrix}
+\NormalTok{squareDistanceMatrix }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(ca,cb)\{}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(ca)}
+\NormalTok{  hasil }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{), }\AttributeTok{ncol =}\NormalTok{ n, }\AttributeTok{nrow =} \DecValTok{1}\NormalTok{)}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+\NormalTok{    hasil[,i] }\OtherTok{\textless{}{-}} \FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(ca[i,],cb))}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(hasil)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#matrix coordinate of centroid AC dan BD}
+\NormalTok{j\_ac }\OtherTok{\textless{}{-}} \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{),])}
+\NormalTok{j\_bd }\OtherTok{\textless{}{-}} \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{),])}
+\FunctionTok{rbind}\NormalTok{(j\_ac, j\_bd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    3  0.5
+## [2,]   -2 -0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{j\_ac}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    3  0.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#matrix coordinate of centroid [A,(AC)], [A,(BD)]}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"matrix coordinate of centroid [A,(AC)], [A,(BD)]"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix coordinate of centroid [A,(AC)], [A,(BD)]"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(matrix\_12[}\DecValTok{1}\NormalTok{,],}
+                     \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{),])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]
+## [1,] 10.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(matrix\_12[}\DecValTok{1}\NormalTok{,],}
+                     \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{),])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]
+## [1,] 61.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#matrix coordinate of centroid [B,(AC)], [B,(BD)]}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"matrix coordinate of centroid [B,(AC)], [B,(BD)]"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix coordinate of centroid [B,(AC)], [B,(BD)]"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(matrix\_12[}\DecValTok{2}\NormalTok{,],}
+                     \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{),])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]
+## [1,] 16.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(matrix\_12[}\DecValTok{2}\NormalTok{,],}
+                     \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{),])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,] 3.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#matrix coordinate of centroid [C,(AC)], [C,(BD)]}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"matrix coordinate of centroid [C,(AC)], [C,(BD)]"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix coordinate of centroid [C,(AC)], [C,(BD)]"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(matrix\_12[}\DecValTok{3}\NormalTok{,],}
+                     \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{),])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]
+## [1,] 10.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(matrix\_12[}\DecValTok{3}\NormalTok{,],}
+                     \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{),])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]
+## [1,] 11.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#matrix coordinate of centroid [D,(AC)], [D,(BD)]}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"matrix coordinate of centroid [D,(AC)], [D,(BD)]"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix coordinate of centroid [D,(AC)], [D,(BD)]"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(matrix\_12[}\DecValTok{2}\NormalTok{,],}
+                     \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{),])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       [,1]
+## [1,] 16.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{squareDistance}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(matrix\_12[}\DecValTok{2}\NormalTok{,],}
+                     \FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{),])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,] 3.25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#square distance to group centroids A dan (BCD)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"square euclidian contoh A dan (BCD)"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "square euclidian contoh A dan (BCD)"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rbind}\NormalTok{(}\FunctionTok{squareDistanceMatrix}\NormalTok{(matrix\_12, matrix\_12[}\DecValTok{1}\NormalTok{,]), }\FunctionTok{squareDistanceMatrix}\NormalTok{(matrix\_12, }\FunctionTok{joint\_kMeans}\NormalTok{(matrix\_12[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{4}\NormalTok{,])))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    0   40   41   89
+## [2,]   52    4    5    5
+\end{verbatim}
+
+dari hasil di atas tidak ada cluster yang dipindahkan sehingga coordinat
+centroid tidak diperbarui. Solusinya seperti contoh 12.12 yaitu dengan
+memulai dari inisial group (A,B) dan (C,D)
+
+\hypertarget{section-2}{%
+\subsection{12.16}\label{section-2}}
+
+The national track records data for women are given in Table 1 .9.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#input data}
+\NormalTok{url }\OtherTok{\textless{}{-}} \StringTok{"https://raw.githubusercontent.com/rii92/tugas{-}APG/main/tugas\%20pertemuan\%2010/National\%20Track\%20Records\%20for\%20Women.csv"}
+\NormalTok{ntrwomen }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(url)}
+\NormalTok{mntrwomen }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(ntrwomen[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{7}\NormalTok{])}
+\NormalTok{ntrwomen}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     COUNTRY X100m X200m X400m X800m X1500m X3000m Marathon
+## 1  argentin 11.61 22.94 54.50  2.15   4.43   9.79   178.52
+## 2  australi 11.20 22.35 51.08  1.98   4.13   9.08   152.37
+## 3   austria 11.43 23.09 50.62  1.99   4.22   9.34   159.37
+## 4   belgium 11.41 23.04 52.00  2.00   4.14   8.88   157.85
+## 5   bermuda 11.46 23.05 53.30  2.16   4.58   9.81   169.98
+## 6    brazil 11.31 23.17 52.80  2.10   4.49   9.77   168.75
+## 7     burma 12.14 24.47 55.00  2.18   4.45   9.51   191.02
+## 8    canada 11.00 22.25 50.06  2.00   4.06   8.81   149.45
+## 9     chile 12.00 24.52 54.90  2.05   4.23   9.37   171.38
+## 10    china 11.95 24.41 54.97  2.08   4.33   9.31   168.48
+## 11 columbia 11.60 24.00 53.26  2.11   4.35   9.46   165.42
+## 12   cookis 12.90 27.10 60.40  2.30   4.84  11.10   233.22
+## 13    costa 11.96 24.60 58.25  2.21   4.68  10.43   171.80
+## 14    czech 11.09 21.97 47.99  1.89   4.14   8.92   158.85
+## 15  denmark 11.42 23.52 53.60  2.03   4.18   8.71   151.75
+## 16   domrep 11.79 24.05 56.05  2.24   4.74   9.89   203.88
+## 17  finland 11.13 22.39 50.14  2.03   4.10   8.92   154.23
+## 18   france 11.15 22.59 51.73  2.00   4.14   8.98   155.27
+## 19      gdr 10.81 21.71 48.16  1.93   3.96   8.75   157.68
+## 20      frg 11.01 22.39 49.75  1.95   4.03   8.59   148.53
+## 21     gbni 11.00 22.13 50.46  1.98   4.03   8.62   149.72
+## 22   greece 11.79 24.08 54.93  2.07   4.35   9.87   182.20
+## 23 guatemal 11.84 24.54 56.09  2.28   4.86  10.54   215.08
+## 24  hungary 11.45 23.06 51.50  2.01   4.14   8.98   156.37
+## 25    india 11.95 24.28 53.60  2.10   4.32   9.98   188.03
+## 26 indonesi 11.85 24.24 55.34  2.22   4.61  10.02   201.28
+## 27  ireland 11.43 23.51 53.24  2.05   4.11   8.89   149.38
+## 28   israel 11.45 23.57 54.90  2.10   4.25   9.37   160.48
+## 29    italy 11.29 23.00 52.01  1.96   3.98   8.63   151.82
+## 30    japan 11.73 24.00 53.73  2.09   4.35   9.20   150.50
+## 31    kenya 11.73 23.88 52.70  2.00   4.15   9.20   181.05
+## 32    korea 11.96 24.49 55.70  2.15   4.42   9.62   164.65
+## 33 dprkorea 12.25 25.78 51.20  1.97   4.25   9.35   179.17
+## 34 luxembou 12.03 24.96 56.10  2.07   4.38   9.64   174.68
+## 35 malaysia 12.23 24.21 55.09  2.19   4.69  10.46   182.17
+## 36 mauritiu 11.76 25.08 58.10  2.27   4.79  10.90   261.13
+## 37   mexico 11.89 23.62 53.76  2.04   4.25   9.59   158.53
+## 38 netherla 11.25 22.81 52.38  1.99   4.06   9.01   152.48
+## 39       nz 11.55 23.13 51.60  2.02   4.18   8.76   145.48
+## 40   norway 11.58 23.31 53.12  2.03   4.01   8.53   145.48
+## 41      png 12.25 25.07 56.96  2.24   4.84  10.69   233.00
+## 42 philippi 11.76 23.54 54.60  2.19   4.60  10.16   200.37
+## 43   poland 11.13 22.21 49.29  1.95   3.99   8.97   160.82
+## 44 portugal 11.81 24.22 54.30  2.09   4.16   8.84   151.20
+## 45  rumania 11.44 23.46 51.20  1.92   3.96   8.53   165.45
+## 46 singapor 12.30 25.00 55.08  2.12   4.52   9.94   182.77
+## 47    spain 11.80 23.98 53.59  2.05   4.14   9.02   162.60
+## 48   sweden 11.16 22.82 51.79  2.02   4.12   8.84   154.48
+## 49 switzerl 11.45 23.31 53.11  2.02   4.07   8.77   153.42
+## 50   taipei 11.22 22.62 52.50  2.10   4.38   9.63   177.87
+## 51 thailand 11.75 24.46 55.80  2.20   4.72  10.28   168.45
+## 52   turkey 11.98 24.44 56.45  2.15   4.37   9.38   201.08
+## 53      usa 10.79 21.83 50.62  1.96   3.95   8.50   142.72
+## 54     ussr 11.06 22.19 49.19  1.89   3.87   8.45   151.22
+## 55   wsamoa 12.74 25.85 58.73  2.33   5.81  13.04   306.00
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Using the data in Table 1.9, calculate the Euclidean distances between
+  pairs of countries.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#nntrwoman \textless{}{-} nrow(mntrwomen)}
+\CommentTok{\#msntrwoman \textless{}{-} matrix(c(0), nrow = nntrwoman, ncol = nntrwoman)}
+
+\CommentTok{\#for (i in 1:nntrwoman) \{}
+\CommentTok{\#  msntrwoman[i,] \textless{}{-} squareDistanceMatrix(mntrwomen, mntrwomen[i,])  }
+\CommentTok{\#\}}
+\CommentTok{\#msntrwoman}
+
+\NormalTok{ddntrwoman }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(mntrwomen, }\AttributeTok{method =} \StringTok{"euclidean"}\NormalTok{, }\AttributeTok{diag =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{as.matrix}\NormalTok{(ddntrwoman)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            1          2          3         4         5         6         7
+## 1  0.0000000  3.5826806  3.9219255 2.6897398 1.2237647 1.7433875 1.7179930
+## 2  3.5826806  0.0000000  0.9422845 1.1862125 2.5007599 2.0647034 4.5903921
+## 3  3.9219255  0.9422845  0.0000000 1.4578752 2.7503273 2.2456848 4.6594850
+## 4  2.6897398  1.1862125  1.4578752 0.0000000 1.6663433 1.2615467 3.4789654
+## 5  1.2237647  2.5007599  2.7503273 1.6663433 0.0000000 0.5479051 2.3401068
+## 6  1.7433875  2.0647034  2.2456848 1.2615467 0.5479051 0.0000000 2.7008332
+## 7  1.7179930  4.5903921  4.6594850 3.4789654 2.3401068 2.7008332 0.0000000
+## 8  4.6563505  1.0810180  1.2291054 2.1370774 3.5560090 3.0929921 5.5951854
+## 9  1.7420964  4.4766394  4.5489339 3.3465206 2.3109955 2.6341412 0.3420526
+## 10 1.6561099  4.4767287  4.5778161 3.3491491 2.2798026 2.6255856 0.3240370
+## 11 1.6667933  2.8008213  2.8057619 1.7140303 1.0495713 1.0489995 1.8861336
+## 12 7.4623321 10.8167370 10.8382425 9.7350963 8.4046059 8.8127408 6.2728861
+## 13 4.1732841  7.6959015  7.8883458 6.6735897 5.2489904 5.7143416 3.3929338
+## 14 6.6708320  3.1206410  2.9119924 4.1642646 5.5279291 5.0510989 7.5512184
+## 15 1.5574980  2.8124011  3.0766053 1.6798512 1.3036104 1.4139307 2.0288667
+## 16 1.9445308  5.3883949  5.5831443 4.3594380 2.9512370 3.4152306 1.2780845
+## 17 4.5191481  0.9586970  1.0013990 1.9911303 3.4013968 2.9318765 5.4276330
+## 18 2.9613679  0.7022108  1.3025360 0.5941380 1.9185151 1.5044933 3.9518097
+## 19 6.6105522  3.0378282  2.9596790 4.1144501 5.4953253 5.0260720 7.5532973
+## 20 4.9864817  1.4344337  1.4224978 2.3966018 3.8827310 3.4098974 5.8516237
+## 21 4.3482870  0.8333067  1.2987301 1.8568522 3.2976658 2.8638785 5.3287240
+## 22 1.2393950  4.3409792  4.4710178 3.2924155 1.9726378 2.3718980 0.6566582
+## 23 2.4300823  5.7498087  5.8416778 4.7450395 3.2824229 3.7073036 1.5880806
+## 24 3.1304632  0.8683317  0.9550393 0.5119570 2.0359764 1.5736582 3.8884573
+## 25 1.6649024  3.3909143  3.3164137 2.3752053 1.3939512 1.5345032 1.5087743
+## 26 1.5948041  4.8284366  4.9441582 3.7892084 2.4038303 2.8247832 0.7347789
+## 27 1.6933104  2.4709310  2.6942531 1.3275541 1.1382003 1.1157509 2.2450390
+## 28 0.8909545  4.0318978  4.3084916 2.9924405 1.7710449 2.1925328 1.1670904
+## 29 2.8089678  1.2332477  1.5882065 0.3252691 1.8675920 1.4942222 3.5870880
+## 30 1.4453373  3.1781756  3.2613954 2.0424250 1.2610313 1.4404166 1.4546821
+## 31 2.1417283  2.2937742  2.2505777 1.1834272 1.3055267 1.0681760 2.4545264
+## 32 1.9984994  5.1871187  5.3095480 4.0918822 2.8540147 3.2565012 0.7325981
+## 33 4.4298533  3.6012776  2.8716372 3.0144817 3.5837969 3.2413886 4.0345880
+## 34 2.6169066  5.7520083  5.8317493 4.6390624 3.4481879 3.8265389 1.2231517
+## 35 1.6921879  4.7814956  4.8363829 3.7979468 2.3618002 2.7742206 1.0217632
+## 36 4.3518042  7.8024996  7.9281965 6.7874811 5.3380895 5.7737683 3.4903152
+## 37 1.0830051  3.0902265  3.2276927 2.0450428 0.9450397 1.2466355 1.5455096
+## 38 2.3263276  1.3834739  1.8283599 0.4962862 1.3738268 1.0412492 3.2939794
+## 39 3.0967725  1.0525208  1.1468653 0.4517743 2.0461183 1.6191973 3.7900792
+## 40 1.9546355  2.3552070  2.6500377 1.2233152 1.4472733 1.4027829 2.5239057
+## 41 3.4618348  6.7999338  6.8598688 5.7664374 4.3529875 4.7736464 2.4003750
+## 42 0.7482647  3.9435390  4.1241484 3.0030984 1.4642063 1.9369306 1.2705904
+## 43 5.3678115  1.8058793  1.6806844 2.8538570 4.2417449 3.7665103 6.2680061
+## 44 1.6423763  3.7825917  3.9022173 2.6177280 1.9009471 2.1392522 1.0965856
+## 45 3.6125753  1.2802734  1.0963576 0.9892421 2.5804845 2.1241233 4.1494819
+## 46 2.2555709  5.0143594  4.9762938 3.9246019 2.7746351 3.0915368 0.7115476
+## 47 1.6225905  3.0537845  3.1404299 1.8936473 1.3763720 1.4858668 1.6422241
+## 48 2.9285662  0.8865100  1.3325164 0.3967367 1.8960749 1.4742117 3.8171193
+## 49 1.8114911  2.2817318  2.5685015 1.1506520 1.2104132 1.1480854 2.4721246
+## 50 2.0700483  1.5713370  1.9802020 1.0452751 0.9790301 0.6574952 3.2472450
+## 51 2.0848741  5.3730345  5.4762578 4.3483790 2.9264825 3.3437554 1.2076423
+## 52 2.5221221  5.8300858  6.0136179 4.7342159 3.5148400 3.9437672 1.4673786
+## 53 4.3462052  1.0096039  1.6663133 1.9836834 3.3574842 2.9567719 5.4124856
+## 54 5.5890876  2.0223501  1.9789896 3.0018328 4.4964764 4.0281385 6.4548431
+## 55 6.3353926  9.5796973  9.5624003 8.6695617 7.1370862 7.5419096 5.5236129
+##             8         9        10        11        12         13         14
+## 1   4.6563505 1.7420964 1.6561099 1.6667933  7.462332  4.1732841  6.6708320
+## 2   1.0810180 4.4766394 4.4767287 2.8008213 10.816737  7.6959015  3.1206410
+## 3   1.2291054 4.5489339 4.5778161 2.8057619 10.838242  7.8883458  2.9119924
+## 4   2.1370774 3.3465206 3.3491491 1.7140303  9.735096  6.6735897  4.1642646
+## 5   3.5560090 2.3109955 2.2798026 1.0495713  8.404606  5.2489904  5.5279291
+## 6   3.0929921 2.6341412 2.6255856 1.0489995  8.812741  5.7143416  5.0510989
+## 7   5.5951854 0.3420526 0.3240370 1.8861336  6.272886  3.3929338  7.5512184
+## 8   0.0000000 5.4702377 5.4777276 3.7657934 11.831762  8.7506057  2.0980944
+## 9   5.4702377 0.0000000 0.1843909 1.7737249  6.414351  3.5471397  7.4373987
+## 10  5.4777276 0.1843909 0.0000000 1.7995833  6.413743  3.4911889  7.4590817
+## 11  3.7657934 1.7737249 1.7995833 0.0000000  8.077462  5.1429077  5.7042090
+## 12 11.8317623 6.4143511 6.4137431 8.0774625  0.000000  3.4983853 13.7481490
+## 13  8.7506057 3.5471397 3.4911889 5.1429077  3.498385  0.0000000 10.7524648
+## 14  2.0980944 7.4373987 7.4590817 5.7042090 13.748149 10.7524648  0.0000000
+## 15  3.7876378 1.8614242 1.8261709 0.9880283  8.213854  5.1304288  5.8351350
+## 16  6.4366606 1.4676853 1.3607718 2.8594755  5.561906  2.3382686  8.4382107
+## 17  0.2397916 5.3076548 5.3187593 3.5927566 11.660081  8.6019765  2.1958370
+## 18  1.7211333 3.8287074 3.8211778 2.1950171 10.180663  7.0459066  3.7935867
+## 19  1.9890199 7.4304441 7.4457169 5.7067329 13.772131 10.7192304  0.4876474
+## 20  0.4093898 5.7182078 5.7304188 4.0181090 12.093693  9.0505414  1.8452642
+## 21  0.4602173 5.1993365 5.1977976 3.5386155 11.576848  8.4532893  2.4989598
+## 22  5.3761045 0.7095069 0.6709694 1.7323683  6.486856  3.4298396  7.3542301
+## 23  6.7839443 1.8057685 1.7655594 3.1326506  5.154386  2.1755459  8.7219436
+## 24  1.7226723 3.7624327 3.7766784 2.0707969 10.134229  7.1153566  3.6953755
+## 25  4.3590710 1.4604109 1.5307514 0.7667464  7.527264  4.6977867  6.2247811
+## 26  5.8631050 0.9435571 0.8819864 2.1999545  6.009276  2.9635958  7.8289718
+## 27  3.4491013 2.0845623 2.0734030 0.8096295  8.473140  5.4121345  5.4842593
+## 28  5.0724945 1.0990450 0.9853426 1.7073957  6.942219  3.7234527  7.1201404
+## 29  2.1188440 3.4328996 3.4328705 1.8726719  9.836173  6.7630614  4.1684410
+## 30  4.1603606 1.3255565 1.3291727 0.5529919  7.704674  4.7412551  6.1351936
+## 31  3.2124134 2.3152322 2.3522542 0.6816157  8.671989  5.7629593  5.1315105
+## 32  6.2094283 0.8666603 0.8052950 2.5209919  5.672301  2.6910779  8.1967921
+## 33  3.9562103 3.9175630 4.0249099 2.8064568  9.503915  7.2517515  5.1350949
+## 34  6.7589052 1.3154087 1.3028047 3.0343039  5.120801  2.3432243  8.7295017
+## 35  5.8147141 1.2666491 1.2637247 2.2162807  6.118930  3.1956220  7.7130604
+## 36  8.8431895 3.6488491 3.6135440 5.1875235  3.273133  0.7276675 10.8083486
+## 37  4.1237240 1.4732956 1.4758726 0.7143529  7.740536  4.6951890  6.0941693
+## 38  2.4080282 3.1621354 3.1510474 1.6167869  9.514179  6.3729350  4.4752430
+## 39  1.8616659 3.6606147 3.6720430 2.0104726 10.050522  7.0446079  3.8253627
+## 40  3.3023325 2.3586649 2.3415166 1.2177849  8.744804  5.6759757  5.3423965
+## 41  7.8310472 2.5998461 2.5837570 4.1264149  4.068009  1.4363843  9.7550961
+## 42  5.0003500 1.3742634 1.3181047 1.6098758  6.968967  3.8165167  6.9602514
+## 43  0.8027453 6.1475768 6.1662712 4.4250650 12.484350  9.4529308  1.3333417
+## 44  4.7469569 0.8794885 0.8686196 1.2629331  7.232330  4.3107192  6.7412017
+## 45  1.7470260 3.9903133 4.0182583 2.3693670 10.370386  7.4488254  3.5821921
+## 46  5.9963155 0.8756141 0.9577578 2.2498444  5.878163  3.2555030  7.8835779
+## 47  4.0183081 1.4759065 1.4942891 0.6249800  7.886660  4.9427624  5.9949812
+## 48  1.8298361 3.6826078 3.6787498 2.0475107 10.058951  6.9582900  3.8975762
+## 49  3.2604754 2.3145626 2.2983472 1.0410091  8.701201  5.6131631  5.3088511
+## 50  2.6312925 3.1734839 3.1532840 1.6298159  9.365645  6.1864853  4.6244243
+## 51  6.4055211 1.4024265 1.3560236 2.7391787  5.490801  2.4678736  8.3614532
+## 52  6.8579953 1.5617298 1.4844528 3.2438403  5.169749  2.1138117  8.8767505
+## 53  0.8024338 5.2784467 5.2668207 3.6658832 11.642212  8.4604373  2.6914494
+## 54  0.9705153 6.3180852 6.3337351 4.6294168 12.699972  9.6633638  1.3353277
+## 55 10.5934319 5.7470949 5.7446584 7.0455234  3.013702  3.2410955 12.3726068
+##           15        16         17         18         19         20         21
+## 1  1.5574980 1.9445308  4.5191481  2.9613679  6.6105522  4.9864817  4.3482870
+## 2  2.8124011 5.3883949  0.9586970  0.7022108  3.0378282  1.4344337  0.8333067
+## 3  3.0766053 5.5831443  1.0013990  1.3025360  2.9596790  1.4224978  1.2987301
+## 4  1.6798512 4.3594380  1.9911303  0.5941380  4.1144501  2.3966018  1.8568522
+## 5  1.3036104 2.9512370  3.4013968  1.9185151  5.4953253  3.8827310  3.2976658
+## 6  1.4139307 3.4152306  2.9318765  1.5044933  5.0260720  3.4098974  2.8638785
+## 7  2.0288667 1.2780845  5.4276330  3.9518097  7.5532973  5.8516237  5.3287240
+## 8  3.7876378 6.4366606  0.2397916  1.7211333  1.9890199  0.4093898  0.4602173
+## 9  1.8614242 1.4676853  5.3076548  3.8287074  7.4304441  5.7182078  5.1993365
+## 10 1.8261709 1.3607718  5.3187593  3.8211778  7.4457169  5.7304188  5.1977976
+## 11 0.9880283 2.8594755  3.5927566  2.1950171  5.7067329  4.0181090  3.5386155
+## 12 8.2138542 5.5619061 11.6600815 10.1806630 13.7721313 12.0936926 11.5768476
+## 13 5.1304288 2.3382686  8.6019765  7.0459066 10.7192304  9.0505414  8.4532893
+## 14 5.8351350 8.4382107  2.1958370  3.7935867  0.4876474  1.8452642  2.4989598
+## 15 0.0000000 2.8583912  3.6582920  2.1236996  5.7707712  4.0386631  3.4642748
+## 16 2.8583912 0.0000000  6.2860083  4.7380692  8.4078654  6.7329191  6.1435495
+## 17 3.6582920 6.2860083  0.0000000  1.6045560  2.1315956  0.5354437  0.5331979
+## 18 2.1236996 4.7380692  1.6045560  0.0000000  3.7047402  2.0363448  1.4103546
+## 19 5.7707712 8.4078654  2.1315956  3.7047402  0.0000000  1.7496857  2.3509147
+## 20 4.0386631 6.7329191  0.5354437  2.0363448  1.7496857  0.0000000  0.7573638
+## 21 3.4642748 6.1435495  0.5331979  1.4103546  2.3509147  0.7573638  0.0000000
+## 22 1.8961804 1.1986242  5.2155920  3.7028097  7.3373224  5.6614574  5.1069071
+## 23 3.3601637 0.8262566  6.6176733  5.1301657  8.7230327  7.0786510  6.5326794
+## 24 2.1673486 4.7999167  1.5512898  0.6032412  3.6714302  1.9679431  1.5138032
+## 25 1.5798418 2.5070102  4.1704916  2.8346781  6.2585541  4.6170229  4.1632559
+## 26 2.3807562 0.7602631  5.6997456  4.1946990  7.8201279  6.1506422  5.5984819
+## 27 0.4092676 3.1225470  3.3099547  1.7934325  5.4302210  3.7036874  3.1467285
+## 28 1.4624637 1.4827677  4.9378437  3.3576033  7.0565005  5.3654264  4.7555231
+## 29 1.6931332 4.4629250  1.9994999  0.6448256  4.0905623  2.3584529  1.8018047
+## 30 0.7848567 2.4574784  3.9980870  2.5347781  6.1233651  4.4096485  3.8953305
+## 31 1.1303097 3.4837910  3.0357042  1.7291327  5.1391050  3.4394767  2.9940274
+## 32 2.5578507 0.7269113  6.0513883  4.5318319  8.1804279  6.4782714  5.9270397
+## 33 3.4604335 5.2279633  3.7524792  3.4375718  5.3221988  3.9697103  4.0017496
+## 34 3.0987417 1.0531856  6.5980982  5.0976759  8.7225340  7.0147844  6.4846280
+## 35 2.5885324 1.2127242  5.6365060  4.1963556  7.7340740  6.1079047  5.5804570
+## 36 5.2938644 2.5075486  8.6861211  7.1645586 10.7930533  9.1398687  8.5737856
+## 37 1.0177917 2.4102075  3.9580803  2.4728930  6.0808141  4.4072554  3.8594171
+## 38 1.4585609 4.0739907  2.2846663  0.6987847  4.3924025  2.7073603  2.0891146
+## 39 2.0424495 4.7270921  1.6993234  0.7203471  3.8018680  2.0779798  1.6265915
+## 40 0.6011655 3.4063470  3.1763973  1.6898817  5.2740307  3.5409886  2.9690739
+## 41 4.3337166 1.6523014  7.6598825  6.1794013  9.7692016  8.1150662  7.5805475
+## 42 1.8494594 1.5679605  4.8398554  3.3394011  6.9419234  5.3155338  4.7377104
+## 43 4.5261905 7.1422545  0.8808519  2.4745707  1.2957623  0.6359245  1.2317467
+## 44 1.0737784 2.1338229  4.5967924  3.1185734  6.7136726  4.9789959  4.4550196
+## 45 2.4201033 5.1530088  1.5963709  1.1675616  3.5706442  1.8551819  1.5895597
+## 46 2.6061082 1.4726846  5.8145937  4.4083444  7.9181058  6.2431242  5.7683100
+## 47 0.6739436 2.6850698  3.8589506  2.4121153  5.9780933  4.2549736  3.7465184
+## 48 1.9632371 4.6467946  1.7073957  0.2774887  3.8174992  2.1081983  1.5260079
+## 49 0.5485435 3.3254323  3.1294089  1.6006874  5.2433482  3.5168878  2.9399150
+## 50 1.7179348 3.8973196  2.4935918  1.0434558  4.5619623  2.9809562  2.3679316
+## 51 2.9356260 0.6215304  6.2424194  4.7421725  8.3550643  6.6954985  6.1471213
+## 52 3.1276029 0.8679286  6.7111847  5.1599612  8.8407749  7.1283308  6.5497099
+## 53 3.4978994 6.1682980  0.9291932  1.4857321  2.4758635  1.0646596  0.4253234
+## 54 4.6400323 7.3488162  1.1139120  2.6430286  1.2056119  0.6363175  1.2971893
+## 55 7.4151197 4.7329061 10.4086647  9.0297896 12.4328597 10.8958800 10.3964513
+##           22        23         24        25        26        27        28
+## 1  1.2393950 2.4300823  3.1304632 1.6649024 1.5948041 1.6933104 0.8909545
+## 2  4.3409792 5.7498087  0.8683317 3.3909143 4.8284366 2.4709310 4.0318978
+## 3  4.4710178 5.8416778  0.9550393 3.3164137 4.9441582 2.6942531 4.3084916
+## 4  3.2924155 4.7450395  0.5119570 2.3752053 3.7892084 1.3275541 2.9924405
+## 5  1.9726378 3.2824229  2.0359764 1.3939512 2.4038303 1.1382003 1.7710449
+## 6  2.3718980 3.7073036  1.5736582 1.5345032 2.8247832 1.1157509 2.1925328
+## 7  0.6566582 1.5880806  3.8884573 1.5087743 0.7347789 2.2450390 1.1670904
+## 8  5.3761045 6.7839443  1.7226723 4.3590710 5.8631050 3.4491013 5.0724945
+## 9  0.7095069 1.8057685  3.7624327 1.4604109 0.9435571 2.0845623 1.0990450
+## 10 0.6709694 1.7655594  3.7766784 1.5307514 0.8819864 2.0734030 0.9853426
+## 11 1.7323683 3.1326506  2.0707969 0.7667464 2.1999545 0.8096295 1.7073957
+## 12 6.4868559 5.1543865 10.1342291 7.5272638 6.0092762 8.4731399 6.9422187
+## 13 3.4298396 2.1755459  7.1153566 4.6977867 2.9635958 5.4121345 3.7234527
+## 14 7.3542301 8.7219436  3.6953755 6.2247811 7.8289718 5.4842593 7.1201404
+## 15 1.8961804 3.3601637  2.1673486 1.5798418 2.3807562 0.4092676 1.4624637
+## 16 1.1986242 0.8262566  4.7999167 2.5070102 0.7602631 3.1225470 1.4827677
+## 17 5.2155920 6.6176733  1.5512898 4.1704916 5.6997456 3.3099547 4.9378437
+## 18 3.7028097 5.1301657  0.6032412 2.8346781 4.1946990 1.7934325 3.3576033
+## 19 7.3373224 8.7230327  3.6714302 6.2585541 7.8201279 5.4302210 7.0565005
+## 20 5.6614574 7.0786510  1.9679431 4.6170229 6.1506422 3.7036874 5.3654264
+## 21 5.1069071 6.5326794  1.5138032 4.1632559 5.5984819 3.1467285 4.7555231
+## 22 0.0000000 1.5207893  3.7095418 1.3595588 0.5566866 2.0806249 0.7984360
+## 23 1.5207893 0.0000000  5.1415465 2.6300951 0.9945351 3.5622184 2.0694202
+## 24 3.7095418 5.1415465  0.0000000 2.6812124 4.2005476 1.8003055 3.4630045
+## 25 1.3595588 2.6300951  2.6812124 0.0000000 1.7718070 1.4925147 1.6796131
+## 26 0.5566866 0.9945351  4.2005476 1.7718070 0.0000000 2.5836215 1.1700427
+## 27 2.0806249 3.5622184  1.8003055 1.4925147 2.5836215 0.0000000 1.7355403
+## 28 0.7984360 2.0694202  3.4630045 1.6796131 1.1700427 1.7355403 0.0000000
+## 29 3.4101906 4.8831752  0.6632496 2.5612107 3.9162099 1.3730259 3.0565831
+## 30 1.3781509 2.8222509  2.4563794 0.8678133 1.8495946 0.8517629 1.2927490
+## 31 2.3474028 3.7839001  1.4964625 1.2906200 2.8365472 0.7865749 2.2502000
+## 32 0.9293546 1.1072037  4.5224551 2.1438983 0.6365532 2.8163629 1.3566134
+## 33 4.1599159 5.2442445  2.8773251 2.9186812 4.5069058 3.1975772 4.3853620
+## 34 1.5015658 1.1389030  5.0599605 2.6151291 1.1611201 3.3582585 1.9491537
+## 35 0.8451035 1.1421033  4.1646488 1.6367040 0.6392965 2.7154005 1.5632978
+## 36 3.5134456 2.1148759  7.2050677 4.6927923 3.0233425 5.5447543 3.9086571
+## 37 1.2960710 2.7586228  2.4494693 0.7908224 1.7970253 1.0018982 1.2440659
+## 38 3.0392598 4.4911134  0.9405318 2.2715413 3.5414686 1.1324752 2.6731629
+## 39 3.6486299 5.0922196  0.2738613 2.6451654 4.1378980 1.6944321 3.3877721
+## 40 2.4136901 3.9021148  1.7098538 1.8739530 2.9124560 0.4657252 2.0052431
+## 41 2.5007999 1.1092340  6.1610632 3.5774013 1.9938656 4.5555900 3.0403454
+## 42 0.7499333 1.8565021  3.4018965 1.3048372 1.0326180 1.9575495 0.9704123
+## 43 6.0577306 7.4500805  2.3948278 4.9683901 6.5422932 4.1729246 5.8029475
+## 44 1.2305690 2.5929713  3.0564031 1.3559130 1.6417673 1.3336791 1.0959927
+## 45 4.0484565 5.4971083  0.7022108 2.9928248 4.5440841 2.0816340 3.8110760
+## 46 1.0794906 1.3944533  4.2872602 1.6950811 0.9339165 2.7637113 1.7882953
+## 47 1.6039638 3.0735810  2.3108873 1.0339729 2.0934183 0.7057620 1.4641721
+## 48 3.6000556 5.0414284  0.4958831 2.7162106 4.0948138 1.6294171 3.2592791
+## 49 2.3047343 3.7907783  1.6442932 1.7216271 2.8092526 0.2723968 1.9158549
+## 50 2.9018615 4.2485056  1.3170801 2.1504883 3.3624842 1.4166157 2.6076618
+## 51 1.1067068 0.4384062  4.7542087 2.2742911 0.5916925 3.1440738 1.6586440
+## 52 1.6501515 1.3273281  5.1884776 2.9178759 1.3270644 3.4335404 1.8593816
+## 53 5.1660043 6.5923896  1.7297110 4.3099188 5.6589487 3.2065870 4.7590020
+## 54 6.2715070 7.6968305  2.5716337 5.2149593 6.7653899 4.3079694 5.9745711
+## 55 5.5428783 4.0805269  9.0053318 6.4064421 5.0446804 7.5843721 6.1226465
+##           29        30        31        32       33        34        35
+## 1  2.8089678 1.4453373 2.1417283 1.9984994 4.429853 2.6169066 1.6921879
+## 2  1.2332477 3.1781756 2.2937742 5.1871187 3.601278 5.7520083 4.7814956
+## 3  1.5882065 3.2613954 2.2505777 5.3095480 2.871637 5.8317493 4.8363829
+## 4  0.3252691 2.0424250 1.1834272 4.0918822 3.014482 4.6390624 3.7979468
+## 5  1.8675920 1.2610313 1.3055267 2.8540147 3.583797 3.4481879 2.3618002
+## 6  1.4942222 1.4404166 1.0681760 3.2565012 3.241389 3.8265389 2.7742206
+## 7  3.5870880 1.4546821 2.4545264 0.7325981 4.034588 1.2231517 1.0217632
+## 8  2.1188440 4.1603606 3.2124134 6.2094283 3.956210 6.7589052 5.8147141
+## 9  3.4328996 1.3255565 2.3152322 0.8666603 3.917563 1.3154087 1.2666491
+## 10 3.4328705 1.3291727 2.3522542 0.8052950 4.024910 1.3028047 1.2637247
+## 11 1.8726719 0.5529919 0.6816157 2.5209919 2.806457 3.0343039 2.2162807
+## 12 9.8361730 7.7046739 8.6719894 5.6723011 9.503915 5.1208007 6.1189296
+## 13 6.7630614 4.7412551 5.7629593 2.6910779 7.251752 2.3432243 3.1956220
+## 14 4.1684410 6.1351936 5.1315105 8.1967921 5.135095 8.7295017 7.7130604
+## 15 1.6931332 0.7848567 1.1303097 2.5578507 3.460433 3.0987417 2.5885324
+## 16 4.4629250 2.4574784 3.4837910 0.7269113 5.227963 1.0531856 1.2127242
+## 17 1.9994999 3.9980870 3.0357042 6.0513883 3.752479 6.5980982 5.6365060
+## 18 0.6448256 2.5347781 1.7291327 4.5318319 3.437572 5.0976759 4.1963556
+## 19 4.0905623 6.1233651 5.1391050 8.1804279 5.322199 8.7225340 7.7340740
+## 20 2.3584529 4.4096485 3.4394767 6.4782714 3.969710 7.0147844 6.1079047
+## 21 1.8018047 3.8953305 2.9940274 5.9270397 4.001750 6.4846280 5.5804570
+## 22 3.4101906 1.3781509 2.3474028 0.9293546 4.159916 1.5015658 0.8451035
+## 23 4.8831752 2.8222509 3.7839001 1.1072037 5.244244 1.1389030 1.1421033
+## 24 0.6632496 2.4563794 1.4964625 4.5224551 2.877325 5.0599605 4.1646488
+## 25 2.5612107 0.8678133 1.2906200 2.1438983 2.918681 2.6151291 1.6367040
+## 26 3.9162099 1.8495946 2.8365472 0.6365532 4.506906 1.1611201 0.6392965
+## 27 1.3730259 0.8517629 0.7865749 2.8163629 3.197577 3.3582585 2.7154005
+## 28 3.0565831 1.2927490 2.2502000 1.3566134 4.385362 1.9491537 1.5632978
+## 29 0.0000000 2.1519061 1.3414544 4.1826905 3.146029 4.7232933 3.9673669
+## 30 2.1519061 0.0000000 1.0599057 2.0877739 3.144296 2.6121639 1.9638992
+## 31 1.3414544 1.0599057 0.0000000 3.1139685 2.482700 3.6149412 2.8260042
+## 32 4.1826905 2.0877739 3.1139685 0.0000000 4.704508 0.6278535 1.1417092
+## 33 3.1460292 3.1442964 2.4827001 4.7045085 0.000000 4.9841549 4.3670929
+## 34 4.7232933 2.6121639 3.6149412 0.6278535 4.984155 0.0000000 1.5509674
+## 35 3.9673669 1.9638992 2.8260042 1.1417092 4.367093 1.5509674 0.0000000
+## 36 6.8949619 4.8353076 5.8286705 2.8174102 7.150119 2.4254896 3.2012341
+## 37 2.1926696 0.5792236 1.1749468 2.1371242 3.378062 2.7039046 1.7904189
+## 38 0.5712268 1.8971558 1.2336936 3.8569677 3.371261 4.4243644 3.5782538
+## 39 0.5595534 2.3566077 1.4141428 4.4319070 2.833373 4.9644939 4.1216380
+## 40 1.1950314 1.1994999 0.9965942 3.0925394 3.312069 3.6298760 3.0538991
+## 41 5.8966601 3.7856175 4.7526729 1.8268826 5.991519 1.4639331 2.0772097
+## 42 3.1620879 1.4012494 2.2105882 1.5741982 4.200559 2.1615966 1.0039920
+## 43 2.8572539 4.8455959 3.8546076 6.9009275 4.226086 7.4406989 6.4511782
+## 44 2.6638881 0.7385120 1.6792260 1.6537835 3.538333 2.1271577 1.9276670
+## 45 0.9498421 2.7214886 1.7325992 4.7993645 2.607202 5.2951959 4.5441611
+## 46 4.0593472 1.9299741 2.8182619 0.9345587 4.013577 1.1077003 0.9660745
+## 47 1.9755252 0.3209361 0.9176056 2.2773230 3.046637 2.7849237 2.2098642
+## 48 0.4062019 2.3808192 1.5516121 4.4082083 3.252276 4.9621266 4.1164548
+## 49 1.1674759 1.0986810 0.8735560 3.0368569 3.280290 3.5853173 2.9339734
+## 50 1.2525973 1.9655279 1.4613350 3.7800397 3.584508 4.3695194 3.3240638
+## 51 4.4760474 2.4108712 3.3879345 0.7636098 4.928600 0.9800510 0.9112629
+## 52 4.7972909 2.7732472 3.8133843 0.7908856 5.429429 0.6852007 1.7987218
+## 53 1.8891268 3.9914283 3.1534267 5.9801589 4.345469 6.5468695 5.6710669
+## 54 2.9514064 5.0169214 4.0346127 7.0865436 4.393757 7.6204003 6.7128087
+## 55 8.8497062 6.8100954 7.6728091 5.0298907 8.551327 4.6782048 4.9121991
+##            36        37        38         39        40       41        42
+## 1   4.3518042 1.0830051 2.3263276  3.0967725 1.9546355 3.461835 0.7482647
+## 2   7.8024996 3.0902265 1.3834739  1.0525208 2.3552070 6.799934 3.9435390
+## 3   7.9281965 3.2276927 1.8283599  1.1468653 2.6500377 6.859869 4.1241484
+## 4   6.7874811 2.0450428 0.4962862  0.4517743 1.2233152 5.766437 3.0030984
+## 5   5.3380895 0.9450397 1.3738268  2.0461183 1.4472733 4.352987 1.4642063
+## 6   5.7737683 1.2466355 1.0412492  1.6191973 1.4027829 4.773646 1.9369306
+## 7   3.4903152 1.5455096 3.2939794  3.7900792 2.5239057 2.400375 1.2705904
+## 8   8.8431895 4.1237240 2.4080282  1.8616659 3.3023325 7.831047 5.0003500
+## 9   3.6488491 1.4732956 3.1621354  3.6606147 2.3586649 2.599846 1.3742634
+## 10  3.6135440 1.4758726 3.1510474  3.6720430 2.3415166 2.583757 1.3181047
+## 11  5.1875235 0.7143529 1.6167869  2.0104726 1.2177849 4.126415 1.6098758
+## 12  3.2731331 7.7405362 9.5141789 10.0505224 8.7448042 4.068009 6.9689669
+## 13  0.7276675 4.6951890 6.3729350  7.0446079 5.6759757 1.436384 3.8165167
+## 14 10.8083486 6.0941693 4.4752430  3.8253627 5.3423965 9.755096 6.9602514
+## 15  5.2938644 1.0177917 1.4585609  2.0424495 0.6011655 4.333717 1.8494594
+## 16  2.5075486 2.4102075 4.0739907  4.7270921 3.4063470 1.652301 1.5679605
+## 17  8.6861211 3.9580803 2.2846663  1.6993234 3.1763973 7.659883 4.8398554
+## 18  7.1645586 2.4728930 0.6987847  0.7203471 1.6898817 6.179401 3.3394011
+## 19 10.7930533 6.0808141 4.3924025  3.8018680 5.2740307 9.769202 6.9419234
+## 20  9.1398687 4.4072554 2.7073603  2.0779798 3.5409886 8.115066 5.3155338
+## 21  8.5737856 3.8594171 2.0891146  1.6265915 2.9690739 7.580547 4.7377104
+## 22  3.5134456 1.2960710 3.0392598  3.6486299 2.4136901 2.500800 0.7499333
+## 23  2.1148759 2.7586228 4.4911134  5.0922196 3.9021148 1.109234 1.8565021
+## 24  7.2050677 2.4494693 0.9405318  0.2738613 1.7098538 6.161063 3.4018965
+## 25  4.6927923 0.7908224 2.2715413  2.6451654 1.8739530 3.577401 1.3048372
+## 26  3.0233425 1.7970253 3.5414686  4.1378980 2.9124560 1.993866 1.0326180
+## 27  5.5447543 1.0018982 1.1324752  1.6944321 0.4657252 4.555590 1.9575495
+## 28  3.9086571 1.2440659 2.6731629  3.3877721 2.0052431 3.040345 0.9704123
+## 29  6.8949619 2.1926696 0.5712268  0.5595534 1.1950314 5.896660 3.1620879
+## 30  4.8353076 0.5792236 1.8971558  2.3566077 1.1994999 3.785618 1.4012494
+## 31  5.8286705 1.1749468 1.2336936  1.4141428 0.9965942 4.752673 2.2105882
+## 32  2.8174102 2.1371242 3.8569677  4.4319070 3.0925394 1.826883 1.5741982
+## 33  7.1501189 3.3780616 3.3712609  2.8333725 3.3120688 5.991519 4.2005595
+## 34  2.4254896 2.7039046 4.4243644  4.9644939 3.6298760 1.463933 2.1615966
+## 35  3.2012341 1.7904189 3.5782538  4.1216380 3.0538991 2.077210 1.0039920
+## 36  0.0000000 4.8004896 6.5049827  7.1491818 5.8522303 1.259881 3.9002179
+## 37  4.8004896 0.0000000 1.8289615  2.3907112 1.3353277 3.751027 1.0948973
+## 38  6.5049827 1.8289615 0.0000000  0.9373367 1.0681760 5.529674 2.7157872
+## 39  7.1491818 2.3907112 0.9373367  0.0000000 1.5574338 6.098533 3.3730550
+## 40  5.8522303 1.3353277 1.0681760  1.5574338 0.0000000 4.867309 2.3035408
+## 41  1.2598809 3.7510265 5.5296745  6.0985326 4.8673093 0.000000 2.9140350
+## 42  3.9002179 1.0948973 2.7157872  3.3730550 2.3035408 2.914035 0.0000000
+## 43  9.5245577 4.7965300 3.1512855  2.5385035 4.0350713 8.486925 5.6751828
+## 44  4.4558950 1.1095495 2.4570307  2.9253034 1.5477726 3.449507 1.5814234
+## 45  7.5342617 2.8290988 1.4478605  0.6263386 1.9347093 6.478287 3.8481424
+## 46  3.2303870 2.0041707 3.7791533  4.2056866 3.0777264 2.054532 1.6472098
+## 47  5.0553932 0.7097183 1.7735839  2.1943564 0.9877247 4.007805 1.6571361
+## 48  7.0738038 2.3735206 0.6242596  0.5424942 1.5144966 6.080197 3.2827123
+## 49  5.7660125 1.1905461 0.9388823  1.5279725 0.2798214 4.784120 2.1473239
+## 50  6.2859446 1.7488854 0.7418221  1.4079418 1.5303268 5.320695 2.4259843
+## 51  2.4634732 2.3684172 4.0940811  4.6992872 3.4827145 1.466901 1.5216438
+## 52  2.3836317 2.8261635 4.4736227  5.0853613 3.6595492 1.635543 2.2234658
+## 53  8.6032261 3.9443884 2.1313611  1.8308741 3.0122915 7.647967 4.7891962
+## 54  9.7582529 5.0085128 3.3100302  2.6722462 4.1249606 8.727222 5.9268541
+## 55  2.7520538 6.6945127 8.4381989  8.9845868 7.9334356 3.233094 5.7559969
+##            43        44         45        46        47         48        49
+## 1   5.3678115 1.6423763  3.6125753 2.2555709 1.6225905  2.9285662 1.8114911
+## 2   1.8058793 3.7825917  1.2802734 5.0143594 3.0537845  0.8865100 2.2817318
+## 3   1.6806844 3.9022173  1.0963576 4.9762938 3.1404299  1.3325164 2.5685015
+## 4   2.8538570 2.6177280  0.9892421 3.9246019 1.8936473  0.3967367 1.1506520
+## 5   4.2417449 1.9009471  2.5804845 2.7746351 1.3763720  1.8960749 1.2104132
+## 6   3.7665103 2.1392522  2.1241233 3.0915368 1.4858668  1.4742117 1.1480854
+## 7   6.2680061 1.0965856  4.1494819 0.7115476 1.6422241  3.8171193 2.4721246
+## 8   0.8027453 4.7469569  1.7470260 5.9963155 4.0183081  1.8298361 3.2604754
+## 9   6.1475768 0.8794885  3.9903133 0.8756141 1.4759065  3.6826078 2.3145626
+## 10  6.1662712 0.8686196  4.0182583 0.9577578 1.4942891  3.6787498 2.2983472
+## 11  4.4250650 1.2629331  2.3693670 2.2498444 0.6249800  2.0475107 1.0410091
+## 12 12.4843502 7.2323302 10.3703857 5.8781630 7.8866596 10.0589512 8.7012011
+## 13  9.4529308 4.3107192  7.4488254 3.2555030 4.9427624  6.9582900 5.6131631
+## 14  1.3333417 6.7412017  3.5821921 7.8835779 5.9949812  3.8975762 5.3088511
+## 15  4.5261905 1.0737784  2.4201033 2.6061082 0.6739436  1.9632371 0.5485435
+## 16  7.1422545 2.1338229  5.1530088 1.4726846 2.6850698  4.6467946 3.3254323
+## 17  0.8808519 4.5967924  1.5963709 5.8145937 3.8589506  1.7073957 3.1294089
+## 18  2.4745707 3.1185734  1.1675616 4.4083444 2.4121153  0.2774887 1.6006874
+## 19  1.2957623 6.7136726  3.5706442 7.9181058 5.9780933  3.8174992 5.2433482
+## 20  0.6359245 4.9789959  1.8551819 6.2431242 4.2549736  2.1081983 3.5168878
+## 21  1.2317467 4.4550196  1.5895597 5.7683100 3.7465184  1.5260079 2.9399150
+## 22  6.0577306 1.2305690  4.0484565 1.0794906 1.6039638  3.6000556 2.3047343
+## 23  7.4500805 2.5929713  5.4971083 1.3944533 3.0735810  5.0414284 3.7907783
+## 24  2.3948278 3.0564031  0.7022108 4.2872602 2.3108873  0.4958831 1.6442932
+## 25  4.9683901 1.3559130  2.9928248 1.6950811 1.0339729  2.7162106 1.7216271
+## 26  6.5422932 1.6417673  4.5440841 0.9339165 2.0934183  4.0948138 2.8092526
+## 27  4.1729246 1.3336791  2.0816340 2.7637113 0.7057620  1.6294171 0.2723968
+## 28  5.8029475 1.0959927  3.8110760 1.7882953 1.4641721  3.2592791 1.9158549
+## 29  2.8572539 2.6638881  0.9498421 4.0593472 1.9755252  0.4062019 1.1674759
+## 30  4.8455959 0.7385120  2.7214886 1.9299741 0.3209361  2.3808192 1.0986810
+## 31  3.8546076 1.6792260  1.7325992 2.8182619 0.9176056  1.5516121 0.8735560
+## 32  6.9009275 1.6537835  4.7993645 0.9345587 2.2773230  4.4082083 3.0368569
+## 33  4.2260857 3.5383329  2.6072016 4.0135770 3.0466375  3.2522761 3.2802896
+## 34  7.4406989 2.1271577  5.2951959 1.1077003 2.7849237  4.9621266 3.5853173
+## 35  6.4511782 1.9276670  4.5441611 0.9660745 2.2098642  4.1164548 2.9339734
+## 36  9.5245577 4.4558950  7.5342617 3.2303870 5.0553932  7.0738038 5.7660125
+## 37  4.7965300 1.1095495  2.8290988 2.0041707 0.7097183  2.3735206 1.1905461
+## 38  3.1512855 2.4570307  1.4478605 3.7791533 1.7735839  0.6242596 0.9388823
+## 39  2.5385035 2.9253034  0.6263386 4.2056866 2.1943564  0.5424942 1.5279725
+## 40  4.0350713 1.5477726  1.9347093 3.0777264 0.9877247  1.5144966 0.2798214
+## 41  8.4869252 3.4495072  6.4782868 2.0545316 4.0078049  6.0801974 4.7841196
+## 42  5.6751828 1.5814234  3.8481424 1.6472098 1.6571361  3.2827123 2.1473239
+## 43  0.0000000 5.4468339  2.3456556 6.6278051 4.7017869  2.5810269 3.9945087
+## 44  5.4468339 0.0000000  3.2387498 1.6725430 0.7721399  2.9477279 1.5465122
+## 45  2.3456556 3.2387498  0.0000000 4.5284986 2.5301186  0.9837683 1.9365949
+## 46  6.6278051 1.6725430  4.5284986 0.0000000 2.1227812  4.2727158 3.0068089
+## 47  4.7017869 0.7721399  2.5301186 2.1227812 0.0000000  2.2425209 0.9327915
+## 48  2.5810269 2.9477279  0.9837683 4.2727158 2.2425209  0.0000000 1.4401389
+## 49  3.9945087 1.5465122  1.9365949 3.0068089 0.9327915  1.4401389 0.0000000
+## 50  3.3302402 2.6116470  1.9654007 3.6882652 1.9509741  1.1161541 1.3203030
+## 51  7.0808545 2.1703686  5.0965282 1.1289376 2.6577246  4.6458368 3.3739591
+## 52  7.5705680 2.2447940  5.4550894 1.6216966 2.9353194  5.0381941 3.6321344
+## 53  1.5004999 4.5245442  1.8488916 5.8859749 3.8442294  1.6229603 2.9861346
+## 54  0.5510898 5.5741995  2.4109749 6.8426092 4.8512988  2.7200000 4.1148755
+## 55 11.1793112 6.6005151  9.3826276 5.0553734 7.0588809  8.9684503 7.8138787
+##           50        51        52         53         54        55
+## 1  2.0700483 2.0848741 2.5221221  4.3462052  5.5890876  6.335393
+## 2  1.5713370 5.3730345 5.8300858  1.0096039  2.0223501  9.579697
+## 3  1.9802020 5.4762578 6.0136179  1.6663133  1.9789896  9.562400
+## 4  1.0452751 4.3483790 4.7342159  1.9836834  3.0018328  8.669562
+## 5  0.9790301 2.9264825 3.5148400  3.3574842  4.4964764  7.137086
+## 6  0.6574952 3.3437554 3.9437672  2.9567719  4.0281385  7.541910
+## 7  3.2472450 1.2076423 1.4673786  5.4124856  6.4548431  5.523613
+## 8  2.6312925 6.4055211 6.8579953  0.8024338  0.9705153 10.593432
+## 9  3.1734839 1.4024265 1.5617298  5.2784467  6.3180852  5.747095
+## 10 3.1532840 1.3560236 1.4844528  5.2668207  6.3337351  5.744658
+## 11 1.6298159 2.7391787 3.2438403  3.6658832  4.6294168  7.045523
+## 12 9.3656447 5.4908014 5.1697485 11.6422120 12.6999724  3.013702
+## 13 6.1864853 2.4678736 2.1138117  8.4604373  9.6633638  3.241095
+## 14 4.6244243 8.3614532 8.8767505  2.6914494  1.3353277 12.372607
+## 15 1.7179348 2.9356260 3.1276029  3.4978994  4.6400323  7.415120
+## 16 3.8973196 0.6215304 0.8679286  6.1682980  7.3488162  4.732906
+## 17 2.4935918 6.2424194 6.7111847  0.9291932  1.1139120 10.408665
+## 18 1.0434558 4.7421725 5.1599612  1.4857321  2.6430286  9.029790
+## 19 4.5619623 8.3550643 8.8407749  2.4758635  1.2056119 12.432860
+## 20 2.9809562 6.6954985 7.1283308  1.0646596  0.6363175 10.895880
+## 21 2.3679316 6.1471213 6.5497099  0.4253234  1.2971893 10.396451
+## 22 2.9018615 1.1067068 1.6501515  5.1660043  6.2715070  5.542878
+## 23 4.2485056 0.4384062 1.3273281  6.5923896  7.6968305  4.080527
+## 24 1.3170801 4.7542087 5.1884776  1.7297110  2.5716337  9.005332
+## 25 2.1504883 2.2742911 2.9178759  4.3099188  5.2149593  6.406442
+## 26 3.3624842 0.5916925 1.3270644  5.6589487  6.7653899  5.044680
+## 27 1.4166157 3.1440738 3.4335404  3.2065870  4.3079694  7.584372
+## 28 2.6076618 1.6586440 1.8593816  4.7590020  5.9745711  6.122646
+## 29 1.2525973 4.4760474 4.7972909  1.8891268  2.9514064  8.849706
+## 30 1.9655279 2.4108712 2.7732472  3.9914283  5.0169214  6.810095
+## 31 1.4613350 3.3879345 3.8133843  3.1534267  4.0346127  7.672809
+## 32 3.7800397 0.7636098 0.7908856  5.9801589  7.0865436  5.029891
+## 33 3.5845083 4.9286002 5.4294291  4.3454689  4.3937569  8.551327
+## 34 4.3695194 0.9800510 0.6852007  6.5468695  7.6204003  4.678205
+## 35 3.3240638 0.9112629 1.7987218  5.6710669  6.7128087  4.912199
+## 36 6.2859446 2.4634732 2.3836317  8.6032261  9.7582529  2.752054
+## 37 1.7488854 2.3684172 2.8261635  3.9443884  5.0085128  6.694513
+## 38 0.7418221 4.0940811 4.4736227  2.1313611  3.3100302  8.438199
+## 39 1.4079418 4.6992872 5.0853613  1.8308741  2.6722462  8.984587
+## 40 1.5303268 3.4827145 3.6595492  3.0122915  4.1249606  7.933436
+## 41 5.3206954 1.4669015 1.6355427  7.6479671  8.7272218  3.233094
+## 42 2.4259843 1.5216438 2.2234658  4.7891962  5.9268541  5.755997
+## 43 3.3302402 7.0808545 7.5705680  1.5004999  0.5510898 11.179311
+## 44 2.6116470 2.1703686 2.2447940  4.5245442  5.5741995  6.600515
+## 45 1.9654007 5.0965282 5.4550894  1.8488916  2.4109749  9.382628
+## 46 3.6882652 1.1289376 1.6216966  5.8859749  6.8426092  5.055373
+## 47 1.9509741 2.6577246 2.9353194  3.8442294  4.8512988  7.058881
+## 48 1.1161541 4.6458368 5.0381941  1.6229603  2.7200000  8.968450
+## 49 1.3203030 3.3739591 3.6321344  2.9861346  4.1148755  7.813879
+## 50 0.0000000 3.8864637 4.4223975  2.4134622  3.5865304  8.079734
+## 51 3.8864637 0.0000000 1.1877710  6.2040148  7.3135901  4.507738
+## 52 4.4223975 1.1877710 0.0000000  6.5729750  7.7329813  4.823453
+## 53 2.4134622 6.2040148 6.5729750  0.0000000  1.5037287 10.485376
+## 54 3.5865304 7.3135901 7.7329813  1.5037287  0.0000000 11.500213
+## 55 8.0797339 4.5077378 4.8234531 10.4853755 11.5002130  0.000000
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Treating the distances in (a) as measures of (dis)similarity, cluster
+  the countries using the single linkage and complete linkage
+  hierarchical procedures. Construct dendrograms and compare the
+  results.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# dengan single linkage}
+\NormalTok{hc2ntrwomen }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(ddntrwoman, }\AttributeTok{method =} \StringTok{"single"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(hc2ntrwomen)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{221911192_TugasAPGPertemuan10_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#dengan complete linkage}
+\NormalTok{hc2ntrwomen2 }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(ddntrwoman, }\AttributeTok{method =} \StringTok{"complete"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(hc2ntrwomen2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{221911192_TugasAPGPertemuan10_files/figure-latex/unnamed-chunk-16-2.pdf}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Input the data in Table 1.9 into a K-means clustering program. Cluster
+  the countries into groups using several values of K. Compare the
+  results with those in Part b.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(cluster)}
+\FunctionTok{library}\NormalTok{(factoextra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(gridExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'gridExtra'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kmeans2 }\OtherTok{\textless{}{-}} \FunctionTok{kmeans}\NormalTok{(mntrwomen, }\AttributeTok{centers =} \DecValTok{2}\NormalTok{, }\AttributeTok{nstart =} \DecValTok{25}\NormalTok{)}
+\NormalTok{kmeans3 }\OtherTok{\textless{}{-}} \FunctionTok{kmeans}\NormalTok{(mntrwomen, }\AttributeTok{centers =} \DecValTok{3}\NormalTok{, }\AttributeTok{nstart =} \DecValTok{25}\NormalTok{)}
+\NormalTok{kmeans4 }\OtherTok{\textless{}{-}} \FunctionTok{kmeans}\NormalTok{(mntrwomen, }\AttributeTok{centers =} \DecValTok{4}\NormalTok{, }\AttributeTok{nstart =} \DecValTok{25}\NormalTok{)}
+\NormalTok{kmeans5 }\OtherTok{\textless{}{-}} \FunctionTok{kmeans}\NormalTok{(mntrwomen, }\AttributeTok{centers =} \DecValTok{5}\NormalTok{, }\AttributeTok{nstart =} \DecValTok{25}\NormalTok{)}
+
+\FunctionTok{str}\NormalTok{(kmeans2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 9
+##  $ cluster     : int [1:55] 1 2 2 2 2 2 1 2 1 1 ...
+##  $ centers     : num [1:2, 1:6] 12 11.3 24.5 22.9 55.7 ...
+##   ..- attr(*, "dimnames")=List of 2
+##   .. ..$ : chr [1:2] "1" "2"
+##   .. ..$ : chr [1:6] "X100m" "X200m" "X400m" "X800m" ...
+##  $ totss       : num 508
+##  $ withinss    : num [1:2] 110.3 93.6
+##  $ tot.withinss: num 204
+##  $ betweenss   : num 304
+##  $ size        : int [1:2] 26 29
+##  $ iter        : int 1
+##  $ ifault      : int 0
+##  - attr(*, "class")= chr "kmeans"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(kmeans3) }\CommentTok{\# to see the variables that are used}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 9
+##  $ cluster     : int [1:55] 2 3 3 3 2 2 2 3 2 2 ...
+##  $ centers     : num [1:3, 1:6] 12.3 11.8 11.2 25.5 24 ...
+##   ..- attr(*, "dimnames")=List of 2
+##   .. ..$ : chr [1:3] "1" "2" "3"
+##   .. ..$ : chr [1:6] "X100m" "X200m" "X400m" "X800m" ...
+##  $ totss       : num 508
+##  $ withinss    : num [1:3] 16.3 54.3 52
+##  $ tot.withinss: num 123
+##  $ betweenss   : num 386
+##  $ size        : int [1:3] 5 29 21
+##  $ iter        : int 3
+##  $ ifault      : int 0
+##  - attr(*, "class")= chr "kmeans"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(kmeans4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 9
+##  $ cluster     : int [1:55] 4 2 2 1 1 1 4 2 4 4 ...
+##  $ centers     : num [1:4, 1:6] 11.5 11.1 12.3 11.9 23.5 ...
+##   ..- attr(*, "dimnames")=List of 2
+##   .. ..$ : chr [1:4] "1" "2" "3" "4"
+##   .. ..$ : chr [1:6] "X100m" "X200m" "X400m" "X800m" ...
+##  $ totss       : num 508
+##  $ withinss    : num [1:4] 32.3 12.6 16.3 15.3
+##  $ tot.withinss: num 76.5
+##  $ betweenss   : num 432
+##  $ size        : int [1:4] 22 11 5 17
+##  $ iter        : int 2
+##  $ ifault      : int 0
+##  - attr(*, "class")= chr "kmeans"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(kmeans5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 9
+##  $ cluster     : int [1:55] 1 2 2 2 1 1 5 3 5 5 ...
+##  $ centers     : num [1:5, 1:6] 11.6 11.4 11 12.3 11.9 ...
+##   ..- attr(*, "dimnames")=List of 2
+##   .. ..$ : chr [1:5] "1" "2" "3" "4" ...
+##   .. ..$ : chr [1:6] "X100m" "X200m" "X400m" "X800m" ...
+##  $ totss       : num 508
+##  $ withinss    : num [1:5] 9.72 14.1 8.12 16.26 10.59
+##  $ tot.withinss: num 58.8
+##  $ betweenss   : num 450
+##  $ size        : int [1:5] 14 12 9 5 15
+##  $ iter        : int 3
+##  $ ifault      : int 0
+##  - attr(*, "class")= chr "kmeans"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot1 }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_cluster}\NormalTok{(kmeans2, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ mntrwomen) }\SpecialCharTok{+} 
+\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"k = 2"}\NormalTok{)}
+\NormalTok{plot2 }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_cluster}\NormalTok{(kmeans3, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ mntrwomen) }\SpecialCharTok{+} 
+\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"k = 3"}\NormalTok{)}
+\NormalTok{plot3 }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_cluster}\NormalTok{(kmeans4, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ mntrwomen) }\SpecialCharTok{+} 
+\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"k = 4"}\NormalTok{)}
+\NormalTok{plot4 }\OtherTok{\textless{}{-}} \FunctionTok{fviz\_cluster}\NormalTok{(kmeans5, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ mntrwomen) }\SpecialCharTok{+} 
+\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"k = 5"}\NormalTok{)}
+\FunctionTok{grid.arrange}\NormalTok{(plot1, plot2, plot3, plot4, }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{221911192_TugasAPGPertemuan10_files/figure-latex/unnamed-chunk-17-1.pdf}
+perbandingan dengan metode hierarchical dengan single linkage dan
+complete linkage dengan metode k-means. pada metode hierarchical bisa
+dilihat tingkatan cluster secara detail di banding metode k-means. hal
+ini masih bisa ditangani karena jumlah observasi yang masih terhitung
+sedikit untuk metode hierarchical
+
+\end{document}

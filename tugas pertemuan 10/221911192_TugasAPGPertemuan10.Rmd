@@ -1,8 +1,9 @@
 ---
 title: "Tugas pertemuan-10"
 author: "Riofebri Prasetia (221911192)"
-date: "5/11/2022"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -34,6 +35,7 @@ hc2 <- hclust(dd, method = "complete")
 plot(hc2)
 ```
 ## 12.10
+Use Ward's method to cluster the 4 items whose measurements on a single variable X are given in the following table.
 ```{r}
 # load data
 x <- c(2,1,5,8)
@@ -51,7 +53,6 @@ dd_measurement
 hcMeasurement <- hclust(dd_measurement, method = "ward.D")
 plot(hcMeasurement)
 ```
-b)
 ```{r}
 #function join cluster
 joint_cluster <- function(join){
@@ -65,6 +66,15 @@ joint_cluster <- function(join){
 }
 ```
 
+```{r}
+joint_cluster(rbind(2))
+joint_cluster(rbind(1))
+joint_cluster(rbind(5))
+joint_cluster(rbind(8))
+```
+Bisa dilihat jika hanya terdapat 1 titik maka tidak terdapat ESS atau jarak
+
+b)
 ```{r}
 #data frame ESS
 j_12 <- joint_cluster(c(2,1))
@@ -117,11 +127,12 @@ joint_kMeans <- function(join){
 
 #function square distances
 squareDistance <- function(table){
+  n <- ncol(table)
   sum <- 0
-  for (i in 1:2){
+  for (i in 1:n){
     sum <- sum + (table[1,i]-table[2,i])^2
   }
-  return(sum)
+  return(matrix(sum))
 }
 
 #function square distances matrix
@@ -137,8 +148,10 @@ squareDistanceMatrix <- function(ca,cb){
 
 ```{r}
 #matrix coordinate of centroid AC dan BD
-rbind(joint_kMeans(matrix_12[c(1,3),]),
-      joint_kMeans(matrix_12[c(2,4),]))
+j_ac <- joint_kMeans(matrix_12[c(1,3),])
+j_bd <- joint_kMeans(matrix_12[c(2,4),])
+rbind(j_ac, j_bd)
+j_ac
 
 #matrix coordinate of centroid [A,(AC)], [A,(BD)]
 print(paste("matrix coordinate of centroid [A,(AC)], [A,(BD)]"))
@@ -174,7 +187,74 @@ squareDistance(rbind(matrix_12[2,],
 
 
 #square distance to group centroids A dan (BCD)
-rbind(squareDistanceMatrix(matrix_12, matrix_12[1,]), squareDistanceMatrix(matrix_12, j_bcd))
+print(paste("square euclidian contoh A dan (BCD)"))
+rbind(squareDistanceMatrix(matrix_12, matrix_12[1,]), squareDistanceMatrix(matrix_12, joint_kMeans(matrix_12[2:4,])))
 ```
-dari hasil di atas tidak ada cluster yang dipindahkan sehingga coordinat centroid tidak diperbarui
+dari hasil di atas tidak ada cluster yang dipindahkan sehingga coordinat centroid tidak diperbarui. Solusinya seperti contoh 12.12 yaitu dengan memulai dari inisial group (A,B) dan (C,D)
+
 ## 12.16
+The national track records data for women are given in Table 1 .9. 
+```{r}
+#input data
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%2010/National%20Track%20Records%20for%20Women.csv"
+ntrwomen <- read.csv(url)
+mntrwomen <- as.matrix(ntrwomen[,2:7])
+ntrwomen
+```
+
+(a) Using the data in Table 1.9, calculate the Euclidean distances between pairs 
+of countries. 
+```{r}
+#nntrwoman <- nrow(mntrwomen)
+#msntrwoman <- matrix(c(0), nrow = nntrwoman, ncol = nntrwoman)
+
+#for (i in 1:nntrwoman) {
+#  msntrwoman[i,] <- squareDistanceMatrix(mntrwomen, mntrwomen[i,])  
+#}
+#msntrwoman
+
+ddntrwoman <- dist(mntrwomen, method = "euclidean", diag = TRUE)
+as.matrix(ddntrwoman)
+```
+
+(b) Treating the distances in (a) as measures of (dis)similarity, cluster the countries using the single linkage and complete linkage hierarchical procedures. Construct dendrograms and compare the results.
+```{r}
+# dengan single linkage
+hc2ntrwomen <- hclust(ddntrwoman, method = "single")
+plot(hc2ntrwomen)
+
+#dengan complete linkage
+hc2ntrwomen2 <- hclust(ddntrwoman, method = "complete")
+plot(hc2ntrwomen2)
+
+```
+
+(c) Input the data in Table 1.9 into a K-means clustering program. Cluster the countries into groups using several values of K. Compare the results with those in Part b.
+```{r}
+library(tidyverse)
+library(cluster)
+library(factoextra)
+library(gridExtra)
+
+kmeans2 <- kmeans(mntrwomen, centers = 2, nstart = 25)
+kmeans3 <- kmeans(mntrwomen, centers = 3, nstart = 25)
+kmeans4 <- kmeans(mntrwomen, centers = 4, nstart = 25)
+kmeans5 <- kmeans(mntrwomen, centers = 5, nstart = 25)
+
+str(kmeans2)
+str(kmeans3) # to see the variables that are used
+str(kmeans4)
+str(kmeans5)
+
+
+plot1 <- fviz_cluster(kmeans2, geom = "point", data = mntrwomen) + 
+ggtitle("k = 2")
+plot2 <- fviz_cluster(kmeans3, geom = "point", data = mntrwomen) + 
+ggtitle("k = 3")
+plot3 <- fviz_cluster(kmeans4, geom = "point", data = mntrwomen) + 
+ggtitle("k = 4")
+plot4 <- fviz_cluster(kmeans5, geom = "point", data = mntrwomen) + 
+ggtitle("k = 5")
+grid.arrange(plot1, plot2, plot3, plot4, nrow = 2)
+```
+perbandingan dengan metode hierarchical dengan single linkage dan complete linkage dengan metode k-means. pada metode hierarchical bisa dilihat tingkatan cluster secara detail di banding metode k-means. hal ini masih bisa ditangani karena jumlah observasi yang masih terhitung sedikit untuk metode hierarchical
