@@ -1,0 +1,170 @@
+---
+title: "Tugas pertemuan-11"
+author: "Riofebri Prasetia (221911192)"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(expm)
+```
+
+## 10.10
+In a study of poverty, crime, and deterrence, Parker and Smith [10] report certain summary crime statistics in various states for the years 1970 and 1973. A portion of their sample correlation matrix is
+
+```{r}
+ro11 <- matrix(c(1, .615, 
+                .615, 1),2,2)
+ro12 <- matrix(c(-.111, -.195, 
+                -.266, -.085),2,2)
+ro21 <- matrix(c(-.111, -.266, 
+                -.195, -.085),2,2)
+ro22 <- matrix(c(1, -.269, 
+                -.269, 1),2,2)
+```
+
+The variables are 
+$X_{1}^{(1)}$ == 1973 nonprimary homicides 
+$X_{2}^{(1)}$ == 1973 primary homicides (homicides involving family or acquaintances) 
+$X_{1}^{(2)}$ == 1970 severity of punishment (median months served) 
+$X_{2}^{(2)}$ == 1970 certainty of punishment (number of admissions to prison 
+divided by number of homicides)
+
+(a) Find the sample canonical correlations.
+```{r}
+ro11s <- sqrtm(solve(ro11))
+ro12s <- sqrtm(solve(ro12))
+ro21s <- sqrtm(solve(ro21))
+ro22s <- sqrtm(solve(ro22))
+
+ro22i <- solve(ro22)
+ro21i <- solve(ro21)
+ro12i <- solve(ro12)
+ro11i <- solve(ro11)
+
+hasil <- ro11s%*%ro12%*%ro22i%*%ro21%*%ro11s
+hasil
+```
+
+```{r}
+eigen <- eigen(hasil)
+
+eigenvector <- eigen$vectors
+eigenvalues <- eigen$values
+
+eigenvector
+```
+
+```{r}
+a1 <- ro11s%*%eigenvector[,1]
+a1
+```
+```{r}
+b1 <- ro22i%*%ro21%*%a1
+b1
+```
+```{r}
+t(b1)%*%ro22%*%b1
+sqrt(t(b1)%*%ro22%*%b1)
+acc <- 1/(sqrt(t(b1)%*%ro22%*%b1))
+hasil_scale <- (acc[1,1])*b1
+hasil_scale
+```
+
+```{r}
+a1
+hasil_scale
+```
+```{r}
+ro1_bintang <- sqrt(eigenvalues[1])
+ro2_bintang <- sqrt(eigenvalues[2])
+ro1_bintang
+ro2_bintang
+```
+hasil dari canonical correlation seperti di atas
+
+(b) Determine the first canonical pair U1, V1 and interpret these quantities.
+```{r}
+a1
+hasil_scale
+```
+$U1 = a_{1}$
+
+didapat model nya ialah
+
+```{r}
+ro11 <- matrix(c(1, .4, .4, 1),2,2)
+ro21 <- matrix(c(.5, .6, .3, .4),2,2)
+ro12 <- matrix(c(.5,.3,.6,.4),2,2)
+ro22 <- matrix(c(1,.2,.2,1),2,2)
+```
+
+## 10.11
+Example 8.5 presents the correlation matrix obtained from n = 100 successive weekly rates of return for five stocks. Perform a canonical correlation analysis with $X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}, X^{(1)}_{3}]$, the rates of return for the chemical companies, and $X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}, X^{(1)}_{3}]$, the rates of return for the oil companies.
+
+```{r}
+rho11 <- matrix(c(1, .577, .509, 
+                  .577, 1, .599,
+                  .509, .599, 1),3,3)
+rho12 <- matrix(c(.387,.389,.436,
+                  .463,.322,.426),3,2)
+
+rho21 <- matrix(c(.387,.462,
+                  .389,.322,
+                  .436,.426),2,3)
+
+rho22 <- matrix(c(1,.532,.532,1),2,2)
+
+rho11
+rho12
+rho21
+rho22
+```
+```{r}
+rho11s <- sqrtm(solve(rho11))
+rho22s <- sqrtm(solve(rho22))
+
+rho22i <- solve(rho22)
+rho11i <- solve(rho11)
+
+hasil_2 <- rho11s%*%rho12%*%rho22i%*%rho21%*%rho11s
+hasil_2
+```
+```{r}
+eigen2 <- eigen(hasil_2)
+
+eigenvector2 <- eigen2$vectors
+eigenvalues2 <- eigen2$values
+
+eigenvalues2
+eigenvector2
+```
+```{r}
+a1_2 <- rho11s%*%eigenvector2[,1]
+a1_2
+```
+
+```{r}
+b1_2 <- rho22i%*%rho21%*%a1_2
+b1_2
+```
+```{r}
+t(b1_2)%*%rho22%*%b1_2
+sqrt(t(b1_2)%*%rho22%*%b1_2)
+acc_2 <- 1/(sqrt(t(b1_2)%*%rho22%*%b1_2))
+hasil_scale_2 <- (acc_2[1,1])*b1_2
+hasil_scale_2
+```
+
+```{r}
+a1_2
+hasil_scale_2
+```
+```{r}
+rho1_bintang <- sqrt(eigenvalues2[1])
+rho2_bintang <- sqrt(eigenvalues2[2])
+rho1_bintang
+rho2_bintang
+```
