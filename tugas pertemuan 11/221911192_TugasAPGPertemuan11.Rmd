@@ -9,6 +9,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(expm)
+library(CCA)
 ```
 
 ## 10.10
@@ -168,3 +169,98 @@ rho2_bintang <- sqrt(eigenvalues2[2])
 rho1_bintang
 rho2_bintang
 ```
+
+Buku beda
+## 11.8
+Use the diabetes data of Table 3.5. 
+(a) Find the canonical correlations between (y1, y2) and (x1, X2, x3). 
+(b) Find the standardized coefficients for the canonical variates. 
+(c) Test the significance of each canonical correlation.
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%2011/table%203.5.csv"
+data3 <- read.csv(url)
+data3 <- data3[,-1]
+data3
+```
+a)
+```{r}
+cordata3 <- cor(data3)
+cordata3
+```
+```{r}
+y1y2 <- cordata3[c(1,2),c(1,2)]
+x1x2x3 <- cordata3[c(3,4,5),c(3,4,5)]
+rhoo11 <- y1y2
+rhoo22 <- x1x2x3
+rhoo12 <- cordata3[c(1,2), c(3,4,5)]
+rhoo21 <- cordata3[c(3,4,5), c(1,2)]
+rhoo11
+rhoo22
+rhoo12
+rhoo21
+
+
+kelompok1 <- data3[, 1:2]
+kelompok2 <- data3[, 3:5]
+
+cccoba <- cc(kelompok1, kelompok2)
+```
+```{r}
+rhoo11s <- sqrtm(solve(rhoo11))
+rhoo22s <- sqrtm(solve(rhoo22))
+
+rhoo22i <- solve(rhoo22)
+rhoo11i <- solve(rhoo11)
+
+hasil3 <- rhoo11s%*%rhoo12%*%rhoo22i%*%rhoo21%*%rhoo11s
+hasil3
+```
+
+```{r}
+eigen3 <- eigen(hasil3)
+
+eigenvector3 <- eigen3$vectors
+eigenvalues3 <- eigen3$values
+
+eigenvector3
+eigenvalues3
+```
+
+```{r}
+a1_3 <- rhoo11s%*%eigenvector3[,1]
+a1_3
+```
+```{r}
+b1_3 <- rhoo22i%*%rhoo21%*%a1_3
+b1_3
+```
+```{r}
+t(b1_3)%*%rhoo22%*%b1_3
+sqrt(t(b1_3)%*%rhoo22%*%b1_3)
+acc3 <- 1/(sqrt(t(b1_3)%*%rhoo22%*%b1_3))
+hasil_scale3 <- (acc3[1,1])*b1_3
+hasil_scale3
+```
+
+```{r}
+a1_3
+hasil_scale3
+```
+```{r}
+rhoo1_bintang <- sqrt(eigenvalues3[1])
+rhoo2_bintang <- sqrt(eigenvalues3[2])
+rhoo1_bintang
+rhoo2_bintang
+
+print(paste("untuk perbandingan dengan package CAA hasil caconical correlation:"))
+
+cccoba$cor
+```
+hasil dari canonical correlation seperti di atas
+
+b)
+```{r}
+cccoba$xcoef
+cccoba$ycoef
+```
+
