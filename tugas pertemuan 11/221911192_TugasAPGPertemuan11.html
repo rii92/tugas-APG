@@ -213,64 +213,61 @@ eigenvector</code></pre>
 <pre><code>##            [,1]       [,2]
 ## [1,] -0.9463168  0.3232407
 ## [2,] -0.3232407 -0.9463168</code></pre>
-<pre class="r"><code>a1 &lt;- ro11s%*%eigenvector[,1]
-a1</code></pre>
-<pre><code>##              [,1]
-## [1,] -1.001589761
-## [2,]  0.002588365</code></pre>
-<pre class="r"><code>b1 &lt;- ro22i%*%ro21%*%a1
-b1</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.1964992
-## [2,] 0.3190611</code></pre>
-<pre class="r"><code>t(b1)%*%ro22%*%b1</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.1066819</code></pre>
-<pre class="r"><code>sqrt(t(b1)%*%ro22%*%b1)</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.3266219</code></pre>
-<pre class="r"><code>acc &lt;- 1/(sqrt(t(b1)%*%ro22%*%b1))
-hasil_scale &lt;- (acc[1,1])*b1
-hasil_scale</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.6016105
-## [2,] 0.9768515</code></pre>
-<pre class="r"><code>a1</code></pre>
-<pre><code>##              [,1]
-## [1,] -1.001589761
-## [2,]  0.002588365</code></pre>
-<pre class="r"><code>hasil_scale</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.6016105
-## [2,] 0.9768515</code></pre>
+<pre class="r"><code>eigenvalues</code></pre>
+<pre><code>## [1] 0.10668190 0.02926479</code></pre>
+<pre class="r"><code>a &lt;- ro11s%*%eigenvector
+a</code></pre>
+<pre><code>##              [,1]       [,2]
+## [1,] -1.001589761  0.7778925
+## [2,]  0.002588365 -1.2681846</code></pre>
+<pre class="r"><code>b &lt;- ro22i%*%ro21%*%a
+b</code></pre>
+<pre><code>##           [,1]       [,2]
+## [1,] 0.1964992  0.1447607
+## [2,] 0.3190611 -0.0601831</code></pre>
+<pre class="r"><code>t(b)%*%ro22%*%b</code></pre>
+<pre><code>##               [,1]          [,2]
+## [1,]  1.066819e-01 -1.387779e-17
+## [2,] -1.387779e-17  2.926479e-02</code></pre>
+<pre class="r"><code>sqrt(t(b)%*%ro22%*%b)</code></pre>
+<pre><code>## Warning in sqrt(t(b) %*% ro22 %*% b): NaNs produced</code></pre>
+<pre><code>##           [,1]      [,2]
+## [1,] 0.3266219       NaN
+## [2,]       NaN 0.1710696</code></pre>
+<pre class="r"><code>acc &lt;- 1/(sqrt(t(b)%*%ro22%*%b))</code></pre>
+<pre><code>## Warning in sqrt(t(b) %*% ro22 %*% b): NaNs produced</code></pre>
+<pre class="r"><code>b_final &lt;- (acc[1,1])*b
+b_final</code></pre>
+<pre><code>##           [,1]       [,2]
+## [1,] 0.6016105  0.4432056
+## [2,] 0.9768515 -0.1842592</code></pre>
+<pre class="r"><code>a</code></pre>
+<pre><code>##              [,1]       [,2]
+## [1,] -1.001589761  0.7778925
+## [2,]  0.002588365 -1.2681846</code></pre>
+<pre class="r"><code>b_final</code></pre>
+<pre><code>##           [,1]       [,2]
+## [1,] 0.6016105  0.4432056
+## [2,] 0.9768515 -0.1842592</code></pre>
 <pre class="r"><code>ro1_bintang &lt;- sqrt(eigenvalues[1])
 ro2_bintang &lt;- sqrt(eigenvalues[2])
 ro1_bintang</code></pre>
 <pre><code>## [1] 0.3266219</code></pre>
 <pre class="r"><code>ro2_bintang</code></pre>
 <pre><code>## [1] 0.1710696</code></pre>
-<p>hasil dari canonical correlation seperti di atas</p>
+<p>hasil dari canonical correlation yaitu <span class="math inline">\(\rho_{1}^* = 0.327\)</span> <span class="math inline">\(\rho_{2}^* = 0.171\)</span></p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Determine the first canonical pair U1, V1 and interpret these quantities.</li>
 </ol>
-<pre class="r"><code>a1</code></pre>
-<pre><code>##              [,1]
-## [1,] -1.001589761
-## [2,]  0.002588365</code></pre>
-<pre class="r"><code>hasil_scale</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.6016105
-## [2,] 0.9768515</code></pre>
-<p><span class="math inline">\(U1 = a_{1}\)</span></p>
-<p>didapat model nya ialah</p>
-<pre class="r"><code>ro11 &lt;- matrix(c(1, .4, .4, 1),2,2)
-ro21 &lt;- matrix(c(.5, .6, .3, .4),2,2)
-ro12 &lt;- matrix(c(.5,.3,.6,.4),2,2)
-ro22 &lt;- matrix(c(1,.2,.2,1),2,2)</code></pre>
+<pre class="r"><code>a[,1]</code></pre>
+<pre><code>## [1] -1.001589761  0.002588365</code></pre>
+<pre class="r"><code>b_final[,1]</code></pre>
+<pre><code>## [1] 0.6016105 0.9768515</code></pre>
+<p>Didapat modelnya ialah: <span class="math inline">\(U1 = a_{1}&#39;Z^{(1)} = -1.00Z_{1}^{(1)} + .002Z_{2}^{(2)}\)</span> <span class="math inline">\(V1 = a_{1}&#39;Z^{(1)} = -.611Z_{1}^{(1)} + .679Z_{2}^{(2)}\)</span></p>
 </div>
 <div id="section-1" class="section level2">
 <h2>10.11</h2>
-<p>Example 8.5 presents the correlation matrix obtained from n = 100 successive weekly rates of return for five stocks. Perform a canonical correlation analysis with <span class="math inline">\(X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}, X^{(1)}_{3}]\)</span>, the rates of return for the chemical companies, and <span class="math inline">\(X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}, X^{(1)}_{3}]\)</span>, the rates of return for the oil companies.</p>
+<p>Example 8.5 presents the correlation matrix obtained from n = 100 successive weekly rates of return for five stocks. Perform a canonical correlation analysis with <span class="math inline">\(X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}, X^{(1)}_{3}]\)</span>, the rates of return for the chemical companies, and <span class="math inline">\(X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}]\)</span>, the rates of return for the oil companies.</p>
 <pre class="r"><code>rho11 &lt;- matrix(c(1, .577, .509, 
                   .577, 1, .599,
                   .509, .599, 1),3,3)
@@ -325,44 +322,470 @@ eigenvalues2</code></pre>
 ## [1,] 0.6565091  0.6127044 -0.4432920
 ## [2,] 0.3698485 -0.7702030 -0.5167166
 ## [3,] 0.6574252 -0.1771460  0.7324590</code></pre>
-<pre class="r"><code>a1_2 &lt;- rho11s%*%eigenvector2[,1]
-a1_2</code></pre>
-<pre><code>##            [,1]
-## [1,] 0.54842584
-## [2,] 0.06376998
-## [3,] 0.55185532</code></pre>
-<pre class="r"><code>b1_2 &lt;- rho22i%*%rho21%*%a1_2
-b1_2</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.2885310
-## [2,] 0.3554985</code></pre>
-<pre class="r"><code>t(b1_2)%*%rho22%*%b1_2</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.3187663</code></pre>
-<pre class="r"><code>sqrt(t(b1_2)%*%rho22%*%b1_2)</code></pre>
-<pre><code>##          [,1]
-## [1,] 0.564594</code></pre>
-<pre class="r"><code>acc_2 &lt;- 1/(sqrt(t(b1_2)%*%rho22%*%b1_2))
-hasil_scale_2 &lt;- (acc_2[1,1])*b1_2
-hasil_scale_2</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.5110416
-## [2,] 0.6296534</code></pre>
-<pre class="r"><code>a1_2</code></pre>
-<pre><code>##            [,1]
-## [1,] 0.54842584
-## [2,] 0.06376998
-## [3,] 0.55185532</code></pre>
-<pre class="r"><code>hasil_scale_2</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.5110416
-## [2,] 0.6296534</code></pre>
+<pre class="r"><code>a_2 &lt;- rho11s%*%eigenvector2
+a_2</code></pre>
+<pre><code>##            [,1]        [,2]       [,3]
+## [1,] 0.54842584  1.00895687 -0.5339486
+## [2,] 0.06376998 -1.11485870 -0.7711279
+## [3,] 0.55185532 -0.09265314  1.1619423</code></pre>
+<pre class="r"><code>b_2 &lt;- rho22i%*%rho21%*%a_2
+b_2</code></pre>
+<pre><code>##           [,1]       [,2]          [,3]
+## [1,] 0.2885310 -0.1668369 -1.110223e-16
+## [2,] 0.3554985  0.1564405  2.775558e-16</code></pre>
+<pre class="r"><code>t(b_2)%*%rho22%*%b_2</code></pre>
+<pre><code>##               [,1]          [,2]         [,3]
+## [1,]  3.187663e-01 -6.289466e-05 8.824456e-17
+## [2,] -6.289466e-05  2.453773e-02 2.806853e-17
+## [3,]  8.824456e-17  2.806853e-17 5.657612e-32</code></pre>
+<pre class="r"><code>sqrt(t(b_2)%*%rho22%*%b_2)</code></pre>
+<pre><code>## Warning in sqrt(t(b_2) %*% rho22 %*% b_2): NaNs produced</code></pre>
+<pre><code>##              [,1]         [,2]         [,3]
+## [1,] 5.645940e-01          NaN 9.393858e-09
+## [2,]          NaN 1.566452e-01 5.297974e-09
+## [3,] 9.393858e-09 5.297974e-09 2.378573e-16</code></pre>
+<pre class="r"><code>acc_2 &lt;- 1/(sqrt(t(b_2)%*%rho22%*%b_2))</code></pre>
+<pre><code>## Warning in sqrt(t(b_2) %*% rho22 %*% b_2): NaNs produced</code></pre>
+<pre class="r"><code>b_final2 &lt;- (acc_2[1,1])*b_2
+b_final2</code></pre>
+<pre><code>##           [,1]       [,2]          [,3]
+## [1,] 0.5110416 -0.2954988 -1.966410e-16
+## [2,] 0.6296534  0.2770851  4.916024e-16</code></pre>
+<pre class="r"><code>a_2</code></pre>
+<pre><code>##            [,1]        [,2]       [,3]
+## [1,] 0.54842584  1.00895687 -0.5339486
+## [2,] 0.06376998 -1.11485870 -0.7711279
+## [3,] 0.55185532 -0.09265314  1.1619423</code></pre>
+<pre class="r"><code>b_final2</code></pre>
+<pre><code>##           [,1]       [,2]          [,3]
+## [1,] 0.5110416 -0.2954988 -1.966410e-16
+## [2,] 0.6296534  0.2770851  4.916024e-16</code></pre>
 <pre class="r"><code>rho1_bintang &lt;- sqrt(eigenvalues2[1])
 rho2_bintang &lt;- sqrt(eigenvalues2[2])
 rho1_bintang</code></pre>
 <pre><code>## [1] 0.5647666</code></pre>
 <pre class="r"><code>rho2_bintang</code></pre>
 <pre><code>## [1] 0.1571483</code></pre>
+</div>
+<div id="section-2" class="section level2">
+<h2>11.8</h2>
+<p>Use the diabetes data of Table 3.5. (a) Find the canonical correlations between (y1, y2) and (x1, X2, x3). (b) Find the standardized coefficients for the canonical variates. (c) Test the significance of each canonical correlation.</p>
+<pre class="r"><code>url &lt;- &quot;https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%2011/table%203.5.csv&quot;
+data3 &lt;- read.csv(url)
+data3 &lt;- data3[,-1]
+data3</code></pre>
+<pre><code>##      y1  y2  x1  x2  x3
+## 1  0.81  80 356 124  55
+## 2  0.95  97 289 117  76
+## 3  0.94 105 319 143 105
+## 4  1.04  90 356 199 108
+## 5  1.00  90 323 240 143
+## 6  0.76  86 381 157 165
+## 7  0.91 100 350 221 119
+## 8  1.10  85 301 186 105
+## 9  0.99  97 379 142  98
+## 10 0.78  97 296 131  94
+## 11 0.90  91 353 221  53
+## 12 0.73  87 306 178  66
+## 13 0.96  78 290 136 142
+## 14 0.84  90 371 200  93
+## 15 0.74  86 312 208  68
+## 16 0.98  80 393 202 102
+## 17 1.10  90 364 152  76
+## 18 0.85  99 359 185  37
+## 19 0.83  85 296 116  60
+## 20 0.93  90 345 123  50
+## 21 0.95  90 378 136  47
+## 22 0.74  88 304 134  50
+## 23 0.95  95 347 184  91
+## 24 0.97  90 327 192 124
+## 25 0.72  92 386 279  74
+## 26 1.11  74 365 228 235
+## 27 1.20  98 365 145 158
+## 28 1.13 100 352 172 140
+## 29 1.00  86 325 179 145
+## 30 0.78  98 321 222  99
+## 31 1.00  70 360 134  90
+## 32 1.00  99 336 143 105
+## 33 0.71  75 352 169  32
+## 34 0.76  90 353 263 165
+## 35 0.89  85 373 174  78
+## 36 0.88  99 376 134  80
+## 37 1.17 100 367 182  54
+## 38 0.85  78 335 241 175
+## 39 0.97 106 396 128  80</code></pre>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>cordata3 &lt;- cor(data3)
+cordata3</code></pre>
+<pre><code>##            y1          y2          x1         x2           x3
+## y1  1.0000000  0.16047812 0.175680799 -0.1438253  0.332284598
+## y2  0.1604781  1.00000000 0.072133311 -0.1132752 -0.170017219
+## x1  0.1756808  0.07213331 1.000000000  0.1638133  0.008216539
+## x2 -0.1438253 -0.11327520 0.163813321  1.0000000  0.368282904
+## x3  0.3322846 -0.17001722 0.008216539  0.3682829  1.000000000</code></pre>
+<pre class="r"><code>y1y2 &lt;- cordata3[c(1,2),c(1,2)]
+x1x2x3 &lt;- cordata3[c(3,4,5),c(3,4,5)]
+rhoo11 &lt;- y1y2
+rhoo22 &lt;- x1x2x3
+rhoo12 &lt;- cordata3[c(1,2), c(3,4,5)]
+rhoo21 &lt;- cordata3[c(3,4,5), c(1,2)]
+rhoo11</code></pre>
+<pre><code>##           y1        y2
+## y1 1.0000000 0.1604781
+## y2 0.1604781 1.0000000</code></pre>
+<pre class="r"><code>rhoo22</code></pre>
+<pre><code>##             x1        x2          x3
+## x1 1.000000000 0.1638133 0.008216539
+## x2 0.163813321 1.0000000 0.368282904
+## x3 0.008216539 0.3682829 1.000000000</code></pre>
+<pre class="r"><code>rhoo12</code></pre>
+<pre><code>##            x1         x2         x3
+## y1 0.17568080 -0.1438253  0.3322846
+## y2 0.07213331 -0.1132752 -0.1700172</code></pre>
+<pre class="r"><code>rhoo21</code></pre>
+<pre><code>##            y1          y2
+## x1  0.1756808  0.07213331
+## x2 -0.1438253 -0.11327520
+## x3  0.3322846 -0.17001722</code></pre>
+<pre class="r"><code>rhoo11s &lt;- sqrtm(solve(rhoo11))
+rhoo22s &lt;- sqrtm(solve(rhoo22))
+
+rhoo22i &lt;- solve(rhoo22)
+rhoo11i &lt;- solve(rhoo11)
+
+hasil3 &lt;- rhoo11s%*%rhoo12%*%rhoo22i%*%rhoo21%*%rhoo11s
+hasil3</code></pre>
+<pre><code>##             [,1]        [,2]
+## [1,]  0.25209303 -0.04570245
+## [2,] -0.04570245  0.04496109</code></pre>
+<pre class="r"><code>eigen3 &lt;- eigen(hasil3)
+
+eigenvector3 &lt;- eigen3$vectors
+eigenvalues3 &lt;- eigen3$values
+
+eigenvector3</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] -0.9784886 -0.2063007
+## [2,]  0.2063007 -0.9784886</code></pre>
+<pre class="r"><code>eigenvalues3</code></pre>
+<pre><code>## [1] 0.26172876 0.03532536</code></pre>
+<pre class="r"><code>a_3 &lt;- rhoo11s%*%eigenvector3
+a_3</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] -1.0049450 -0.1285284
+## [2,]  0.2881343 -0.9712943</code></pre>
+<pre class="r"><code>b_3 &lt;- rhoo22i%*%rhoo21%*%a_3
+b_3</code></pre>
+<pre><code>##          [,1]        [,2]
+## x1 -0.2058369 -0.11253986
+## x2  0.3308953  0.11744510
+## x3 -0.5030873  0.08010042</code></pre>
+<pre class="r"><code>t(b_3)%*%rhoo22%*%b_3</code></pre>
+<pre><code>##           [,1]         [,2]
+## [1,] 0.2617288 3.469447e-18
+## [2,] 0.0000000 3.532536e-02</code></pre>
+<pre class="r"><code>sqrt(t(b_3)%*%rhoo22%*%b_3)</code></pre>
+<pre><code>##           [,1]         [,2]
+## [1,] 0.5115943 1.862645e-09
+## [2,] 0.0000000 1.879504e-01</code></pre>
+<pre class="r"><code>acc3 &lt;- 1/(sqrt(t(b_3)%*%rhoo22%*%b_3))
+b_final3 &lt;- (acc3[1,1])*b_3
+b_final3</code></pre>
+<pre><code>##          [,1]       [,2]
+## x1 -0.4023439 -0.2199787
+## x2  0.6467924  0.2295669
+## x3 -0.9833716  0.1565702</code></pre>
+<pre class="r"><code># a dan b
+a_3</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] -1.0049450 -0.1285284
+## [2,]  0.2881343 -0.9712943</code></pre>
+<pre class="r"><code>b_final3</code></pre>
+<pre><code>##          [,1]       [,2]
+## x1 -0.4023439 -0.2199787
+## x2  0.6467924  0.2295669
+## x3 -0.9833716  0.1565702</code></pre>
+<pre class="r"><code>rhoo1_bintang &lt;- sqrt(eigenvalues3[1])
+rhoo2_bintang &lt;- sqrt(eigenvalues3[2])
+rhoo1_bintang</code></pre>
+<pre><code>## [1] 0.5115943</code></pre>
+<pre class="r"><code>rhoo2_bintang</code></pre>
+<pre><code>## [1] 0.1879504</code></pre>
+<p>hasil dari canonical correlation seperti di atas</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>S_data3 &lt;- cov(data3)
+Sy_data3 &lt;- S_data3[c(1,2),c(1,2)]
+Sx_data3 &lt;- S_data3[c(3,4,5),c(3,4,5)]
+Sy_data3</code></pre>
+<pre><code>##            y1         y2
+## y1 0.01734103  0.1824696
+## y2 0.18246964 74.5546559</code></pre>
+<pre class="r"><code>Sx_data3</code></pre>
+<pre><code>##           x1        x2         x3
+## x1 919.52362  212.2699   10.97976
+## x2 212.26991 1826.0621  693.52429
+## x3  10.97976  693.5243 1941.97976</code></pre>
+<pre class="r"><code>asmatrixxdiag &lt;- function(matrix){
+  n &lt;- nrow(matrix)
+  p &lt;- ncol(matrix)
+  matrix_diag &lt;- matrix(c(0), n, p)
+  for (i in 1:n){
+    matrix_diag[i,i] &lt;- matrix[i,i]
+  }
+  return(matrix_diag)
+}</code></pre>
+<pre class="r"><code>Dy &lt;- asmatrixxdiag(Sy_data3)
+Dx &lt;- asmatrixxdiag(Sx_data3)
+cy &lt;- Dy%*%a_3
+cx &lt;- Dx%*%b_final3
+cy</code></pre>
+<pre><code>##             [,1]          [,2]
+## [1,] -0.01742678  -0.002228814
+## [2,] 21.48175014 -72.414513139</code></pre>
+<pre class="r"><code>cx</code></pre>
+<pre><code>##            [,1]      [,2]
+## [1,]  -369.9648 -202.2756
+## [2,]  1181.0830  419.2033
+## [3,] -1909.6878  304.0562</code></pre>
+<p>Standardized coefficients untuk 2 canonical variates seperti di atas</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Uji Signifikansi Korelasi Kanonik Ho: 𝜮12 = 0 Ha: 𝜮12 ≠ 0</li>
+</ol>
+<pre class="r"><code>n = 39
+p = 2
+q = 3
+
+# Ho: rho12 = 0 vs Ha: rho12 != 0
+stat.hit &lt;- -(n-1-0.5*(p+q+1))*log((1-rhoo1_bintang^2) * (1-rhoo2_bintang^2))
+
+stat.uji &lt;- qchisq(0.95, p*q)
+
+if(stat.hit &gt; stat.uji){
+  cat(stat.hit, &quot;&gt;&quot;, stat.uji, &quot;, maka: &quot;)
+  cat(&quot;Tolak Ho&quot;)
+}else{
+  cat(stat.hit, &quot;&lt;&quot;, stat.uji, &quot;, maka: &quot;)
+  cat(&quot;Gagal Tolak Ho&quot;)
+}</code></pre>
+<pre><code>## 11.87929 &lt; 12.59159 , maka: Gagal Tolak Ho</code></pre>
+<pre class="r"><code># Uji Ho: rho1 != 0 dan rho2 = 0
+stat.hit &lt;- -(n-1-0.5*(p+q+1))*log(1-rhoo2_bintang^2)
+
+stat.uji &lt;- qchisq(0.95, (p-1)*(q-1))
+
+if(stat.hit &gt; stat.uji){
+  cat(stat.hit, &quot;&gt;&quot;, stat.uji, &quot;, maka: &quot;)
+  cat(&quot;Tolak Ho&quot;)
+}else{
+  cat(stat.hit, &quot;&lt;&quot;, stat.uji, &quot;, maka: &quot;)
+  cat(&quot;Gagal Tolak Ho&quot;)
+}</code></pre>
+<pre><code>## 1.258754 &lt; 5.991465 , maka: Gagal Tolak Ho</code></pre>
+<p>Karena gagal tolak Ho, maka Rho1 atau korelasi kanonik yang pertama dapat dikatakan signifikan, sedangkan rho2 atau korelasi kanonik yang kedua tidak signifikan. Sehingga dalam analisis korelasi kanonik ini cukup hanya membentuk satu pasang set variabel saja.</p>
+</div>
+<div id="section-3" class="section level2">
+<h2>11.9</h2>
+<p>Use the sons data of Table 3.8.</p>
+<pre class="r"><code>url &lt;- &quot;https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%2011/table%203.8.csv&quot;
+data4 &lt;- read.csv(url)
+data4</code></pre>
+<pre><code>##     y1  y2  x1  x2
+## 1  191 155 179 145
+## 2  195 149 201 152
+## 3  181 148 185 149
+## 4  183 153 188 149
+## 5  176 144 171 142
+## 6  208 157 192 152
+## 7  189 150 190 149
+## 8  197 159 189 152
+## 9  188 152 197 159
+## 10 192 150 187 151
+## 11 179 158 186 148
+## 12 183 147 174 147
+## 13 174 150 185 152
+## 14 190 159 195 157
+## 15 188 151 187 158
+## 16 163 137 161 130
+## 17 195 155 183 158
+## 18 186 153 173 148
+## 19 181 145 182 146
+## 20 175 140 165 137
+## 21 192 154 185 152
+## 22 174 143 178 147
+## 23 176 139 176 143
+## 24 197 167 200 158
+## 25 190 163 187 150</code></pre>
+<ol style="list-style-type: lower-alpha">
+<li>Find the canonical correlations between (y1,y2) and (x1,x2)·</li>
+<li>Find the standardized coefficients for the canonical variates.</li>
+<li>Test the significance of each canonical correlation.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>cordata4 &lt;- cor(data4)
+cordata4</code></pre>
+<pre><code>##           y1        y2        x1        x2
+## y1 1.0000000 0.7345555 0.7107518 0.7039807
+## y2 0.7345555 1.0000000 0.6931573 0.7085504
+## x1 0.7107518 0.6931573 1.0000000 0.8392519
+## x2 0.7039807 0.7085504 0.8392519 1.0000000</code></pre>
+<pre class="r"><code>rhooo11 &lt;- cordata3[c(1,2),c(1,2)]
+rhooo22 &lt;- cordata3[c(3,4),c(3,4)]
+rhooo12 &lt;- cordata3[c(1,2), c(3,4)]
+rhooo21 &lt;- cordata3[c(3,4), c(1,2)]
+rhooo11</code></pre>
+<pre><code>##           y1        y2
+## y1 1.0000000 0.1604781
+## y2 0.1604781 1.0000000</code></pre>
+<pre class="r"><code>rhooo22</code></pre>
+<pre><code>##           x1        x2
+## x1 1.0000000 0.1638133
+## x2 0.1638133 1.0000000</code></pre>
+<pre class="r"><code>rhooo12</code></pre>
+<pre><code>##            x1         x2
+## y1 0.17568080 -0.1438253
+## y2 0.07213331 -0.1132752</code></pre>
+<pre class="r"><code>rhooo21</code></pre>
+<pre><code>##            y1          y2
+## x1  0.1756808  0.07213331
+## x2 -0.1438253 -0.11327520</code></pre>
+<pre class="r"><code>rhooo11s &lt;- sqrtm(solve(rhooo11))
+rhooo22s &lt;- sqrtm(solve(rhooo22))
+
+rhooo22i &lt;- solve(rhooo22)
+rhooo11i &lt;- solve(rhooo11)
+
+hasil4 &lt;- rhooo11s%*%rhooo12%*%rhooo22i%*%rhooo21%*%rhooo11s
+hasil4</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] 0.05709317 0.02896448
+## [2,] 0.02896448 0.01637055</code></pre>
+<pre class="r"><code>eigen4 &lt;- eigen(hasil4)
+
+eigenvector4 &lt;- eigen4$vectors
+eigenvalues4 &lt;- eigen4$values
+
+eigenvector4</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] -0.8874386  0.4609259
+## [2,] -0.4609259 -0.8874386</code></pre>
+<pre class="r"><code>eigenvalues4</code></pre>
+<pre><code>## [1] 0.072136997 0.001326719</code></pre>
+<pre class="r"><code>a_4 &lt;- rhooo11s%*%eigenvector
+a_4</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] -0.9292685  0.4036013
+## [2,] -0.2492431 -0.9819938</code></pre>
+<pre class="r"><code>b_4 &lt;- rhooo22i%*%rhooo21%*%a_4
+b_4</code></pre>
+<pre><code>##          [,1]         [,2]
+## x1 -0.2134811 -0.008880589
+## x2  0.1968564  0.054642244</code></pre>
+<pre class="r"><code>t(b_4)%*%rhooo22%*%b_4</code></pre>
+<pre><code>##            [,1]        [,2]
+## [1,] 0.07055806 0.010455238
+## [2,] 0.01045524 0.002905657</code></pre>
+<pre class="r"><code>sqrt(t(b_4)%*%rhooo22%*%b_4)</code></pre>
+<pre><code>##           [,1]       [,2]
+## [1,] 0.2656277 0.10225086
+## [2,] 0.1022509 0.05390415</code></pre>
+<pre class="r"><code>acc4 &lt;- 1/(sqrt(t(b_4)%*%rhooo22%*%b_4))
+b_final4 &lt;- (acc4[1,1])*b_4
+b_final4</code></pre>
+<pre><code>##          [,1]        [,2]
+## x1 -0.8036853 -0.03343247
+## x2  0.7410990  0.20570991</code></pre>
+<pre class="r"><code># a dan b
+a_4</code></pre>
+<pre><code>##            [,1]       [,2]
+## [1,] -0.9292685  0.4036013
+## [2,] -0.2492431 -0.9819938</code></pre>
+<pre class="r"><code>b_final4</code></pre>
+<pre><code>##          [,1]        [,2]
+## x1 -0.8036853 -0.03343247
+## x2  0.7410990  0.20570991</code></pre>
+<pre class="r"><code>rhooo1_bintang &lt;- sqrt(eigenvalues4[1])
+rhooo2_bintang &lt;- sqrt(eigenvalues4[2])
+rhooo1_bintang</code></pre>
+<pre><code>## [1] 0.2685833</code></pre>
+<pre class="r"><code>rhooo2_bintang</code></pre>
+<pre><code>## [1] 0.03642415</code></pre>
+<p>hasil dari canonical correlation seperti di atas</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>S_data4 &lt;- cov(data4)
+Sy_data4 &lt;- S_data4[c(1,2),c(1,2)]
+Sx_data4 &lt;- S_data4[c(3,4),c(3,4)]
+Sy_data4</code></pre>
+<pre><code>##          y1       y2
+## y1 95.29333 52.86833
+## y2 52.86833 54.36000</code></pre>
+<pre class="r"><code>Sx_data4</code></pre>
+<pre><code>##          x1       x2
+## x1 100.8067 56.54000
+## x2  56.5400 45.02333</code></pre>
+<pre class="r"><code>asmatrixxdiag &lt;- function(matrix){
+  n &lt;- nrow(matrix)
+  p &lt;- ncol(matrix)
+  matrix_diag &lt;- matrix(c(0), n, p)
+  for (i in 1:n){
+    matrix_diag[i,i] &lt;- matrix[i,i]
+  }
+  return(matrix_diag)
+}</code></pre>
+<pre class="r"><code>Dy4 &lt;- asmatrixxdiag(Sy_data4)
+Dx4 &lt;- asmatrixxdiag(Sx_data4)
+cy4 &lt;- Dy4%*%a_4
+cx4 &lt;- Dx4%*%b_final4
+cy4</code></pre>
+<pre><code>##           [,1]      [,2]
+## [1,] -88.55309  38.46052
+## [2,] -13.54886 -53.38118</code></pre>
+<pre class="r"><code>cx4</code></pre>
+<pre><code>##           [,1]      [,2]
+## [1,] -81.01684 -3.370216
+## [2,]  33.36675  9.261746</code></pre>
+<p>Standardized coefficients untuk 2 canonical variates seperti di atas</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Uji Signifikansi Korelasi Kanonik Ho: 𝜮12 = 0 Ha: 𝜮12 ≠ 0</li>
+</ol>
+<pre class="r"><code>n = 25
+p = 2
+q = 3
+
+# Ho: rho12 = 0 vs Ha: rho12 != 0
+stat.hit &lt;- -(n-1-0.5*(p+q+1))*log((1-rhooo1_bintang^2) * (1-rhooo2_bintang^2))
+
+stat.uji &lt;- qchisq(0.95, p*q)
+
+if(stat.hit &gt; stat.uji){
+  cat(stat.hit, &quot;&gt;&quot;, stat.uji, &quot;, maka: &quot;)
+  cat(&quot;Tolak Ho&quot;)
+}else{
+  cat(stat.hit, &quot;&lt;&quot;, stat.uji, &quot;, maka: &quot;)
+  cat(&quot;Gagal Tolak Ho&quot;)
+}</code></pre>
+<pre><code>## 1.600174 &lt; 12.59159 , maka: Gagal Tolak Ho</code></pre>
+<pre class="r"><code># Uji Ho: rho1 != 0 dan rho2 = 0
+stat.hit &lt;- -(n-1-0.5*(p+q+1))*log(1-rhooo2_bintang^2)
+
+stat.uji &lt;- qchisq(0.95, (p-1)*(q-1))
+
+if(stat.hit &gt; stat.uji){
+  cat(stat.hit, &quot;&gt;&quot;, stat.uji, &quot;, maka: &quot;)
+  cat(&quot;Tolak Ho&quot;)
+}else{
+  cat(stat.hit, &quot;&lt;&quot;, stat.uji, &quot;, maka: &quot;)
+  cat(&quot;Gagal Tolak Ho&quot;)
+}</code></pre>
+<pre><code>## 0.0278796 &lt; 5.991465 , maka: Gagal Tolak Ho</code></pre>
+<p>Karena gagal tolak Ho, maka Rho1 atau korelasi kanonik yang pertama dapat dikatakan signifikan, sedangkan rho2 atau korelasi kanonik yang kedua tidak signifikan. Sehingga dalam analisis korelasi kanonik ini cukup hanya membentuk satu pasang set variabel saja.</p>
 </div>
 
 

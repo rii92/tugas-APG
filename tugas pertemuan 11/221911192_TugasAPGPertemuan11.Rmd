@@ -56,27 +56,29 @@ eigenvector <- eigen$vectors
 eigenvalues <- eigen$values
 
 eigenvector
+eigenvalues
 ```
 
 ```{r}
-a1 <- ro11s%*%eigenvector[,1]
-a1
-```
-```{r}
-b1 <- ro22i%*%ro21%*%a1
-b1
-```
-```{r}
-t(b1)%*%ro22%*%b1
-sqrt(t(b1)%*%ro22%*%b1)
-acc <- 1/(sqrt(t(b1)%*%ro22%*%b1))
-hasil_scale <- (acc[1,1])*b1
-hasil_scale
+a <- ro11s%*%eigenvector
+a
 ```
 
 ```{r}
-a1
-hasil_scale
+b <- ro22i%*%ro21%*%a
+b
+```
+```{r}
+t(b)%*%ro22%*%b
+sqrt(t(b)%*%ro22%*%b)
+acc <- 1/(sqrt(t(b)%*%ro22%*%b))
+b_final <- (acc[1,1])*b
+b_final
+```
+
+```{r}
+a
+b_final
 ```
 ```{r}
 ro1_bintang <- sqrt(eigenvalues[1])
@@ -84,26 +86,22 @@ ro2_bintang <- sqrt(eigenvalues[2])
 ro1_bintang
 ro2_bintang
 ```
-hasil dari canonical correlation seperti di atas
+hasil dari canonical correlation yaitu
+$\rho_{1}^* = 0.327$ 
+$\rho_{2}^* = 0.171$ 
 
 (b) Determine the first canonical pair U1, V1 and interpret these quantities.
 ```{r}
-a1
-hasil_scale
+a[,1]
+b_final[,1]
 ```
-$U1 = a_{1}$
+Didapat modelnya ialah:
+$U1 = a_{1}'Z^{(1)} = -1.00Z_{1}^{(1)} + .002Z_{2}^{(2)}$
+$V1 = a_{1}'Z^{(1)} = -.611Z_{1}^{(1)} + .679Z_{2}^{(2)}$
 
-didapat model nya ialah
-
-```{r}
-ro11 <- matrix(c(1, .4, .4, 1),2,2)
-ro21 <- matrix(c(.5, .6, .3, .4),2,2)
-ro12 <- matrix(c(.5,.3,.6,.4),2,2)
-ro22 <- matrix(c(1,.2,.2,1),2,2)
-```
 
 ## 10.11
-Example 8.5 presents the correlation matrix obtained from n = 100 successive weekly rates of return for five stocks. Perform a canonical correlation analysis with $X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}, X^{(1)}_{3}]$, the rates of return for the chemical companies, and $X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}, X^{(1)}_{3}]$, the rates of return for the oil companies.
+Example 8.5 presents the correlation matrix obtained from n = 100 successive weekly rates of return for five stocks. Perform a canonical correlation analysis with $X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}, X^{(1)}_{3}]$, the rates of return for the chemical companies, and $X^{1}=[X^{(1)}_{1}, X^{(1)}_{2}]$, the rates of return for the oil companies.
 
 ```{r}
 rho11 <- matrix(c(1, .577, .509, 
@@ -143,25 +141,25 @@ eigenvalues2
 eigenvector2
 ```
 ```{r}
-a1_2 <- rho11s%*%eigenvector2[,1]
-a1_2
+a_2 <- rho11s%*%eigenvector2
+a_2
 ```
 
 ```{r}
-b1_2 <- rho22i%*%rho21%*%a1_2
-b1_2
+b_2 <- rho22i%*%rho21%*%a_2
+b_2
 ```
 ```{r}
-t(b1_2)%*%rho22%*%b1_2
-sqrt(t(b1_2)%*%rho22%*%b1_2)
-acc_2 <- 1/(sqrt(t(b1_2)%*%rho22%*%b1_2))
-hasil_scale_2 <- (acc_2[1,1])*b1_2
-hasil_scale_2
+t(b_2)%*%rho22%*%b_2
+sqrt(t(b_2)%*%rho22%*%b_2)
+acc_2 <- 1/(sqrt(t(b_2)%*%rho22%*%b_2))
+b_final2 <- (acc_2[1,1])*b_2
+b_final2
 ```
 
 ```{r}
-a1_2
-hasil_scale_2
+a_2
+b_final2
 ```
 ```{r}
 rho1_bintang <- sqrt(eigenvalues2[1])
@@ -170,7 +168,6 @@ rho1_bintang
 rho2_bintang
 ```
 
-Buku beda
 ## 11.8
 Use the diabetes data of Table 3.5. 
 (a) Find the canonical correlations between (y1, y2) and (x1, X2, x3). 
@@ -198,12 +195,6 @@ rhoo11
 rhoo22
 rhoo12
 rhoo21
-
-
-kelompok1 <- data3[, 1:2]
-kelompok2 <- data3[, 3:5]
-
-cccoba <- cc(kelompok1, kelompok2)
 ```
 ```{r}
 rhoo11s <- sqrtm(solve(rhoo11))
@@ -223,44 +214,253 @@ eigenvector3 <- eigen3$vectors
 eigenvalues3 <- eigen3$values
 
 eigenvector3
+
 eigenvalues3
 ```
 
 ```{r}
-a1_3 <- rhoo11s%*%eigenvector3[,1]
-a1_3
+a_3 <- rhoo11s%*%eigenvector3
+a_3
 ```
 ```{r}
-b1_3 <- rhoo22i%*%rhoo21%*%a1_3
-b1_3
+b_3 <- rhoo22i%*%rhoo21%*%a_3
+b_3
 ```
 ```{r}
-t(b1_3)%*%rhoo22%*%b1_3
-sqrt(t(b1_3)%*%rhoo22%*%b1_3)
-acc3 <- 1/(sqrt(t(b1_3)%*%rhoo22%*%b1_3))
-hasil_scale3 <- (acc3[1,1])*b1_3
-hasil_scale3
+t(b_3)%*%rhoo22%*%b_3
+sqrt(t(b_3)%*%rhoo22%*%b_3)
+acc3 <- 1/(sqrt(t(b_3)%*%rhoo22%*%b_3))
+b_final3 <- (acc3[1,1])*b_3
+b_final3
 ```
 
 ```{r}
-a1_3
-hasil_scale3
+# a dan b
+a_3
+b_final3
 ```
 ```{r}
 rhoo1_bintang <- sqrt(eigenvalues3[1])
 rhoo2_bintang <- sqrt(eigenvalues3[2])
 rhoo1_bintang
 rhoo2_bintang
-
-print(paste("untuk perbandingan dengan package CAA hasil caconical correlation:"))
-
-cccoba$cor
 ```
 hasil dari canonical correlation seperti di atas
 
 b)
 ```{r}
-cccoba$xcoef
-cccoba$ycoef
+S_data3 <- cov(data3)
+Sy_data3 <- S_data3[c(1,2),c(1,2)]
+Sx_data3 <- S_data3[c(3,4,5),c(3,4,5)]
+Sy_data3
+Sx_data3
+```
+```{r}
+asmatrixxdiag <- function(matrix){
+  n <- nrow(matrix)
+  p <- ncol(matrix)
+  matrix_diag <- matrix(c(0), n, p)
+  for (i in 1:n){
+    matrix_diag[i,i] <- matrix[i,i]
+  }
+  return(matrix_diag)
+}
 ```
 
+
+```{r}
+Dy <- asmatrixxdiag(Sy_data3)
+Dx <- asmatrixxdiag(Sx_data3)
+cy <- Dy%*%a_3
+cx <- Dx%*%b_final3
+cy
+cx
+```
+Standardized coefficients untuk 2 canonical variates seperti di atas
+
+c)
+Uji Signifikansi Korelasi Kanonik
+Ho: 𝜮12 = 0
+Ha: 𝜮12 ≠ 0
+```{r}
+n = 39
+p = 2
+q = 3
+
+# Ho: rho12 = 0 vs Ha: rho12 != 0
+stat.hit <- -(n-1-0.5*(p+q+1))*log((1-rhoo1_bintang^2) * (1-rhoo2_bintang^2))
+
+stat.uji <- qchisq(0.95, p*q)
+
+if(stat.hit > stat.uji){
+  cat(stat.hit, ">", stat.uji, ", maka: ")
+  cat("Tolak Ho")
+}else{
+  cat(stat.hit, "<", stat.uji, ", maka: ")
+  cat("Gagal Tolak Ho")
+}
+```
+
+```{r}
+# Uji Ho: rho1 != 0 dan rho2 = 0
+stat.hit <- -(n-1-0.5*(p+q+1))*log(1-rhoo2_bintang^2)
+
+stat.uji <- qchisq(0.95, (p-1)*(q-1))
+
+if(stat.hit > stat.uji){
+  cat(stat.hit, ">", stat.uji, ", maka: ")
+  cat("Tolak Ho")
+}else{
+  cat(stat.hit, "<", stat.uji, ", maka: ")
+  cat("Gagal Tolak Ho")
+}
+```
+Karena gagal tolak Ho, maka Rho1 atau korelasi kanonik yang pertama dapat dikatakan signifikan, sedangkan rho2 atau korelasi kanonik yang kedua tidak signifikan. Sehingga dalam analisis korelasi kanonik ini cukup hanya membentuk satu pasang set variabel saja.
+
+## 11.9
+Use the sons data of Table 3.8. 
+```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas%20pertemuan%2011/table%203.8.csv"
+data4 <- read.csv(url)
+data4
+```
+
+(a) Find the canonical correlations between (y1,y2) and (x1,x2)· 
+(b) Find the standardized coefficients for the canonical variates. 
+(c) Test the significance of each canonical correlation.
+
+a)
+```{r}
+cordata4 <- cor(data4)
+cordata4
+```
+```{r}
+rhooo11 <- cordata3[c(1,2),c(1,2)]
+rhooo22 <- cordata3[c(3,4),c(3,4)]
+rhooo12 <- cordata3[c(1,2), c(3,4)]
+rhooo21 <- cordata3[c(3,4), c(1,2)]
+rhooo11
+rhooo22
+rhooo12
+rhooo21
+```
+```{r}
+rhooo11s <- sqrtm(solve(rhooo11))
+rhooo22s <- sqrtm(solve(rhooo22))
+
+rhooo22i <- solve(rhooo22)
+rhooo11i <- solve(rhooo11)
+
+hasil4 <- rhooo11s%*%rhooo12%*%rhooo22i%*%rhooo21%*%rhooo11s
+hasil4
+```
+
+```{r}
+eigen4 <- eigen(hasil4)
+
+eigenvector4 <- eigen4$vectors
+eigenvalues4 <- eigen4$values
+
+eigenvector4
+
+eigenvalues4
+```
+
+```{r}
+a_4 <- rhooo11s%*%eigenvector
+a_4
+```
+```{r}
+b_4 <- rhooo22i%*%rhooo21%*%a_4
+b_4
+```
+```{r}
+t(b_4)%*%rhooo22%*%b_4
+sqrt(t(b_4)%*%rhooo22%*%b_4)
+acc4 <- 1/(sqrt(t(b_4)%*%rhooo22%*%b_4))
+b_final4 <- (acc4[1,1])*b_4
+b_final4
+```
+
+```{r}
+# a dan b
+a_4
+b_final4
+```
+```{r}
+rhooo1_bintang <- sqrt(eigenvalues4[1])
+rhooo2_bintang <- sqrt(eigenvalues4[2])
+rhooo1_bintang
+rhooo2_bintang
+```
+hasil dari canonical correlation seperti di atas
+
+b)
+```{r}
+S_data4 <- cov(data4)
+Sy_data4 <- S_data4[c(1,2),c(1,2)]
+Sx_data4 <- S_data4[c(3,4),c(3,4)]
+Sy_data4
+Sx_data4
+```
+```{r}
+asmatrixxdiag <- function(matrix){
+  n <- nrow(matrix)
+  p <- ncol(matrix)
+  matrix_diag <- matrix(c(0), n, p)
+  for (i in 1:n){
+    matrix_diag[i,i] <- matrix[i,i]
+  }
+  return(matrix_diag)
+}
+```
+
+
+```{r}
+Dy4 <- asmatrixxdiag(Sy_data4)
+Dx4 <- asmatrixxdiag(Sx_data4)
+cy4 <- Dy4%*%a_4
+cx4 <- Dx4%*%b_final4
+cy4
+cx4
+```
+Standardized coefficients untuk 2 canonical variates seperti di atas
+
+c)
+Uji Signifikansi Korelasi Kanonik
+Ho: 𝜮12 = 0
+Ha: 𝜮12 ≠ 0
+```{r}
+n = 25
+p = 2
+q = 3
+
+# Ho: rho12 = 0 vs Ha: rho12 != 0
+stat.hit <- -(n-1-0.5*(p+q+1))*log((1-rhooo1_bintang^2) * (1-rhooo2_bintang^2))
+
+stat.uji <- qchisq(0.95, p*q)
+
+if(stat.hit > stat.uji){
+  cat(stat.hit, ">", stat.uji, ", maka: ")
+  cat("Tolak Ho")
+}else{
+  cat(stat.hit, "<", stat.uji, ", maka: ")
+  cat("Gagal Tolak Ho")
+}
+```
+
+```{r}
+# Uji Ho: rho1 != 0 dan rho2 = 0
+stat.hit <- -(n-1-0.5*(p+q+1))*log(1-rhooo2_bintang^2)
+
+stat.uji <- qchisq(0.95, (p-1)*(q-1))
+
+if(stat.hit > stat.uji){
+  cat(stat.hit, ">", stat.uji, ", maka: ")
+  cat("Tolak Ho")
+}else{
+  cat(stat.hit, "<", stat.uji, ", maka: ")
+  cat("Gagal Tolak Ho")
+}
+```
+Karena gagal tolak Ho, maka Rho1 atau korelasi kanonik yang pertama dapat dikatakan signifikan, sedangkan rho2 atau korelasi kanonik yang kedua tidak signifikan. Sehingga dalam analisis korelasi kanonik ini cukup hanya membentuk satu pasang set variabel saja.
