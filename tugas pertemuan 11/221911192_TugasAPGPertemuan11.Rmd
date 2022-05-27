@@ -227,11 +227,12 @@ b_3 <- rhoo22i%*%rhoo21%*%a_3
 b_3
 ```
 ```{r}
-t(b_3)%*%rhoo22%*%b_3
-sqrt(t(b_3)%*%rhoo22%*%b_3)
-acc3 <- 1/(sqrt(t(b_3)%*%rhoo22%*%b_3))
-b_final3 <- (acc3[1,1])*b_3
-b_final3
+acc3_1 <- 1/(sqrt(t(b_3[,1])%*%rhoo22%*%b_3[,1]))
+acc3_2 <- 1/(sqrt(t(b_3[,2])%*%rhoo22%*%b_3[,2]))
+b_final3_1 <- (acc3_1[1,1])*b_3[,1]
+b_final3_2 <- (acc3_2[1,1])*b_3[,2]
+b_final3_1
+b_final3_2
 ```
 
 ```{r}
