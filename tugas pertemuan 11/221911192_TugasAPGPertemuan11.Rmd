@@ -208,6 +208,7 @@ hasil3
 ```
 
 ```{r}
+
 eigen3 <- eigen(hasil3)
 
 eigenvector3 <- eigen3$vectors

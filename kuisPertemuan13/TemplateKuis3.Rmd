@@ -1,0 +1,207 @@
+---
+title: "TemplateKuis13"
+author: "Riofebri Prasetia (221911192)"
+date: "5/30/2022"
+output: word_document
+---
+# Analisis discriminant
+
+## Memuat paket R yang diperlukan
+
+tidyverse untuk manipulasi dan visualisasi data yang mudah
+caret untuk alur kerja pembelajaran mesin yang mudah
+```{r}
+library(tidyverse)
+library(caret)
+theme_set(theme_classic())
+```
+
+## Mempersiapkan data
+
+Kami akan menggunakan iriskumpulan data, yang diperkenalkan di Bab @ref(klasifikasi-dalam-r), untuk memprediksi spesies iris berdasarkan variabel prediktor Sepal.Length, Sepal.Width, Petal.Length, Petal.Width.
+
+Analisis diskriminan dapat dipengaruhi oleh skala/unit di mana variabel prediktor diukur. Biasanya disarankan untuk menstandardisasi/menormalkan prediktor kontinu sebelum analisis.
+
+Bagi data menjadi set pelatihan dan pengujian:
+```{r}
+# Load the data
+data("iris")
+# Split the data into training (80%) and test set (20%)
+set.seed(123)
+training.samples <- iris$Species %>%
+  createDataPartition(p = 0.8, list = FALSE)
+train.data <- iris[training.samples, ]
+test.data <- iris[-training.samples, ]
+```
+
+Normalisasi data. Variabel kategori secara otomatis diabaikan.
+```{r}
+# Estimate preprocessing parameters
+preproc.param <- train.data %>% 
+  preProcess(method = c("center", "scale"))
+# Transform the data using the estimated parameters
+train.transformed <- preproc.param %>% predict(train.data)
+test.transformed <- preproc.param %>% predict(test.data)
+```
+
+## Analisis diskriminan linier - LDA
+
+Algoritma LDA dimulai dengan mencari arah yang memaksimalkan pemisahan antar kelas, kemudian menggunakan arah tersebut untuk memprediksi kelas individu. Arah ini, yang disebut diskriminan linier, adalah kombinasi linier dari variabel prediktor.
+
+LDA mengasumsikan bahwa prediktor terdistribusi normal (distribusi Gaussian) dan bahwa kelas yang berbeda memiliki rata-rata spesifik kelas dan varians/kovarians yang sama.
+
+Sebelum melakukan LDA, pertimbangkan:
+
+Memeriksa distribusi univariat dari setiap variabel dan memastikan bahwa mereka terdistribusi secara normal. Jika tidak, Anda dapat mengubahnya menggunakan log dan root untuk distribusi eksponensial dan Box-Cox untuk distribusi miring.
+menghapus outlier dari data Anda dan menstandarkan variabel untuk membuat skalanya sebanding.
+Analisis diskriminan linier dapat dengan mudah dihitung menggunakan fungsi lda()[paket MASSA].
+```{r}
+library(MASS)
+# Fit the model
+model <- lda(Species~., data = train.transformed)
+# Make predictions
+predictions <- model %>% predict(test.transformed)
+# Model accuracy
+mean(predictions$class==test.transformed$Species)
+```
+Hitung LDA :
+```{r}
+library(MASS)
+model <- lda(Species~., data = train.transformed)
+model
+```
+LDA menentukan cara kelompok dan menghitung, untuk setiap individu, kemungkinan menjadi bagian dari kelompok yang berbeda. Individu tersebut kemudian dipengaruhi ke kelompok dengan skor probabilitas tertinggi.
+
+Outputnya lda()berisi elemen-elemen berikut:
+
+Probabilitas kelompok sebelumnya : proporsi pengamatan pelatihan di setiap kelompok. Misalnya, ada 31% observasi pelatihan di grup setosa
+Grup artinya : pusat gravitasi grup. Menunjukkan mean dari setiap variabel dalam setiap kelompok.
+Koefisien diskriminan linier : Menunjukkan kombinasi linier dari variabel prediktor yang digunakan untuk membentuk aturan keputusan LDA. misalnya, LD1 = 0.91*Sepal.Length + 0.64*Sepal.Width - 4.08*Petal.Length - 2.3*Petal.Width. Demikian pula, LD2 = 0.03*Sepal.Length + 0.89*Sepal.Width - 2.2*Petal.Length - 2.6*Petal.Width.
+Menggunakan fungsi plot()menghasilkan plot dari diskriminan linier, diperoleh dengan menghitung LD1 dan LD2 untuk masing-masing pengamatan pelatihan.
+
+```{r}
+plot(model)
+```
+Buat prediksi :
+```{r}
+predictions <- model %>% predict(test.transformed)
+names(predictions)
+```
+Fungsi predict()mengembalikan elemen berikut:
+
+class : prediksi kelas observasi.
+posterior : adalah matriks yang kolomnya adalah grup, baris adalah individu dan nilai adalah probabilitas posterior bahwa pengamatan yang sesuai termasuk dalam grup.
+x : berisi diskriminan linier, dijelaskan di atas
+
+Periksa hasilnya:
+```{r}
+# Predicted classes
+head(predictions$class, 6)
+# Predicted probabilities of class memebership.
+head(predictions$posterior, 6) 
+# Linear discriminants
+head(predictions$x, 3) 
+```
+Perhatikan bahwa, Anda dapat membuat plot LDA menggunakan ggplot2 sebagai berikut:
+```{r}
+lda.data <- cbind(train.transformed, predict(model)$x)
+ggplot(lda.data, aes(LD1, LD2)) +
+  geom_point(aes(color = Species))
+```
+Akurasi model :
+
+Anda dapat menghitung akurasi model sebagai berikut:
+```{r}
+mean(predictions$class==test.transformed$Species)
+```
+Dapat dilihat bahwa, model kami mengklasifikasikan 96% pengamatan dengan benar, yang sangat baik.
+
+Perhatikan bahwa, secara default, batas probabilitas yang digunakan untuk memutuskan keanggotaan kelompok adalah 0,5 (tebakan acak). Misalnya, jumlah pengamatan dalam kelompok setosa dapat dihitung ulang menggunakan:
+
+```{r}
+sum(predictions$posterior[ ,1] >=.5)
+```
+Dalam beberapa situasi, Anda mungkin ingin meningkatkan presisi model. Dalam hal ini Anda dapat menyempurnakan model dengan menyesuaikan batas probabilitas posterior. Misalnya, Anda dapat menambah atau mengurangi batas.
+
+Pilihan variabel :
+
+Perhatikan bahwa, jika variabel prediktor distandarisasi sebelum menghitung LDA, bobot diskriminator dapat digunakan sebagai ukuran kepentingan variabel untuk pemilihan fitur.
+
+
+## Analisis diskriminan kuadrat - QDA
+
+QDA sedikit lebih fleksibel daripada LDA, dalam arti tidak mengasumsikan kesetaraan varians/kovarians. Dengan kata lain, untuk QDA matriks kovarians dapat berbeda untuk setiap kelas.
+
+LDA cenderung lebih baik daripada QDA ketika Anda memiliki set pelatihan kecil.
+
+Sebaliknya, QDA direkomendasikan jika set pelatihan sangat besar, sehingga varians dari pengklasifikasi bukan masalah utama, atau jika asumsi matriks kovarians umum untuk kelas K jelas tidak dapat dipertahankan (James et al. 2014) .
+
+QDA dapat dihitung menggunakan fungsi R qda()[MASS package]
+
+```{r}
+library(MASS)
+# Fit the model
+model <- qda(Species~., data = train.transformed)
+model
+# Make predictions
+predictions <- model %>% predict(test.transformed)
+# Model accuracy
+mean(predictions$class == test.transformed$Species)
+```
+
+## Analisis diskriminan campuran - MDA
+
+Pengklasifikasi LDA mengasumsikan bahwa setiap kelas berasal dari satu distribusi normal (atau Gaussian). Ini terlalu membatasi.
+
+Untuk MDA, ada kelas, dan setiap kelas diasumsikan sebagai campuran Gaussian dari subkelas, di mana setiap titik data memiliki probabilitas untuk menjadi bagian dari setiap kelas. Kesetaraan matriks kovarians antar kelas masih diasumsikan.
+
+```{r}
+library(mda)
+# Fit the model
+model <- mda(Species~., data = train.transformed)
+model
+# Make predictions
+predicted.classes <- model %>% predict(test.transformed)
+# Model accuracy
+mean(predicted.classes == test.transformed$Species)
+```
+MDA mungkin mengungguli LDA dan QDA dalam beberapa situasi, seperti yang diilustrasikan di bawah ini. Dalam contoh data ini, kami memiliki 3 kelompok utama individu, masing-masing tidak memiliki 3 subkelompok yang berdekatan. Garis hitam pekat pada plot mewakili batas keputusan LDA, QDA dan MDA. Dapat dilihat bahwa MDA classifier telah mengidentifikasi subclass dengan benar dibandingkan dengan LDA dan QDA, yang sama sekali tidak baik dalam memodelkan data ini.
+
+## Analisis diskriminan fleksibel - FDA
+FDA adalah perpanjangan fleksibel dari LDA yang menggunakan kombinasi non-linear dari prediktor seperti splines. FDA berguna untuk memodelkan hubungan non-normalitas atau non-linear multivariat antar variabel dalam setiap kelompok, memungkinkan klasifikasi yang lebih akurat.
+```{r}
+library(mda)
+# Fit the model
+model <- fda(Species~., data = train.transformed)
+# Make predictions
+predicted.classes <- model %>% predict(test.transformed)
+# Model accuracy
+mean(predicted.classes == test.transformed$Species)
+```
+
+## Analisis diskriminan reguler
+
+RDA membangun aturan klasifikasi dengan mengatur matriks kovarians grup (Friedman 1989) memungkinkan model yang lebih kuat terhadap multikolinearitas dalam data. Ini mungkin sangat berguna untuk kumpulan data multivariat besar yang berisi prediktor yang sangat berkorelasi.
+
+Analisis diskriminan yang diatur adalah semacam pertukaran antara LDA dan QDA. Ingatlah bahwa, dalam LDA kita mengasumsikan kesetaraan matriks kovarians untuk semua kelas. QDA mengasumsikan matriks kovarians yang berbeda untuk semua kelas. Analisis diskriminan yang diatur adalah perantara antara LDA dan QDA.
+
+RDA mengecilkan kovarians terpisah dari QDA menuju kovarians umum seperti pada LDA. Ini meningkatkan perkiraan matriks kovarians dalam situasi di mana jumlah prediktor lebih besar daripada jumlah sampel dalam data pelatihan, yang berpotensi mengarah pada peningkatan akurasi model.
+
+```{r}
+library(klaR)
+# Fit the model
+model <- rda(Species~., data = train.transformed)
+# Make predictions
+predictions <- model %>% predict(test.transformed)
+# Model accuracy
+mean(predictions$class == test.transformed$Species)
+```
+
+## Diskusi
+
+Kami telah menjelaskan analisis diskriminan linier (LDA) dan ekstensi untuk memprediksi kelas pengamatan berdasarkan beberapa variabel prediktor. Analisis diskriminan lebih cocok untuk masalah klasifikasi multikelas dibandingkan dengan regresi logistik (Bab @ref(regresi logistik)).
+
+LDA mengasumsikan bahwa kelas yang berbeda memiliki matriks varians atau kovarians yang sama. Kami telah menjelaskan banyak ekstensi LDA dalam bab ini. Perpanjangan paling populer dari LDA adalah analisis diskriminan kuadrat (QDA), yang lebih fleksibel daripada LDA dalam arti bahwa itu tidak mengasumsikan kesetaraan matriks kovarians grup.
+
+LDA cenderung lebih baik daripada QDA untuk kumpulan data kecil. QDA direkomendasikan untuk kumpulan data pelatihan yang besar.
+

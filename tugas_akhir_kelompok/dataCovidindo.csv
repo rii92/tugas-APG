@@ -1,0 +1,35 @@
+Province,Confirmed,Recovered,Deaths
+DKI Jakarta,3032,234,287
+Jawa Barat,696,45,59
+Jawa Timur,590,98,54
+Sulawesi Selatan,370,43,25
+Jawa Tengah,349,51,44
+Banten,324,9,34
+Bali,135,38,3
+Papua,107,18,6
+Kalimantan Selatan,96,6,6
+Sumatera Selatan,89,5,3
+Sumatera Utara,81,12,9
+Kepulauan Riau,79,6,7
+Sumatera Barat,72,13,7
+Kalimantan Utara,69,2,1
+Daerah Istimewa Yogyakarta,67,27,7
+Nusa Tenggara Barat,61,11,3
+Kalimantan Timur,59,11,1
+Kalimantan Tengah,46,8,2
+Sulawesi Tenggara,37,4,2
+Riau,30,9,4
+Sulawesi Tengah,27,2,3
+Lampung,26,10,5
+Kalimantan Barat,21,6,3
+Sulawesi Utara,20,5,2
+Maluku,17,6,0
+Jambi,8,0,0
+Aceh,7,4,1
+Kepulauan Bangka Belitung,7,0,1
+Sulawesi Barat,7,1,1
+Papua Barat,7,0,1
+Bengkulu,4,0,1
+Gorontalo,4,0,0
+Maluku Utara,4,2,0
+Nusa Tenggara Timur,1,0,0

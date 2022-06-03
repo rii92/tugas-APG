@@ -4,8 +4,231 @@ author: "Riofebri Prasetia (221911192)"
 date: "5/25/2022"
 output: html_document
 ---
+```{r}
+library('MVN')
+```
 
 ```{r}
+url <- "https://raw.githubusercontent.com/rii92/tugas-APG/main/tugas_akhir_kelompok/apgTugasAkhirKelompok4_2022/IDI_provinsi.csv"
+data <- read.csv(url)[1:34,] #ambil data provinsi, bukan indonesia
+head(data)
+```
+```{r}
+#tahun 2018
+data18 <- data[,1:4]
+#tahun 2019
+data19 <- data[,c(1,5,6,7)]
+#tahun 2020
+data20 <- data[,c(1,8,9,10)]
+```
+
+```{r}
+mvn(data = data18[,2:4])$Descriptives
+mvn(data = data19[,2:4])$Descriptives
+mvn(data = data20[,2:4])$Descriptives
+```
+
+```{r}
+boxplot(c(data18[,2:4], data19[,2:4], data20[,2:4]))
+```
+Perlu dilakukan standarisasi agar memiliki skala nilai yang sama antar kolom
+```{r}
+data18_std <- data18
+data19_std <- data19
+data20_std <- data20
+
+## Lakukan standarisasi
+data18_std[,2:4] <- scale(data18[,2:4])
+data19_std[,2:4] <- scale(data19[,2:4])
+data20_std[,2:4] <- scale(data20[,2:4])
+
+# Boxplot setelah standarisasi
+boxplot(c(data18_std[,2:4], data19_std[,2:4], data20_std[,2:4]))
+```
+
+## Untuk tahun 2018
+
+boxplot setelah standarisasi
+```{r}
+boxplot(c(data18_std[,2:4]))
+```
+akan di lakukan pengelompokkan data pada setiap tahun
+
+```{r}
+## melakukan penghapusan outlier
+data18_std <- na.omit(data18_std)
+head(data18_std)
+```
+```{r}
+mvn(data18_std[,2:4], showOutliers = TRUE)$multivariateOutliers
+
+```
+Secara multivariate tidak ada outlier sehingga proses tetap dilanjutkan
+```{r}
+library(factoextra)
+euclidean1 <- get_dist(data18_std)
+fviz_dist(euclidean1, gradient = list(low = "#00AFBB", mid = "white", high = 
+"#FC4E07"))
+```
+```{r}
+library(factoextra)
+set.seed(123)
+fviz_nbclust(data18_std[,2:4], kmeans, method = "wss")
+```
+```{r}
+set.seed(123)
+fviz_nbclust(data18_std[,2:4], kmeans, method = "silhouette")
+```
+```{r}
+library(cluster)
+set.seed(123)
+gap_stat1 <- clusGap(data18_std[,2:4], FUN = kmeans, K.max = 10, B = 50)
+fviz_gap_stat(gap_stat1)
+```
+1. Berdasarkan pencarian k optimal di WSS maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 4
+
+2. Berdasarkan pencarian k optimal di Silhouette maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 8
+
+3. Berdasarkan pencarian k optimal di Gap Statistic maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 1
+
+dengan menggunakan k = 4, akan ada kemungkinan terjadinya overlap. Jadinya dari kami akan mencoba untuk menurunkan jumlah cluster menjadi 3 cluster. k = 3
+```{r}
+library(stats)
+set.seed(123)
+endkmeans18 <- kmeans(data18_std[,2:4], 3, nstart = 25)
+print(endkmeans18)
+```
+```{r}
+fviz_cluster(endkmeans18, data = data18_std[,2:4])
+```
+Dalam hal ini, bisa kita lihat bahwa kemungkinan untuk overlap tidak ada
+```{r}
+#cek cluster
+data18_afterCluster <- data.frame(data18, endkmeans18$cluster)
+data18_afterCluster[,c(1,5)]
+```
+Terdapat 3 cluster yang dibentuk berdasarkan aspek kebebasan sipil, aspek hak-hak politik, aspek lembaga demokrasi
+
+## Untuk data tahun 2019
+
+Boxplot setelah standarisasi
+```{r}
+boxplot(c(data19_std[,2:4]))
+```
+akan di lakukan pengelompokkan data pada setiap tahun
+```{r}
+## 2019 Mencoba membuang outlier
+data19_std <- na.omit(data19_std)
+head(data19_std)
+```
+```{r}
+mvn(data19_std[,2:4], showOutliers = TRUE)$outliers
+```
+Secara multivariate tidak ada outlier sehingga proses tetap dilanjutkan
+```{r}
+library(factoextra)
+euclidean2 <- get_dist(data19_std)
+fviz_dist(euclidean2, gradient = list(low = "#00AFBB", mid = "white", high = 
+"#FC4E07"))
+```
+```{r}
+library(factoextra)
+set.seed(123)
+fviz_nbclust(data19_std[,2:4], kmeans, method = "wss")
+```
+```{r}
+set.seed(123)
+fviz_nbclust(data19_std[,2:4], kmeans, method = "silhouette")
+```
+```{r}
+library(cluster)
+set.seed(123)
+gap_stat2 <- clusGap(data19_std[,2:4], FUN = kmeans, K.max = 10, B = 50)
+fviz_gap_stat(gap_stat2)
+```
+1. Berdasarkan pencarian k optimal di WSS maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 6
+
+2. Berdasarkan pencarian k optimal di Silhouette maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 6
+
+3. Berdasarkan pencarian k optimal di Gap Statistic maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 1
+
+Dari kami tetap memilih 3 cluster sehingga hasil cluster tetap seperti sebagai berikut
+```{r}
+library(stats)
+set.seed(123)
+endkmeans19 <- kmeans(data19_std[,2:4], 3, nstart = 25)
+print(endkmeans19)
+```
+```{r}
+fviz_cluster(endkmeans19, data = data19_std[,2:4])
 
 ```
 
+```{r}
+#cek cluster
+data19_afterCluster <- data.frame(data19, endkmeans19$cluster)
+data19_afterCluster[,c(1,5)]
+```
+Terdapat 2 cluster yang dibentuk berdasarkan aspek kebebasan sipil, aspek hak-hak politik, aspek lembaga demokrasi
+
+## Untuk data tahun 2020
+
+boxplot setelah standarisasi
+```{r}
+boxplot(c(data20[,2:4]))
+```
+
+```{r}
+## 2020
+data20_std <- na.omit(data20_std)
+head(data20_std)
+```
+```{r}
+mvn(data20_std[,2:4], showOutliers = TRUE)$outliers
+```
+
+Secara multivariate tidak ada outlier sehingga proses tetap dilanjutkan
+```{r}
+library(factoextra)
+euclidean3 <- get_dist(data20_std)
+fviz_dist(euclidean3, gradient = list(low = "#00AFBB", mid = "white", high = 
+"#FC4E07"))
+```
+```{r}
+library(factoextra)
+set.seed(123)
+fviz_nbclust(data20_std[,2:4], kmeans, method = "wss")
+```
+```{r}
+set.seed(123)
+fviz_nbclust(data20_std[,2:4], kmeans, method = "silhouette")
+```
+```{r}
+library(cluster)
+set.seed(123)
+gap_stat3 <- clusGap(data20_std[,2:4], FUN = kmeans, K.max = 10, B = 10)
+fviz_gap_stat(gap_stat3)
+```
+1. Berdasarkan pencarian k optimal di WSS maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 7
+
+2. Berdasarkan pencarian k optimal di Silhouette maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 8
+
+3. Berdasarkan pencarian k optimal di Gap Statistic maka titik yang mengalami penurunan terbesar kemudian menjadi landai setelah melalui titik tersebut ialah k = 1
+
+Dari kami tetap memilih 3 cluster, hasilnya sebagai berikut:
+```{r}
+library(stats)
+set.seed(123)
+endkmeans20 <- kmeans(data20_std[,2:4], 3, nstart = 25)
+print(endkmeans20)
+```
+```{r}
+fviz_cluster(endkmeans20, data = data20_std[,2:4])
+```
+
+```{r}
+#cek cluster
+data20_afterCluster <- data.frame(data20, endkmeans20$cluster)
+data20_afterCluster[,c(1,5)]
+```
+Terdapat 2 cluster yang dibentuk berdasarkan aspek kebebasan sipil, aspek hak-hak politik, aspek lembaga demokrasi
